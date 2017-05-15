@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_doctor_recycleview_item"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fragment_doctor_recycleView_item_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/touxiang"
+        android:layout_margin="10dp"/>
+
+    <TextView
+       android:id="@+id/fragment_doctor_recycleView_item_name"
+       style="@style/bigSize"
+        android:text="李四"
+        android:layout_marginTop="25dp"
+       android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:id="@+id/fragment_doctor_recycleView_item_sex"
+       style="@style/smallSize"
+        android:text="男"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:id="@+id/fragment_doctor_recycleView_item_age"
+        style="@style/smallSize"
+        android:text="54"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:id="@+id/fragment_doctor_recycleView_item_content"
+        style="@style/smallSize"
+        android:text="咳嗽头痛"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="-55dp"/>
+
+</LinearLayout>

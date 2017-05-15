@@ -1,4 +1,4 @@
-package com.witnsoft.interhis;
+package com.witnsoft.interhis.tool;
 
 
 import android.support.multidex.MultiDexApplication;

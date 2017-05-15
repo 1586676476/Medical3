@@ -1,4 +1,4 @@
-package com.witnsoft.interhis;
+package com.witnsoft.interhis.mainpage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import com.trello.rxlifecycle.components.RxActivity;
-import com.witnsoft.interhis.mainpage.MainActivity;
+import com.witnsoft.interhis.R;
 import com.witnsoft.libinterhis.utils.ImageUtility;
 
 import org.xutils.view.annotation.ContentView;
