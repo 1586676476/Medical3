@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hyphenate.easeui.EaseConstant;
 import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.DoctorAdapter;
@@ -133,6 +134,14 @@ public class DoctorFragment extends Fragment implements OnClick {
 //        eventBus.post(helperBean);
 //        Log.e(TAG, "onIteClick: "+helperBean );
 //        doctorAdapter.setPos(position);
+
+
+        //启动会话列表
+        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+        helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
+                "ceshi2",
+                EaseConstant.EXTRA_CHAT_TYPE,
+                EaseConstant.CHATTYPE_SINGLE);
 
     }
 }

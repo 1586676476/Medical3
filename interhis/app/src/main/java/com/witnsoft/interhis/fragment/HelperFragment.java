@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -225,5 +226,19 @@ public class HelperFragment extends Fragment implements View.OnClickListener {
         ask_linearLayout.setVisibility(View.GONE);
         chat_linearLayout.setVisibility(View.GONE);
         chinese_linearLayout.setVisibility(View.GONE);
+    }
+    public void getContent(String userName, String userId, String type, int single){
+        Log.e(TAG, userName + "  "+ userId + "  " + type + "  " + single);
+        ChatFragment chatFragment = new ChatFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("userName",userName);
+        bundle.putString("userId",userId);
+        bundle.putString("type",type);
+        bundle.putInt("single",single);
+        chatFragment.setArguments(bundle);
+        getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
+
+
+
     }
 }
