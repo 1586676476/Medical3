@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.bean.HelperBean;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
@@ -22,7 +23,7 @@ import java.util.List;
 public class DoctorAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final String TAG = "DoctorAdapter";
     private Context context;
-    private List<HelperBean> list;
+    private List<CeShi> list;
     private OnClick onClick;
     private int pos;
 
@@ -35,7 +36,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.onClick = onClick;
     }
 
-    public void setList(List<HelperBean> list) {
+    public void setList(List<CeShi> list) {
         this.list = list;
 
     }
@@ -51,11 +52,15 @@ public class DoctorAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(final BaseViewHolder holder, final int position) {
-            holder.setText(R.id.fragment_doctor_recycleView_item_name,list.get(0).getDATAARRAY().get(0).getDATA().get(position).getDOCNAME());
-           // holder.setText(R.id.fragment_doctor_recycleView_item_sex,list.get(0).getDATAARRAY().get(0).getDATA().get(position).);
-            holder.setText(R.id.fragment_doctor_recycleView_item_content,list.get(0).getDATAARRAY().get(0).getDATA().get(position).getJBMC());
-           // holder.setText(R.id.fragment_doctor_recycleView_item_age, list.get(position).getAge()+"");
+//            holder.setText(R.id.fragment_doctor_recycleView_item_name,list.get(0).getDATAARRAY().get(0).getDATA().get(position).getDOCNAME());
+//           // holder.setText(R.id.fragment_doctor_recycleView_item_sex,list.get(0).getDATAARRAY().get(0).getDATA().get(position).);
+//            holder.setText(R.id.fragment_doctor_recycleView_item_content,list.get(0).getDATAARRAY().get(0).getDATA().get(position).getJBMC());
+//           // holder.setText(R.id.fragment_doctor_recycleView_item_age, list.get(position).getAge()+"");
 
+            holder.setText(R.id.fragment_doctor_recycleView_item_age,list.get(position).getAge()+"");
+            holder.setText(R.id.fragment_doctor_recycleView_item_name,list.get(position).getName());
+            holder.setText(R.id.fragment_doctor_recycleView_item_sex,list.get(position).getSex());
+            holder.setText(R.id.fragment_doctor_recycleView_item_content,list.get(position).getContent());
 
         holder.getView().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +77,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        Log.e(TAG, "getItemCount: "+list.size());
-        return list != null ? list.size() : 0;
+        return 3;
 
     }
 }

@@ -32,4 +32,5 @@ public class NetPostTool implements NetPostInterface {
     public <T> void startPostRequest(String url, FormBody formBody, Class<T> tClass, CallBack<T> tCallBack) {
         mNetPostInterface.startPostRequest(url,formBody,tClass,tCallBack);
     }
+
 }

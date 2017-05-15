@@ -2,11 +2,13 @@ package com.witnsoft.interhis.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.Prescription;
+import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
 
 import java.util.List;
@@ -16,18 +18,23 @@ import java.util.List;
  */
 
 public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHolder>{
+    private static final String TAG = "Chinese_RecycleView_Ada";
 
     private Context context;
     private List<Prescription> list;
+//    private OnClick onClick;
+//
+//    public void setOnClick(OnClick onClick) {
+//        this.onClick = onClick;
+//    }
+
 
     public void setList(List<Prescription> list) {
         this.list = list;
     }
 
-    public Chinese_RecycleView_Adapter(Context context, List<Prescription> list) {
-
+    public void setContext(Context context) {
         this.context = context;
-        this.list = list;
     }
 
     @Override
@@ -36,13 +43,12 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
-    holder.setText(R.id.fragment_helper_chinese_linearLayout_recycleView_edittext,list.get(position).getName());
-        holder.setText(R.id.fragment_helper_chinese_linearLayout_recycleView_edittext_number,list.get(position).getNumber()+"");
+    public void onBindViewHolder(BaseViewHolder holder, final int position) {
+
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return 1;
     }
 }

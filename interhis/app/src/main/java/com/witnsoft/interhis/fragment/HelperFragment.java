@@ -6,29 +6,45 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+
 import android.util.Log;
+
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
+import com.witnsoft.interhis.bean.Prescription;
 import com.witnsoft.interhis.inter.DialogListener;
+import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
+import com.witnsoft.interhis.tool.Application;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ${liyan} on 2017/5/8.
  */
 
-public class HelperFragment extends Fragment implements View.OnClickListener {
+public class HelperFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "HelperFragment";
 
     private Bitmap mSignBitmap;
@@ -38,6 +54,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener {
     private LinearLayout chinese_linearLayout,western_linearLayout,chat_linearLayout,ask_linearLayout;
     private LinearLayout chinese_linearLayout_linearLayout,western_linearLayout_linearLayout;
     private ImageView chinese_img,western_img;
+
+    private RecyclerView chinese_recyclerView;
+    private EditText chinese_name,chinese_number;
+    private Chinese_RecycleView_Adapter chinese_adapter;
+    private List<Prescription> data;
 
     @Nullable
     @Override
@@ -64,7 +85,12 @@ public class HelperFragment extends Fragment implements View.OnClickListener {
         chinese_img.setOnClickListener(signListener);
         western_linearLayout_linearLayout.setOnClickListener(signListenerWestern);
         western_img.setOnClickListener(signListenerWestern);
+
+        chinese_recyclerView= (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_recycleView);
+        chinese_name= (EditText) view.findViewById(R.id.fragment_helper_chinese_linearLayout_recycleView_edittext);
+        chinese_number= (EditText) view.findViewById(R.id.fragment_helper_chinese_linearLayout_recycleView_edittext_number);
         return view;
+
     }
 
     @Override
@@ -74,6 +100,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener {
         chat.setOnClickListener(this);
         chinese.setOnClickListener(this);
         western.setOnClickListener(this);
+
+        data=new ArrayList<>();
+        chinese_adapter=new Chinese_RecycleView_Adapter();
+        chinese_adapter.setList(data);
+        chinese_adapter.setContext(Application.getInstance().getApplicationContext());
+        chinese_recyclerView.setLayoutManager(new GridLayoutManager(Application.getInstance().getApplicationContext(),4));
+        chinese_recyclerView.setAdapter(chinese_adapter);
+
     }
 
     @Override
@@ -227,6 +261,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener {
         chat_linearLayout.setVisibility(View.GONE);
         chinese_linearLayout.setVisibility(View.GONE);
     }
+
     public void getContent(String userName, String userId, String type, int single){
         Log.e(TAG, userName + "  "+ userId + "  " + type + "  " + single);
         ChatFragment chatFragment = new ChatFragment();
@@ -241,4 +276,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener {
 
 
     }
+
+
+
+
 }
