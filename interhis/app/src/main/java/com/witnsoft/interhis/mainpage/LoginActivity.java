@@ -34,7 +34,7 @@ public class LoginActivity extends BaseActivity {
         EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
             @Override
             public void onSuccess() {
-                Log.e( "onSuccess: ","success!" );
+                Log.e( "onSuccess: ","登录成功" );
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
             }
 

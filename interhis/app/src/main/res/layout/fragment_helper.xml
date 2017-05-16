@@ -53,7 +53,7 @@
 
     </RadioGroup>
 
-    <LinearLayout
+    <FrameLayout
         android:visibility="gone"
         android:background="@color/colorWhite"
         android:id="@+id/fragment_helper_ask_linearLayout"
@@ -68,7 +68,7 @@
             android:text="聊天功能"/>
 
 
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:background="@color/colorWhite"

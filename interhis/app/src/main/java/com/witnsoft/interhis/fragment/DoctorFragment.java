@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.hyphenate.easeui.EaseConstant;
@@ -37,7 +38,7 @@ import okhttp3.Request;
 public class DoctorFragment extends Fragment implements OnClick {
     private static final String TAG = "DoctorFragment";
 
-    private String[] name=new String[]{"ceshi","ceshi2","0428"};
+    private String[] name=new String[]{"ceshi2","test001","patid001"};
     private String[] sex=new String[]{"男","女","男"};
     private int[] age=new int[]{22,40,55};
     private String[] content=new String[]{"头痛","嗓子痛","感冒"};
@@ -49,21 +50,21 @@ public class DoctorFragment extends Fragment implements OnClick {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_doctor,container,false);
+        recyclerView= (RecyclerView) view.findViewById(R.id.fragment_doctor_recycleView);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        doctorAdapter=new DoctorAdapter(getContext());
         data=new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             CeShi ceShi=new CeShi(name[i],sex[i],content[i],age[i]);
             data.add(ceShi);
         }
-        recyclerView= (RecyclerView) getActivity().findViewById(R.id.fragment_doctor_recycleView);
-        doctorAdapter=new DoctorAdapter(Application.getInstance().getApplicationContext());
         doctorAdapter.setList(data);
-        recyclerView.setLayoutManager(new LinearLayoutManager(Application.getInstance().getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(doctorAdapter);
         doctorAdapter.setOnClick(this);
 
@@ -73,11 +74,10 @@ public class DoctorFragment extends Fragment implements OnClick {
     public void onIteClick(int position) {
         doctorAdapter.setPos(position);
 
-
         //启动会话列表
         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
         helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-                "ceshi2",
+                name[position],
                 EaseConstant.EXTRA_CHAT_TYPE,
                 EaseConstant.CHATTYPE_SINGLE);
 

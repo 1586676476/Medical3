@@ -28,14 +28,16 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
 //        this.onClick = onClick;
 //    }
 
+    public Chinese_RecycleView_Adapter(Context context){
+        this.context = context;
+    }
 
     public void setList(List<Prescription> list) {
         this.list = list;
+        notifyDataSetChanged();
     }
 
-    public void setContext(Context context) {
-        this.context = context;
-    }
+
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
