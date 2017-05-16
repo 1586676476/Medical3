@@ -5,30 +5,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.Toast;
 
 
+=======
+>>>>>>> 123
 import com.hyphenate.easeui.EaseConstant;
-
 import com.witnsoft.interhis.bean.CeShi;
-
-import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.DoctorAdapter;
-import com.witnsoft.interhis.bean.HelperBean;
 import com.witnsoft.interhis.inter.OnClick;
-import com.witnsoft.interhis.tool.CallBack;
-import com.witnsoft.interhis.tool.NetPostTool;
-
 import java.util.ArrayList;
 import java.util.List;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
+
 
 
 /**
@@ -63,6 +56,11 @@ public class DoctorFragment extends Fragment implements OnClick {
             CeShi ceShi=new CeShi(name[i],sex[i],content[i],age[i]);
             data.add(ceShi);
         }
+<<<<<<< HEAD
+=======
+        recyclerView= (RecyclerView) getActivity().findViewById(R.id.fragment_doctor_recycleView);
+        doctorAdapter=new DoctorAdapter(getContext());
+>>>>>>> 123
         doctorAdapter.setList(data);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(doctorAdapter);

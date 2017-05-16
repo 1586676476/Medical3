@@ -1,6 +1,10 @@
 [
     {
+<<<<<<< HEAD
         "outputFile": "E:\\github\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+=======
+        "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+>>>>>>> 123
         "map": [
             {
                 "to": {
@@ -11,7 +15,11 @@
                     "endOffset": 103
                 },
                 "from": {
+<<<<<<< HEAD
                     "file": "E:\\github\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+=======
+                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+>>>>>>> 123
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +38,11 @@
                     "endOffset": 157
                 },
                 "from": {
+<<<<<<< HEAD
                     "file": "E:\\github\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+=======
+                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+>>>>>>> 123
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,

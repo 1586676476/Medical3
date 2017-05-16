@@ -4,25 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <EditText
+    <TextView
+        android:id="@+id/fragment_helper_chinese_linearLayout_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="药方"/>
 
-        android:id="@+id/fragment_helper_chinese_linearLayout_recycleView_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/colorBlack"
-        android:nextFocusForward="@+id/fragment_helper_chinese_linearLayout_recycleView_edittext_number"
-        android:imeOptions="actionNext"
-        />
-    <EditText
-        android:id="@+id/fragment_helper_chinese_linearLayout_recycleView_edittext_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/colorBlack"
-        />
 </LinearLayout>

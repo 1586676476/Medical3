@@ -28,6 +28,10 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
 //        this.onClick = onClick;
 //    }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     public Chinese_RecycleView_Adapter(Context context){
         this.context = context;
     }
@@ -51,6 +55,6 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 9;
     }
 }

@@ -140,13 +140,13 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_helper_chinese_linearLayout_recycleView"
             android:layout_width="690dp"
-            android:layout_height="150dp"/>
+            android:layout_height="wrap_content"/>
 
        <EditText
            android:id="@+id/fragment_helper_chinese_edittext"
            android:layout_width="670dp"
            android:layout_height="100dp"
-           android:hint="中药药方"
+           android:hint="请输入药方"
            android:paddingBottom="60dp"
            android:paddingLeft="10dp"
            android:layout_marginTop="10dp"
