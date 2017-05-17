@@ -1,10 +1,6 @@
 [
     {
-<<<<<<< HEAD
-        "outputFile": "E:\\github\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
-=======
         "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
->>>>>>> 123
         "map": [
             {
                 "to": {
@@ -16,16 +12,6 @@
                     "endOffset": 219
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\github\\interhis\\easeUI_CN\\src\\main\\res\\values-v11\\ease_styles.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 56,
-                        "endLine": 5,
-                        "endColumn": 12,
-                        "endOffset": 220
-=======
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 3,
@@ -34,7 +20,6 @@
                         "endLine": 5,
                         "endColumn": 12,
                         "endOffset": 225
->>>>>>> 123
                     }
                 }
             },
@@ -48,16 +33,6 @@
                     "endOffset": 394
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\github\\interhis\\easeUI_CN\\src\\main\\res\\values-v11\\ease_styles.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 226,
-                        "endLine": 9,
-                        "endColumn": 12,
-                        "endOffset": 396
-=======
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 7,
@@ -66,7 +41,6 @@
                         "endLine": 9,
                         "endColumn": 12,
                         "endOffset": 405
->>>>>>> 123
                     }
                 }
             },
@@ -79,15 +53,6 @@
                     "endOffset": 479
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\github\\interhis\\easeUI_CN\\src\\main\\res\\values-v11\\ease_styles.xml",
-                    "position": {
-                        "startLine": 11,
-                        "startColumn": 4,
-                        "startOffset": 402,
-                        "endColumn": 91,
-                        "endOffset": 489
-=======
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-v11\\ease_styles.xml",
                     "position": {
                         "startLine": 11,
@@ -95,7 +60,6 @@
                         "startOffset": 413,
                         "endColumn": 91,
                         "endOffset": 500
->>>>>>> 123
                     }
                 }
             }

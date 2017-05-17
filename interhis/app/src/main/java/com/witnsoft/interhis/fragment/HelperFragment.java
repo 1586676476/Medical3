@@ -1,6 +1,5 @@
 package com.witnsoft.interhis.fragment;
 
-import android.content.ContentValues;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -8,16 +7,15 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -29,9 +27,7 @@ import android.widget.TextView;
 
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
-import com.witnsoft.interhis.bean.Prescription;
 
-import com.witnsoft.interhis.inter.DetailsInter;
 import com.witnsoft.interhis.inter.DialogListener;
 
 import com.witnsoft.interhis.inter.WritePadDialog;
@@ -52,11 +48,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "HelperFragment";
 
     private Bitmap mSignBitmap;
-    private String signPath,prescription;
+    private String signPath;
     private RadioButton ask,chat,chinese,western;
-
-
-
     private FrameLayout ask_linearLayout;
     private LinearLayout chinese_linearLayout,western_linearLayout,chat_linearLayout;
     private LinearLayout chinese_linearLayout_linearLayout,western_linearLayout_linearLayout;
@@ -64,13 +57,12 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
 
     private RecyclerView chinese_recyclerView;
     private Chinese_RecycleView_Adapter chinese_adapter;
-    private List<Prescription> data;
+    private List<String> data;
 
     private Button chinese_button;
     private TextView chinese_recycleview_text;
     private EditText chinese_edittext;
-    private DetailsInter detailsInter;
-    private int id;
+
 
     @Nullable
     @Override
@@ -124,17 +116,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
 
         chinese_recyclerView.setAdapter(chinese_adapter);
 
-        detailsInter=getActivity().getIntent().getParcelableExtra("details");
-        prescription=detailsInter.getDetails();
-        id=detailsInter.getId();
-        chinese_edittext.setHint(prescription);
 
 
     }
 
     @Override
     public void onClick(View v) {
-        String content=chinese_edittext.getText().toString();
+
         switch (v.getId()){
             case R.id.fragment_helper_radioButton_ask:
                playAskVeiw();
@@ -149,7 +137,12 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
                 playWesternView();
                 break;
             case R.id.fragment_helper_chinese_button:
-
+                String content=chinese_edittext.getText().toString();
+                if (!TextUtils.isEmpty(content)){
+                    chinese_adapter.addTextView(content);
+                    chinese_adapter.notifyDataSetChanged();
+                    chinese_edittext.setText("");
+                }
 
             break;
         }

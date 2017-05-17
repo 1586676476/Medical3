@@ -1,10 +1,6 @@
 [
     {
-<<<<<<< HEAD
-        "outputFile": "E:\\github\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
-=======
         "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
->>>>>>> 123
         "map": [
             {
                 "to": {
@@ -15,15 +11,6 @@
                     "endOffset": 103
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\github\\interhis\\easeUI_CN\\src\\main\\res\\values-large\\ease_dimens.xml",
-                    "position": {
-                        "startLine": 19,
-                        "startColumn": 4,
-                        "startOffset": 663,
-                        "endColumn": 52,
-                        "endOffset": 711
-=======
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-large\\ease_dimens.xml",
                     "position": {
                         "startLine": 19,
@@ -31,7 +18,6 @@
                         "startOffset": 682,
                         "endColumn": 52,
                         "endOffset": 730
->>>>>>> 123
                     }
                 }
             },
@@ -44,15 +30,6 @@
                     "endOffset": 157
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\github\\interhis\\easeUI_CN\\src\\main\\res\\values-large\\ease_dimens.xml",
-                    "position": {
-                        "startLine": 20,
-                        "startColumn": 4,
-                        "startOffset": 716,
-                        "endColumn": 53,
-                        "endOffset": 765
-=======
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-large\\ease_dimens.xml",
                     "position": {
                         "startLine": 20,
@@ -60,7 +37,6 @@
                         "startOffset": 736,
                         "endColumn": 53,
                         "endOffset": 785
->>>>>>> 123
                     }
                 }
             }
