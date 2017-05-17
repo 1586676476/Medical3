@@ -7,7 +7,9 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 
 import android.support.v7.widget.GridLayoutManager;
@@ -16,23 +18,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
-
 import com.witnsoft.interhis.inter.DialogListener;
 
+import com.witnsoft.interhis.inter.FilterListener;
 import com.witnsoft.interhis.inter.WritePadDialog;
-
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,10 +60,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
     private Chinese_RecycleView_Adapter chinese_adapter;
     private List<String> data;
 
-    private Button chinese_button;
+    private Button chinese_button,chinese_confirm;
     private TextView chinese_recycleview_text;
     private EditText chinese_edittext;
 
+    private ListView chinese_listView;
+    private List<String> list=new ArrayList<String>();
+    boolean isFilter;
+    private Chinese_ListView_Adapter adapter=null;
 
     @Nullable
     @Override
@@ -85,6 +90,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
         western_linearLayout_linearLayout= (LinearLayout) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout);
         chinese_recyclerView= (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_recycleView);
         chinese_button= (Button) view.findViewById(R.id.fragment_helper_chinese_button);
+        chinese_confirm= (Button) view.findViewById(R.id.fragment_helper_chinese_confirm);
         chinese_recycleview_text= (TextView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_text);
         chinese_edittext= (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
 
@@ -92,6 +98,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
         chinese_img.setOnClickListener(signListener);
         western_linearLayout_linearLayout.setOnClickListener(signListenerWestern);
         western_img.setOnClickListener(signListenerWestern);
+
+        chinese_listView= (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
 
         return view;
 
@@ -105,6 +113,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
         chinese.setOnClickListener(this);
         western.setOnClickListener(this);
         chinese_button.setOnClickListener(this);
+        chinese_confirm.setOnClickListener(this);
 
         chinese_adapter=new Chinese_RecycleView_Adapter(getContext());
         data=new ArrayList<>();
@@ -113,11 +122,73 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
 
         chinese_adapter.setContext(getContext());
         chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(),5));
-
         chinese_recyclerView.setAdapter(chinese_adapter);
 
+        //实现搜索功能
+        setData();//给listview设置adapter
+        setListener();//给listview设置监听
 
+    }
 
+    private void setListener() {
+        //没有进行搜索的时候，也要添加对listview的item单击监听
+        setItemClick(list);
+
+        /**
+         * 对编辑框添加文本改变监听，搜索的具体功能在这里实现
+         * 文本改变的时候进行搜索，重写onTextChanges()方法
+         */
+        chinese_edittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            //编辑框内容改变的时候会执行该方法
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //如果adapter不为空的话就根据编辑框中的内容来过滤数据
+                if (adapter!=null){
+                    adapter.getFilter().filter(s);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+    private void setData() {
+        initData();//初始化搜索数据
+
+        //这里面创建adapter的时候，构造方法参数传了一个接口对象，回调借口中的方法来实现对过滤的数据的获取
+        adapter=new Chinese_ListView_Adapter(list, getContext(), new FilterListener() {
+            @Override
+            public void getFilterData(List<String> datas) {
+                setItemClick(list);
+            }
+        });
+        chinese_listView.setAdapter(adapter);
+
+    }
+
+    private void setItemClick(final List<String> datas) {
+        chinese_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(MainActivity.this, filter_lists.get(position), Toast.LENGTH_SHORT).show();
+                chinese_edittext.setText(datas.get(position));
+            }
+        });
+    }
+
+    private void initData() {
+        list.add("看着飞舞的尘埃   掉下来");
+        list.add("没人发现它存在");
+        list.add("多自由自在");
+        list.add("可世界都爱热热闹闹");
+        list.add("容不下   我百无聊赖");
+        list.add("不应该   一个人 发呆");
     }
 
     @Override
@@ -132,17 +203,25 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.fragment_helper_radioButton_chinese:
                 playChineseView();
+                chinese_edittext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        chinese_listView.setVisibility(View.VISIBLE);
+                    }
+                });
                 break;
             case R.id.fragment_helper_radioButton_western:
                 playWesternView();
                 break;
-            case R.id.fragment_helper_chinese_button:
+            case R.id.fragment_helper_chinese_confirm:
                 String content=chinese_edittext.getText().toString();
                 if (!TextUtils.isEmpty(content)){
                     chinese_adapter.addTextView(content);
                     chinese_adapter.notifyDataSetChanged();
                     chinese_edittext.setText("");
                 }
+                break;
+            case R.id.fragment_helper_chinese_button:
 
             break;
         }
@@ -156,13 +235,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
                 public void refreshActivity(Object object) {
                     mSignBitmap = (Bitmap) object;
                     signPath = createFile();
-
-                    //对图片进行压缩
-							/*BitmapFactory.Options options = new BitmapFactory.Options();
-							options.inSampleSize = 15;
-							options.inTempStorage = new byte[5 * 1024];
-							Bitmap zoombm = BitmapFactory.decodeFile(signPath, options);
-*/
                     Bitmap zoombm = getCompressBitmap(signPath);
                     western_img.setImageBitmap(zoombm);
 

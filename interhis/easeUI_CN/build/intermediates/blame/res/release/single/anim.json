@@ -32,16 +32,16 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_out.xml"
     },
     {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_right.xml"
+    },
+    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_out.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_out.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_right.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
