@@ -115,7 +115,7 @@
     </LinearLayout>
 
     <LinearLayout
-
+        android:visibility="gone"
         android:id="@+id/fragment_helper_chinese_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -154,6 +154,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext"
                 android:hint="请输入药方"
+                android:textColor="@color/colorGray"
                 android:paddingLeft="10dp" />
 
             <Button
@@ -286,10 +287,5 @@
 
 
    </LinearLayout>
-
-
-
-
-
 
 </LinearLayout>

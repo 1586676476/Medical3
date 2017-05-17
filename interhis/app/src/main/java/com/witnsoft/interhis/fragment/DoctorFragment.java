@@ -76,6 +76,5 @@ public class DoctorFragment extends Fragment implements OnClick {
                 name[position],
                 EaseConstant.EXTRA_CHAT_TYPE,
                 EaseConstant.CHATTYPE_SINGLE);
-
     }
 }

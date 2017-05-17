@@ -33,6 +33,7 @@ import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
 import com.witnsoft.interhis.inter.DialogListener;
 
 import com.witnsoft.interhis.inter.FilterListener;
+import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,7 +46,7 @@ import java.util.List;
  * Created by ${liyan} on 2017/5/8.
  */
 
-public class HelperFragment extends Fragment implements View.OnClickListener{
+public class HelperFragment extends Fragment implements View.OnClickListener,OnClick{
     private static final String TAG = "HelperFragment";
 
     private Bitmap mSignBitmap;
@@ -119,6 +120,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
         data=new ArrayList<>();
         chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
         chinese_adapter.setList(data);
+        chinese_adapter.setOnClick(this);
 
         chinese_adapter.setContext(getContext());
         chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(),5));
@@ -368,6 +370,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener{
     }
 
 
-
-
+    @Override
+    public void onIteClick(int position) {
+        chinese_adapter.deleteTextView(position);
+        chinese_adapter.notifyDataSetChanged();
+    }
 }
