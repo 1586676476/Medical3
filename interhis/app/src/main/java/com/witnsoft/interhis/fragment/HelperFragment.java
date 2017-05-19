@@ -258,10 +258,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 bundle.putString("type", type1);
                 bundle.putInt("single", single1);
                 chatFragment.setArguments(bundle);
-
                 getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
-
-
                 break;
             case R.id.fragment_helper_radioButton_chat:
                 playChatView();
@@ -289,7 +286,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 //                            chinese_adapter.addTextView(content);
 //                            chinese_adapter.notifyDataSetChanged();
 //                            chinese_edittext.setText("");
-//                        }
+////                        }
                         break;
         }}
 
