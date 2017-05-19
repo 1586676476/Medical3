@@ -115,7 +115,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
+
         android:id="@+id/fragment_helper_chinese_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -140,40 +140,36 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_helper_chinese_linearLayout_recycleView"
             android:layout_width="690dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="100dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
+        <EditText
                 android:id="@+id/fragment_helper_chinese_edittext"
-                android:layout_width="670dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="400dp"
+                android:layout_height="40dp"
                 android:background="@drawable/edittext"
                 android:hint="请输入药方"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorBlack"
                 android:paddingLeft="10dp" />
 
-            <Button
-                android:id="@+id/fragment_helper_chinese_confirm"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="-150dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button"
-                android:text="确认处方"/>
-        </LinearLayout>
-
+        <android.inputmethodservice.KeyboardView
+            android:id="@+id/keyboard_view"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:focusable="true"
+            android:layout_marginTop="10dp"
+            android:focusableInTouchMode="true"
+            android:background="@color/colorWhite"
+            />
 
         <ListView
             android:id="@+id/fragment_helper_chinese_listview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone" />
+            android:layout_height="250dp"
+            android:layout_marginTop="-255dp"
+            android:layout_marginLeft="410dp"
+
+            />
 
         <Button
             android:id="@+id/fragment_helper_chinese_button"

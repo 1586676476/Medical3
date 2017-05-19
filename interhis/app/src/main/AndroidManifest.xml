@@ -66,6 +66,11 @@
         </receiver>
 
         <activity android:name=".mainpage.MainActivity"/>
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+
 
 
 

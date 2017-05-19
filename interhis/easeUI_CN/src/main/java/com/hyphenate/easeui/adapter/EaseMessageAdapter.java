@@ -199,7 +199,7 @@ public class EaseMessageAdapter extends BaseAdapter{
 			if(message.getBooleanAttribute(EaseConstant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
 				return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_EXPRESSION : MESSAGE_TYPE_SENT_EXPRESSION;
 			}
-			if ("project".equals(message.getStringAttribute("type", ""))) {
+			if ("yaofang".equals(message.getStringAttribute("type", ""))) {
 				return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_PROJECT : MESSAGE_TYPE_SENT_PROJECT;
 			}
 
@@ -234,8 +234,9 @@ public class EaseMessageAdapter extends BaseAdapter{
 			case TXT:
 				if(message.getBooleanAttribute(EaseConstant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
 					chatRow = new EaseChatRowBigExpression(context, message, position, this);
-				}else if ("project".equals(message.getStringAttribute("type", ""))) {
+				}else if ("yaofang".equals(message.getStringAttribute("type", ""))) {
 					chatRow=new MyEaseChatRowProject(context, message, position, this);
+
 				}else{
 					chatRow = new EaseChatRowText(context, message, position, this);
 				}

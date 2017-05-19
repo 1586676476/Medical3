@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
 import com.hyphenate.exceptions.HyphenateException;
 
@@ -24,6 +25,8 @@ public class MyEaseChatRowProject extends EaseChatRow {
     private TextView tv_mychatlist_xiangmuname;
     private ImageView iv_mychatlist_xiangmuice;
     private TextView tv_mychatlist_xiangmucontent;
+    private String yaofangName;
+    private String yaofangContent;
 
     public MyEaseChatRowProject(Context context, EMMessage message, int position, BaseAdapter adapter) {
         super(context, message, position, adapter);
@@ -51,6 +54,7 @@ public class MyEaseChatRowProject extends EaseChatRow {
         tv_mychatlist_xiangmuname = (TextView) findViewById(R.id.tv_mychatlist_xiangmuname);
         iv_mychatlist_xiangmuice = (ImageView) findViewById(R.id.iv_mychatlist_xiangmuice);
         tv_mychatlist_xiangmucontent = (TextView) findViewById(R.id.tv_mychatlist_xiangmucontent);
+
     }
 
     /**
@@ -72,9 +76,14 @@ public class MyEaseChatRowProject extends EaseChatRow {
 
         // 设置内容,通过扩展自文本获取消息内容，填充到相应的位置
 
-        tv_mychatlist_xiangmuname.setText("测试的项目");
-        tv_mychatlist_xiangmucontent.setText("测试项目的内容");
-        handleTextMessage();
+        if (message.getBooleanAttribute("yaofang",true)) {
+            String yaofangNum = message.getStringAttribute("yaofangNum", null);
+            String yaofangPrice = message.getStringAttribute("yaofangPrice", null);
+            tv_mychatlist_xiangmuname.setText(yaofangNum);
+            tv_mychatlist_xiangmucontent.setText(yaofangPrice);
+
+            handleTextMessage();
+        }
     }
 
     protected void handleTextMessage() {
@@ -100,8 +109,8 @@ public class MyEaseChatRowProject extends EaseChatRow {
                 default:
                     break;
             }
-        }else{
-            if(!message.isAcked() && message.getChatType() == EMMessage.ChatType.Chat){
+        } else {
+            if (!message.isAcked() && message.getChatType() == EMMessage.ChatType.Chat) {
                 try {
                     EMClient.getInstance().chatManager().ackMessageRead(message.getFrom(), message.getMsgId());
                 } catch (HyphenateException e) {

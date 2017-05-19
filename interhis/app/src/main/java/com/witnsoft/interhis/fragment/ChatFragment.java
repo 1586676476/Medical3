@@ -65,10 +65,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
     @Override
     protected void setUpView() {
-        //TODO 应该是这儿的问题
         setChatFragmentListener(this);
         super.setUpView();
-        Log.e(TAG, "setUpView: " );
     }
     //获取拓展消息返回值
     @Override
@@ -92,7 +90,6 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     //注册拓展消息  设置图标 名称等
     @Override
     protected void registerExtendMenuItem() {
-        //TODO 下面这个第二个参数暂时不知道是什么 都做完看一下就知道了
         inputMenu.registerExtendMenuItem("文件", R.drawable.ic_launcher, ITEM_FILE, extendMenuItemClickListener);
         inputMenu.registerExtendMenuItem("项目", R.drawable.ic_launcher, ITEM_PROJECT, extendMenuItemClickListener);
         Log.e(TAG, "registerExtendMenuItem: " );
