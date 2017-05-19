@@ -160,12 +160,12 @@
         "source": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_default_image.png"
     },
     {
-        "merged": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_voice_unread.png",
-        "source": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_voice_unread.png"
-    },
-    {
         "merged": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_slidetab_bg_press.9.png",
         "source": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_slidetab_bg_press.9.png"
+    },
+    {
+        "merged": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_voice_unread.png",
+        "source": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_voice_unread.png"
     },
     {
         "merged": "/Users/zhengchengpeng/Desktop/new_pro/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_chatto_voice_playing_f1.png",
