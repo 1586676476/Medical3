@@ -73,5 +73,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile project(':easeUI_CN')
     compile files('libs/lite-orm-1.9.2 (1).jar')
+    compile 'com.scottyab:aescrypt:0.0.1'
 
 }
