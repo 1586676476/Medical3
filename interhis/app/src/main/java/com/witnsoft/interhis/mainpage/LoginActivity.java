@@ -76,11 +76,9 @@ public class LoginActivity extends BaseActivity {
         LoginRequest request = new LoginRequest();
         request.setUsername(name);
         request.setPassword(password);
-        //starRequest()参数：activity,请求参数，callback
         NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<String>() {
             @Override
             public void onSuccess(String response) {
-                //返回respnse即为DATAARRAY的json字符串，进一步根据需求自行解析
                 chatLogin();
             }
 
