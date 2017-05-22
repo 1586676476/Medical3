@@ -38,6 +38,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.adapter.Chinese_Fixed_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
 import com.witnsoft.interhis.inter.DialogListener;
@@ -46,6 +47,9 @@ import com.witnsoft.interhis.inter.FilterListener;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.tool.KeyboardUtil;
+
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -73,9 +77,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private Chinese_RecycleView_Adapter chinese_adapter;
     private List<String> data;
 
-    private Button chinese_button, chinese_confirm;
+    private Button chinese_button;
     private TextView chinese_recycleview_text;
     private EditText chinese_edittext;
+
+    private RecyclerView chinese_fixed;
+    private Chinese_Fixed_Adapter fixed_adapter;
+    private List<String> fix_data;
 
     private String id;
     private String name;
@@ -92,6 +100,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private Activity act;
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -106,6 +115,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout);
         chat_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chat_linearLayout);
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
+        chinese_fixed= (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_fixed_recycleview);
         chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
         western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout_image);
 
@@ -113,7 +123,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         western_linearLayout_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout);
         chinese_recyclerView = (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_recycleView);
         chinese_button = (Button) view.findViewById(R.id.fragment_helper_chinese_button);
-        //chinese_recycleview_text= (TextView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_text);
         chinese_edittext = (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
 
 
@@ -129,18 +138,20 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
         western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout_image);
 
-
         chinese_recycleview_text = (TextView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_text);
 
+        //中西药签名点击事件
         chinese_linearLayout_linearLayout.setOnClickListener(signListener);
         chinese_img.setOnClickListener(signListener);
         western_linearLayout_linearLayout.setOnClickListener(signListenerWestern);
         western_img.setOnClickListener(signListenerWestern);
-
+        //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
 
         ctx=getContext();
         act=getActivity();
+
+
 
         return view;
 
@@ -155,7 +166,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         western.setOnClickListener(this);
         chinese_button.setOnClickListener(this);
 
-
+        //显示药方的地方
         chinese_adapter = new Chinese_RecycleView_Adapter(getContext());
         data = new ArrayList<>();
         chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
@@ -167,6 +178,17 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
         chinese_recyclerView.setAdapter(chinese_adapter);
+
+        //固定药方
+        fix_data=new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            fix_data.add("药方");
+        }
+
+        fixed_adapter=new Chinese_Fixed_Adapter(getContext());
+        chinese_fixed.setLayoutManager(new GridLayoutManager(getContext(),3));
+        fixed_adapter.setList(fix_data);
+        chinese_fixed.setAdapter(fixed_adapter);
 
         //点击edittext实现自定义软键盘
         chinese_edittext.setInputType(InputType.TYPE_NULL);
@@ -279,14 +301,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 
                 createYaofang("药方号10086", "价格100元", id);
-
-//                    case R.id.fragment_helper_chinese_confirm:
-//                        String content = chinese_edittext.getText().toString();
-//                        if (!TextUtils.isEmpty(content)) {
-//                            chinese_adapter.addTextView(content);
-//                            chinese_adapter.notifyDataSetChanged();
-//                            chinese_edittext.setText("");
-////                        }
                         break;
         }}
 
@@ -458,6 +472,27 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         EMClient.getInstance().chatManager().sendMessage(message);
 
     }
+
+    //显示输入药方
+    public void EditTextshow(String content){
+        if (!TextUtils.isEmpty(content)) {
+            chinese_adapter.addTextView(content);
+            chinese_adapter.notifyDataSetChanged();
+            chinese_edittext.setText("");
+                      }
+    }
+    //显示固定药方
+    public void show(String content){
+        Boolean isFirst=false;
+        if (isFirst){
+
+        }
+        if (!TextUtils.isEmpty(content)){
+            chinese_adapter.addTextView(content);
+            chinese_adapter.notifyDataSetChanged();
+        }
+    }
+
 
     @Override
     public void onIteClick(int position) {

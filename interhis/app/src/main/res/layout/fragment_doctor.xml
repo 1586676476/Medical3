@@ -5,13 +5,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:background="@color/colorGray">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fragment_doctor_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:src="@mipmap/touxiang" />
@@ -19,55 +19,56 @@
         <TextView
             android:id="@+id/fragment_doctor_name"
             style="@style/bigSize"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:text="张强强" />
 
         <TextView
             android:id="@+id/fragment_doctor_duties"
             style="@style/smallSize"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="主任医师" />
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="-95dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginLeft="-100dp"
+            android:layout_marginTop="30dp"
             android:src="@mipmap/xingxing" />
 
         <TextView
             android:id="@+id/fragment_doctor_grade"
             style="@style/smallSize"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="9.5"
             android:textColor="@color/colorRed"/>
 
         <TextView
             style="@style/smallSize"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="接诊量" />
 
         <TextView
             android:id="@+id/fragment_doctor_number"
             style="@style/smallSize"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:text="77" />
 
         <TextView
             style="@style/smallSize"
-            android:layout_marginLeft="-100dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginLeft="-96dp"
+            android:layout_marginTop="50dp"
             android:text="天津市宝坻中医院    内科" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-165dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:text="20"
             android:textSize="15dp" />
 
@@ -75,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:text="77"
             android:textSize="15dp" />
 
@@ -83,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:text="320"
             android:textSize="15dp" />
 
@@ -91,32 +92,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="45dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:text="320"
             android:textSize="15dp" />
 
         <TextView
             style="@style/smallSize"
             android:layout_marginLeft="-230dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="100dp"
             android:layout_weight="1"
             android:text="等待中" />
 
         <TextView
             style="@style/smallSize"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="100dp"
             android:layout_weight="1"
             android:text="累计" />
 
         <TextView
             style="@style/smallSize"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="100dp"
             android:layout_weight="1"
             android:text="本日收入" />
 
         <TextView
             style="@style/smallSize"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="100dp"
             android:layout_weight="1"
             android:text="累计" />
 

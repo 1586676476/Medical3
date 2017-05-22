@@ -56,12 +56,14 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
     @Override
     public void onBindViewHolder(BaseViewHolder holder, final int position) {
         holder.setText(R.id.fragment_helper_chinese_linearLayout_text,list.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClick.onIteClick(position);
-            }
-        });
+        holder.setText(R.id.fragment_helper_chinese_linearLayout_number,list.get(position));
+
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClick.onIteClick(position);
+//            }
+//        });
 
     }
 

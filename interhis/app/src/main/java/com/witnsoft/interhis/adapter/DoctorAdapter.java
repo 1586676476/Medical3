@@ -3,14 +3,12 @@ package com.witnsoft.interhis.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.CeShi;
-import com.witnsoft.interhis.bean.HelperBean;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
 

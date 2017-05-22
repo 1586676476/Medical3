@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/fragment_helper_chinese_linearLayout_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/bigSize"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="药方"/>
+
+    <TextView
+        android:id="@+id/fragment_helper_chinese_linearLayout_number"
+        style="@style/bigSize"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="10g"/>
 
 </LinearLayout>
