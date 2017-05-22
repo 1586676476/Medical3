@@ -16,6 +16,7 @@ import com.witnsoft.libinterhis.base.BaseActivity;
 import com.witnsoft.libinterhis.utils.ClearEditText;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.DataModel;
+import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
@@ -70,22 +71,16 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    // F27.APP.01.00 医生登录
+    // 医生登录
     private void callLoginApi(String name, String password) {
-        OTRequest otRequest = new OTRequest();
-        DataModel data = new DataModel();
-        data.setParam("name", name);
-        data.setParam("password", password);
-        otRequest.setDATA(data);
-        otRequest.setTN("F27.APP.01.01");
-
-        NetTool.getInstance().startRequest(LoginActivity.this, otRequest, new CallBack<String>() {
+        LoginRequest request = new LoginRequest();
+        request.setUsername(name);
+        request.setPassword(password);
+        //starRequest()参数：activity,请求参数，callback
+        NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<String>() {
             @Override
             public void onSuccess(String response) {
-                //返回response即为DATAARRAY的json字符串，进一步根据需求自行解析
-                String token = "";
-                ThriftPreUtils.putToken(LoginActivity.this, token);
-                // app登录返回成功后调用环信登录
+                //返回respnse即为DATAARRAY的json字符串，进一步根据需求自行解析
                 chatLogin();
             }
 
