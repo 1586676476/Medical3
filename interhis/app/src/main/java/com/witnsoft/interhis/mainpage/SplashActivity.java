@@ -2,6 +2,7 @@ package com.witnsoft.interhis.mainpage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import com.trello.rxlifecycle.components.RxActivity;
 import com.witnsoft.interhis.R;
 import com.witnsoft.libinterhis.utils.ImageUtility;
+import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -49,15 +51,13 @@ public class SplashActivity extends RxActivity implements Animation.AnimationLis
                     @Override
                     public void run() {
                         //  token登录
-//                        if (!TextUtils.isEmpty(ThriftPreUtils.getToken(SplashActivity.this))) {
-//                            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-//                            startActivity(intent);
-//                        } else {
-//                            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-//                            startActivity(intent);
-//                        }
-                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        if (!TextUtils.isEmpty(ThriftPreUtils.getToken(SplashActivity.this))) {
+                            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
                         finish();
                     }
                 });
