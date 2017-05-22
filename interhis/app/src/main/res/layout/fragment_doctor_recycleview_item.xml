@@ -16,14 +16,14 @@
        android:id="@+id/fragment_doctor_recycleView_item_name"
        style="@style/bigSize"
         android:text="李四"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
        android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/fragment_doctor_recycleView_item_sex"
        style="@style/smallSize"
         android:text="男"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="5dp"
         android:textColor="@color/colorBlack"/>
 
@@ -31,7 +31,7 @@
         android:id="@+id/fragment_doctor_recycleView_item_age"
         style="@style/smallSize"
         android:text="54"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="5dp"
         android:textColor="@color/colorBlack"/>
 
@@ -39,7 +39,7 @@
         android:id="@+id/fragment_doctor_recycleView_item_content"
         style="@style/smallSize"
         android:text="咳嗽头痛"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="-55dp"/>
 
 </LinearLayout>
