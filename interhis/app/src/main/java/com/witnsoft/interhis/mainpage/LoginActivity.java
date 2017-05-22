@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity {
         NetTool.getInstance().startRequest(LoginActivity.this, otRequest, new CallBack<String>() {
             @Override
             public void onSuccess(String response) {
-                //返回respnse即为DATAARRAY的json字符串，进一步根据需求自行解析
+                //返回response即为DATAARRAY的json字符串，进一步根据需求自行解析
                 String token = "";
                 ThriftPreUtils.putToken(LoginActivity.this, token);
                 // app登录返回成功后调用环信登录
