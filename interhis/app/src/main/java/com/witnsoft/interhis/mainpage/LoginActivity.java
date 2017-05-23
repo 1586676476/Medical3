@@ -77,19 +77,12 @@ public class LoginActivity extends BaseActivity {
         request.setPassword(password);
         NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<String>() {
             @Override
-            public void onSuccess(String response) {
+            public void onSuccess(String response, String resultCode) {
                 Gson gson = new Gson();
                 Map<String, Map<String, Object>> mapObj = new HashMap<String, Map<String, Object>>();
                 final Map<String, Map<String, Object>> map = gson.fromJson(response, mapObj.getClass());
-                String errCode = "";
-                if (null != map.get("errcode")) {
-                    try {
-                        errCode = String.valueOf(map.get("errcode"));
-                    } catch (ClassCastException e) {
-
-                    }
-                }
-                if ("200".equals(errCode)) {
+                if ("200".equals(resultCode)) {
+                    // 登录成功
                     Map<String, Object> rybData = map.get("rybData");
                     String rybToken = "";
                     if (null != rybData.get("rybToken")) {
