@@ -44,8 +44,11 @@
         <activity
             android:name=".mainpage.MainActivity"
             android:screenOrientation="landscape"/>
+
         <activity android:name=".mainpage.LoginActivity"
-                  android:screenOrientation="landscape"/>
+                  android:screenOrientation="landscape"
+                  android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
+
         <!-- 设置环信应用的AppKey -->
         <meta-data android:name="EASEMOB_APPKEY"  android:value="1142170504115519#zyapp" />
         <!-- 声明SDK所需的service SDK核心功能-->
