@@ -32,7 +32,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-            android:name=".mainpage.LoginActivity"
+            android:name=".mainpage.SplashActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,8 +42,10 @@
         </activity>
 
         <activity
-            android:name=".mainpage.SplashActivity"
+            android:name=".mainpage.MainActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".mainpage.LoginActivity"
+                  android:screenOrientation="landscape"/>
         <!-- 设置环信应用的AppKey -->
         <meta-data android:name="EASEMOB_APPKEY"  android:value="1142170504115519#zyapp" />
         <!-- 声明SDK所需的service SDK核心功能-->
@@ -65,7 +67,6 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".mainpage.MainActivity"/>
         <activity
             android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
             android:screenOrientation="portrait"

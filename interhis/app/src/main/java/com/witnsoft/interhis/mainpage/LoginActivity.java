@@ -1,7 +1,5 @@
 package com.witnsoft.interhis.mainpage;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,23 +8,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.libinterhis.base.BaseActivity;
 import com.witnsoft.libinterhis.utils.ClearEditText;
-import com.witnsoft.libinterhis.utils.ThriftPreUtils;
-import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.LoginRequest;
-import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
+import com.witnsoft.libnet.token.TokenSharepref;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import rx.functions.Action1;
@@ -63,11 +62,9 @@ public class LoginActivity extends BaseActivity {
         if (TextUtils.isEmpty(etUserName.getText().toString())) {
             Toast.makeText(LoginActivity.this, getResources().getString(R.string.no_user_name_tip),
                     Toast.LENGTH_LONG).show();
-            return;
         } else if (TextUtils.isEmpty(etUserPassword.getText().toString())) {
             Toast.makeText(LoginActivity.this, getResources().getString(R.string.no_user_password_tip),
                     Toast.LENGTH_LONG).show();
-            return;
         } else {
             callLoginApi(etUserName.getText().toString(), etUserPassword.getText().toString());
         }
@@ -81,7 +78,41 @@ public class LoginActivity extends BaseActivity {
         NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<String>() {
             @Override
             public void onSuccess(String response) {
-                chatLogin();
+                Gson gson = new Gson();
+                Map<String, Map<String, Object>> mapObj = new HashMap<String, Map<String, Object>>();
+                final Map<String, Map<String, Object>> map = gson.fromJson(response, mapObj.getClass());
+                String errCode = "";
+                if (null != map.get("errcode")) {
+                    try {
+                        errCode = String.valueOf(map.get("errcode"));
+                    } catch (ClassCastException e) {
+
+                    }
+                }
+                if ("200".equals(errCode)) {
+                    Map<String, Object> rybData = map.get("rybData");
+                    String rybToken = "";
+                    if (null != rybData.get("rybToken")) {
+                        try {
+                            rybToken = String.valueOf(rybData.get("rybToken"));
+                        } catch (ClassCastException e) {
+
+                        }
+                    }
+                    if (!TextUtils.isEmpty(rybToken)) {
+                        TokenSharepref.putToken(LoginActivity.this, rybToken);
+                    }
+                    chatLogin();
+                } else {
+                    if (null != map.get("errmsg")) {
+                        try {
+                            Toast.makeText(LoginActivity.this,
+                                    String.valueOf(map.get("errmsg")), Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }
             }
 
             @Override

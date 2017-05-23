@@ -3,7 +3,7 @@
     <dimen name="key_height">50.0dip</dimen>
 
     <!--LoginActivity begin-->
-    <string name="user_name">请输入用户名</string>
+    <string name="enter_user_name">请输入用户名</string>
     <string name="user_password">请输入密码</string>
     <string name="user_login">登录</string>
     <string name="no_user_name_tip">用户名不能为空</string>
