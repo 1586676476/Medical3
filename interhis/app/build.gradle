@@ -65,7 +65,7 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding-design:1.0.0'
     // 导入共通aar
     compile(name: 'libinterhis-debug', ext: 'aar')
-    compile(name: 'libNetUtil-debug', ext: 'aar')
+    compile(name: 'libNetUtil-debug',ext: 'aar')
 
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.google.code.gson:gson:2.8.0'
@@ -74,5 +74,4 @@ dependencies {
     compile project(':easeUI_CN')
     compile files('libs/lite-orm-1.9.2 (1).jar')
     compile 'com.scottyab:aescrypt:0.0.1'
-
 }

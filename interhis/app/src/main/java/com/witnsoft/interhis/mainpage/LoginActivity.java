@@ -149,21 +149,21 @@ public class LoginActivity extends BaseActivity {
 //    private void callLogoutApi() {
 //        LoginRequest request = new LoginRequest();
 //        request.setReqType("logout");
-//        NetTool.getInstance().startRequest(true, MainActivity.this, request, null, new CallBack<String>() {
+//        NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<String>() {
 //            @Override
 //            public void onSuccess(String response, String resultCode) {
 //                Gson gson = new Gson();
 //                Map<String, Map<String, Object>> mapObj = new HashMap<String, Map<String, Object>>();
 //                final Map<String, Map<String, Object>> map = gson.fromJson(response, mapObj.getClass());
 //                if ("200".equals(resultCode)) {
-//                    // 登录成功
-//                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+//                    // 登出成功
+//                    Intent intent = new Intent(LoginActivity.this,LoginActivity.class);
 //                    startActivity(intent);
 //                    finish();
 //                } else {
 //                    if (null != map.get("errmsg")) {
 //                        try {
-//                            Toast.makeText(MainActivity.this,
+//                            Toast.makeText(LoginActivity.this,
 //                                    String.valueOf(map.get("errmsg")), Toast.LENGTH_LONG).show();
 //                        } catch (Exception e) {
 //
@@ -174,7 +174,7 @@ public class LoginActivity extends BaseActivity {
 //
 //            @Override
 //            public void onError(Throwable throwable) {
-//                Toast.makeText(MainActivity.this, getResources().getString(R.string.login_failed), Toast.LENGTH_LONG).show();
+//                Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_failed), Toast.LENGTH_LONG).show();
 //            }
 //        });
 //    }
