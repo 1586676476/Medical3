@@ -15,6 +15,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.libinterhis.base.BaseActivity;
 import com.witnsoft.libinterhis.utils.ClearEditText;
+import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
@@ -49,6 +50,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
+        init();
         // 登录
         initClick(this.btnLogin, new Action1<Void>() {
             @Override
@@ -56,6 +58,13 @@ public class LoginActivity extends BaseActivity {
                 login();
             }
         });
+    }
+
+    private void init() {
+        // 显示缓存用户名
+        if (!TextUtils.isEmpty(ThriftPreUtils.getLoginName(LoginActivity.this))) {
+            etUserName.setText(ThriftPreUtils.getLoginName(LoginActivity.this));
+        }
     }
 
     private void login() {
@@ -71,37 +80,23 @@ public class LoginActivity extends BaseActivity {
     }
 
     // 医生登录
-    private void callLoginApi(String name, String password) {
+    private void callLoginApi(final String name, String password) {
         LoginRequest request = new LoginRequest();
         request.setUsername(name);
         request.setPassword(password);
         request.setReqType("login");
-        NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<String>() {
+        NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<Map, String>() {
             @Override
-            public void onSuccess(String response, String resultCode) {
-                Gson gson = new Gson();
-                Map<String, Map<String, Object>> mapObj = new HashMap<String, Map<String, Object>>();
-                final Map<String, Map<String, Object>> map = gson.fromJson(response, mapObj.getClass());
+            public void onSuccess(Map response, String resultCode) {
+                // 登录成功将用户名存本地
+                ThriftPreUtils.putLoginName(LoginActivity.this, name);
                 if ("200".equals(resultCode)) {
-                    // 登录成功
-                    Map<String, Object> rybData = map.get("rybData");
-                    String rybToken = "";
-                    if (null != rybData.get("rybToken")) {
-                        try {
-                            rybToken = String.valueOf(rybData.get("rybToken"));
-                        } catch (ClassCastException e) {
-
-                        }
-                    }
-                    if (!TextUtils.isEmpty(rybToken)) {
-                        TokenSharepref.putToken(LoginActivity.this, rybToken);
-                    }
                     chatLogin();
                 } else {
-                    if (null != map.get("errmsg")) {
+                    if (null != response.get("errmsg")) {
                         try {
                             Toast.makeText(LoginActivity.this,
-                                    String.valueOf(map.get("errmsg")), Toast.LENGTH_LONG).show();
+                                    String.valueOf(response.get("errmsg")), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
 
                         }
