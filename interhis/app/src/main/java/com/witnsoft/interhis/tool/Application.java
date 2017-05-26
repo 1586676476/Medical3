@@ -6,6 +6,8 @@ import android.support.multidex.MultiDexApplication;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.controller.EaseUI;
 
+import org.xutils.x;
+
 /**
  * Created by zhengchengpeng on 2017/5/12.
  */
@@ -21,6 +23,7 @@ public class Application extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        x.Ext.init(this);
         app = this;
         init();
     }
