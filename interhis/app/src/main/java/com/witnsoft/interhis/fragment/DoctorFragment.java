@@ -46,6 +46,7 @@ import java.util.Map;
 public class DoctorFragment extends Fragment implements OnClick {
     private static final String TAG = "DoctorFragment";
     private static final String TN_DOC_INFO = "F27.APP.01.01";
+    private static final String TN_COUNT = "F27.APP.01.05";
     private static final String DOC_ID = "docid";
     private static final String DATA = "DATA";
 
@@ -54,13 +55,20 @@ public class DoctorFragment extends Fragment implements OnClick {
         private static final String ErrCode_504 = "504";
     }
 
-    private final class ResponseKey {
+    private final class DocInfoResponseKey {
         private static final String DOC_NAME = "docname";
         private static final String ZYDJ = "zydj";
         private static final String PJFS = "pjfs";
         private static final String JZL = "jzl";
         private static final String SSYYMC = "ssyymc";
         private static final String SSKB1MC = "sskb1mc";
+    }
+
+    private final class CountResponseKey {
+        private static final String DD = "dd";
+        private static final String JZL = "jzl";
+        private static final String BRSR = "brsr";
+        private static final String LJSR = "ljsr";
     }
 
     private String[] name = new String[]{"ceshi2", "test001", "patid001"};
@@ -155,30 +163,30 @@ public class DoctorFragment extends Fragment implements OnClick {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
                     if (null != response) {
                         if (null != response.get(DATA)) {
-                            Map<String, String> data = (Map<String, String>) response.get("DATA");
+                            Map<String, String> data = (Map<String, String>) response.get(DATA);
                             // 医生姓名
-                            if (!TextUtils.isEmpty(data.get(ResponseKey.DOC_NAME))) {
-                                tvDocName.setText(data.get(ResponseKey.DOC_NAME));
+                            if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.DOC_NAME))) {
+                                tvDocName.setText(data.get(DocInfoResponseKey.DOC_NAME));
                             }
                             // 医生职称
-                            if (!TextUtils.isEmpty(data.get(ResponseKey.ZYDJ))) {
-                                tvDocDuties.setText(data.get(ResponseKey.ZYDJ));
+                            if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.ZYDJ))) {
+                                tvDocDuties.setText(data.get(DocInfoResponseKey.ZYDJ));
                             }
                             // 医生评分
-                            if (!TextUtils.isEmpty(data.get(ResponseKey.PJFS))) {
-                                tvDocGrade.setText(data.get(ResponseKey.PJFS));
+                            if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.PJFS))) {
+                                tvDocGrade.setText(data.get(DocInfoResponseKey.PJFS));
                             }
                             // 接诊量
-                            if (!TextUtils.isEmpty(data.get(ResponseKey.JZL))) {
-                                tvDocNum.setText(data.get(ResponseKey.JZL));
+                            if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.JZL))) {
+                                tvDocNum.setText(data.get(DocInfoResponseKey.JZL));
                             }
                             // 医生所在医院，科室
                             String hosp = "";
-                            if (!TextUtils.isEmpty(data.get(ResponseKey.SSYYMC))) {
-                                hosp = data.get(ResponseKey.SSYYMC);
+                            if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.SSYYMC))) {
+                                hosp = data.get(DocInfoResponseKey.SSYYMC);
                             }
-                            if (!TextUtils.isEmpty(data.get(ResponseKey.SSKB1MC))) {
-                                hosp = hosp + " " + data.get(ResponseKey.SSKB1MC);
+                            if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.SSKB1MC))) {
+                                hosp = hosp + " " + data.get(DocInfoResponseKey.SSKB1MC);
                             }
                             if (!TextUtils.isEmpty(hosp)) {
                                 tvHosp.setText(hosp);
@@ -206,35 +214,35 @@ public class DoctorFragment extends Fragment implements OnClick {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
         DataModel data = new DataModel();
-        data.setParam("docid", docId);
+        data.setParam(DOC_ID, docId);
         otRequest.setDATA(data);
         // TN 接口辨别
-        otRequest.setTN("F27.APP.01.05");
+        otRequest.setTN(TN_COUNT);
 
         NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
-                if ("200".equals(resultCode)) {
+                if (ErrCode.ErrCode_200.equals(resultCode)) {
                     if (null != response) {
-                        Map<String, String> data = (Map<String, String>) response.get("DATA");
+                        Map<String, String> data = (Map<String, String>) response.get(DATA);
                         // 等待人数
-                        if (!TextUtils.isEmpty(data.get("dd"))) {
-                            tvPatWaiting.setText(data.get("dd"));
+                        if (!TextUtils.isEmpty(data.get(CountResponseKey.DD))) {
+                            tvPatWaiting.setText(data.get(CountResponseKey.DD));
                         }
                         // 累计人数
-                        if (!TextUtils.isEmpty(data.get("jzl"))) {
-                            tvPatAll.setText(data.get("jzl"));
+                        if (!TextUtils.isEmpty(data.get(CountResponseKey.JZL))) {
+                            tvPatAll.setText(data.get(CountResponseKey.JZL));
                         }
                         // 本日收入
-                        if (!TextUtils.isEmpty(data.get("brsr"))) {
-                            tvDailyIncome.setText(data.get("brsr"));
+                        if (!TextUtils.isEmpty(data.get(CountResponseKey.BRSR))) {
+                            tvDailyIncome.setText(data.get(CountResponseKey.BRSR));
                         }
                         // 累计收入
-                        if (!TextUtils.isEmpty(data.get("ljsr"))) {
-                            tvAllIncome.setText(data.get("ljsr"));
+                        if (!TextUtils.isEmpty(data.get(CountResponseKey.LJSR))) {
+                            tvAllIncome.setText(data.get(CountResponseKey.LJSR));
                         }
                     }
-                } else if ("504".equals(resultCode)) {
+                } else if (ErrCode.ErrCode_504.equals(resultCode)) {
                     // token失效
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);
