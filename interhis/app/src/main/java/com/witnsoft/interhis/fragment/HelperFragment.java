@@ -42,6 +42,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.Chinese_Fixed_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
+import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.inter.DialogListener;
 
 import com.witnsoft.interhis.inter.FilterListener;
@@ -50,6 +51,9 @@ import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.tool.KeyboardUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
@@ -194,6 +198,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         setData();//给listview设置adapter
         setListener();//给listview设置监听
 
+        EventBus.getDefault().register(this);
     }
 
     private void setListener() {
@@ -246,6 +251,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(MainActivity.this, filter_lists.get(position), Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getActivity(), DialogActivity.class);
+                intent.putExtra("medical_name",list.get(position));
                 startActivity(intent);
 
                chinese_adapter.addTextView(list.get(position));
@@ -499,4 +505,17 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_adapter.deleteTextView(position);
         chinese_adapter.notifyDataSetChanged();
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getData(NumberBean numberBean){
+        int count=numberBean.getCount();
+        chinese_adapter.onCountChanged(count);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
+    }
+
 }

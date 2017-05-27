@@ -51,7 +51,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         less = (TextView) findViewById(R.id.dialog_less);
         name = (TextView) findViewById(R.id.type);
         first_cancel = (Button) findViewById(R.id.first_cancel);
-      
+
 //        show= (TextView) findViewById(R.id.show_number);
 
         ll_root.setOnClickListener(this);
@@ -91,28 +91,28 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_five:
-//                numberBean.setCount(5);
-//                EventBus.getDefault().post(numberBean);
+                numberBean.setCount(5);
+                EventBus.getDefault().post(numberBean);
                 finish();
                 break;
             case R.id.dialog_ten:
-//                numberBean.setCount(10);
-//                EventBus.getDefault().post(numberBean);
+                numberBean.setCount(10);
+                EventBus.getDefault().post(numberBean);
                 finish();
                 break;
             case R.id.dialog_fifteen:
-//                numberBean.setCount(15);
-//                EventBus.getDefault().post(numberBean);
+                numberBean.setCount(15);
+                EventBus.getDefault().post(numberBean);
                 finish();
                 break;
             case R.id.dialog_twenty:
-//                numberBean.setCount(20);
-//                EventBus.getDefault().post(numberBean);
+                numberBean.setCount(20);
+                EventBus.getDefault().post(numberBean);
                 finish();
                 break;
             case R.id.dialog_number:
-//                numberBean.setCount(num);
-//                EventBus.getDefault().post(numberBean);
+                numberBean.setCount(num);
+                EventBus.getDefault().post(numberBean);
                 finish();
                 break;
             case R.id.first_cancel:
