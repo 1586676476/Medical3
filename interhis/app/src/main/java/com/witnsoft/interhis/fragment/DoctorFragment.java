@@ -72,6 +72,18 @@ public class DoctorFragment extends Fragment implements OnClick {
     // 医生所在医院，科室
     @ViewInject(R.id.tv_hosp)
     private TextView tvHosp;
+    // 等待人物
+    @ViewInject(R.id.tv_pat_waiting)
+    private TextView tvPatWaiting;
+    // 累计人物
+    @ViewInject(R.id.tv_pat_all)
+    private TextView tvPatAll;
+    // 本日收入
+    @ViewInject(R.id.tv_daily_income)
+    private TextView tvDailyIncome;
+    // 累计收入
+    @ViewInject(R.id.tv_all_income)
+    private TextView tvAllIncome;
 
 
     @Nullable
@@ -154,7 +166,7 @@ public class DoctorFragment extends Fragment implements OnClick {
                             }
                         }
                     }
-                    callPatApi();
+//                    callPatApi();
                 } else if ("504".equals(resultCode)) {
                     // token失效
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -169,27 +181,24 @@ public class DoctorFragment extends Fragment implements OnClick {
         });
     }
 
-    // TODO: 2017/5/26 上拉加载更多，下拉刷新，docid存本地 
-    // F27.APP.01.02 查询问诊人员列表
-    private void callPatApi() {
+    // TODO: 2017/5/26 当获取环信新消息，得知患者列表改变动作，调用统计接口，主动请求刷新视图
+    // F27.APP.01.05 获得统计值
+    private void callCountApi() {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
         DataModel data = new DataModel();
         data.setParam("docid", docId);
-        data.setParam("rowsperpage", "10");
-        data.setParam("pageno", "1");
-        data.setParam("ordercolumn", "paytime");
-        data.setParam("ordertype", "asc");
         otRequest.setDATA(data);
         // TN 接口辨别
-        otRequest.setTN("F27.APP.01.02");
+        otRequest.setTN("F27.APP.01.05");
 
         NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
-                //返回respnse即为DATAARRAY的json字符串，进一步根据需求自行解析
                 if ("200".equals(resultCode)) {
+                    if (null != response) {
 
+                    }
                 } else if ("504".equals(resultCode)) {
                     // token失效
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -204,17 +213,40 @@ public class DoctorFragment extends Fragment implements OnClick {
         });
     }
 
-    private String resp(String key, Map<String, Object> map) {
-        String str = "";
-        if (null != map.get(key)) {
-            try {
-                str = String.valueOf(map.get(key));
-            } catch (ClassCastException e) {
-
-            }
-        }
-        return str;
-    }
+//    // TODO: 2017/5/26 上拉加载更多，下拉刷新，docid存本地
+//    // F27.APP.01.02 查询问诊人员列表
+//    private void callPatApi() {
+//        OTRequest otRequest = new OTRequest(getActivity());
+//        // DATA
+//        DataModel data = new DataModel();
+//        data.setParam("docid", docId);
+//        data.setParam("rowsperpage", "10");
+//        data.setParam("pageno", "1");
+//        data.setParam("ordercolumn", "paytime");
+//        data.setParam("ordertype", "asc");
+//        otRequest.setDATA(data);
+//        // TN 接口辨别
+//        otRequest.setTN("F27.APP.01.02");
+//
+//        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
+//            @Override
+//            public void onSuccess(Map response, String resultCode) {
+//                //返回respnse即为DATAARRAY的json字符串，进一步根据需求自行解析
+//                if ("200".equals(resultCode)) {
+//
+//                } else if ("504".equals(resultCode)) {
+//                    // token失效
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    startActivity(intent);
+//                    getActivity().finish();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Throwable throwable) {
+//            }
+//        });
+//    }
 
     @Override
     public void onIteClick(int position) {

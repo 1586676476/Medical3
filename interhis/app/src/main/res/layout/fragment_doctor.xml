@@ -7,8 +7,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:background="@color/colorGray">
+        android:layout_height="wrap_content"
+        android:background="@color/colorGray"
+        android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fragment_doctor_image"
@@ -18,112 +19,184 @@
             android:layout_marginTop="10dp"
             android:src="@mipmap/touxiang"/>
 
-        <TextView
-            android:id="@+id/fragment_doctor_name"
-            style="@style/bigSize"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            tools:text="张强强"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/fragment_doctor_duties"
-            style="@style/smallSize"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            tools:text="主任医师"/>
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="-100dp"
-            android:layout_marginTop="30dp"
-            android:src="@mipmap/xingxing"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/fragment_doctor_grade"
-            style="@style/smallSize"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/colorRed"
-            tools:text="9.5"/>
+                <TextView
+                    android:id="@+id/fragment_doctor_name"
+                    style="@style/bigSize"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100dp"
+                    tools:text="张强强"/>
 
-        <TextView
-            style="@style/smallSize"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:text="接诊量"/>
+                <TextView
+                    android:id="@+id/fragment_doctor_duties"
+                    style="@style/smallSize"
+                    android:layout_marginLeft="20dp"
+                    tools:text="主任医师"/>
 
-        <TextView
-            android:id="@+id/fragment_doctor_number"
-            style="@style/smallSize"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="30dp"
-            tools:text="77"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_hosp"
-            style="@style/smallSize"
-            android:layout_marginLeft="-96dp"
-            android:layout_marginTop="50dp"
-            tools:text="天津市宝坻中医院    内科"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/xingxing"/>
+
+                <TextView
+                    android:id="@+id/fragment_doctor_grade"
+                    style="@style/smallSize"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="bottom"
+                    android:textColor="@color/colorRed"
+                    tools:text="9.5"/>
+
+                <TextView
+                    style="@style/smallSize"
+                    android:layout_marginLeft="10dp"
+                    android:text="接诊量"/>
+
+                <TextView
+                    android:id="@+id/fragment_doctor_number"
+                    style="@style/smallSize"
+                    android:layout_marginLeft="5dp"
+                    tools:text="77"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_hosp"
+                    style="@style/smallSize"
+                    tools:text="天津市宝坻中医院    内科"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGray"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-165dp"
-            android:layout_marginTop="80dp"
-            android:text="20"
-            android:textSize="15dp"/>
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_pat_waiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="等待中"
+                android:textSize="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="80dp"
-            android:text="77"
-            android:textSize="15dp"/>
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_pat_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="77"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="累计"
+                android:textSize="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="80dp"
-            android:text="320"
-            android:textSize="15dp"/>
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_daily_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="320"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本日收入"
+                android:textSize="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="80dp"
-            android:text="320"
-            android:textSize="15dp"/>
-
-        <TextView
-            style="@style/smallSize"
-            android:layout_marginLeft="-230dp"
-            android:layout_marginTop="100dp"
             android:layout_weight="1"
-            android:text="等待中"/>
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
 
-        <TextView
-            style="@style/smallSize"
-            android:layout_marginTop="100dp"
-            android:layout_weight="1"
-            android:text="累计"/>
+            <TextView
+                android:id="@+id/tv_all_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="320"
+                android:textSize="15dp"/>
 
-        <TextView
-            style="@style/smallSize"
-            android:layout_marginTop="100dp"
-            android:layout_weight="1"
-            android:text="本日收入"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="累计"
+                android:textSize="10dp"/>
 
-        <TextView
-            style="@style/smallSize"
-            android:layout_marginTop="100dp"
-            android:layout_weight="1"
-            android:text="累计"/>
-
+        </LinearLayout>
 
     </LinearLayout>
 
