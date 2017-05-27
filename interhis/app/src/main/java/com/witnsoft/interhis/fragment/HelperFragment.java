@@ -1,8 +1,10 @@
 package com.witnsoft.interhis.fragment;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -200,6 +202,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         setListener();//给listview设置监听
 
         EventBus.getDefault().register(this);
+        //动态广播
+        Receiver receiver=new Receiver();
+        IntentFilter intentFilter=new IntentFilter("shanchu");
+        getActivity().registerReceiver(receiver,intentFilter);
     }
 
     private void setListener() {
@@ -518,6 +524,18 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     public void onDetach() {
         super.onDetach();
         EventBus.getDefault().unregister(this);
+    }
+
+    class Receiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show();
+            int pos=intent.getIntExtra("pos",0);
+            Log.e(TAG, "接受广播传递的位置"+pos );
+            chinese_adapter.deleteTextView(pos);
+            chinese_adapter.notifyDataSetChanged();
+        }
     }
 
 }
