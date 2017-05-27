@@ -72,10 +72,10 @@ public class DoctorFragment extends Fragment implements OnClick {
     // 医生所在医院，科室
     @ViewInject(R.id.tv_hosp)
     private TextView tvHosp;
-    // 等待人物
+    // 等待人数
     @ViewInject(R.id.tv_pat_waiting)
     private TextView tvPatWaiting;
-    // 累计人物
+    // 累计人人数
     @ViewInject(R.id.tv_pat_all)
     private TextView tvPatAll;
     // 本日收入
@@ -104,6 +104,7 @@ public class DoctorFragment extends Fragment implements OnClick {
         super.onActivityCreated(savedInstanceState);
         docId = ThriftPreUtils.getDocId(getActivity());
         callDocInfoApi();
+        callCountApi();
         doctorAdapter = new DoctorAdapter(getContext());
         data = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -198,7 +199,23 @@ public class DoctorFragment extends Fragment implements OnClick {
             public void onSuccess(Map response, String resultCode) {
                 if ("200".equals(resultCode)) {
                     if (null != response) {
-
+                        Map<String, String> data = (Map<String, String>) response.get("DATA");
+                        // 等待人数
+                        if (!TextUtils.isEmpty(data.get("dd"))) {
+                            tvPatWaiting.setText(data.get("dd"));
+                        }
+                        // 累计人数
+                        if (!TextUtils.isEmpty(data.get("jzl"))) {
+                            tvPatAll.setText(data.get("jzl"));
+                        }
+                        // 本日收入
+                        if (!TextUtils.isEmpty(data.get("brsr"))) {
+                            tvDailyIncome.setText(data.get("brsr"));
+                        }
+                        // 累计收入
+                        if (!TextUtils.isEmpty(data.get("ljsr"))) {
+                            tvAllIncome.setText(data.get("ljsr"));
+                        }
                     }
                 } else if ("504".equals(resultCode)) {
                     // token失效
