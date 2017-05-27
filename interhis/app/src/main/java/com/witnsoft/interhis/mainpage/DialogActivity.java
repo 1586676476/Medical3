@@ -29,6 +29,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     private TextView five,ten,fifteen,twenty,number,add,less,name,show;
 
     private String medical;
+    private int pos;
 
     private int num=0;
     @Override
@@ -73,6 +74,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
 
         //接受传递过来的药名
         medical = getIntent().getStringExtra("medical_name");
+
         name.setText(medical);
 
     }

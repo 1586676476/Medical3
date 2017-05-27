@@ -7,6 +7,15 @@ package com.witnsoft.interhis.bean;
 public class NumberBean {
     private String name;
     private int count;
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public NumberBean(String name){
         this.name=name;
@@ -15,10 +24,11 @@ public class NumberBean {
     public NumberBean() {
     }
 
-    public NumberBean(String name, int count) {
+    public NumberBean(String name, int count,int position) {
 
         this.name = name;
         this.count = count;
+        this.position=position;
     }
 
     public String getName() {
