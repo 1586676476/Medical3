@@ -45,6 +45,23 @@ import java.util.Map;
 @ContentView(R.layout.fragment_doctor)
 public class DoctorFragment extends Fragment implements OnClick {
     private static final String TAG = "DoctorFragment";
+    private static final String TN_DOC_INFO = "F27.APP.01.01";
+    private static final String DOC_ID = "docid";
+    private static final String DATA = "DATA";
+
+    private final class ErrCode {
+        private static final String ErrCode_200 = "200";
+        private static final String ErrCode_504 = "504";
+    }
+
+    private final class ResponseKey {
+        private static final String DOC_NAME = "docname";
+        private static final String ZYDJ = "zydj";
+        private static final String PJFS = "pjfs";
+        private static final String JZL = "jzl";
+        private static final String SSYYMC = "ssyymc";
+        private static final String SSKB1MC = "sskb1mc";
+    }
 
     private String[] name = new String[]{"ceshi2", "test001", "patid001"};
     private String[] sex = new String[]{"男", "女", "男"};
@@ -127,41 +144,41 @@ public class DoctorFragment extends Fragment implements OnClick {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
         DataModel data = new DataModel();
-        data.setParam("docid", docId);
+        data.setParam(DOC_ID, docId);
         otRequest.setDATA(data);
         // TN 接口辨别
-        otRequest.setTN("F27.APP.01.01");
+        otRequest.setTN(TN_DOC_INFO);
 
         NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
-                if ("200".equals(resultCode)) {
+                if (ErrCode.ErrCode_200.equals(resultCode)) {
                     if (null != response) {
-                        if (null != response.get("DATA")) {
+                        if (null != response.get(DATA)) {
                             Map<String, String> data = (Map<String, String>) response.get("DATA");
                             // 医生姓名
-                            if (!TextUtils.isEmpty(data.get("docname"))) {
-                                tvDocName.setText(data.get("docname"));
+                            if (!TextUtils.isEmpty(data.get(ResponseKey.DOC_NAME))) {
+                                tvDocName.setText(data.get(ResponseKey.DOC_NAME));
                             }
                             // 医生职称
-                            if (!TextUtils.isEmpty(data.get("zydj"))) {
-                                tvDocDuties.setText(data.get("zydj"));
+                            if (!TextUtils.isEmpty(data.get(ResponseKey.ZYDJ))) {
+                                tvDocDuties.setText(data.get(ResponseKey.ZYDJ));
                             }
                             // 医生评分
-                            if (!TextUtils.isEmpty(data.get("pjfs"))) {
-                                tvDocGrade.setText(data.get("pjfs"));
+                            if (!TextUtils.isEmpty(data.get(ResponseKey.PJFS))) {
+                                tvDocGrade.setText(data.get(ResponseKey.PJFS));
                             }
                             // 接诊量
-                            if (!TextUtils.isEmpty(data.get("jzl"))) {
-                                tvDocNum.setText(data.get("jzl"));
+                            if (!TextUtils.isEmpty(data.get(ResponseKey.JZL))) {
+                                tvDocNum.setText(data.get(ResponseKey.JZL));
                             }
                             // 医生所在医院，科室
                             String hosp = "";
-                            if (!TextUtils.isEmpty(data.get("ssyymc"))) {
-                                hosp = data.get("ssyymc");
+                            if (!TextUtils.isEmpty(data.get(ResponseKey.SSYYMC))) {
+                                hosp = data.get(ResponseKey.SSYYMC);
                             }
-                            if (!TextUtils.isEmpty(data.get("sskb1mc"))) {
-                                hosp = hosp + " " + data.get("sskb1mc");
+                            if (!TextUtils.isEmpty(data.get(ResponseKey.SSKB1MC))) {
+                                hosp = hosp + " " + data.get(ResponseKey.SSKB1MC);
                             }
                             if (!TextUtils.isEmpty(hosp)) {
                                 tvHosp.setText(hosp);
@@ -169,7 +186,7 @@ public class DoctorFragment extends Fragment implements OnClick {
                         }
                     }
 //                    callPatApi();
-                } else if ("504".equals(resultCode)) {
+                } else if (ErrCode.ErrCode_504.equals(resultCode)) {
                     // token失效
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     startActivity(intent);

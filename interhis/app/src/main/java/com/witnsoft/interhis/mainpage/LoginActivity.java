@@ -38,6 +38,8 @@ import rx.functions.Action1;
 public class LoginActivity extends BaseActivity {
 
     private static final long THROTTLE_TIME = 500;
+    private static final String LOGIN = "login";
+    private static final String ERR_MSG = "errmsg";
 
     @ViewInject(R.id.btn_login)
     private Button btnLogin;
@@ -84,7 +86,7 @@ public class LoginActivity extends BaseActivity {
         LoginRequest request = new LoginRequest();
         request.setUsername(name);
         request.setPassword(password);
-        request.setReqType("login");
+        request.setReqType(LOGIN);
         NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
@@ -93,10 +95,10 @@ public class LoginActivity extends BaseActivity {
                 if ("200".equals(resultCode)) {
                     chatLogin();
                 } else {
-                    if (null != response.get("errmsg")) {
+                    if (null != response.get(ERR_MSG)) {
                         try {
                             Toast.makeText(LoginActivity.this,
-                                    String.valueOf(response.get("errmsg")), Toast.LENGTH_LONG).show();
+                                    String.valueOf(response.get(ERR_MSG)), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
 
                         }
