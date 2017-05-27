@@ -94,6 +94,7 @@ public class DoctorFragment extends Fragment implements OnClick {
         return view;
     }
 
+
     private void initViews() {
 
     }
