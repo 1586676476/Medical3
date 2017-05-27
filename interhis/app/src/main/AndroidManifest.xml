@@ -76,7 +76,7 @@
             android:theme="@style/horizontal_slide" />
 
         <activity android:name=".mainpage.DialogActivity" android:theme="@style/MyDialogActivityTheme"/>
-
+        <activity android:name=".mainpage.SecondDialogActivity" android:theme="@style/MyDialogActivityTheme"/>
 
     </application>
 

@@ -49,6 +49,7 @@ import com.witnsoft.interhis.inter.FilterListener;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
+import com.witnsoft.interhis.mainpage.SecondDialogActivity;
 import com.witnsoft.interhis.tool.KeyboardUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -502,8 +503,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     @Override
     public void onIteClick(int position) {
-        chinese_adapter.deleteTextView(position);
-        chinese_adapter.notifyDataSetChanged();
+        Intent intent=new Intent(getActivity(), SecondDialogActivity.class);
+        intent.putExtra("position",position);
+        startActivity(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
