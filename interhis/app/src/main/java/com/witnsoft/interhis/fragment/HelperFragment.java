@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
@@ -45,7 +44,6 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.Chinese_Fixed_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
-import com.witnsoft.interhis.bean.MedicalModel;
 import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.inter.DialogListener;
 
@@ -66,9 +64,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -78,33 +74,21 @@ import java.util.List;
 public class HelperFragment extends Fragment implements View.OnClickListener, OnClick {
     private static final String TAG = "HelperFragment";
 
-    //手动签名
     private Bitmap mSignBitmap;
     private String signPath;
-    private ImageView chinese_img, western_img;
-    //radiobutton
     private RadioButton ask, chat, chinese, western;
     private FrameLayout ask_linearLayout;
-    //布局
     private LinearLayout chinese_linearLayout, western_linearLayout, chat_linearLayout;
     private LinearLayout chinese_linearLayout_linearLayout, western_linearLayout_linearLayout;
-    //显示药方
+    private ImageView chinese_img, western_img;
+
     private RecyclerView chinese_recyclerView;
     private Chinese_RecycleView_Adapter chinese_adapter;
     private List<String> data;
-    //中药按钮
+
     private Button chinese_button;
-    //搜索框
     private EditText chinese_edittext;
-    private ListView chinese_listView;
-    private List<String> list = new ArrayList<String>();
-    private Chinese_ListView_Adapter adapter = null;
-    private HashMap<String,Integer> alphaIndexer;//存放汉语拼音首字母以及对应的列表位置
-    private String[] sections;//存放存在的汉语拼音首字母
-    private ArrayList<MedicalModel> medicalModels;
 
-
-    //固定药方显示地方
     private RecyclerView chinese_fixed;
     private Chinese_Fixed_Adapter fixed_adapter;
     private List<String> fix_data;
@@ -114,11 +98,15 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private String type1;
     private int single1;
 
+    private ListView chinese_listView;
+    private List<String> list = new ArrayList<String>();
+    private Chinese_ListView_Adapter adapter = null;
     private EaseChatFragment chatFragment;
     private Bundle bundle;
 
     private Context ctx;
     private Activity act;
+
 
 
     @Nullable
@@ -316,7 +304,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                     @Override
                     public void onClick(View v) {
                         chinese_listView.setVisibility(View.VISIBLE);
-
                     }
                 });
                 break;
