@@ -5,14 +5,14 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/fragment_helper_chinese_linearLayout_text"
+        android:id="@+id/fragment_helper_chinese_recycleview_item_text"
         style="@style/bigSize"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="药方"/>
 
     <TextView
-        android:id="@+id/fragment_helper_chinese_linearLayout_number"
+        android:id="@+id/fragment_helper_chinese_recycleview_item_number"
         style="@style/bigSize"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"

@@ -32,7 +32,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-            android:name=".mainpage.SplashActivity"
+            android:name=".mainpage.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,7 +42,7 @@
         </activity>
 
         <activity
-            android:name=".mainpage.MainActivity"
+            android:name=".mainpage.SplashActivity"
             android:screenOrientation="landscape"/>
 
         <activity android:name=".mainpage.LoginActivity"

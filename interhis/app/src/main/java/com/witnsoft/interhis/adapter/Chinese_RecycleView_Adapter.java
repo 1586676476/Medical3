@@ -22,6 +22,7 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
     private Context context;
     private List<String> list;
     private OnClick onClick;
+    private int count;
 
     public void setOnClick(OnClick onClick) {
         this.onClick = onClick;
@@ -44,6 +45,11 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
         list.add(str);
     }
 
+    public void onCountChanged(int count){
+        this.count = count;
+        notifyDataSetChanged();
+    }
+
     public void deleteTextView(int position){
         list.remove(position);
     }
@@ -55,8 +61,6 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, final int position) {
-        holder.setText(R.id.fragment_helper_chinese_linearLayout_text,list.get(position));
-        holder.setText(R.id.fragment_helper_chinese_linearLayout_number,list.get(position));
 
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -65,12 +69,22 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
 //            }
 //        });
 
+        holder.setText(R.id.fragment_helper_chinese_recycleview_item_text,list.get(position));
+        holder.setText(R.id.fragment_helper_chinese_recycleview_item_number,count+""+"g");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onIteClick(position);
+            }
+        });
+
+
     }
 
     @Override
     public int getItemCount() {
         return list==null?0:list.size();
     }
-
 
 }

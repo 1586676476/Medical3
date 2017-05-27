@@ -78,7 +78,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private List<String> data;
 
     private Button chinese_button;
-    private TextView chinese_recycleview_text;
     private EditText chinese_edittext;
 
     private RecyclerView chinese_fixed;
@@ -138,7 +137,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
         western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout_image);
 
-        chinese_recycleview_text = (TextView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_text);
+//        chinese_recycleview_text = (TextView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_text);
 
         //中西药签名点击事件
         chinese_linearLayout_linearLayout.setOnClickListener(signListener);
@@ -169,14 +168,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         //显示药方的地方
         chinese_adapter = new Chinese_RecycleView_Adapter(getContext());
         data = new ArrayList<>();
-        chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         chinese_adapter.setList(data);
         chinese_adapter.setOnClick(this);
-
         chinese_adapter.setContext(getContext());
-        chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
-
-        chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
+        chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         chinese_recyclerView.setAdapter(chinese_adapter);
 
         //固定药方
@@ -241,15 +236,15 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             }
         });
         chinese_listView.setAdapter(adapter);
-
     }
 
     private void setItemClick(final List<String> datas) {
-        chinese_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+         chinese_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(MainActivity.this, filter_lists.get(position), Toast.LENGTH_SHORT).show();
-                chinese_edittext.setText(datas.get(position));
+               chinese_adapter.addTextView(list.get(position));
+               chinese_adapter.notifyDataSetChanged();
             }
         });
     }
