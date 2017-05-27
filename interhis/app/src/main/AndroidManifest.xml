@@ -75,7 +75,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide" />
 
-
+        <activity android:name=".mainpage.DialogActivity" android:theme="@style/MyDialogActivityTheme"/>
 
 
     </application>

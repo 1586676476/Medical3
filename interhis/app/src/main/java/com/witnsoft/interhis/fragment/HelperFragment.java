@@ -2,6 +2,7 @@ package com.witnsoft.interhis.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ import com.witnsoft.interhis.inter.DialogListener;
 import com.witnsoft.interhis.inter.FilterListener;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
+import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.tool.KeyboardUtil;
 
 import org.xutils.view.annotation.ContentView;
@@ -243,6 +245,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(MainActivity.this, filter_lists.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getActivity(), DialogActivity.class);
+                startActivity(intent);
+
                chinese_adapter.addTextView(list.get(position));
                chinese_adapter.notifyDataSetChanged();
             }
