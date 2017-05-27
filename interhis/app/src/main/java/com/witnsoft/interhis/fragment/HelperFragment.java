@@ -268,16 +268,15 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     private void initData() {
-        list.add("看着飞舞的尘埃   掉下来");
-        list.add("没人发现它存在");
-        list.add("多自由自在");
-        list.add("可世界都爱热热闹闹");
-        list.add("容不下   我百无聊赖");
-        list.add("不应该   一个人 发呆");
-        list.add("容不下   我百无聊赖");
-        list.add("不应该   一个人 发呆");
-        list.add("容不下   我百无聊赖");
-        list.add("不应该   一个人 发呆");
+        list.add("人发");
+        list.add("当归");
+        list.add("车前子");
+        list.add("八角");
+        list.add("三七");
+        list.add("土蜂");
+        list.add("元参");
+        list.add("乌头");
+
     }
 
     @Override

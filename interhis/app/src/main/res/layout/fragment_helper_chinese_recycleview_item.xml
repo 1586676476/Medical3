@@ -9,13 +9,13 @@
         style="@style/bigSize"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:text="药方"/>
+        android:textSize="22sp"/>
 
     <TextView
         android:id="@+id/fragment_helper_chinese_recycleview_item_number"
         style="@style/bigSize"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:text="10g"/>
+        android:textSize="22sp"/>
 
 </LinearLayout>
