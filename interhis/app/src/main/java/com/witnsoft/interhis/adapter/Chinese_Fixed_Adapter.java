@@ -2,9 +2,12 @@ package com.witnsoft.interhis.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.inter.OnClick;
+import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
 
 import java.util.List;
@@ -16,6 +19,11 @@ import java.util.List;
 public class Chinese_Fixed_Adapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<String> list;
     private Context context;
+    private OnFixClick onFixClick;
+
+    public void setOnFixClick(OnFixClick onFixClick) {
+        this.onFixClick = onFixClick;
+    }
 
     public void setList(List<String> list) {
         this.list = list;
@@ -32,8 +40,14 @@ public class Chinese_Fixed_Adapter extends RecyclerView.Adapter<BaseViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
+    public void onBindViewHolder(BaseViewHolder holder, final int position) {
         holder.setText(R.id.fragment_helper_chinese_fixed_recycleview_text,list.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFixClick.OnFixItemClick(position);
+            }
+        });
     }
 
     @Override

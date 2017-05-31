@@ -49,6 +49,7 @@ import com.witnsoft.interhis.inter.DialogListener;
 
 import com.witnsoft.interhis.inter.FilterListener;
 import com.witnsoft.interhis.inter.OnClick;
+import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
@@ -71,24 +72,30 @@ import java.util.List;
  * Created by ${liyan} on 2017/5/8.
  */
 
-public class HelperFragment extends Fragment implements View.OnClickListener, OnClick {
+public class HelperFragment extends Fragment implements View.OnClickListener, OnClick, OnFixClick {
     private static final String TAG = "HelperFragment";
-
+    //手写签名
     private Bitmap mSignBitmap;
     private String signPath;
+    //RadioButton
     private RadioButton ask, chat, chinese, western;
     private FrameLayout ask_linearLayout;
+    //所对应布局
     private LinearLayout chinese_linearLayout, western_linearLayout, chat_linearLayout;
     private LinearLayout chinese_linearLayout_linearLayout, western_linearLayout_linearLayout;
     private ImageView chinese_img, western_img;
-
+    //中药显示部分
     private RecyclerView chinese_recyclerView;
     private Chinese_RecycleView_Adapter chinese_adapter;
     private List<String> data;
-
+    //中药按钮
     private Button chinese_button;
+    //中药搜索框
     private EditText chinese_edittext;
-
+    private Chinese_ListView_Adapter adapter = null;
+    private ListView chinese_listView;
+    private List<String> list = new ArrayList<String>();
+    //固定药方显示部分
     private RecyclerView chinese_fixed;
     private Chinese_Fixed_Adapter fixed_adapter;
     private List<String> fix_data;
@@ -98,9 +105,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private String type1;
     private int single1;
 
-    private ListView chinese_listView;
-    private List<String> list = new ArrayList<String>();
-    private Chinese_ListView_Adapter adapter = null;
     private EaseChatFragment chatFragment;
     private Bundle bundle;
 
@@ -185,13 +189,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         //固定药方
         fix_data=new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            fix_data.add("药方");
+        for (int i = 0; i < 3; i++) {
+           initData();
         }
 
         fixed_adapter=new Chinese_Fixed_Adapter(getContext());
         chinese_fixed.setLayoutManager(new GridLayoutManager(getContext(),3));
         fixed_adapter.setList(fix_data);
+        fixed_adapter.setOnFixClick(this);
         chinese_fixed.setAdapter(fixed_adapter);
 
         //点击edittext实现自定义软键盘
@@ -276,6 +281,22 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         list.add("土蜂");
         list.add("元参");
         list.add("乌头");
+
+        fix_data.add("当归");
+        fix_data.add("车前子");
+        fix_data.add("人参 ");
+        fix_data.add(" 卜芥 ");
+        fix_data.add(" 儿茶 ");
+        fix_data.add(" 八角 ");
+        fix_data.add(" 丁香 ");
+        fix_data.add(" 刀豆 ");
+        fix_data.add(" 三七");
+        fix_data.add("三棱 ");
+        fix_data.add(" 干姜 ");
+        fix_data.add(" 大黄 ");
+        fix_data.add(" 大蒜 ");
+        fix_data.add(" 大蓟 ");
+        fix_data.add(" 山奈");
 
     }
 
@@ -486,24 +507,24 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     //显示输入药方
-    public void EditTextshow(String content){
-        if (!TextUtils.isEmpty(content)) {
-            chinese_adapter.addTextView(content);
-            chinese_adapter.notifyDataSetChanged();
-            chinese_edittext.setText("");
-                      }
-    }
+//    public void EditTextshow(String content){
+//        if (!TextUtils.isEmpty(content)) {
+//            chinese_adapter.addTextView(content);
+//            chinese_adapter.notifyDataSetChanged();
+//            chinese_edittext.setText("");
+//                      }
+//    }
     //显示固定药方
-    public void show(String content){
-        Boolean isFirst=false;
-        if (isFirst){
-
-        }
-        if (!TextUtils.isEmpty(content)){
-            chinese_adapter.addTextView(content);
-            chinese_adapter.notifyDataSetChanged();
-        }
-    }
+//    public void show(String content){
+//        Boolean isFirst=false;
+//        if (isFirst){
+//
+//        }
+//        if (!TextUtils.isEmpty(content)){
+//            chinese_adapter.addTextView(content);
+//            chinese_adapter.notifyDataSetChanged();
+//        }
+//    }
 
 
     @Override
@@ -511,6 +532,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         Intent intent=new Intent(getActivity(), SecondDialogActivity.class);
         intent.putExtra("position",position);
         startActivity(intent);
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -523,6 +545,15 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     public void onDetach() {
         super.onDetach();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void OnFixItemClick(int position) {
+        Intent intent=new Intent(getActivity(), DialogActivity.class);
+        intent.putExtra("medical_name",list.get(position));
+        startActivity(intent);
+        chinese_adapter.addTextView(fix_data.get(position));
+        chinese_adapter.notifyDataSetChanged();
     }
 
     class Receiver extends BroadcastReceiver {
