@@ -15,14 +15,11 @@ import org.xutils.x;
  */
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
-    /**
-     * 123456
-     * @param savedInstanceState
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
-        //我试试好使不
+
     }
 }
