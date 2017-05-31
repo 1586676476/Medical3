@@ -4,12 +4,12 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_25.png"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_record_animate_13.png",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_record_animate_13.png"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_record_animate_01.png",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_record_animate_01.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_record_animate_13.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_record_animate_13.png"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_voice_playing.png",
@@ -36,16 +36,16 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_33.png"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_11.png",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_11.png"
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_5.png",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_5.png"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_voice_playing_f2.png",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_chatto_voice_playing_f2.png"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_5.png",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_5.png"
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_11.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_11.png"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatfrom_bg_focused.9.png",
@@ -72,12 +72,12 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_record_animate_01.png"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_title_back.png",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_mm_title_back.png"
-    },
-    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_video_recorder_start_btn.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_title_back.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_mm_title_back.png"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_27.png",
@@ -176,12 +176,12 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_chatfrom_bg_normal.9.png"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_listitem_disable.9.png",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_mm_listitem_disable.9.png"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_3.png",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_3.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_mm_listitem_disable.9.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_mm_listitem_disable.9.png"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ee_26.png",
@@ -224,12 +224,12 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_search_clear_pressed.png"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_record_animate_05.png",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_record_animate_05.png"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_video_recorder_start_btn.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_record_animate_05.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_record_animate_05.png"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_icon_marka.png",
@@ -264,12 +264,12 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ee_10.png"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chat_face_normal.png",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_chat_face_normal.png"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_voice_playing.png",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_chatto_voice_playing.png"
+    },
+    {
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chat_face_normal.png",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-hdpi\\ease_chat_face_normal.png"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ease_chatto_bg_normal.9.png",
