@@ -14,7 +14,6 @@ import android.support.v4.app.Fragment;
 
 import android.text.Editable;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 
@@ -22,7 +21,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -58,8 +55,6 @@ import com.witnsoft.interhis.tool.KeyboardUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.ViewInject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -100,10 +95,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private Chinese_Fixed_Adapter fixed_adapter;
     private List<String> fix_data;
 
-    private String id;
-    private String name;
+    private String userName;
     private String type1;
     private int single1;
+    private String id;
 
     private EaseChatFragment chatFragment;
     private Bundle bundle;
@@ -308,7 +303,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 playAskVeiw();
                 chatFragment = new EaseChatFragment();
                 bundle = new Bundle();
-                bundle.putString("userName", name);
+                bundle.putString("userName", userName);
                 bundle.putString("userId", id);
                 bundle.putString("type", type1);
                 bundle.putInt("single", single1);
@@ -333,7 +328,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             case R.id.fragment_helper_chinese_button:
                 Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 
-                createYaofang("药方号10086", "价格100元", id);
+                createYaofang(id, "中药","1029405","7","1000");
                         break;
         }}
 
@@ -474,8 +469,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     public void getContent(String userName, String userId, String type, int single) {
+
         id = userId;
-        name = userName;
+        this.userName = userName;
         type1 = type;
         single1 = single;
 
@@ -494,13 +490,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
 
-    public void createYaofang(String num, String price, String id) {
+    public void createYaofang(String userName,String yaofangType,String yaofangNum,String yaoNum,String yaofangPrice) {
         EMMessage message = EMMessage.createTxtSendMessage("yaofang", id);
 
-        Log.e("id!!!!!!!!!!!!!!!!", id);
+        Log.e("userName!!!!!!!!!!!!!!!!", userName);
         message.setAttribute("type", "yaofang");
-        message.setAttribute("yaofangNum", num);
-        message.setAttribute("yaofangPrice", price);
+        message.setAttribute("userName",userName);
+        message.setAttribute("yaofangType",yaofangType);
+        message.setAttribute("yaofangNum", yaofangNum);
+        message.setAttribute("yaoNum",yaoNum);
+        message.setAttribute("yaofangPrice", yaofangPrice);
 
         EMClient.getInstance().chatManager().sendMessage(message);
 

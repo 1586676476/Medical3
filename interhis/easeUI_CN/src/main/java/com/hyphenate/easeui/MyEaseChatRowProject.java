@@ -5,13 +5,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
-import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
 import com.hyphenate.exceptions.HyphenateException;
 
@@ -22,16 +20,10 @@ import com.hyphenate.exceptions.HyphenateException;
 public class MyEaseChatRowProject extends EaseChatRow {
 
 
-//    private LinearLayout yaofangLl;
-    private TextView sickNameTv,sickConditionTv;
-//    private ImageView iv_mychatlist_xiangmuice;
-//    private TextView tv_mychatlist_xiangmucontent;
-    private LinearLayout ll_mychatlist_xiangmu;
-    private TextView tv_mychatlist_xiangmuname;
-    private ImageView iv_mychatlist_xiangmuice;
-    private TextView tv_mychatlist_xiangmucontent;
-    private String yaofangName;
-    private String yaofangContent;
+
+    private TextView userName,yaofangType,yaofangNum,yaoNum,yaofangPrice;
+    private ImageView yaofangIv;
+
 
     public MyEaseChatRowProject(Context context, EMMessage message, int position, BaseAdapter adapter) {
         super(context, message, position, adapter);
@@ -53,9 +45,12 @@ public class MyEaseChatRowProject extends EaseChatRow {
      */
     @Override
     protected void onFindViewById() {
-        // TODO Auto-generated method stub
-          sickNameTv = (TextView) findViewById(R.id.tv_sick_name);
-        sickConditionTv = (TextView) findViewById(R.id.tv_sick_condition);
+        userName = (TextView) findViewById(R.id.tv_yaofang_name);
+        yaofangType = (TextView) findViewById(R.id.tv_yaofang_type);
+        yaofangIv = (ImageView) findViewById(R.id.iv_yaofang);
+        yaofangNum = (TextView) findViewById(R.id.tv_yaofang_num);
+        yaoNum = (TextView) findViewById(R.id.tv_yao_num);
+        yaofangPrice = (TextView) findViewById(R.id.tv_yaofang_price);
     }
 
     /**
@@ -78,11 +73,18 @@ public class MyEaseChatRowProject extends EaseChatRow {
         // 设置内容,通过扩展自文本获取消息内容，填充到相应的位置
 
         if (message.getBooleanAttribute("yaofang",true)) {
+            String userName = message.getStringAttribute("userName",null);
+            String yaofangType = message.getStringAttribute("yaofangType",null);
             String yaofangNum = message.getStringAttribute("yaofangNum", null);
+            String yaoNum = message.getStringAttribute("yaoNum",null);
             String yaofangPrice = message.getStringAttribute("yaofangPrice", null);
-//            sickNameTv.setText(yaofangNum);
-//            sickConditionTv.setText(yaofangPrice);
-           // handleTextMessage();
+
+            this.userName.setText("您给" + userName + "开了一个");
+            this.yaofangType.setText(yaofangType + "处方");
+            this.yaofangNum.setText("药方号：" + yaofangNum);
+            this.yaoNum.setText("共" + yaoNum + "付");
+            this.yaofangPrice.setText(yaofangPrice + "元");
+
         }
 
     }

@@ -28,12 +28,12 @@
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_btn_blue_pressed_shape.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_msg_state_failed_resend.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_msg_state_failed_resend.xml"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chat_location_selector.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chat_location_selector.xml"
+    },
+    {
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_msg_state_failed_resend.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_msg_state_failed_resend.xml"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chatfrom_bg.xml",
@@ -48,28 +48,28 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_timestampe_bg.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_type_select_btn.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_type_select_btn.xml"
-    },
-    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\touxiang.png",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\touxiang.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_type_select_btn.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_type_select_btn.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_btn_blue_pressed_shape.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_btn_blue_pressed_shape.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_mm_listitem.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_mm_listitem.xml"
+        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chatfrom_bg.xml",
+        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chatfrom_bg.xml"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_mm_listitem_grey.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_mm_listitem_grey.xml"
     },
     {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chatfrom_bg.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chatfrom_bg.xml"
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_mm_listitem.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_mm_listitem.xml"
     },
     {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chat_send_btn_selector.xml",
@@ -124,12 +124,12 @@
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_btn_cancel_pressed_shape.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_search_clear.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_search_clear.xml"
-    },
-    {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_chatfrom_bg.xml",
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_chatfrom_bg.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_search_clear.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable\\ease_search_clear.xml"
     },
     {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\ease_mm_listitem_grey.xml",
