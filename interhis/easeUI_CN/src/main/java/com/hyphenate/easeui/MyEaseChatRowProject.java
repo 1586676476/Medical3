@@ -21,6 +21,11 @@ import com.hyphenate.exceptions.HyphenateException;
 
 public class MyEaseChatRowProject extends EaseChatRow {
 
+
+//    private LinearLayout yaofangLl;
+    private TextView sickNameTv,sickConditionTv;
+//    private ImageView iv_mychatlist_xiangmuice;
+//    private TextView tv_mychatlist_xiangmucontent;
     private LinearLayout ll_mychatlist_xiangmu;
     private TextView tv_mychatlist_xiangmuname;
     private ImageView iv_mychatlist_xiangmuice;
@@ -49,12 +54,8 @@ public class MyEaseChatRowProject extends EaseChatRow {
     @Override
     protected void onFindViewById() {
         // TODO Auto-generated method stub
-
-        ll_mychatlist_xiangmu = (LinearLayout) findViewById(R.id.ll_mychatlist_xiangmu);
-        tv_mychatlist_xiangmuname = (TextView) findViewById(R.id.tv_mychatlist_xiangmuname);
-        iv_mychatlist_xiangmuice = (ImageView) findViewById(R.id.iv_mychatlist_xiangmuice);
-        tv_mychatlist_xiangmucontent = (TextView) findViewById(R.id.tv_mychatlist_xiangmucontent);
-
+          sickNameTv = (TextView) findViewById(R.id.tv_sick_name);
+        sickConditionTv = (TextView) findViewById(R.id.tv_sick_condition);
     }
 
     /**
@@ -79,11 +80,11 @@ public class MyEaseChatRowProject extends EaseChatRow {
         if (message.getBooleanAttribute("yaofang",true)) {
             String yaofangNum = message.getStringAttribute("yaofangNum", null);
             String yaofangPrice = message.getStringAttribute("yaofangPrice", null);
-            tv_mychatlist_xiangmuname.setText(yaofangNum);
-            tv_mychatlist_xiangmucontent.setText(yaofangPrice);
-
-            handleTextMessage();
+//            sickNameTv.setText(yaofangNum);
+//            sickConditionTv.setText(yaofangPrice);
+           // handleTextMessage();
         }
+
     }
 
     protected void handleTextMessage() {

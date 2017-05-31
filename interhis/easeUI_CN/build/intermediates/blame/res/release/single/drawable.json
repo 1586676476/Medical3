@@ -52,6 +52,10 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_send_btn_selector.xml"
     },
     {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable\\touxiang.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\touxiang.png"
+    },
+    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable\\ease_recording_text_hint_bg.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_recording_text_hint_bg.xml"
     },

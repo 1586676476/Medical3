@@ -17,16 +17,19 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.MyEaseChatRowProject;
+import com.hyphenate.easeui.SickChatRow;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.easeui.widget.EaseChatMessageList.MessageListItemClickListener;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
@@ -38,6 +41,8 @@ import com.hyphenate.easeui.widget.chatrow.EaseChatRowText;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRowVideo;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRowVoice;
 import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
+
+import java.util.Map;
 
 public class EaseMessageAdapter extends BaseAdapter{
 
@@ -66,6 +71,8 @@ public class EaseMessageAdapter extends BaseAdapter{
 
 	private static final int MESSAGE_TYPE_RECV_PROJECT = 14;
 	private static final int MESSAGE_TYPE_SENT_PROJECT = 15;
+	private static final int MESSAGE_TYPE_RECV_SICK = 16;
+	private static final int MESSAGE_TYPE_SENT_SICK = 17;
 
 	public int itemTypeCount;
 
@@ -84,6 +91,9 @@ public class EaseMessageAdapter extends BaseAdapter{
 	private Drawable otherBuddleBg;
 
 	private ListView listView;
+	private String mSickType;
+
+
 
 	public EaseMessageAdapter(Context context, String username, int chatType, ListView listView) {
 		this.context = context;
@@ -176,15 +186,18 @@ public class EaseMessageAdapter extends BaseAdapter{
 	 */
 	public int getViewTypeCount() {
 		if(customRowProvider != null && customRowProvider.getCustomChatRowTypeCount() > 0){
-			return customRowProvider.getCustomChatRowTypeCount() + 16;
+			return customRowProvider.getCustomChatRowTypeCount() + 18;
 		}
-		return 16;
+		return 18;
 	}
 
 
 	/**
 	 * get type of item
+	 *
 	 */
+
+
 	public int getItemViewType(int position) {
 		EMMessage message = getItem(position);
 		if (message == null) {
@@ -196,15 +209,25 @@ public class EaseMessageAdapter extends BaseAdapter{
 		}
 
 		if (message.getType() == EMMessage.Type.TXT) {
+			Map<String,Object> extMap = message.ext();
+			if (extMap != null) {
+				mSickType = (String) extMap.get("type");
+			}
+
 			if(message.getBooleanAttribute(EaseConstant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
 				return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_EXPRESSION : MESSAGE_TYPE_SENT_EXPRESSION;
 			}
 			if ("yaofang".equals(message.getStringAttribute("type", ""))) {
 				return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_PROJECT : MESSAGE_TYPE_SENT_PROJECT;
+
+			}
+			if (mSickType != null && mSickType.equals("imgtxt_ask")){
+				return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_SICK : MESSAGE_TYPE_SENT_SICK;
 			}
 
 			return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TXT : MESSAGE_TYPE_SENT_TXT;
 		}
+
 		if (message.getType() == EMMessage.Type.IMAGE) {
 			return message.direct() == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_IMAGE : MESSAGE_TYPE_SENT_IMAGE;
 
@@ -227,6 +250,12 @@ public class EaseMessageAdapter extends BaseAdapter{
 
 	protected EaseChatRow createChatRow(Context context, EMMessage message, int position) {
 		EaseChatRow chatRow = null;
+
+		Map<String,Object> extMap = message.ext();
+		if (extMap != null) {
+			mSickType = (String) extMap.get("type");
+		}
+
 		if(customRowProvider != null && customRowProvider.getCustomChatRow(message, position, this) != null){
 			return customRowProvider.getCustomChatRow(message, position, this);
 		}
@@ -235,11 +264,15 @@ public class EaseMessageAdapter extends BaseAdapter{
 				if(message.getBooleanAttribute(EaseConstant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
 					chatRow = new EaseChatRowBigExpression(context, message, position, this);
 				}else if ("yaofang".equals(message.getStringAttribute("type", ""))) {
-					chatRow=new MyEaseChatRowProject(context, message, position, this);
-
-				}else{
+					chatRow = new MyEaseChatRowProject(context, message, position, this);
+				}
+				else if (mSickType != null && mSickType.equals("imgtxt_ask")){
+					chatRow = new SickChatRow(context, message, position, this);
+				}
+				else{
 					chatRow = new EaseChatRowText(context, message, position, this);
 				}
+
 				break;
 			case LOCATION:
 				chatRow = new EaseChatRowLocation(context, message, position, this);

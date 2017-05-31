@@ -14,8 +14,6 @@
 package com.hyphenate.easeui.ui;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 
 import com.hyphenate.EMCallBack;
@@ -34,7 +32,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -61,7 +58,7 @@ public class EaseShowBigImageActivity extends EaseBaseActivity {
 
 		image = (EasePhotoView) findViewById(R.id.image);
 		ProgressBar loadLocalPb = (ProgressBar) findViewById(R.id.pb_load_local);
-		default_res = getIntent().getIntExtra("default_image", R.drawable.ease_default_avatar);
+		default_res = getIntent().getIntExtra("default_image", R.drawable.touxiang);
 		Uri uri = getIntent().getParcelableExtra("uri");
 		localFilePath = getIntent().getExtras().getString("localUrl");
 		String msgId = getIntent().getExtras().getString("messageId");

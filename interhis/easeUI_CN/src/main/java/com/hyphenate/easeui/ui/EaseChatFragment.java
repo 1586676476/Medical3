@@ -132,6 +132,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
      * init view
      */
     protected void initView() {
+        hideTitleBar();
         // hold to record voice
         //noinspection ConstantConditions
         voiceRecorderView = (EaseVoiceRecorderView) getView().findViewById(R.id.voice_recorder);
@@ -181,6 +182,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     }
 
     protected void setUpView() {
+
         titleBar.setTitle(toChatUsername);
         if (chatType == EaseConstant.CHATTYPE_SINGLE) {
             // set title
