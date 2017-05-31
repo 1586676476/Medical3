@@ -6,6 +6,7 @@
               android:orientation="vertical">
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/doctor_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -98,6 +99,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/doctor_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -204,6 +206,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/fragment_doctor_recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -212,7 +215,7 @@
         android:background="@color/colorGray"/>
 
     <Button
-        android:id="@+id/doctor_button"
+        android:id="@+id/doctor_visit"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/button_round"

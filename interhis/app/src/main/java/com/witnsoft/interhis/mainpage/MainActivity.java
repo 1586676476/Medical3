@@ -16,6 +16,11 @@ import org.xutils.x;
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 141009215c49d4a0f5580aa3febf600282a998ce
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

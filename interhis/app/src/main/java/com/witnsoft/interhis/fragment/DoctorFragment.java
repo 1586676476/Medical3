@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,7 +111,15 @@ public class DoctorFragment extends Fragment implements OnClick {
     // 累计收入
     @ViewInject(R.id.tv_all_income)
     private TextView tvAllIncome;
-
+    //医生信息
+    @ViewInject(R.id.doctor_message)
+    private LinearLayout doctor_message;
+    //医生接诊数量
+    @ViewInject(R.id.doctor_count)
+    private LinearLayout doctor_number;
+    //出诊按钮
+    @ViewInject(R.id.doctor_visit)
+    private Button visit;
 
     @Nullable
     @Override
@@ -145,6 +155,14 @@ public class DoctorFragment extends Fragment implements OnClick {
         recyclerView.setAdapter(doctorAdapter);
         doctorAdapter.setOnClick(this);
 
+        visit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doctor_message.setVisibility(View.VISIBLE);
+                doctor_number.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     // F27.APP.01.01 查询医生详细信息
