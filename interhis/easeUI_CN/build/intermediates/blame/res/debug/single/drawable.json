@@ -28,12 +28,12 @@
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_recording_hint_bg.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\touxiang.png",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\touxiang.png"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chatting_setmode_keyboard_btn.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chatting_setmode_keyboard_btn.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\touxiang.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\touxiang.png"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_press_speak_btn.xml",
@@ -80,12 +80,12 @@
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_timestampe_bg.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_type_select_btn.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_type_select_btn.xml"
-    },
-    {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_location_selector.xml",
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_location_selector.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_type_select_btn.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_type_select_btn.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_msg_state_failed_resend.xml",
@@ -104,12 +104,12 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_btn_blue_pressed_shape.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_btn_cancel_bj.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_btn_cancel_bj.xml"
-    },
-    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_btn_cancel_pressed_shape.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_btn_cancel_pressed_shape.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_btn_cancel_bj.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_btn_cancel_bj.xml"
     },
     {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_recording_hint_bg.xml",
@@ -132,24 +132,24 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_btn_cancel_pressed_shape.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_takepic_selector.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_takepic_selector.xml"
-    },
-    {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_btn_cancel_pressed_shape.xml",
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_btn_cancel_pressed_shape.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_takepic_selector.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_takepic_selector.xml"
     },
     {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_press_speak_btn.xml",
         "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_press_speak_btn.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_takepic_selector.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_takepic_selector.xml"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chatfrom_bg.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chatfrom_bg.xml"
+    },
+    {
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_takepic_selector.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_takepic_selector.xml"
     },
     {
         "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_send_btn_selector.xml",

@@ -6,7 +6,12 @@ package com.witnsoft.interhis.bean;
 
 public class NumberBean {
     private String name;
+
     private int count;
+
+    public NumberBean(int count) {
+        this.count = count;
+    }
 
     public NumberBean(String name){
         this.name=name;

@@ -5,10 +5,6 @@
         <shape>
             <solid android:color="@color/colorBlue"/>
             <corners android:radius="360dp"/>
-            <padding android:bottom="10dp"/>
-            <padding android:left="10dp"/>
-            <padding android:right="10dp"/>
-            <padding android:top="10dp"/>
         </shape>
     </item>
 </selector>

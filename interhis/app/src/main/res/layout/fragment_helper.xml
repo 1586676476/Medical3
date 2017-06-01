@@ -115,7 +115,7 @@
     </LinearLayout>
 
     <LinearLayout
-
+        android:visibility="gone"
         android:id="@+id/fragment_helper_chinese_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -143,41 +143,49 @@
             android:layout_height="150dp" />
 
         <EditText
-            android:id="@+id/fragment_helper_chinese_edittext"
+            android:id="@+id/fragment_helper_chinese_advice"
             android:layout_width="395dp"
             android:layout_height="40dp"
             android:background="@drawable/edittext"
+            android:hint="请输入医嘱"
+            android:paddingLeft="10dp"
+            android:textColor="@color/colorBlack" />
+
+        <EditText
+            android:id="@+id/fragment_helper_chinese_edittext"
+            android:layout_width="395dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext"
             android:hint="请输入药方"
-            android:textColor="@color/colorBlack"
-            android:paddingLeft="10dp" />
+            android:paddingLeft="10dp"
+            android:textColor="@color/colorBlack" />
 
         <android.inputmethodservice.KeyboardView
             android:id="@+id/keyboard_view"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:focusable="true"
             android:layout_marginTop="10dp"
-            android:focusableInTouchMode="true"
             android:background="@color/colorWhite"
-            />
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
 
         <ListView
-            android:visibility="gone"
             android:id="@+id/fragment_helper_chinese_listview"
             android:layout_width="wrap_content"
-            android:layout_height="270dp"
-            android:layout_marginTop="-255dp"
+            android:layout_height="290dp"
             android:layout_marginLeft="410dp"
-            />
+            android:layout_marginTop="-290dp"
+            android:visibility="gone" />
 
         <android.support.v7.widget.RecyclerView
 
             android:id="@+id/fragment_helper_chinese_fixed_recycleview"
             android:layout_width="270dp"
-            android:layout_height="270dp"
+            android:layout_height="290dp"
             android:layout_marginLeft="410dp"
-            android:layout_marginTop="-250dp"/>
+            android:layout_marginTop="-290dp" />
 
         <Button
             android:id="@+id/fragment_helper_chinese_button"
@@ -185,6 +193,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/button"
+            android:textColor="@color/colorWhite"
             android:text="保存" />
 
         <LinearLayout
@@ -209,11 +218,19 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/fragment_helper_chinese_medical_number"
+            style="@style/bigSize"
+            android:layout_marginLeft="330dp"
+            android:layout_marginTop="-35dp"
+            android:text="共7副" />
+
+        <TextView
             style="@style/bigSize"
             android:layout_marginLeft="450dp"
-            android:layout_marginTop="-40dp"
+            android:layout_marginTop="-18dp"
             android:text="金额：      700元"
             android:textColor="@color/colorBlack" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -279,6 +296,8 @@
                android:layout_marginLeft="15dp"
                android:layout_marginTop="-13dp" />
        </LinearLayout>
+
+
 
        <TextView
           style="@style/bigSize"
