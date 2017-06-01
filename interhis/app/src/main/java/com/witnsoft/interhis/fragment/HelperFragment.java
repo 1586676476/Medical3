@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -50,16 +51,21 @@ import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
+import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.tool.KeyboardUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.xutils.DbManager;
+import org.xutils.common.util.LogUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,14 +148,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout);
         chat_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chat_linearLayout);
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
-        chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
-        western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout_image);
 
         //中西药签名点击事件
         chinese_linearLayout_linearLayout.setOnClickListener(signListener);
-        chinese_img.setOnClickListener(signListener);
         western_linearLayout_linearLayout.setOnClickListener(signListenerWestern);
-        western_img.setOnClickListener(signListenerWestern);
+
         //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
 
@@ -299,7 +302,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 
                 createYaofang(id, "中药","1029405","7","1000");
-                        break;
+                break;
+
         }}
 
         private View.OnClickListener signListenerWestern = new View.OnClickListener() {
@@ -505,8 +509,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         intent.putExtra("medical_name",fix_data.get(position).getName());
         Log.e(TAG, "OnFixItemClick: "+fix_data.get(position).getName() );
         startActivity(intent);
-//        chinese_adapter.addTextView(new NumberBean(fix_data.get(position).getName()));
-//        chinese_adapter.notifyDataSetChanged();
     }
 
     class Receiver extends BroadcastReceiver {
@@ -519,5 +521,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             chinese_adapter.notifyDataSetChanged();
         }
     }
+
 
 }

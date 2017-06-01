@@ -13,8 +13,12 @@ import android.widget.Toast;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.libinterhis.base.BaseActivity;
+import com.witnsoft.libinterhis.db.HisDbManager;
+import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
+import com.witnsoft.libinterhis.db.model.ChineseModel;
 
 import org.greenrobot.eventbus.EventBus;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
 
@@ -94,30 +98,60 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 numberBean.setName(medical);
                 numberBean.setCount(5);
                 EventBus.getDefault().post(numberBean);
+                ChineseDetailModel chineseDetailModel=new ChineseDetailModel(medical,5+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_ten:
                 numberBean.setName(medical);
                 numberBean.setCount(10);
                 EventBus.getDefault().post(numberBean);
+                ChineseDetailModel chineseDetailModelten=new ChineseDetailModel(medical,10+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModelten);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_fifteen:
                 numberBean.setName(medical);
                 numberBean.setCount(15);
                 EventBus.getDefault().post(numberBean);
+                ChineseDetailModel chineseDetailModelfifteen=new ChineseDetailModel(medical,15+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModelfifteen);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_twenty:
                 numberBean.setName(medical);
                 numberBean.setCount(20);
                 EventBus.getDefault().post(numberBean);
+                ChineseDetailModel chineseDetailModeltwenty=new ChineseDetailModel(medical,20+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModeltwenty);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_number:
                 numberBean.setName(medical);
                 numberBean.setCount(num);
                 EventBus.getDefault().post(numberBean);
+                ChineseDetailModel chineseDetailModelnum=new ChineseDetailModel(medical,num+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModelnum);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.first_cancel:

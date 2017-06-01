@@ -46,7 +46,7 @@
             android:background="@drawable/radiobutton"/>
         <RadioButton
             style="@style/radioButton"
-            android:text="检查检验"
+            android:text="历史记录"
             android:gravity="center"
             android:layout_marginLeft="10dp"
             android:background="@drawable/radiobutton"/>
@@ -115,11 +115,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
+
         android:id="@+id/fragment_helper_chinese_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
         android:background="@color/colorWhite"
         android:orientation="vertical">
 

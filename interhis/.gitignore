@@ -4,4 +4,21 @@
 .gradle
 /build
 
+
 /local.properties
+easeUI_CN/build/generated/assets/
+easeUI_CN/build/generated/res/
+easeUI_CN/build/generated/source/aidl/
+easeUI_CN/build/generated/source/rs/
+easeUI_CN/build/intermediates/bundles/debug/aidl/
+easeUI_CN/build/intermediates/bundles/debug/assets/
+easeUI_CN/build/intermediates/bundles/default/aidl/
+easeUI_CN/build/intermediates/bundles/default/assets/
+easeUI_CN/build/intermediates/incremental/mergeDebugAndroidTestResources/aapt-temp/
+easeUI_CN/build/intermediates/incremental/packageDebugAndroidTest/
+easeUI_CN/build/intermediates/incremental/processDebugAndroidTestResources/
+easeUI_CN/build/intermediates/incremental/processDebugResources/
+easeUI_CN/build/intermediates/lint/
+easeUI_CN/build/intermediates/manifest/tmp/
+easeUI_CN/build/intermediates/rs/
+easeUI_CN/build/intermediates/shaders/
