@@ -87,18 +87,18 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     //中药显示部分
     private RecyclerView chinese_recyclerView;
     private Chinese_RecycleView_Adapter chinese_adapter;
-    private List<String> data;
+    private List<NumberBean> data;
     //中药按钮
     private Button chinese_button;
     //中药搜索框
     private EditText chinese_edittext;
     private Chinese_ListView_Adapter adapter = null;
     private ListView chinese_listView;
-    private List<String> list = new ArrayList<String>();
+    private List<NumberBean> list = new ArrayList<>();
     //固定药方显示部分
     private RecyclerView chinese_fixed;
     private Chinese_Fixed_Adapter fixed_adapter;
-    private List<String> fix_data;
+    private List<NumberBean> fix_data;
 
     private String id;
     private String name;
@@ -150,8 +150,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
         western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout_image);
 
-//        chinese_recycleview_text = (TextView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_text);
-
         //中西药签名点击事件
         chinese_linearLayout_linearLayout.setOnClickListener(signListener);
         chinese_img.setOnClickListener(signListener);
@@ -162,8 +160,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         ctx=getContext();
         act=getActivity();
-
-
 
         return view;
 
@@ -217,31 +213,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         //没有进行搜索的时候，也要添加对listview的item单击监听
         setItemClick(list);
 
-        /**
-         * 对编辑框添加文本改变监听，搜索的具体功能在这里实现
-         * 文本改变的时候进行搜索，重写onTextChanges()方法
-         */
-        chinese_edittext.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            //编辑框内容改变的时候会执行该方法
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //如果adapter不为空的话就根据编辑框中的内容来过滤数据
-                if (adapter != null) {
-                    adapter.getFilter().filter(s);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
     }
 
     private void setData() {
@@ -257,46 +228,44 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_listView.setAdapter(adapter);
     }
 
-    private void setItemClick(final List<String> datas) {
+    private void setItemClick(final List<NumberBean> datas) {
          chinese_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(MainActivity.this, filter_lists.get(position), Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getActivity(), DialogActivity.class);
-                intent.putExtra("medical_name",list.get(position));
+                intent.putExtra("medical_name",list.get(position).getName());
                 startActivity(intent);
 
-               chinese_adapter.addTextView(list.get(position));
-               chinese_adapter.notifyDataSetChanged();
             }
         });
     }
 
     private void initData() {
-        list.add("人发");
-        list.add("当归");
-        list.add("车前子");
-        list.add("八角");
-        list.add("三七");
-        list.add("土蜂");
-        list.add("元参");
-        list.add("乌头");
+        list.add(new NumberBean("人发"));
+        list.add(new NumberBean("当归"));
+        list.add(new NumberBean("车前子"));
+        list.add(new NumberBean("八角"));
+        list.add(new NumberBean("三七"));
+        list.add(new NumberBean("土蜂"));
+        list.add(new NumberBean("元参"));
+        list.add(new NumberBean("乌头"));
 
-        fix_data.add("当归");
-        fix_data.add("车前子");
-        fix_data.add("人参 ");
-        fix_data.add(" 卜芥 ");
-        fix_data.add(" 儿茶 ");
-        fix_data.add(" 八角 ");
-        fix_data.add(" 丁香 ");
-        fix_data.add(" 刀豆 ");
-        fix_data.add(" 三七");
-        fix_data.add("三棱 ");
-        fix_data.add(" 干姜 ");
-        fix_data.add(" 大黄 ");
-        fix_data.add(" 大蒜 ");
-        fix_data.add(" 大蓟 ");
-        fix_data.add(" 山奈");
+        fix_data.add(new NumberBean("当归"));
+        fix_data.add(new NumberBean("车前子"));
+        fix_data.add(new NumberBean("人参 "));
+        fix_data.add(new NumberBean(" 卜芥 "));
+        fix_data.add(new NumberBean(" 儿茶 "));
+        fix_data.add(new NumberBean(" 八角 "));
+        fix_data.add(new NumberBean(" 丁香 "));
+        fix_data.add(new NumberBean(" 刀豆 "));
+        fix_data.add(new NumberBean(" 三七"));
+        fix_data.add(new NumberBean("三棱 "));
+        fix_data.add(new NumberBean(" 干姜 "));
+        fix_data.add(new NumberBean(" 大黄 "));
+        fix_data.add(new NumberBean(" 大蒜 "));
+        fix_data.add(new NumberBean(" 大蓟 "));
+        fix_data.add(new NumberBean(" 山奈"));
 
     }
 
@@ -324,6 +293,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                     @Override
                     public void onClick(View v) {
                         chinese_listView.setVisibility(View.VISIBLE);
+                        chinese_fixed.setVisibility(View.GONE);
                     }
                 });
                 break;
@@ -479,7 +449,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         type1 = type;
         single1 = single;
 
-        Log.e(TAG, "getContent: " + userName + userId + type + single);
         chatFragment = new EaseChatFragment();
         bundle = new Bundle();
         bundle.putString("userName", userName);
@@ -496,8 +465,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     public void createYaofang(String num, String price, String id) {
         EMMessage message = EMMessage.createTxtSendMessage("yaofang", id);
-
-        Log.e("id!!!!!!!!!!!!!!!!", id);
         message.setAttribute("type", "yaofang");
         message.setAttribute("yaofangNum", num);
         message.setAttribute("yaofangPrice", price);
@@ -505,27 +472,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         EMClient.getInstance().chatManager().sendMessage(message);
 
     }
-
-    //显示输入药方
-//    public void EditTextshow(String content){
-//        if (!TextUtils.isEmpty(content)) {
-//            chinese_adapter.addTextView(content);
-//            chinese_adapter.notifyDataSetChanged();
-//            chinese_edittext.setText("");
-//                      }
-//    }
-    //显示固定药方
-//    public void show(String content){
-//        Boolean isFirst=false;
-//        if (isFirst){
-//
-//        }
-//        if (!TextUtils.isEmpty(content)){
-//            chinese_adapter.addTextView(content);
-//            chinese_adapter.notifyDataSetChanged();
-//        }
-//    }
-
 
     @Override
     public void onIteClick(int position) {
@@ -538,7 +484,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getData(NumberBean numberBean){
         int count=numberBean.getCount();
-        chinese_adapter.onCountChanged(count);
+        String name=numberBean.getName();
+        Log.e(TAG, "getData: "+count+name );
+        chinese_adapter.addTextView(new NumberBean(name,count));
+        chinese_adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -550,10 +499,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     @Override
     public void OnFixItemClick(int position) {
         Intent intent=new Intent(getActivity(), DialogActivity.class);
-        intent.putExtra("medical_name",list.get(position));
+        intent.putExtra("medical_name",fix_data.get(position).getName());
+        Log.e(TAG, "OnFixItemClick: "+fix_data.get(position).getName() );
         startActivity(intent);
-        chinese_adapter.addTextView(fix_data.get(position));
-        chinese_adapter.notifyDataSetChanged();
+//        chinese_adapter.addTextView(new NumberBean(fix_data.get(position).getName()));
+//        chinese_adapter.notifyDataSetChanged();
     }
 
     class Receiver extends BroadcastReceiver {
@@ -562,7 +512,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         public void onReceive(Context context, Intent intent) {
             Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show();
             int pos=intent.getIntExtra("pos",0);
-            Log.e(TAG, "接受广播传递的位置"+pos );
             chinese_adapter.deleteTextView(pos);
             chinese_adapter.notifyDataSetChanged();
         }

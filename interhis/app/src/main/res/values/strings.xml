@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">中怡在线</string>
-    <dimen name="key_height">50.0dip</dimen>
+    <dimen name="key_height">45.0dip</dimen>
 
     <!--LoginActivity begin-->
     <string name="enter_user_name">请输入用户名</string>
