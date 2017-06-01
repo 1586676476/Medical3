@@ -19,11 +19,8 @@ import com.hyphenate.exceptions.HyphenateException;
 
 public class MyEaseChatRowProject extends EaseChatRow {
 
-
-
-    private TextView userName,yaofangType,yaofangNum,yaoNum,yaofangPrice;
+    private TextView userName,yaofangType,yaofangNum,yaoNum,yaofangPrice,searchContent;
     private ImageView yaofangIv;
-
 
     public MyEaseChatRowProject(Context context, EMMessage message, int position, BaseAdapter adapter) {
         super(context, message, position, adapter);
@@ -51,16 +48,23 @@ public class MyEaseChatRowProject extends EaseChatRow {
         yaofangNum = (TextView) findViewById(R.id.tv_yaofang_num);
         yaoNum = (TextView) findViewById(R.id.tv_yao_num);
         yaofangPrice = (TextView) findViewById(R.id.tv_yaofang_price);
+        yaofangIv = (ImageView) findViewById(R.id.iv_yaofang);
+        searchContent = (TextView) findViewById(R.id.tv_searchcontent);
+        searchContent.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "查看明细", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
-     * 刷新列表视图状态更改时消息
+     * 刷新列表视图
      */
     @Override
     protected void onUpdateView() {
         // TODO Auto-generated method stub
         adapter.notifyDataSetChanged();
-        Log.e("onUpdateView", "刷新了");
     }
 
     /**
@@ -128,8 +132,7 @@ public class MyEaseChatRowProject extends EaseChatRow {
      */
     @Override
     protected void onBubbleClick() {
-        // TODO 自定义消息的点击事件
-        Toast.makeText(activity, "点击了项目", Toast.LENGTH_SHORT).show();
+
     }
 
 }

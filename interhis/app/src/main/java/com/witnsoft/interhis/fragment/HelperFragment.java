@@ -301,9 +301,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             case R.id.fragment_helper_chinese_button:
                 Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 
+<<<<<<< HEAD
                 createYaofang(id, "中药","1029405","7","1000");
                 break;
 
+=======
+                createYaoFang(id, "中药","1029405","7","1000");
+                        break;
+>>>>>>> ff419f1d854008f6bd70b26ba1b2a91991305f97
         }}
 
         private View.OnClickListener signListenerWestern = new View.OnClickListener() {
@@ -463,7 +468,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
 
-    public void createYaofang(String userName,String yaofangType,String yaofangNum,String yaoNum,String yaofangPrice) {
+    public void createYaoFang(String userName, String yaofangType, String yaofangNum, String yaoNum, String yaofangPrice) {
         EMMessage message = EMMessage.createTxtSendMessage("yaofang", id);
 
 
