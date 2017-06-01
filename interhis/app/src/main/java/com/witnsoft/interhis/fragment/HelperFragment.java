@@ -328,7 +328,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             case R.id.fragment_helper_chinese_button:
                 Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 
-                createYaofang(id, "中药","1029405","7","1000");
+                createYaoFang(id, "中药","1029405","7","1000");
                         break;
         }}
 
@@ -490,7 +490,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
 
-    public void createYaofang(String userName,String yaofangType,String yaofangNum,String yaoNum,String yaofangPrice) {
+    public void createYaoFang(String userName, String yaofangType, String yaofangNum, String yaoNum, String yaofangPrice) {
         EMMessage message = EMMessage.createTxtSendMessage("yaofang", id);
 
         Log.e("userName!!!!!!!!!!!!!!!!", userName);
