@@ -202,6 +202,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         Receiver receiver=new Receiver();
         IntentFilter intentFilter=new IntentFilter("shanchu");
         getActivity().registerReceiver(receiver,intentFilter);
+
+//        RefreshReceiver refreshReceiver = new RefreshReceiver();
+//        IntentFilter filter = new IntentFilter("refresh");
+//        getActivity().registerReceiver(refreshReceiver,filter);
     }
 
     private void setListener() {
@@ -519,5 +523,22 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             chinese_adapter.notifyDataSetChanged();
         }
     }
+//    class RefreshReceiver extends BroadcastReceiver{
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//
+//            chatFragment = new EaseChatFragment();
+//            bundle = new Bundle();
+//            bundle.putString("userName", userName);
+//            bundle.putString("userId", id);
+//            bundle.putString("type", type1);
+//            bundle.putInt("single", single1);
+//            chatFragment.setArguments(bundle);
+//            getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
+//
+//
+//        }
+//    }
 
 }

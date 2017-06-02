@@ -72,9 +72,6 @@ public class MyEaseChatRowProject extends EaseChatRow {
      */
     @Override
     protected void onSetUpView() {
-        // TODO Auto-generated method stub
-
-        // 设置内容,通过扩展自文本获取消息内容，填充到相应的位置
 
         if (message.getBooleanAttribute("yaofang",true)) {
             String userName = message.getStringAttribute("userName",null);
@@ -93,39 +90,39 @@ public class MyEaseChatRowProject extends EaseChatRow {
 
     }
 
-    protected void handleTextMessage() {
-        if (message.direct() == EMMessage.Direct.SEND) {
-            setMessageSendCallback();
-            switch (message.status()) {
-                case CREATE:
-                    progressBar.setVisibility(View.GONE);
-                    statusView.setVisibility(View.VISIBLE);
-                    break;
-                case SUCCESS:
-                    progressBar.setVisibility(View.GONE);
-                    statusView.setVisibility(View.GONE);
-                    break;
-                case FAIL:
-                    progressBar.setVisibility(View.GONE);
-                    statusView.setVisibility(View.VISIBLE);
-                    break;
-                case INPROGRESS:
-                    progressBar.setVisibility(View.VISIBLE);
-                    statusView.setVisibility(View.GONE);
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            if (!message.isAcked() && message.getChatType() == EMMessage.ChatType.Chat) {
-                try {
-                    EMClient.getInstance().chatManager().ackMessageRead(message.getFrom(), message.getMsgId());
-                } catch (HyphenateException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    protected void handleTextMessage() {
+//        if (message.direct() == EMMessage.Direct.SEND) {
+//            setMessageSendCallback();
+//            switch (message.status()) {
+//                case CREATE:
+//                    progressBar.setVisibility(View.GONE);
+//                    statusView.setVisibility(View.VISIBLE);
+//                    break;
+//                case SUCCESS:
+//                    progressBar.setVisibility(View.GONE);
+//                    statusView.setVisibility(View.GONE);
+//                    break;
+//                case FAIL:
+//                    progressBar.setVisibility(View.GONE);
+//                    statusView.setVisibility(View.VISIBLE);
+//                    break;
+//                case INPROGRESS:
+//                    progressBar.setVisibility(View.VISIBLE);
+//                    statusView.setVisibility(View.GONE);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        } else {
+//            if (!message.isAcked() && message.getChatType() == EMMessage.ChatType.Chat) {
+//                try {
+//                    EMClient.getInstance().chatManager().ackMessageRead(message.getFrom(), message.getMsgId());
+//                } catch (HyphenateException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     /**
      * 点击气泡

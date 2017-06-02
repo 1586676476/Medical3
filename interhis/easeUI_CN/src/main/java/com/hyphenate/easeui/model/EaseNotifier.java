@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.controller.EaseUI;
@@ -125,7 +126,7 @@ public class EaseNotifier {
         if(!settingsProvider.isMsgNotifyAllowed(message)){
             return;
         }
-        
+
         // check if app running background
         if (!EasyUtils.isAppRunningForeground(appContext)) {
             EMLog.d(TAG, "app is running in backgroud");
@@ -402,5 +403,6 @@ public class EaseNotifier {
          * @return null- will use the default icon
          */
         Intent getLaunchIntent(EMMessage message);
+
     }
 }
