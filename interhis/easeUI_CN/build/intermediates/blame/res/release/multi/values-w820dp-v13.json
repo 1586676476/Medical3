@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -22,5 +22,80 @@
                 }
             }
         ]
+    },
+    {
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 312,
+                        "endColumn": 57,
+                        "endOffset": 365
+                    }
+                }
+            }
+        ]
+<<<<<<< HEAD
+=======
+    },
+    {
+        "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 312,
+                        "endColumn": 57,
+                        "endOffset": 365
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\values-w820dp\\ease_dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 305,
+                        "endColumn": 57,
+                        "endOffset": 358
+                    }
+                }
+            }
+        ]
+>>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
     }
 ]

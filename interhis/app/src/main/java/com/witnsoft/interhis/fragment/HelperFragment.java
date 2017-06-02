@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -142,14 +143,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout);
         chat_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chat_linearLayout);
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
-        chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
-        western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout_image);
 
         //中西药签名点击事件
-        chinese_linearLayout_linearLayout.setOnClickListener(signListener);
-        chinese_img.setOnClickListener(signListener);
         western_linearLayout_linearLayout.setOnClickListener(signListenerWestern);
-        western_img.setOnClickListener(signListenerWestern);
+//        chinese_linearLayout_linearLayout.setOnClickListener(signListener);
+
         //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
 
@@ -203,9 +201,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         IntentFilter intentFilter=new IntentFilter("shanchu");
         getActivity().registerReceiver(receiver,intentFilter);
 
+<<<<<<< HEAD
 //        RefreshReceiver refreshReceiver = new RefreshReceiver();
 //        IntentFilter filter = new IntentFilter("refresh");
 //        getActivity().registerReceiver(refreshReceiver,filter);
+=======
+
+>>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
     }
 
     private void setListener() {
@@ -300,13 +302,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 playWesternView();
                 break;
             case R.id.fragment_helper_chinese_button:
-                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
+//                createYaoFang(id, "中药","1029405","7","1000");
+                chinese_button.setOnClickListener(signListener);
+                break;
 
-                createYaoFang(id, "中药","1029405","7","1000");
-                        break;
         }}
 
-        private View.OnClickListener signListenerWestern = new View.OnClickListener() {
+
+
+    private View.OnClickListener signListenerWestern = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WritePadDialog writeTabletDialog = new WritePadDialog(
@@ -466,9 +471,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     public void createYaoFang(String userName, String yaofangType, String yaofangNum, String yaoNum, String yaofangPrice) {
         EMMessage message = EMMessage.createTxtSendMessage("yaofang", id);
 
-
-        Log.e("userName!!!!!!!!!!!!!!!!", userName);
-
         message.setAttribute("type", "yaofang");
         message.setAttribute("userName",userName);
         message.setAttribute("yaofangType",yaofangType);
@@ -509,8 +511,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         intent.putExtra("medical_name",fix_data.get(position).getName());
         Log.e(TAG, "OnFixItemClick: "+fix_data.get(position).getName() );
         startActivity(intent);
-//        chinese_adapter.addTextView(new NumberBean(fix_data.get(position).getName()));
-//        chinese_adapter.notifyDataSetChanged();
     }
 
     class Receiver extends BroadcastReceiver {
@@ -540,5 +540,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 //
 //        }
 //    }
+
 
 }

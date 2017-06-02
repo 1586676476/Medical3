@@ -68,14 +68,12 @@ public class WritePadDialog extends Dialog {
 			@Override
 			public void onClick(View v) {
 				mView.clear();
-				Log.e(TAG, "onClick: "+456 );
 			}
 		});
 		Button btnOk = (Button) findViewById(R.id.tablet_ok);
 		btnOk.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.e(TAG, "onClick: "+123 );
 				try {
 					dialogListener.refreshActivity(mView.getCachebBitmap());
 					WritePadDialog.this.dismiss();
