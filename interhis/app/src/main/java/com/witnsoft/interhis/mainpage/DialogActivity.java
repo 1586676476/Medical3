@@ -98,50 +98,35 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 numberBean.setName(medical);
                 numberBean.setCount(5);
                 EventBus.getDefault().post(numberBean);
-<<<<<<< HEAD
 
-=======
->>>>>>> 00f5ac1cbcd0571cb67cf1b8ad1a67bf12b6fd1b
                 finish();
                 break;
             case R.id.dialog_ten:
                 numberBean.setName(medical);
                 numberBean.setCount(10);
                 EventBus.getDefault().post(numberBean);
-<<<<<<< HEAD
 
-=======
->>>>>>> 00f5ac1cbcd0571cb67cf1b8ad1a67bf12b6fd1b
                 finish();
                 break;
             case R.id.dialog_fifteen:
                 numberBean.setName(medical);
                 numberBean.setCount(15);
                 EventBus.getDefault().post(numberBean);
-<<<<<<< HEAD
 
-=======
->>>>>>> 00f5ac1cbcd0571cb67cf1b8ad1a67bf12b6fd1b
                 finish();
                 break;
             case R.id.dialog_twenty:
                 numberBean.setName(medical);
                 numberBean.setCount(20);
                 EventBus.getDefault().post(numberBean);
-<<<<<<< HEAD
 
-=======
->>>>>>> 00f5ac1cbcd0571cb67cf1b8ad1a67bf12b6fd1b
                 finish();
                 break;
             case R.id.dialog_number:
                 numberBean.setName(medical);
                 numberBean.setCount(num);
                 EventBus.getDefault().post(numberBean);
-<<<<<<< HEAD
 
-=======
->>>>>>> 00f5ac1cbcd0571cb67cf1b8ad1a67bf12b6fd1b
                 finish();
                 break;
             case R.id.first_cancel:

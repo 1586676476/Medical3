@@ -8,21 +8,12 @@ import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.controller.EaseUI;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 import com.witnsoft.interhis.db.HisDbManager;
-=======
-<<<<<<< HEAD
->>>>>>> 00f5ac1cbcd0571cb67cf1b8ad1a67bf12b6fd1b
+
 import com.hyphenate.easeui.model.EaseNotifier;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.witnsoft.interhis.db.HisDbManager;
-<<<<<<< HEAD
-=======
->>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
->>>>>>> ebdde1edfeced8c8b157d8e58f72aa52dda0f7e8
->>>>>>> 00f5ac1cbcd0571cb67cf1b8ad1a67bf12b6fd1b
 
 import org.xutils.x;
 
