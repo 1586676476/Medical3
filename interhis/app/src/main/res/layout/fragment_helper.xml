@@ -221,7 +221,7 @@
             style="@style/bigSize"
             android:layout_marginLeft="330dp"
             android:layout_marginTop="-35dp"
-            android:text="共7副" />
+            android:text="共7付" />
 
         <TextView
             style="@style/bigSize"

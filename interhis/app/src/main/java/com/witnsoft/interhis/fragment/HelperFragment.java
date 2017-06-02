@@ -154,7 +154,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         //中西药签名点击事件
         western_linearLayout_linearLayout.setOnClickListener(signListenerWestern);
-        chinese_linearLayout_linearLayout.setOnClickListener(signListener);
+//        chinese_linearLayout_linearLayout.setOnClickListener(signListener);
 
         //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
@@ -304,8 +304,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 playWesternView();
                 break;
             case R.id.fragment_helper_chinese_button:
-                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
-                createYaoFang(id, "中药","1029405","7","1000");
+//                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
+//                createYaoFang(id, "中药","1029405","7","1000");
+                chinese_button.setOnClickListener(signListener);
                 break;
 
         }}
