@@ -51,24 +51,16 @@ import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
-import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.tool.KeyboardUtil;
-import com.witnsoft.libinterhis.db.HisDbManager;
-import com.witnsoft.libinterhis.db.model.ChineseModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.xutils.DbManager;
-import org.xutils.common.util.LogUtil;
-import org.xutils.ex.DbException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
