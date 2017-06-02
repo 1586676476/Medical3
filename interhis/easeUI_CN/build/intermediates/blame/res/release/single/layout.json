@@ -56,12 +56,12 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_widget_emojicon.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_location.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_received_location.xml"
-    },
-    {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_video_call.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_sent_video_call.xml"
+    },
+    {
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_location.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_received_location.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_fragment_chat.xml",
@@ -104,12 +104,12 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_received_project.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_title_bar.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_widget_title_bar.xml"
-    },
-    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_voice_recorder.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_widget_voice_recorder.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_title_bar.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_widget_title_bar.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_emojicon_tab_bar.xml",
@@ -136,12 +136,12 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_sent_location.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_big_expression.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_big_expression.xml"
-    },
-    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_picture.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_received_picture.xml"
+    },
+    {
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_big_expression.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_big_expression.xml"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_voice.xml",

@@ -53,12 +53,15 @@ import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
 import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.tool.KeyboardUtil;
+import com.witnsoft.libinterhis.db.HisDbManager;
+import com.witnsoft.libinterhis.db.model.ChineseModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.DbManager;
 import org.xutils.common.util.LogUtil;
+import org.xutils.ex.DbException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -150,8 +153,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
 
         //中西药签名点击事件
-        chinese_linearLayout_linearLayout.setOnClickListener(signListener);
         western_linearLayout_linearLayout.setOnClickListener(signListenerWestern);
+        chinese_linearLayout_linearLayout.setOnClickListener(signListener);
 
         //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
@@ -205,6 +208,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         Receiver receiver=new Receiver();
         IntentFilter intentFilter=new IntentFilter("shanchu");
         getActivity().registerReceiver(receiver,intentFilter);
+
+
     }
 
     private void setListener() {
@@ -300,18 +305,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 break;
             case R.id.fragment_helper_chinese_button:
                 Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
-
-<<<<<<< HEAD
-                createYaofang(id, "中药","1029405","7","1000");
+                createYaoFang(id, "中药","1029405","7","1000");
                 break;
 
-=======
-                createYaoFang(id, "中药","1029405","7","1000");
-                        break;
->>>>>>> ff419f1d854008f6bd70b26ba1b2a91991305f97
         }}
 
-        private View.OnClickListener signListenerWestern = new View.OnClickListener() {
+
+
+    private View.OnClickListener signListenerWestern = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WritePadDialog writeTabletDialog = new WritePadDialog(
@@ -470,9 +471,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     public void createYaoFang(String userName, String yaofangType, String yaofangNum, String yaoNum, String yaofangPrice) {
         EMMessage message = EMMessage.createTxtSendMessage("yaofang", id);
-
-
-        Log.e("userName!!!!!!!!!!!!!!!!", userName);
 
         message.setAttribute("type", "yaofang");
         message.setAttribute("userName",userName);

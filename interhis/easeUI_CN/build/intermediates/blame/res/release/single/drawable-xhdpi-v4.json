@@ -28,12 +28,12 @@
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chatting_biaoqing_btn_normal.png"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chatting_biaoqing_btn_enable.png"
-    },
-    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_edit_normal.9.png",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_edit_normal.9.png"
+    },
+    {
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chatting_biaoqing_btn_enable.png"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_send_btn_normal.9.png",
@@ -110,6 +110,10 @@
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chatting_biaoqing_btn_enable.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\chufang.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\chufang.png"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_video_call_receive.png",
