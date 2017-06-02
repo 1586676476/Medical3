@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 219
                 },
                 "from": {
-                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -33,7 +33,7 @@
                     "endOffset": 394
                 },
                 "from": {
-                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -53,7 +53,7 @@
                     "endOffset": 479
                 },
                 "from": {
-                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -66,7 +66,7 @@
         ]
     },
     {
-        "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v11/values-v11.xml",
         "map": [
             {
                 "to": {
@@ -78,7 +78,7 @@
                     "endOffset": 219
                 },
                 "from": {
-                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -99,7 +99,7 @@
                     "endOffset": 394
                 },
                 "from": {
-                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -119,7 +119,7 @@
                     "endOffset": 479
                 },
                 "from": {
-                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -132,7 +132,7 @@
         ]
     },
     {
-        "outputFile": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/zhengchengpeng/Medical3/interhis/E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -144,7 +144,7 @@
                     "endOffset": 219
                 },
                 "from": {
-                    "file": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -165,7 +165,7 @@
                     "endOffset": 394
                 },
                 "from": {
-                    "file": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -185,7 +185,7 @@
                     "endOffset": 479
                 },
                 "from": {
-                    "file": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -198,7 +198,7 @@
         ]
     },
     {
-        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/zhengchengpeng/Medical3/interhis/E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -210,7 +210,7 @@
                     "endOffset": 219
                 },
                 "from": {
-                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -231,7 +231,7 @@
                     "endOffset": 394
                 },
                 "from": {
-                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -251,7 +251,73 @@
                     "endOffset": 479
                 },
                 "from": {
-                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 399,
+                        "endColumn": 84,
+                        "endOffset": 479
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 219
+                },
+                "from": {
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 219
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 224,
+                    "endLine": 7,
+                    "endColumn": 12,
+                    "endOffset": 394
+                },
+                "from": {
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 224,
+                        "endLine": 7,
+                        "endColumn": 12,
+                        "endOffset": 394
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 399,
+                    "endColumn": 84,
+                    "endOffset": 479
+                },
+                "from": {
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
