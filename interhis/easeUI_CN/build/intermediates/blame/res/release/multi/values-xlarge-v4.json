@@ -1,6 +1,10 @@
 [
     {
+<<<<<<< HEAD
         "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+=======
+        "outputFile": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+>>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
         "map": [
             {
                 "to": {
@@ -11,7 +15,7 @@
                     "endOffset": 103
                 },
                 "from": {
-                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-xlarge\\ease_dimens.xml",
+                    "file": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\values-xlarge\\ease_dimens.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -30,7 +34,7 @@
                     "endOffset": 157
                 },
                 "from": {
-                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\values-xlarge\\ease_dimens.xml",
+                    "file": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\values-xlarge\\ease_dimens.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,

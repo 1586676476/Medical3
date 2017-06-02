@@ -13,7 +13,11 @@ import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
+<<<<<<< HEAD
 
+=======
+import com.witnsoft.interhis.db.HisDbManager;
+>>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
 import com.witnsoft.libinterhis.base.BaseActivity;
 import com.witnsoft.libinterhis.utils.ClearEditText;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;

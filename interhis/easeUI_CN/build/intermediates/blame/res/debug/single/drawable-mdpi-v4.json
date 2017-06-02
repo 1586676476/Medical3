@@ -1,6 +1,11 @@
 [
     {
+<<<<<<< HEAD
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+=======
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+>>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
     }
 ]

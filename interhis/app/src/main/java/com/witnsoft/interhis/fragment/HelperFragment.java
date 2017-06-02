@@ -207,6 +207,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 //        RefreshReceiver refreshReceiver = new RefreshReceiver();
 //        IntentFilter filter = new IntentFilter("refresh");
 //        getActivity().registerReceiver(refreshReceiver,filter);
+<<<<<<< HEAD
+=======
+
+>>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
     }
 
     private void setListener() {
