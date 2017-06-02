@@ -14,7 +14,6 @@ import com.hyphenate.chat.EMClient;
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
-import com.witnsoft.interhis.fragment.TestModel;
 import com.witnsoft.libinterhis.base.BaseActivity;
 import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
 import com.witnsoft.libinterhis.db.model.ChineseModel;

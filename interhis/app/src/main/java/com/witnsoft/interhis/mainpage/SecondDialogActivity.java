@@ -132,12 +132,7 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
                 Intent intent=new Intent("shanchu");
                 intent.putExtra("pos",position);
                 sendBroadcast(intent);
-                ChineseDetailModel chineseDetailModel=new ChineseDetailModel(medical,position+"");
-                try {
-                    HisDbManager.getManager().deleteAskChinese(chineseDetailModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
+
                 finish();
                 break;
 

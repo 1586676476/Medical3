@@ -1,40 +1,25 @@
 [
     {
-<<<<<<< HEAD
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in.xml"
-=======
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_out.xml"
->>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_right.xml"
     },
     {
-<<<<<<< HEAD
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out2.xml"
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_out.xml"
-=======
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in2.xml"
->>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
     },
     {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_in.xml"
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in2.xml"
     },
     {
-<<<<<<< HEAD
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_from_icon.xml"
     },
@@ -45,242 +30,24 @@
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_left.xml"
-=======
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out.xml"
     },
     {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_right.xml"
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_right.xml"
     },
     {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_to_icon.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_out.xml"
->>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_in.xml"
-    },
-    {
-<<<<<<< HEAD
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_out.xml"
-=======
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_right.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_from_icon.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out2.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_right.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in2.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_left.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_right.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\hold.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_left.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_from_icon.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_right.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\hold.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in2.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_left.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_from_icon.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\hold.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out2.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_right.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_in.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out2.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in2.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in2.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_to_icon.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_left.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_left.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_left.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_left.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_out2.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_out2.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_top_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_top_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_right.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_right.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_to_icon.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_out.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_out.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\src\\main\\res\\anim\\hold.xml"
->>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
     },
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\push_bottom_in.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\push_bottom_in.xml"
     },
     {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_left.xml"
+        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
+        "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_in.xml"
     },
     {
-<<<<<<< HEAD
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\hold.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\hold.xml"
     },
@@ -299,25 +66,5 @@
     {
         "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\fade_in.xml",
         "source": "E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\fade_in.xml"
-=======
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\head_in.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\src\\main\\res\\anim\\head_in.xml"
-    },
-    {
-        "merged": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_out_to_left.xml",
-        "source": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_out_to_left.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_from_icon.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_from_icon.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\slide_in_from_right.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\slide_in_from_right.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\anim\\voice_to_icon.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\anim\\voice_to_icon.xml"
->>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
     }
 ]
