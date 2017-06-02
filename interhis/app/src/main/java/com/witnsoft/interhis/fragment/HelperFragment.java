@@ -43,6 +43,7 @@ import com.witnsoft.interhis.adapter.Chinese_Fixed_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
 import com.witnsoft.interhis.bean.NumberBean;
+import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.inter.DialogListener;
 
 import com.witnsoft.interhis.inter.FilterListener;
@@ -52,10 +53,12 @@ import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
 import com.witnsoft.interhis.tool.KeyboardUtil;
+import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.xutils.ex.DbException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -301,9 +304,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             case R.id.fragment_helper_chinese_button:
 //                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 //                createYaoFang(id, "中药","1029405","7","1000");
-                chinese_button.setOnClickListener(signListener);
+//                chinese_button.setOnClickListener(signListener);
                 break;
-
         }}
 
 
