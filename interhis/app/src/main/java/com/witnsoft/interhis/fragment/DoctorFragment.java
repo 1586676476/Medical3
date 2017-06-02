@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,17 +20,22 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hyphenate.easeui.EaseConstant;
+import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.DoctorAdapter;
+import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
+import com.witnsoft.libinterhis.db.model.ChineseModel;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -45,7 +51,7 @@ import java.util.Map;
  */
 
 @ContentView(R.layout.fragment_doctor)
-public class DoctorFragment extends Fragment implements OnClick {
+public class DoctorFragment extends Fragment {
     private static final String TAG = "DoctorFragment";
     private static final String TN_DOC_INFO = "F27.APP.01.01";
     private static final String TN_COUNT = "F27.APP.01.05";
@@ -72,12 +78,8 @@ public class DoctorFragment extends Fragment implements OnClick {
         private static final String BRSR = "brsr";
         private static final String LJSR = "ljsr";
     }
-
-    private String[] name = new String[]{"ceshi2", "test001", "patid001"};
-    private String[] sex = new String[]{"男", "女", "男"};
-    private int[] age = new int[]{22, 40, 55};
-    private String[] content = new String[]{"头痛", "嗓子痛", "感冒"};
-    private DoctorAdapter doctorAdapter;
+    
+    private PatAdapter patAdapter;
     private List<CeShi> data;
 
     private String docId = "";
@@ -140,27 +142,16 @@ public class DoctorFragment extends Fragment implements OnClick {
         docId = ThriftPreUtils.getDocId(getActivity());
         callDocInfoApi();
         callCountApi();
-        doctorAdapter = new DoctorAdapter(getContext());
-        data = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            CeShi ceShi = new CeShi(name[i], sex[i], content[i], age[i]);
-            data.add(ceShi);
-        }
 
-        recyclerView = (RecyclerView) getActivity().findViewById(R.id.fragment_doctor_recycleView);
-        doctorAdapter = new DoctorAdapter(getContext());
 
-        doctorAdapter.setList(data);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(doctorAdapter);
-        doctorAdapter.setOnClick(this);
 
         visit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doctor_message.setVisibility(View.VISIBLE);
                 doctor_number.setVisibility(View.VISIBLE);
-                recyclerView.setVisibility(View.VISIBLE);
+//                recyclerView.setVisibility(View.VISIBLE);
+                initPatList();
             }
         });
     }
@@ -274,6 +265,38 @@ public class DoctorFragment extends Fragment implements OnClick {
         });
     }
 
+    // TODO: 2017/6/2 测试数据 
+    private String[] name = new String[]{"ceshi2", "test001", "patid001"};
+    private String[] sex = new String[]{"男", "女", "男"};
+    private int[] age = new int[]{22, 40, 55};
+    private String[] content = new String[]{"头痛", "嗓子痛", "感冒"};
+
+    // 初始化出诊患者列表
+    private void initPatList(){
+        data = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            CeShi ceShi = new CeShi(name[i], sex[i], content[i], age[i]);
+            data.add(ceShi);
+        }
+        patAdapter = new PatAdapter(getContext(), data);
+        patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClicked(PatAdapter adapter, int position) {
+                patAdapter.setPos(position);
+                patAdapter.notifyDataSetChanged();
+                //启动会话列表
+                HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+                helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
+                        name[position],
+                        EaseConstant.EXTRA_CHAT_TYPE,
+                        EaseConstant.CHATTYPE_SINGLE);
+            }
+        });
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(patAdapter);
+    }
+
 //    // TODO: 2017/5/26 上拉加载更多，下拉刷新，docid存本地
 //    // F27.APP.01.02 查询问诊人员列表
 //    private void callPatApi() {
@@ -309,15 +332,17 @@ public class DoctorFragment extends Fragment implements OnClick {
 //        });
 //    }
 
-    @Override
-    public void onIteClick(int position) {
-        doctorAdapter.setPos(position);
+//    @Override
+//    public void onIteClick(int position) {
+//        doctorAdapter.setPos(position);
+//
+//        //启动会话列表
+//        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+//        helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
+//                name[position],
+//                EaseConstant.EXTRA_CHAT_TYPE,
+//                EaseConstant.CHATTYPE_SINGLE);
+//    }
 
-        //启动会话列表
-        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
-        helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-                name[position],
-                EaseConstant.EXTRA_CHAT_TYPE,
-                EaseConstant.CHATTYPE_SINGLE);
-    }
+
 }

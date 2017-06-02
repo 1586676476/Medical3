@@ -1,5 +1,186 @@
 [
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        "outputFile": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+=======
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 52,
+                    "endOffset": 103
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 52,
+                        "endOffset": 103
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 108,
+                    "endColumn": 53,
+                    "endOffset": 157
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 108,
+                        "endColumn": 53,
+                        "endOffset": 157
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+>>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 52,
+                    "endOffset": 103
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 52,
+                        "endOffset": 103
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 108,
+                    "endColumn": 53,
+                    "endOffset": 157
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 108,
+                        "endColumn": 53,
+                        "endOffset": 157
+                    }
+                }
+            }
+        ]
+<<<<<<< HEAD
+=======
+    },
+    {
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 52,
+                    "endOffset": 103
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 52,
+                        "endOffset": 103
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 108,
+                    "endColumn": 53,
+                    "endOffset": 157
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 108,
+                        "endColumn": 53,
+                        "endOffset": 157
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 52,
+                    "endOffset": 103
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 52,
+                        "endOffset": 103
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 108,
+                    "endColumn": 53,
+                    "endOffset": 157
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\Users\\zhengchengpeng\\Medical3\\interhis\\E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 108,
+                        "endColumn": 53,
+                        "endOffset": 157
+                    }
+                }
+            }
+        ]
+    },
+    {
+>>>>>>> ebdde1edfeced8c8b157d8e58f72aa52dda0f7e8
         "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
         "map": [
             {
@@ -41,5 +222,52 @@
                 }
             }
         ]
+<<<<<<< HEAD
+=======
+    },
+    {
+        "outputFile": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 52,
+                    "endOffset": 103
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 52,
+                        "endOffset": 103
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 108,
+                    "endColumn": 53,
+                    "endOffset": 157
+                },
+                "from": {
+                    "file": "E:\\Users\\zhengchengpeng\\Medical3\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-large-v4\\values-large-v4.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 108,
+                        "endColumn": 53,
+                        "endOffset": 157
+                    }
+                }
+            }
+        ]
+>>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
+>>>>>>> ebdde1edfeced8c8b157d8e58f72aa52dda0f7e8
     }
 ]
