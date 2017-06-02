@@ -204,13 +204,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         IntentFilter intentFilter=new IntentFilter("shanchu");
         getActivity().registerReceiver(receiver,intentFilter);
 
-<<<<<<< HEAD
 //        RefreshReceiver refreshReceiver = new RefreshReceiver();
 //        IntentFilter filter = new IntentFilter("refresh");
 //        getActivity().registerReceiver(refreshReceiver,filter);
-=======
-
->>>>>>> f6626e2a18d7c0d8a6ec4ac2aea5fd7ec9425105
     }
 
     private void setListener() {

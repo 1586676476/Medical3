@@ -13,19 +13,13 @@ import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.db.HisDbManager;
-import com.witnsoft.interhis.fragment.TestModel;
+
 import com.witnsoft.libinterhis.base.BaseActivity;
-import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
-import com.witnsoft.libinterhis.db.model.ChineseModel;
 import com.witnsoft.libinterhis.utils.ClearEditText;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
-import com.witnsoft.libnet.token.TokenSharepref;
-
-import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
