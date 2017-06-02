@@ -126,9 +126,17 @@ public class HisDbManager {
         if (null == messages) {
             messages = new ArrayList();
         }
-
         return (List) messages;
     }
+
+    public List<ChineseDetailModel> findChineseDeatilModel(String cmc) throws DbException{
+        Object message=this.manager.selector(ChineseDetailModel.class).where("CMC","=",cmc).findAll();
+        if(null==message){
+            message=new ArrayList();
+        }
+        return (List<ChineseDetailModel>) message;
+    }
+
 
     public void saveAskChinese(ChineseDetailModel model) throws DbException {
         this.manager.saveOrUpdate(model);

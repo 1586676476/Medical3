@@ -5,6 +5,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.controller.EaseUI;
+import com.witnsoft.interhis.db.HisDbManager;
 
 import org.xutils.x;
 
@@ -24,6 +25,7 @@ public class Application extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         x.Ext.init(this);
+        HisDbManager.attachTo(this);
         app = this;
         init();
     }
