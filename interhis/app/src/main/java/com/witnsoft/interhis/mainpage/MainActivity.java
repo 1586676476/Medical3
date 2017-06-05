@@ -30,8 +30,4 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
 }

@@ -2,8 +2,7 @@ package com.witnsoft.interhis.db;
 
 import android.content.Context;
 
-import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
-import com.witnsoft.libinterhis.db.model.ChineseModel;
+
 import com.witnsoft.libinterhis.utils.FileUtils;
 import com.witnsoft.libinterhis.utils.LogUtils;
 
