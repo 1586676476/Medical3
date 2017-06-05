@@ -32,8 +32,6 @@ import com.witnsoft.interhis.adapter.DoctorAdapter;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.mainpage.LoginActivity;
-import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
-import com.witnsoft.libinterhis.db.model.ChineseModel;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
