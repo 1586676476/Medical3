@@ -90,6 +90,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         NumberBean numberBean=new NumberBean();
+        ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
         switch (v.getId()){
             case R.id.ll_root:
                 finish();
@@ -98,35 +99,65 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 numberBean.setName(medical);
                 numberBean.setCount(5);
                 EventBus.getDefault().post(numberBean);
-
+                chineseDetailModel.setCggMc(medical);
+                chineseDetailModel.setSl(5+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_ten:
                 numberBean.setName(medical);
                 numberBean.setCount(10);
                 EventBus.getDefault().post(numberBean);
-
+                chineseDetailModel.setCggMc(medical);
+                chineseDetailModel.setSl(10+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_fifteen:
                 numberBean.setName(medical);
                 numberBean.setCount(15);
                 EventBus.getDefault().post(numberBean);
-
+                chineseDetailModel.setCggMc(medical);
+                chineseDetailModel.setSl(15+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_twenty:
                 numberBean.setName(medical);
                 numberBean.setCount(20);
                 EventBus.getDefault().post(numberBean);
-
+                chineseDetailModel.setCggMc(medical);
+                chineseDetailModel.setSl(20+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.dialog_number:
                 numberBean.setName(medical);
                 numberBean.setCount(num);
                 EventBus.getDefault().post(numberBean);
-
+                chineseDetailModel.setCggMc(medical);
+                chineseDetailModel.setSl(num+"");
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.first_cancel:
