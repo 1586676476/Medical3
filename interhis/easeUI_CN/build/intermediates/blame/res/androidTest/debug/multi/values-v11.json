@@ -1,6 +1,10 @@
 [
     {
+<<<<<<< HEAD
         "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+=======
+        "outputFile": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v11/values-v11.xml",
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
         "map": [
             {
                 "to": {
@@ -12,7 +16,11 @@
                     "endOffset": 219
                 },
                 "from": {
+<<<<<<< HEAD
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+=======
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -33,7 +41,11 @@
                     "endOffset": 394
                 },
                 "from": {
+<<<<<<< HEAD
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+=======
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -53,7 +65,11 @@
                     "endOffset": 479
                 },
                 "from": {
+<<<<<<< HEAD
                     "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+=======
+                    "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-v11/values-v11.xml",
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
