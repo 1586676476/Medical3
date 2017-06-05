@@ -129,14 +129,13 @@ public class HisDbManager {
         return (List) messages;
     }
 
-    public List<ChineseDetailModel> findChineseDeatilModel(String cmc) throws DbException{
-        Object message=this.manager.selector(ChineseDetailModel.class).where("CMC","=",cmc).findAll();
+    public List<ChineseDetailModel> findChineseDeatilModel(ChineseDetailModel cmc) throws DbException{
+        Object message=this.manager.selector(ChineseDetailModel.class).findAll();
         if(null==message){
             message=new ArrayList();
         }
         return (List<ChineseDetailModel>) message;
     }
-
 
     public void saveAskChinese(ChineseDetailModel model) throws DbException {
         this.manager.saveOrUpdate(model);
@@ -144,4 +143,5 @@ public class HisDbManager {
     public void deleteAskChinese(ChineseDetailModel model) throws DbException {
         this.manager.delete(model);
     }
+
 }

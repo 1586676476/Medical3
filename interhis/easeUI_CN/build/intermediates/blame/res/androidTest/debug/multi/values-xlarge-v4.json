@@ -1,6 +1,10 @@
 [
     {
+<<<<<<< HEAD
+        "outputFile": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+=======
         "outputFile": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml",
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
         "map": [
             {
                 "to": {
@@ -11,7 +15,11 @@
                     "endOffset": 103
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+=======
                     "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-xlarge-v4/values-xlarge-v4.xml",
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +38,11 @@
                     "endOffset": 157
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+=======
                     "file": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/values-xlarge-v4/values-xlarge-v4.xml",
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,

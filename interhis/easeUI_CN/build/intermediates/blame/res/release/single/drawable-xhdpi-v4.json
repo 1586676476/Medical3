@@ -4,20 +4,30 @@
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/chufang.png"
     },
     {
+<<<<<<< HEAD
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_dot_emojicon_selected.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_dot_emojicon_selected.png"
+=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_unread_dot.9.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_unread_dot.9.png"
     },
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_chat_voice_call_self.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_chat_voice_call_self.png"
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     },
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_chat_press_speak_btn_pressed.9.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_chat_press_speak_btn_pressed.9.png"
     },
     {
+<<<<<<< HEAD
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_open_icon.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_open_icon.png"
+=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_open_icon.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_open_icon.png"
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     },
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_chat_video_call_self.png",
@@ -80,6 +90,10 @@
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_chat_edit_normal.9.png"
     },
     {
+<<<<<<< HEAD
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_voice_call_self.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_voice_call_self.png"
+=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_chat_video_call_receive.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_chat_video_call_receive.png"
     },
@@ -118,13 +132,59 @@
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_chat_takepic_pressed.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_chat_takepic_pressed.png"
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     },
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_group_icon.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_group_icon.png"
     },
     {
+<<<<<<< HEAD
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_item_file.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_item_file.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_close_icon.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_close_icon.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_image_normal.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_image_normal.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_send_btn_pressed.9.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_send_btn_pressed.9.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_delete_expression.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_delete_expression.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_press_speak_btn_normal.9.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_press_speak_btn_normal.9.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_image_pressed.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_image_pressed.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chatting_biaoqing_btn_enable.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chatting_biaoqing_btn_enable.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\chufang.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\chufang.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chat_takepic_pressed.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chat_takepic_pressed.png"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\ease_chatting_biaoqing_btn_normal.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable-xhdpi\\ease_chatting_biaoqing_btn_normal.png"
+=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/drawable-xhdpi-v4/ease_chat_location_pressed.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable-xhdpi/ease_chat_location_pressed.png"
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     }
 ]

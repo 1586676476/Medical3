@@ -1,7 +1,12 @@
 [
     {
+<<<<<<< HEAD
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ease_chat_location_pressed.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ease_chat_location_pressed.png"
+=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/ease_groups_icon.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/ease_groups_icon.png"
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     },
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/ease_chat_location_normal.png",
@@ -124,7 +129,12 @@
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/ease_chatting_biaoqing_btn_normal.png"
     },
     {
+<<<<<<< HEAD
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ease_group_icon.png",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ease_group_icon.png"
+=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/chufang.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/chufang.png"
+>>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     }
 ]

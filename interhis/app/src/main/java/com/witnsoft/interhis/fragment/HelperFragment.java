@@ -303,7 +303,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             case R.id.fragment_helper_chinese_button:
 //                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 //                createYaoFang(id, "中药","1029405","7","1000");
-//                chinese_button.setOnClickListener(signListener);
+                chinese_button.setOnClickListener(signListener);
+                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
+                try {
+                   List<ChineseDetailModel> chineseDetailModels= HisDbManager.getManager().findChineseDeatilModel(chineseDetailModel);
+                    for (ChineseDetailModel chineseDetailModel1:chineseDetailModels){
+                        Log.e(TAG, "onClick: "+chineseDetailModel1 );
+                    }
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 break;
         }}
 
