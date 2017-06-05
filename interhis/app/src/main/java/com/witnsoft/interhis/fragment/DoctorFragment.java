@@ -1,6 +1,9 @@
 package com.witnsoft.interhis.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -83,7 +86,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private PatAdapter patAdapter;
-    private List<CeShi> data;
+//    private List<CeShi> data;
 
     private String docId = "";
 
@@ -136,7 +139,8 @@ public class DoctorFragment extends Fragment {
 
 
     private void initViews() {
-
+        receiver = new RefreshFriendListBroadcastReceiver();
+        getActivity().registerReceiver(receiver, new IntentFilter(BROADCAST_REFRESH_LIST));
     }
 
     @Override
@@ -153,7 +157,10 @@ public class DoctorFragment extends Fragment {
                 doctor_message.setVisibility(View.VISIBLE);
                 doctor_number.setVisibility(View.VISIBLE);
 //                recyclerView.setVisibility(View.VISIBLE);
-                initPatList();
+                if (!isVisit) {
+                    isVisit = true;
+                    initPatList();
+                }
             }
         });
     }
@@ -273,51 +280,63 @@ public class DoctorFragment extends Fragment {
     private int[] age = new int[]{22, 40, 55};
     private String[] content = new String[]{"头痛", "嗓子痛", "感冒"};
 
-    private void initFriendList() {
-        EMMessageListener msgListener = new EMMessageListener() {
+    private RefreshFriendListBroadcastReceiver receiver;
+    private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
+    private static final String MESSAGE_USER_NAME = "messageUserName";
 
-            @Override
-            public void onMessageReceived(List<EMMessage> messages) {
-                //收到消息
-                if (null != messages && 0 < messages.size()) {
-                    for (int i = 0; i < messages.size(); i++) {
-                        EMMessage msg = messages.get(i);
-                        Log.e(TAG, "!!!!!!!received message = " + msg);
+    //接收application发来的广播，更新好友列表
+    private class RefreshFriendListBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
+            if (isVisit) {
+                //出诊
+                if (null != data && 0 < data.size()) {
+                    boolean isRefresh = true;
+                    for (int i = 0; i < data.size(); i++) {
+                        if (data.get(i).getName().equals(messageUserName)) {
+                            isRefresh = false;
+                        }
                     }
+                    if (isRefresh) {
+                        initFriendListData();
+                        patAdapter.notifyDataSetChanged();
+                    }
+                } else {
+                    initFriendListData();
+                    patAdapter.notifyDataSetChanged();
                 }
             }
-
-            @Override
-            public void onCmdMessageReceived(List<EMMessage> messages) {
-                //收到透传消息
-            }
-
-            @Override
-            public void onMessageRead(List<EMMessage> messages) {
-                //收到已读回执
-            }
-
-            @Override
-            public void onMessageDelivered(List<EMMessage> message) {
-                //收到已送达回执
-            }
-
-            @Override
-            public void onMessageChanged(EMMessage message, Object change) {
-                //消息状态变动
-            }
-        };
-        EMClient.getInstance().chatManager().addMessageListener(msgListener);
+        }
     }
+
+    // 获取环信好友列表数据
+    private void initFriendListData() {
+        try {
+            usernames = EMClient.getInstance().contactManager().getAllContactsFromServer();
+        } catch (HyphenateException e) {
+
+        }
+        if (null != usernames && 0 < usernames.size()) {
+            data.clear();
+            for (int i = 0; i < usernames.size(); i++) {
+                CeShi ceShi = new CeShi(usernames.get(i), "", "", -1);
+                data.add(ceShi);
+            }
+        }
+    }
+
+    private List<CeShi> data = new ArrayList();
+    private List<String> usernames = new ArrayList<>();
+    private boolean isVisit = false;
 
     // 初始化出诊患者列表
     private void initPatList() {
-        initFriendList();
-        data = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            CeShi ceShi = new CeShi(name[i], sex[i], content[i], age[i]);
-            data.add(ceShi);
-        }
+//        for (int i = 0; i < 3; i++) {
+//            CeShi ceShi = new CeShi(name[i], sex[i], content[i], age[i]);
+//            data.add(ceShi);
+//        }
+        initFriendListData();
         patAdapter = new PatAdapter(getContext(), data);
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
