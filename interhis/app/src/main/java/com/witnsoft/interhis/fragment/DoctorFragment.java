@@ -19,7 +19,11 @@ import android.widget.Toast;
 
 
 import com.google.gson.Gson;
+import com.hyphenate.EMMessageListener;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.exceptions.HyphenateException;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.R;
@@ -78,7 +82,7 @@ public class DoctorFragment extends Fragment {
         private static final String BRSR = "brsr";
         private static final String LJSR = "ljsr";
     }
-    
+
     private PatAdapter patAdapter;
     private List<CeShi> data;
 
@@ -142,7 +146,6 @@ public class DoctorFragment extends Fragment {
         docId = ThriftPreUtils.getDocId(getActivity());
         callDocInfoApi();
         callCountApi();
-
 
 
         visit.setOnClickListener(new View.OnClickListener() {
@@ -271,8 +274,40 @@ public class DoctorFragment extends Fragment {
     private int[] age = new int[]{22, 40, 55};
     private String[] content = new String[]{"头痛", "嗓子痛", "感冒"};
 
+//    private void initFriendList() {
+//        EMClient.getInstance().chatManager().addMessageListener(msgListener);
+//        EMMessageListener msgListener = new EMMessageListener() {
+//
+//            @Override
+//            public void onMessageReceived(List<EMMessage> messages) {
+//                //收到消息
+//            }
+//
+//            @Override
+//            public void onCmdMessageReceived(List<EMMessage> messages) {
+//                //收到透传消息
+//            }
+//
+//            @Override
+//            public void onMessageRead(List<EMMessage> messages) {
+//                //收到已读回执
+//            }
+//
+//            @Override
+//            public void onMessageDelivered(List<EMMessage> message) {
+//                //收到已送达回执
+//            }
+//
+//            @Override
+//            public void onMessageChanged(EMMessage message, Object change) {
+//                //消息状态变动
+//            }
+//        };
+//    }
+
     // 初始化出诊患者列表
-    private void initPatList(){
+    private void initPatList() {
+        //initFriendList();
         data = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             CeShi ceShi = new CeShi(name[i], sex[i], content[i], age[i]);
