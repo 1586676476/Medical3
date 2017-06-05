@@ -44,6 +44,7 @@ import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
 import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.db.HisDbManager;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.inter.DialogListener;
 
 import com.witnsoft.interhis.inter.FilterListener;
@@ -53,7 +54,6 @@ import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
 import com.witnsoft.interhis.tool.KeyboardUtil;
-import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

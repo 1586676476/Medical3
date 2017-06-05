@@ -1,12 +1,7 @@
 [
     {
-<<<<<<< HEAD
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_btn_blue_normal_shape.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_btn_blue_normal_shape.xml"
-=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/debug/drawable/ease_chat_send_btn_selector.xml",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable/ease_chat_send_btn_selector.xml"
->>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     },
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/debug/drawable/ease_mm_listitem.xml",
@@ -109,12 +104,7 @@
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable/ease_type_select_btn.xml"
     },
     {
-<<<<<<< HEAD
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\debug\\drawable\\ease_chat_location_selector.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\drawable\\ease_chat_location_selector.xml"
-=======
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/debug/drawable/ease_btn_cancel_pressed_shape.xml",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/drawable/ease_btn_cancel_pressed_shape.xml"
->>>>>>> b6a0c70f0c200fc8bfcc33431d35eec18ec6136b
     }
 ]

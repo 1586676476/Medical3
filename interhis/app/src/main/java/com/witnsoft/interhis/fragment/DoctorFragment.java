@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ import com.witnsoft.interhis.adapter.DoctorAdapter;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
+import com.witnsoft.libinterhis.db.model.ChineseModel;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
@@ -272,40 +275,46 @@ public class DoctorFragment extends Fragment {
     private int[] age = new int[]{22, 40, 55};
     private String[] content = new String[]{"头痛", "嗓子痛", "感冒"};
 
-//    private void initFriendList() {
-//        EMClient.getInstance().chatManager().addMessageListener(msgListener);
-//        EMMessageListener msgListener = new EMMessageListener() {
-//
-//            @Override
-//            public void onMessageReceived(List<EMMessage> messages) {
-//                //收到消息
-//            }
-//
-//            @Override
-//            public void onCmdMessageReceived(List<EMMessage> messages) {
-//                //收到透传消息
-//            }
-//
-//            @Override
-//            public void onMessageRead(List<EMMessage> messages) {
-//                //收到已读回执
-//            }
-//
-//            @Override
-//            public void onMessageDelivered(List<EMMessage> message) {
-//                //收到已送达回执
-//            }
-//
-//            @Override
-//            public void onMessageChanged(EMMessage message, Object change) {
-//                //消息状态变动
-//            }
-//        };
-//    }
+    private void initFriendList() {
+        EMMessageListener msgListener = new EMMessageListener() {
+
+            @Override
+            public void onMessageReceived(List<EMMessage> messages) {
+                //收到消息
+                if (null != messages && 0 < messages.size()) {
+                    for (int i = 0; i < messages.size(); i++) {
+                        EMMessage msg = messages.get(i);
+                        Log.e(TAG, "!!!!!!!received message = " + msg);
+                    }
+                }
+            }
+
+            @Override
+            public void onCmdMessageReceived(List<EMMessage> messages) {
+                //收到透传消息
+            }
+
+            @Override
+            public void onMessageRead(List<EMMessage> messages) {
+                //收到已读回执
+            }
+
+            @Override
+            public void onMessageDelivered(List<EMMessage> message) {
+                //收到已送达回执
+            }
+
+            @Override
+            public void onMessageChanged(EMMessage message, Object change) {
+                //消息状态变动
+            }
+        };
+        EMClient.getInstance().chatManager().addMessageListener(msgListener);
+    }
 
     // 初始化出诊患者列表
     private void initPatList() {
-        //initFriendList();
+        initFriendList();
         data = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             CeShi ceShi = new CeShi(name[i], sex[i], content[i], age[i]);

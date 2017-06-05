@@ -16,7 +16,6 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.libinterhis.base.BaseActivity;
-import com.witnsoft.libinterhis.db.model.ChineseDetailModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.xutils.ex.DbException;
