@@ -1,383 +1,214 @@
 [
     {
-<<<<<<< HEAD
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_chat_input_menu.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_chat_input_menu.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_search_bar_with_padding.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_search_bar_with_padding.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_bigexpression.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_bigexpression.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_file.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_file.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_project.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_project.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_big_expression.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_big_expression.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_file.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_file.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_sick.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_sick.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_picture.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_picture.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_voice_call.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_voice_call.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_search_bar.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_search_bar.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_layout_chat_primary_menu.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_layout_chat_primary_menu.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_voice.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_voice.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_emojicon_tab_bar.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_emojicon_tab_bar.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_layout_emojicon_menu.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_layout_emojicon_menu.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_message.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_message.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_expression_gridview.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_expression_gridview.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_contact.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_contact.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_chat_menu_item.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_chat_menu_item.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_project.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_project.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_video.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_video.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_expression_gridview.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_expression_gridview.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_alert_dialog.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_alert_dialog.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_bigexpression.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_bigexpression.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_title_bar.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_title_bar.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_bigexpression.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_bigexpression.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_conversation_item.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_conversation_item.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_picture.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_picture.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_sick.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_sick.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_conversation_item.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_conversation_item.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_chat.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_chat.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_sick.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_sick.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_showvideo_activity.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_showvideo_activity.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_scroll_tab_item.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_scroll_tab_item.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_emojicon.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_emojicon.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_file.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_file.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_contact_list.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_contact_list.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_voice_call.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_voice_call.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_voice_call.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_voice_call.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_chat_primary_menu.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_chat_primary_menu.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_sick.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_sick.xml"
-=======
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_project.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_project.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_video_call.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_video_call.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_show_file.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_show_file.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_chat_history.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_chat_history.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_alert_dialog.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_alert_dialog.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_switch_button.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_switch_button.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_show_big_image.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_show_big_image.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_fragment_contact_list.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_fragment_contact_list.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_chat.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_chat.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_expression.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_expression.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_video.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_video.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_emojicon.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_emojicon.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_conversation_list.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_conversation_list.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_search_bar.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_search_bar.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_search_bar.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_search_bar.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_showvideo_activity.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_showvideo_activity.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_sick.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_sick.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_message.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_message.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_voice.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_voice.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_location.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_location.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_commom_back_btn.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_commom_back_btn.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_voice.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_voice.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_title_bar.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_title_bar.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_activity_show_big_image.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_activity_show_big_image.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_contact_list.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_contact_list.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_activity_baidumap.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_activity_baidumap.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_scroll_tab_item.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_scroll_tab_item.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_video.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_video.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_location.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_location.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_fragment_chat.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_fragment_chat.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_layout_chat_primary_menu.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_layout_chat_primary_menu.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_voice.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_voice.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_contact.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_contact.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_received_location.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_received_location.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_emojicon.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_emojicon.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_emojicon.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_emojicon.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_expression.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_expression.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_contact_list.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_contact_list.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_file.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_file.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_video.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_video.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_video_call.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_video_call.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_alert_dialog.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_alert_dialog.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_video_call.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_video_call.xml"
->>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_video_call.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_video_call.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_location.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_location.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_voice_recorder.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_voice_recorder.xml"
     },
     {
-<<<<<<< HEAD
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_baidumap.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_baidumap.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_chat_menu_item.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_chat_menu_item.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_message.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_message.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_project.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_project.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_voice.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_voice.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_layout_emojicon_menu.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_layout_emojicon_menu.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_video_call.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_video_call.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_chat_input_menu.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_chat_input_menu.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_project.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_project.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_widget_title_bar.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_widget_title_bar.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_chat_primary_menu.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_chat_primary_menu.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_fragment_conversation_list.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_fragment_conversation_list.xml"
     },
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_emojicon.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_emojicon.xml"
-=======
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_video.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_video.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_activity_show_file.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_activity_show_file.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_picture.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_picture.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_commom_back_btn.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_commom_back_btn.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_project.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_project.xml"
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_row_sent_picture.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_row_sent_picture.xml"
     },
     {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_voice_recorder.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_voice_recorder.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_emojicon.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_emojicon.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_location.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_location.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_search_bar_with_padding.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_search_bar_with_padding.xml"
->>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_show_file.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_show_file.xml"
-    },
-    {
-<<<<<<< HEAD
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_emojicon_tab_bar.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_emojicon_tab_bar.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_video_call.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_video_call.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_search_bar_with_padding.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_search_bar_with_padding.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_location.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_location.xml"
-=======
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_sick.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_sick.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_voice_call.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_voice_call.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_conversation_item.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_conversation_item.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_picture.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_picture.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_emojicon_tab_bar.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_emojicon_tab_bar.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_chat_input_menu.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_chat_input_menu.xml"
->>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_big_expression.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_big_expression.xml"
-    },
-    {
-<<<<<<< HEAD
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_commom_back_btn.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_commom_back_btn.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_voice_recorder.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_voice_recorder.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_contact_list.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_contact_list.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_contact.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_contact.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_conversation_list.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_conversation_list.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_picture.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_picture.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_bigexpression.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_bigexpression.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_chat_history.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_chat_history.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_layout_chat_primary_menu.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_layout_chat_primary_menu.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_expression.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_expression.xml"
-=======
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_showvideo_activity.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_showvideo_activity.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_widget_switch_button.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_switch_button.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_voice_call.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_voice_call.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_chat_menu_item.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_chat_menu_item.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_chat_message_list.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_chat_message_list.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_voice.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_voice.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_bigexpression.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_bigexpression.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_baidumap.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_baidumap.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_message.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_sent_message.xml"
->>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_received_video.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_received_video.xml"
-    },
-    {
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_chat_history.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_chat_history.xml"
-    },
-    {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_big_expression.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_row_big_expression.xml"
-    },
-    {
-<<<<<<< HEAD
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_chat_message_list.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_chat_message_list.xml"
-=======
-        "merged": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_layout_emojicon_menu.xml",
-        "source": "E:\\inter\\interhis\\easeUI_CN\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_layout_emojicon_menu.xml"
->>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/layout/ease_chat_message_list.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/layout/ease_chat_message_list.xml"
     }
 ]

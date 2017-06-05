@@ -132,11 +132,7 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
                 Intent intent=new Intent("shanchu");
                 intent.putExtra("pos",position);
                 sendBroadcast(intent);
-<<<<<<< HEAD
-=======
-
                 finish();
->>>>>>> a99f76d346b45e2ab71abfb8b9a3941b5ecbcd6d
                 break;
 
         }
