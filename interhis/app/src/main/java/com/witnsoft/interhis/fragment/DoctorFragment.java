@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -39,7 +41,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -86,7 +87,11 @@ public class DoctorFragment extends Fragment {
 
     private String docId = "";
 
-    @ViewInject(R.id.fragment_doctor_recycleView)
+    // 下拉刷新
+    @ViewInject(R.id.sl_refresh)
+    private SwipeRefreshLayout slRefresh;
+    // 患者列表
+    @ViewInject(R.id.rv_pat)
     private RecyclerView recyclerView;
     // 医生姓名
     @ViewInject(R.id.fragment_doctor_name)
@@ -140,6 +145,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private void initViews() {
+        slRefresh.setEnabled(false);
         // 接收新消息通知广播
         receiver = new RefreshFriendListBroadcastReceiver();
         getActivity().registerReceiver(receiver, new IntentFilter(BROADCAST_REFRESH_LIST));
@@ -161,6 +167,7 @@ public class DoctorFragment extends Fragment {
 //                recyclerView.setVisibility(View.VISIBLE);
                 if (!isVisit) {
                     isVisit = true;
+                    slRefresh.setEnabled(true);
                     getChatList();
 //                    initPatList();
                 }
@@ -291,7 +298,7 @@ public class DoctorFragment extends Fragment {
     private class RefreshFriendListBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            logUtils.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
+            Log.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
             // 获取到新消息的用户名
             String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
             if (isVisit) {
@@ -308,7 +315,7 @@ public class DoctorFragment extends Fragment {
 //                        getFriendListAndRefreshData();
                         getChatList();
 
-                        logUtils.e(TAG, "getFriendsList");
+                        Log.e(TAG, "getFriendsList");
                     }
                 } else {
 //                    getFriendListAndRefreshData();
@@ -319,6 +326,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private void getChatList() {
+        Log.e(TAG, "!!!!!chatList begin");
         // 获取环信会话列表
         List<String> nameList = new ArrayList<String>();
         EMClient.getInstance().chatManager().loadAllConversations();
@@ -341,43 +349,14 @@ public class DoctorFragment extends Fragment {
                 freshUi();
             }
         });
-    }
-
-    private void getFriendListAndRefreshData() {
-        // 获取所有会话列表
-//                EMClient.getInstance().chatManager().loadAllConversations();
-        try {
-            // 获取所有好友列表
-            usernames = EMClient.getInstance().contactManager().getAllContactsFromServer();
-            logUtils.e(TAG, "getFriendsList");
-        } catch (HyphenateException e) {
-            e.printStackTrace();
-        }
-        if (null != usernames && 0 < usernames.size()) {
-            data.clear();
-            for (int i = 0; i < usernames.size(); i++) {
-                CeShi ceShi = new CeShi(usernames.get(i), "", "", -1);
-                data.add(ceShi);
-            }
-        }
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                freshUi();
-            }
-        });
+        Log.e(TAG, "!!!!!chatList done");
     }
 
     private List<CeShi> data = new ArrayList();
-    private List<String> usernames = new ArrayList<>();
     private boolean isVisit = false;
 
     // 初始化出诊患者列表
     private void freshUi() {
-//        for (int i = 0; i < 3; i++) {
-//            CeShi ceShi = new CeShi(name[i], sex[i], content[i], age[i]);
-//            data.add(ceShi);
-//        }
         patAdapter = new PatAdapter(getContext(), data);
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
@@ -386,13 +365,13 @@ public class DoctorFragment extends Fragment {
                 //启动会话列表
                 HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                 try {
-                    logUtils.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
+                    Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
                     helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
                             data.get(position).getName(),
                             EaseConstant.EXTRA_CHAT_TYPE,
                             EaseConstant.CHATTYPE_SINGLE);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    logUtils.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
+                    Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
                 }
                 patAdapter.notifyDataSetChanged();
             }
@@ -400,54 +379,26 @@ public class DoctorFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(patAdapter);
+        slRefresh.setRefreshing(false);
+        slRefresh.setEnabled(true);
+        refreshRecyclerView();
     }
 
-//    // TODO: 2017/5/26 上拉加载更多，下拉刷新，docid存本地
-//    // F27.APP.01.02 查询问诊人员列表
-//    private void callPatApi() {
-//        OTRequest otRequest = new OTRequest(getActivity());
-//        // DATA
-//        DataModel data = new DataModel();
-//        data.setParam("docid", docId);
-//        data.setParam("rowsperpage", "10");
-//        data.setParam("pageno", "1");
-//        data.setParam("ordercolumn", "paytime");
-//        data.setParam("ordertype", "asc");
-//        otRequest.setDATA(data);
-//        // TN 接口辨别
-//        otRequest.setTN("F27.APP.01.02");
-//
-//        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
-//            @Override
-//            public void onSuccess(Map response, String resultCode) {
-//                //返回respnse即为DATAARRAY的json字符串，进一步根据需求自行解析
-//                if ("200".equals(resultCode)) {
-//
-//                } else if ("504".equals(resultCode)) {
-//                    // token失效
-//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                    startActivity(intent);
-//                    getActivity().finish();
-//                }
-//            }
-//
-//            @Override
-//            public void onError(Throwable throwable) {
-//            }
-//        });
-//    }
+    private void refreshRecyclerView() {
+        slRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
-//    @Override
-//    public void onIteClick(int position) {
-//        doctorAdapter.setPos(position);
-//
-//        //启动会话列表
-//        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
-//        helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-//                name[position],
-//                EaseConstant.EXTRA_CHAT_TYPE,
-//                EaseConstant.CHATTYPE_SINGLE);
-//    }
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
 
-
+                    @Override
+                    public void run() {
+                        slRefresh.setEnabled(false);
+                        slRefresh.setRefreshing(true);
+                        getChatList();
+                    }
+                }, 600);
+            }
+        });
+    }
 }
