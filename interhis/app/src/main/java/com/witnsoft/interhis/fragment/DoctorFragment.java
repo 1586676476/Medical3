@@ -51,6 +51,7 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -89,6 +90,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private PatAdapter patAdapter;
+
 //    private List<CeShi> data;
 
     private String docId = "";
@@ -310,28 +312,27 @@ public class DoctorFragment extends Fragment {
                         }
                     }
                     if (isRefresh) {
-//                        initFriendListData();
-//                        patAdapter.notifyDataSetChanged();
-                        getFriendListAndRefreshUi();
+//                        getFriendListAndRefreshData();
+                        getChatList();
 
                         Log.e(TAG, "getFriendsList");
                     }
                 } else {
-//                    initFriendListData();
-//                    patAdapter.notifyDataSetChanged();
-                    getFriendListAndRefreshUi();
+//                    getFriendListAndRefreshData();
+                    getChatList();
                 }
             }
         }
     }
 
     private void chatLogin() {
-        // 进入界面登录
+        // 环信界面
         EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
             @Override
             public void onSuccess() {
                 Log.e("onSuccess: ", "登录成功");
-                getFriendListAndRefreshUi();
+                //getFriendListAndRefreshData();
+                getChatList();
             }
 
             @Override
@@ -347,7 +348,32 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    private void getFriendListAndRefreshUi() {
+    private void getChatList() {
+        // 会话列表
+        List<String> nameList = new ArrayList<String>();
+        EMClient.getInstance().chatManager().loadAllConversations();
+        Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
+        Iterator<String> iter = conversations.keySet().iterator();
+        while (iter.hasNext()) {
+            String key = iter.next();
+            nameList.add(key);
+        }
+        if (null != nameList && 0 < nameList.size()) {
+            data.clear();
+            for (int i = 0; i < nameList.size(); i++) {
+                CeShi ceShi = new CeShi(nameList.get(i), "", "", -1);
+                data.add(ceShi);
+            }
+        }
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                freshUi();
+            }
+        });
+    }
+
+    private void getFriendListAndRefreshData() {
         // 获取所有会话列表
 //                EMClient.getInstance().chatManager().loadAllConversations();
         try {
