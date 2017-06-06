@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.witnsoft.interhis.db.HisDbManager;
@@ -18,6 +19,7 @@ import com.witnsoft.interhis.fragment.DoctorFragment;
 import org.xutils.x;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhengchengpeng on 2017/5/12.
@@ -63,12 +65,13 @@ public class Application extends MultiDexApplication {
             @Override
             public void onMessageReceived(List<EMMessage> list) {
                 Log.e("MainActivity", "!!!!!!!!!!!!########");
+                // TODO: 2017/6/5 收到新消息，发通知给doctorFragment
                 // sendBroadcast(new Intent("refresh"));
                 for (EMMessage message : list) {
                     if (!EaseUI.getInstance().hasForegroundActivies()) {
                         EaseUI.getInstance().getNotifier().onNewMsg(message);
 
-                        // 如果好友列表里没有接收到新消息的好友，发送广播通知DoctorFragment刷新列表
+                        // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
                         Intent intent = new Intent();
                         intent.setAction(BROADCAST_REFRESH_LIST);
                         intent.putExtra(MESSAGE_USER_NAME, message.getUserName());
