@@ -65,8 +65,7 @@ public class Application extends MultiDexApplication {
             @Override
             public void onMessageReceived(List<EMMessage> list) {
                 Log.e("MainActivity", "!!!!!!!!!!!!########");
-                // TODO: 2017/6/5 收到新消息，发通知给doctorFragment
-                // sendBroadcast(new Intent("refresh"));
+                // 收到新消息，发通知给doctorFragment
                 for (EMMessage message : list) {
                     if (!EaseUI.getInstance().hasForegroundActivies()) {
                         EaseUI.getInstance().getNotifier().onNewMsg(message);

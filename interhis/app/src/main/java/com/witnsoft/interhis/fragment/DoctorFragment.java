@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,32 +18,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-import com.google.gson.Gson;
-import com.hyphenate.EMCallBack;
-import com.hyphenate.EMContactListener;
-import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
-import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.exceptions.HyphenateException;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.adapter.DoctorAdapter;
-import com.witnsoft.interhis.db.HisDbManager;
-import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
-import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -63,6 +52,8 @@ import java.util.Map;
 @ContentView(R.layout.fragment_doctor)
 public class DoctorFragment extends Fragment {
     private static final String TAG = "DoctorFragment";
+    private static LogUtils logUtils = LogUtils.getLog();
+
     private static final String TN_DOC_INFO = "F27.APP.01.01";
     private static final String TN_COUNT = "F27.APP.01.05";
     private static final String DOC_ID = "docid";
@@ -149,7 +140,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private void initViews() {
-        // TODO: 2017/6/6 测试用广播，需要修改
+        // 接收新消息通知广播
         receiver = new RefreshFriendListBroadcastReceiver();
         getActivity().registerReceiver(receiver, new IntentFilter(BROADCAST_REFRESH_LIST));
     }
@@ -170,7 +161,7 @@ public class DoctorFragment extends Fragment {
 //                recyclerView.setVisibility(View.VISIBLE);
                 if (!isVisit) {
                     isVisit = true;
-                    chatLogin();
+                    getChatList();
 //                    initPatList();
                 }
             }
@@ -296,15 +287,17 @@ public class DoctorFragment extends Fragment {
     private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
     private static final String MESSAGE_USER_NAME = "messageUserName";
 
-    //接收application发来的广播，更新好友列表
+    // 接收application发来的广播，更新好友列表
     private class RefreshFriendListBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
+            logUtils.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
+            // 获取到新消息的用户名
             String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
             if (isVisit) {
-                //出诊
+                // 出诊
                 if (null != data && 0 < data.size()) {
+                    // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
                     boolean isRefresh = true;
                     for (int i = 0; i < data.size(); i++) {
                         if (data.get(i).getName().equals(messageUserName)) {
@@ -315,7 +308,7 @@ public class DoctorFragment extends Fragment {
 //                        getFriendListAndRefreshData();
                         getChatList();
 
-                        Log.e(TAG, "getFriendsList");
+                        logUtils.e(TAG, "getFriendsList");
                     }
                 } else {
 //                    getFriendListAndRefreshData();
@@ -325,31 +318,8 @@ public class DoctorFragment extends Fragment {
         }
     }
 
-    private void chatLogin() {
-        // 环信界面
-        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
-            @Override
-            public void onSuccess() {
-                Log.e("onSuccess: ", "登录成功");
-                //getFriendListAndRefreshData();
-                getChatList();
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                Log.e("onError: ", i + " " + s + "登录失败");
-
-            }
-
-            @Override
-            public void onProgress(int i, String s) {
-
-            }
-        });
-    }
-
     private void getChatList() {
-        // 会话列表
+        // 获取环信会话列表
         List<String> nameList = new ArrayList<String>();
         EMClient.getInstance().chatManager().loadAllConversations();
         Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
@@ -379,7 +349,7 @@ public class DoctorFragment extends Fragment {
         try {
             // 获取所有好友列表
             usernames = EMClient.getInstance().contactManager().getAllContactsFromServer();
-            Log.e(TAG, "getFriendsList");
+            logUtils.e(TAG, "getFriendsList");
         } catch (HyphenateException e) {
             e.printStackTrace();
         }
@@ -416,13 +386,13 @@ public class DoctorFragment extends Fragment {
                 //启动会话列表
                 HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                 try {
-                    Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
+                    logUtils.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
                     helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
                             data.get(position).getName(),
                             EaseConstant.EXTRA_CHAT_TYPE,
                             EaseConstant.CHATTYPE_SINGLE);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
+                    logUtils.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
                 }
                 patAdapter.notifyDataSetChanged();
             }
