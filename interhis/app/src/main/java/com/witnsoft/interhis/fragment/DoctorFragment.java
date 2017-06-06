@@ -21,9 +21,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
+import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.exceptions.HyphenateException;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
@@ -41,6 +44,7 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +58,7 @@ import java.util.Map;
 public class DoctorFragment extends Fragment {
     private static final String TAG = "DoctorFragment";
     private static LogUtils logUtils = LogUtils.getLog();
+    private Gson gson;
 
     private static final String TN_DOC_INFO = "F27.APP.01.01";
     private static final String TN_COUNT = "F27.APP.01.05";
@@ -145,6 +150,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private void initViews() {
+        gson = new Gson();
         slRefresh.setEnabled(false);
         // 接收新消息通知广播
         receiver = new RefreshFriendListBroadcastReceiver();
@@ -339,8 +345,8 @@ public class DoctorFragment extends Fragment {
         if (null != nameList && 0 < nameList.size()) {
             data.clear();
             for (int i = 0; i < nameList.size(); i++) {
-                CeShi ceShi = new CeShi(nameList.get(i), "", "", -1);
-                data.add(ceShi);
+                CeShi ceshi = ceshi(nameList.get(i));
+                data.add(ceshi);
             }
         }
         getActivity().runOnUiThread(new Runnable() {
@@ -350,6 +356,31 @@ public class DoctorFragment extends Fragment {
             }
         });
         Log.e(TAG, "!!!!!chatList done");
+    }
+
+    private CeShi ceshi(String userName) {
+        // TODO: 2017/6/6 明天验证这种方法是否合适（通过第一条消息获取患者信息）
+        EMConversation conversation;
+        conversation = EMClient.getInstance().chatManager().getConversation(userName, EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_SINGLE), true);
+        EMMessage message = null;
+        java.util.List<EMMessage> var = conversation.getAllMessages();
+        message = var.get(0);
+        Map<String, Object> extMap = message.ext();
+
+        Map<String, Object> objectMap = new HashMap<String, Object>();
+        String content = (String) extMap.get("content");
+
+        Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
+        Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+        // 姓名
+        String patname = (String) patinfoMap.get("patname");
+        // 性别
+        String patsexname = (String) patinfoMap.get("patsexname");
+        // 年龄
+        String patnlmc = (String) patinfoMap.get("patnlmc");
+        // 症状
+        String patContent = (String) contentMap.get("jbmc");
+        return new CeShi(userName, patname, patsexname, patContent, patnlmc);
     }
 
     private List<CeShi> data = new ArrayList();

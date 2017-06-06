@@ -5,10 +5,13 @@ package com.witnsoft.interhis.bean;
  */
 
 public class CeShi {
+    // 环信用户唯一标识
+    private String userName;
+    // 用户名
     private String name;
     private String sex;
     private String content;
-    private int age;
+    private String age;
 
     public String getName() {
         return name;
@@ -34,16 +37,25 @@ public class CeShi {
         this.content = content;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public CeShi(String name, String sex, String content, int age) {
+    public String getUserName(){
+        return userName;
+    }
 
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    public CeShi(String userName,String name, String sex, String content, String age) {
+
+        this.userName = userName;
         this.name = name;
         this.sex = sex;
         this.content = content;
