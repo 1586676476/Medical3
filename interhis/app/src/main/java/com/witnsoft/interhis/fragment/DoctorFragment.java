@@ -60,44 +60,12 @@ import java.util.Map;
  */
 
 @ContentView(R.layout.fragment_doctor)
-public class DoctorFragment extends Fragment implements EMContactListener {
+public class DoctorFragment extends Fragment {
     private static final String TAG = "DoctorFragment";
     private static final String TN_DOC_INFO = "F27.APP.01.01";
     private static final String TN_COUNT = "F27.APP.01.05";
     private static final String DOC_ID = "docid";
     private static final String DATA = "DATA";
-
-    // TODO: 2017/6/5  
-    // 关于刷新好友列表，如果这个回掉好用，就不用application监听消息发送广播了
-    @Override
-    public void onContactAdded(String s) {
-        //增加了联系人时回调此方法
-        Log.e(TAG, "contact = " + s);
-//        initFriendListData();
-//        patAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onContactDeleted(String s) {
-        //被删除时回调此方法
-    }
-
-    @Override
-    public void onContactInvited(String s, String s1) {
-        //收到好友邀请
-        Log.e(TAG, s);
-        Log.e(TAG, s1);
-    }
-
-    @Override
-    public void onFriendRequestAccepted(String s) {
-        //好友请求被同意
-    }
-
-    @Override
-    public void onFriendRequestDeclined(String s) {
-        //好友请求被拒绝
-    }
 
     private final class ErrCode {
         private static final String ErrCode_200 = "200";
@@ -170,6 +138,12 @@ public class DoctorFragment extends Fragment implements EMContactListener {
         View view = x.view().inject(this, inflater, container);
         initViews();
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(receiver);
     }
 
     private void initViews() {
@@ -324,7 +298,7 @@ public class DoctorFragment extends Fragment implements EMContactListener {
     private class RefreshFriendListBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.e(TAG,"!!!!!!!!!!!!doctorFragment has received message");
+            Log.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
             String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
             if (isVisit) {
                 //出诊
@@ -373,7 +347,7 @@ public class DoctorFragment extends Fragment implements EMContactListener {
         });
     }
 
-    private void getFriendListAndRefreshUi(){
+    private void getFriendListAndRefreshUi() {
         // 获取所有会话列表
 //                EMClient.getInstance().chatManager().loadAllConversations();
         try {
@@ -416,7 +390,7 @@ public class DoctorFragment extends Fragment implements EMContactListener {
                 //启动会话列表
                 HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                 try {
-                    Log.e(TAG,"!!!!arryay position = "+position+"  and data = "+data.get(position).getName());
+                    Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
                     helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
                             data.get(position).getName(),
                             EaseConstant.EXTRA_CHAT_TYPE,
