@@ -116,6 +116,8 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onSuccess() {
                 Log.e("onSuccess: ", "登录成功");
+                // 获取所有会话列表
+                EMClient.getInstance().chatManager().loadAllConversations();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             }

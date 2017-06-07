@@ -1,17 +1,25 @@
 package com.witnsoft.interhis.tool;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.witnsoft.interhis.db.HisDbManager;
+import com.witnsoft.interhis.fragment.DoctorFragment;
 
 import org.xutils.x;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhengchengpeng on 2017/5/12.
@@ -22,8 +30,8 @@ public class Application extends MultiDexApplication {
 
     private static Application app = null;
     private EMMessageListener mMessageListener;
-
-
+    private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
+    private static final String MESSAGE_USER_NAME = "messageUserName";
 
 
     public static synchronized Application getInstance() {
@@ -39,8 +47,6 @@ public class Application extends MultiDexApplication {
         init();
         registerMessageListener();
 
-
-
     }
 
     private void init() {
@@ -50,7 +56,8 @@ public class Application extends MultiDexApplication {
 
     }
 
-    public void registerMessageListener(){
+
+    public void registerMessageListener() {
 
 
         mMessageListener = new EMMessageListener() {
@@ -58,10 +65,16 @@ public class Application extends MultiDexApplication {
             @Override
             public void onMessageReceived(List<EMMessage> list) {
                 Log.e("MainActivity", "!!!!!!!!!!!!########");
-                // sendBroadcast(new Intent("refresh"));
+                // 收到新消息，发通知给doctorFragment
                 for (EMMessage message : list) {
-                    if (!EaseUI.getInstance().hasForegroundActivies()){
+                    if (!EaseUI.getInstance().hasForegroundActivies()) {
                         EaseUI.getInstance().getNotifier().onNewMsg(message);
+
+                        // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
+                        Intent intent = new Intent();
+                        intent.setAction(BROADCAST_REFRESH_LIST);
+                        intent.putExtra(MESSAGE_USER_NAME, message.getUserName());
+                        sendBroadcast(intent);
                     }
                 }
 

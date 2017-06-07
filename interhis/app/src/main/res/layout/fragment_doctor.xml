@@ -10,14 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGray"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fragment_doctor_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:src="@mipmap/touxiang"/>
 
         <LinearLayout
@@ -30,7 +29,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -204,13 +202,34 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_doctor_recycleView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sl_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doctor_count"
+        android:layout_marginTop="10dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_pat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGray"
+            android:visibility="gone"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/tv_no_contact"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/doctor_count"
         android:layout_marginTop="10dp"
-        android:background="@color/colorGray"/>
+        android:background="@color/colorGray"
+        android:gravity="center"
+        android:text="@string/not_ever_visit"
+        android:textColor="@color/text_gray_color"
+        android:textSize="20dp"
+        android:visibility="visible"/>
 
     <Button
         android:id="@+id/doctor_visit"
