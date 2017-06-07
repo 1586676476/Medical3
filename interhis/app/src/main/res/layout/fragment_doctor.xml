@@ -209,13 +209,27 @@
         android:layout_below="@id/doctor_count"
         android:layout_marginTop="10dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_pat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGray"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_pat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGray"
+            android:visibility="gone"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/tv_no_contact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/doctor_count"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGray"
+        android:gravity="center"
+        android:text="@string/not_ever_visit"
+        android:textColor="@color/text_gray_color"
+        android:textSize="20dp"
+        android:visibility="visible"/>
 
     <Button
         android:id="@+id/doctor_visit"

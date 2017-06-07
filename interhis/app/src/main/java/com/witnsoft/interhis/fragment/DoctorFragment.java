@@ -92,6 +92,9 @@ public class DoctorFragment extends Fragment {
     // 下拉刷新
     @ViewInject(R.id.sl_refresh)
     private SwipeRefreshLayout slRefresh;
+    // 联系人优化页
+    @ViewInject(R.id.tv_no_contact)
+    private TextView tvNoContact;
     // 患者列表
     @ViewInject(R.id.rv_pat)
     private RecyclerView recyclerView;
@@ -379,6 +382,13 @@ public class DoctorFragment extends Fragment {
     private void freshUi() {
         // 会话列表变化时调用统计接口刷新统计数值
         callCountApi();
+        if (null != data && 0 < data.size()) {
+            tvNoContact.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            tvNoContact.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
         patAdapter = new PatAdapter(getContext(), data);
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
