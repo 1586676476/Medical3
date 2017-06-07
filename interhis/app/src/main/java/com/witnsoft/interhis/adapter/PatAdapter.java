@@ -50,9 +50,9 @@ public class PatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final CeShi item = list.get(position);
         if (position == pos) {
-            holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
         } else {
-            holder.itemView.setBackgroundColor(Color.parseColor("#F2F2F2"));
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorGray));
         }
         setText(((PatViewHolder) holder).tvName, item.getName());
         setText(((PatViewHolder) holder).tvAge, item.getAge());
