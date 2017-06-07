@@ -362,16 +362,29 @@ public class DoctorFragment extends Fragment {
         Map<String, Object> objectMap = new HashMap<String, Object>();
         String content = (String) extMap.get("content");
 
-        Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
-        Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
         // 姓名
-        String patname = (String) patinfoMap.get("patname");
+        String patname = "";
         // 性别
-        String patsexname = (String) patinfoMap.get("patsexname");
+        String patsexname = "";
         // 年龄
-        String patnlmc = (String) patinfoMap.get("patnlmc");
+        String patnlmc = "";
         // 症状
-        String patContent = (String) contentMap.get("jbmc");
+        String patContent = "";
+
+        try {
+            Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
+            Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+            // 姓名
+            patname = (String) patinfoMap.get("patname");
+            // 性别
+            patsexname = (String) patinfoMap.get("patsexname");
+            // 年龄
+            patnlmc = (String) patinfoMap.get("patnlmc");
+            // 症状
+            patContent = (String) contentMap.get("jbmc");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return new CeShi(userName, patname, patsexname, patContent, patnlmc);
     }
 
@@ -399,7 +412,7 @@ public class DoctorFragment extends Fragment {
                 try {
                     Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
                     helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-                            data.get(position).getName(),
+                            data.get(position).getUserName(),
                             EaseConstant.EXTRA_CHAT_TYPE,
                             EaseConstant.CHATTYPE_SINGLE);
                 } catch (ArrayIndexOutOfBoundsException e) {
