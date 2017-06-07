@@ -13,6 +13,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.controller.EaseUI;
+import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.fragment.DoctorFragment;
 
@@ -32,6 +33,7 @@ public class Application extends MultiDexApplication {
     private EMMessageListener mMessageListener;
     private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
     private static final String MESSAGE_USER_NAME = "messageUserName";
+    private int unread;
 
 
     public static synchronized Application getInstance() {
@@ -76,6 +78,7 @@ public class Application extends MultiDexApplication {
                         intent.putExtra(MESSAGE_USER_NAME, message.getUserName());
                         sendBroadcast(intent);
                     }
+
                 }
 
             }

@@ -129,6 +129,7 @@ public class MyEaseChatRowProject extends EaseChatRow {
      */
     @Override
     protected void onBubbleClick() {
+        Toast.makeText(context, "点击了药方", Toast.LENGTH_SHORT).show();
 
     }
 

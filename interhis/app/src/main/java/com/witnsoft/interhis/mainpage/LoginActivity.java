@@ -142,7 +142,7 @@ public class LoginActivity extends BaseActivity {
                 .subscribe(action1);
     }
 
-//    // 医生登出
+    // 医生登出
 //    private void callLogoutApi() {
 //        LoginRequest request = new LoginRequest();
 //        request.setReqType("logout");
@@ -168,6 +168,9 @@ public class LoginActivity extends BaseActivity {
 //                    }
 //                }
 //            }
+//
+//
+//
 //
 //            @Override
 //            public void onError(Throwable throwable) {
