@@ -15,8 +15,7 @@ import org.xutils.ex.DbException;
 public class ChineseDetailModel {
 
     // primary key
-    @Column(
-            name = "ACMID",
+    @Column(name = "ACMID",
             isId = true,
             autoGen = false)
     private String acmId;
@@ -43,7 +42,7 @@ public class ChineseDetailModel {
 
     // 中药数量
     @Column(name = "SL")
-    private String sl;
+    private int sl;
 
     // 总金额
     @Column(name = "je")
@@ -52,6 +51,7 @@ public class ChineseDetailModel {
     // 单价
     @Column(name = "dj")
     private String dj;
+
 
     public ChineseModel getChinese(DbManager db) throws DbException {
         return db.findById(ChineseModel.class, acmId);
@@ -105,11 +105,11 @@ public class ChineseDetailModel {
         return cggMc;
     }
 
-    public void setSl(String sl) {
+    public void setSl(int sl) {
         this.sl = sl;
     }
 
-    public String getSl() {
+    public int getSl() {
         return sl;
     }
 

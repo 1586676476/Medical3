@@ -3,7 +3,6 @@ package com.witnsoft.interhis.mainpage;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.libinterhis.base.BaseActivity;
@@ -89,18 +87,15 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        NumberBean numberBean=new NumberBean();
         ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
         switch (v.getId()){
             case R.id.ll_root:
                 finish();
                 break;
             case R.id.dialog_five:
-                numberBean.setName(medical);
-                numberBean.setCount(5);
-                EventBus.getDefault().post(numberBean);
-                chineseDetailModel.setCggMc(medical);
-                chineseDetailModel.setSl(5+"");
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl(5);
+                EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                 } catch (DbException e) {
@@ -109,11 +104,9 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_ten:
-                numberBean.setName(medical);
-                numberBean.setCount(10);
-                EventBus.getDefault().post(numberBean);
-                chineseDetailModel.setCggMc(medical);
-                chineseDetailModel.setSl(10+"");
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl(10);
+                EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                 } catch (DbException e) {
@@ -122,11 +115,9 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_fifteen:
-                numberBean.setName(medical);
-                numberBean.setCount(15);
-                EventBus.getDefault().post(numberBean);
-                chineseDetailModel.setCggMc(medical);
-                chineseDetailModel.setSl(15+"");
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl(15);
+                EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                 } catch (DbException e) {
@@ -135,11 +126,9 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_twenty:
-                numberBean.setName(medical);
-                numberBean.setCount(20);
-                EventBus.getDefault().post(numberBean);
-                chineseDetailModel.setCggMc(medical);
-                chineseDetailModel.setSl(20+"");
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl(20);
+                EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                 } catch (DbException e) {
@@ -148,11 +137,9 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_number:
-                numberBean.setName(medical);
-                numberBean.setCount(num);
-                EventBus.getDefault().post(numberBean);
-                chineseDetailModel.setCggMc(medical);
-                chineseDetailModel.setSl(num+"");
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl(num);
+                EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                 } catch (DbException e) {

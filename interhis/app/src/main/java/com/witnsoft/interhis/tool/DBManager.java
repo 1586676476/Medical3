@@ -19,12 +19,12 @@ import java.io.InputStream;
 public class DBManager {
     private final int BUFFER_SIZE=400000;
     private static String PACKAGE_NAME="com.chinese_medical.list";
-    private static final String DB_NAME="chinese_city.db";
+    public static final String DB_NAME="chinese_city.db";
     //存放路径
-    private static final String DB_PATH="/data"+ Environment.getDataDirectory().getAbsolutePath()+"/"+PACKAGE_NAME ;
+    public static final String DB_PATH="/data"+ Environment.getDataDirectory().getAbsolutePath()+"/"+PACKAGE_NAME ;
     private Context context;
     private SQLiteDatabase database;
-    private DBManager(Context context){
+    public DBManager(Context context){
         this.context=context;
     }
 

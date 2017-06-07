@@ -30,6 +30,8 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.db.HisDbManager;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
 import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
@@ -38,6 +40,7 @@ import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -357,11 +360,6 @@ public class DoctorFragment extends Fragment {
         EMMessage message = null;
         java.util.List<EMMessage> var = conversation.getAllMessages();
         message = var.get(0);
-        Map<String, Object> extMap = message.ext();
-
-        Map<String, Object> objectMap = new HashMap<String, Object>();
-        String content = (String) extMap.get("content");
-
         // 姓名
         String patname = "";
         // 性别
@@ -371,21 +369,38 @@ public class DoctorFragment extends Fragment {
         // 症状
         String patContent = "";
 
+        Map<String, Object> contentMap = null;
+        Map<String, Object> patinfoMap = null;
         try {
-            Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
-            Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
-            // 姓名
-            patname = (String) patinfoMap.get("patname");
-            // 性别
-            patsexname = (String) patinfoMap.get("patsexname");
-            // 年龄
-            patnlmc = (String) patinfoMap.get("patnlmc");
-            // 症状
-            patContent = (String) contentMap.get("jbmc");
+            Map<String, Object> extMap = message.ext();
+            Map<String, Object> objectMap = new HashMap<String, Object>();
+            String content = (String) extMap.get("content");
+            contentMap = gson.fromJson(content, objectMap.getClass());
+            if (null != contentMap) {
+                // 症状
+                patContent = (String) contentMap.get("jbmc");
+
+                patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+                // 姓名
+                patname = getText(patinfoMap, "patname");
+                // 性别
+                patsexname = getText(patinfoMap, "patsexname");
+                // 年龄
+                patnlmc = getText(patinfoMap, "patnlmc");
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
+            Log.e(TAG, "!!!!!!ERROR!!!!!NullPointerException in getting first chat list");
         }
         return new CeShi(userName, patname, patsexname, patContent, patnlmc);
+    }
+
+    private String getText(Map<String, Object> map, String key) {
+        String str = "";
+        if (null != map) {
+            str = (String) map.get(key);
+        }
+        return str;
     }
 
     private List<CeShi> data = new ArrayList();
@@ -406,6 +421,8 @@ public class DoctorFragment extends Fragment {
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClicked(PatAdapter adapter, int position) {
+                Intent intent=new Intent("SHUAXIN");
+                getActivity().sendBroadcast(intent);
                 patAdapter.setPos(position);
                 //启动会话列表
                 HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
@@ -415,8 +432,18 @@ public class DoctorFragment extends Fragment {
                             data.get(position).getUserName(),
                             EaseConstant.EXTRA_CHAT_TYPE,
                             EaseConstant.CHATTYPE_SINGLE);
+
                 } catch (ArrayIndexOutOfBoundsException e) {
                     Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
+
+                }
+                //将UserName作为主键 存入数据库
+                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
+                chineseDetailModel.setAcmId(data.get(position).getUserName());
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
                 }
                 patAdapter.notifyDataSetChanged();
             }
