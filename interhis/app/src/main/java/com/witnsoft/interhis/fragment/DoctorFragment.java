@@ -371,21 +371,30 @@ public class DoctorFragment extends Fragment {
         // 症状
         String patContent = "";
 
-        try {
-            Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
-            Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
-            // 姓名
-            patname = (String) patinfoMap.get("patname");
-            // 性别
-            patsexname = (String) patinfoMap.get("patsexname");
-            // 年龄
-            patnlmc = (String) patinfoMap.get("patnlmc");
+        Map<String, Object> contentMap = null;
+        Map<String, Object> patinfoMap = null;
+        contentMap = gson.fromJson(content, objectMap.getClass());
+        if (null != contentMap) {
             // 症状
             patContent = (String) contentMap.get("jbmc");
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+
+            patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+            // 姓名
+            patname = getText(patinfoMap, "patname");
+            // 性别
+            patsexname = getText(patinfoMap, "patsexname");
+            // 年龄
+            patnlmc = getText(patinfoMap, "patnlmc");
         }
         return new CeShi(userName, patname, patsexname, patContent, patnlmc);
+    }
+
+    private String getText(Map<String, Object> map, String key) {
+        String str = "";
+        if (null != map) {
+            str = (String) map.get(key);
+        }
+        return str;
     }
 
     private List<CeShi> data = new ArrayList();
