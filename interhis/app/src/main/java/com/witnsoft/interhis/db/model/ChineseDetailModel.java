@@ -14,14 +14,10 @@ import org.xutils.ex.DbException;
 @Table(name = "ASK_CHINESE_MX")
 public class ChineseDetailModel {
 
-    // 患者姓名
-    @Column(name = "PATNAME",
+    // primary key
+    @Column(name = "ACMID",
             isId = true,
             autoGen = false)
-    private String patName;
-
-    // primary key
-    @Column(name = "ACMID")
     private String acmId;
 
     // 中药处方ID
@@ -56,15 +52,6 @@ public class ChineseDetailModel {
     @Column(name = "dj")
     private String dj;
 
-
-
-    public String getPatName() {
-        return patName;
-    }
-
-    public void setPatName(String patName) {
-        this.patName = patName;
-    }
 
     public ChineseModel getChinese(DbManager db) throws DbException {
         return db.findById(ChineseModel.class, acmId);

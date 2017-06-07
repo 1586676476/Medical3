@@ -1,19 +1,14 @@
 package com.witnsoft.interhis.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
-import com.witnsoft.interhis.fragment.HelperFragment;
 import com.witnsoft.interhis.inter.FilterListener;
 
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,12 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.bean.NumberBean;
-import com.witnsoft.interhis.db.HisDbManager;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.libinterhis.base.BaseActivity;
 
 import org.greenrobot.eventbus.EventBus;
-import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
 
@@ -93,35 +90,35 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        NumberBean numberBean=new NumberBean();
+        ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
         position=getIntent().getIntExtra("position",0);
         switch (v.getId()){
             case R.id.second_ll_root:
                 finish();
                 break;
             case R.id.second_dialog_five:
-                numberBean.setCount(5);
-                EventBus.getDefault().post(numberBean);
+                chineseDetailModel.setSl(5);
+                EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_ten:
-                numberBean.setCount(10);
-                EventBus.getDefault().post(numberBean);
+                chineseDetailModel.setSl(10);
+                EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_fifteen:
-                numberBean.setCount(15);
-                EventBus.getDefault().post(numberBean);
+                chineseDetailModel.setSl(15);
+                EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_twenty:
-                numberBean.setCount(20);
-                EventBus.getDefault().post(numberBean);
+                chineseDetailModel.setSl(20);
+                EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_number:
-                numberBean.setCount(num);
-                EventBus.getDefault().post(numberBean);
+                chineseDetailModel.setSl(num);
+                EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_bt_cancel:

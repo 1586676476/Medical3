@@ -30,6 +30,8 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.db.HisDbManager;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
 import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
@@ -38,6 +40,7 @@ import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -429,8 +432,18 @@ public class DoctorFragment extends Fragment {
                             data.get(position).getUserName(),
                             EaseConstant.EXTRA_CHAT_TYPE,
                             EaseConstant.CHATTYPE_SINGLE);
+
                 } catch (ArrayIndexOutOfBoundsException e) {
                     Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
+
+                }
+                //将UserName作为主键 存入数据库
+                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
+                chineseDetailModel.setAcmId(data.get(position).getUserName());
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
                 }
                 patAdapter.notifyDataSetChanged();
             }

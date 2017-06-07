@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,9 +14,7 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
 
 import android.support.v7.widget.GridLayoutManager;
@@ -43,7 +42,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.Chinese_Fixed_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
-import com.witnsoft.interhis.bean.NumberBean;
+import com.witnsoft.interhis.bean.MedicalStructure;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.inter.DialogListener;
@@ -54,6 +53,7 @@ import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
+import com.witnsoft.interhis.tool.DBManager;
 import com.witnsoft.interhis.tool.KeyboardUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -253,15 +253,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     private void initData() {
-//        list.add(new NumberBean("人发"));
-//        list.add(new NumberBean("当归"));
-//        list.add(new NumberBean("车前子"));
-//        list.add(new NumberBean("八角"));
-//        list.add(new NumberBean("三七"));
-//        list.add(new NumberBean("土蜂"));
-//        list.add(new NumberBean("元参"));
-//        list.add(new NumberBean("乌头"));
-
 
         ChineseDetailModel a=new ChineseDetailModel();
         ChineseDetailModel b=new ChineseDetailModel();
@@ -292,6 +283,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         fix_data.add(h);
         fix_data.add(i);
 
+        list.add(a);
+        list.add(b);
+        list.add(c);
+        list.add(d);
+        list.add(e);
+        list.add(f);
+        list.add(g);
+        list.add(h);
 
     }
 
@@ -315,11 +314,23 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 break;
             case R.id.fragment_helper_radioButton_chinese:
                 playChineseView();
+                //查询本地数据库
+                List<ChineseDetailModel> chineseDetail=new ArrayList<>();
+                ChineseDetailModel chineseDetailModel=null;
+                try {
+                    chineseDetail=HisDbManager.getManager().findChineseDeatilModel(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
+                chinese_adapter.setList(chineseDetail);
+                chinese_adapter.notifyDataSetChanged();
+
+
                 chinese_edittext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        chinese_listView.setVisibility(View.VISIBLE);
-                        chinese_fixed.setVisibility(View.GONE);
+                        chinese_edittextOnClick();
                     }
                 });
                 break;
@@ -330,18 +341,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 //                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
 //                createYaoFang(id, "中药","1029405","7","1000");
                 chinese_button.setOnClickListener(signListener);
-                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
-                try {
-                   List<ChineseDetailModel> chineseDetailModels= HisDbManager.getManager().findChineseDeatilModel(chineseDetailModel);
-                    for (ChineseDetailModel chineseDetailModel1:chineseDetailModels){
-                        Log.e(TAG, "onClick: "+chineseDetailModel1 );
-                    }
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
                 break;
         }}
 
+    private void chinese_edittextOnClick() {
+        chinese_listView.setVisibility(View.VISIBLE);
+        chinese_fixed.setVisibility(View.GONE);
+    }
 
 
     private View.OnClickListener signListenerWestern = new View.OnClickListener() {
@@ -481,8 +487,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     public void getContent(String userName, String userId, String type, int single) {
-        tvNoData.setVisibility(View.GONE);
-        llContent.setVisibility(View.VISIBLE);
 
         id = userId;
         this.userName = userName;
@@ -567,7 +571,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         @Override
         public void onReceive(Context context, Intent intent) {
-           playAskVeiw();
+            playAskVeiw();
             ask.setChecked(true);
         }
     }
@@ -585,7 +589,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 //            chatFragment.setArguments(bundle);
 //            getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
 //
-//
+//*
 //        }
 //    }
 

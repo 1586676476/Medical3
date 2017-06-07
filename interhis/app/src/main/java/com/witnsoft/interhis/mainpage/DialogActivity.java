@@ -3,7 +3,6 @@ package com.witnsoft.interhis.mainpage;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.libinterhis.base.BaseActivity;

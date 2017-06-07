@@ -79,8 +79,9 @@
             <TextView
                 android:id="@+id/fragment_helper_ask_linearLayout_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="聊天功能"/>
+                android:layout_height="match_parent" />
+
+
 
         </FrameLayout>
 

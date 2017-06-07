@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.bean.NumberBean;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
-import com.witnsoft.interhis.fragment.HelperFragment;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
 
