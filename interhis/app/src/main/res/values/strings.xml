@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">中怡在线</string>
     <dimen name="key_height">45.0dip</dimen>
+    <string name="quit">再按一次退出程序</string>
 
     <!--LoginActivity begin-->
     <string name="enter_user_name">请输入用户名</string>
