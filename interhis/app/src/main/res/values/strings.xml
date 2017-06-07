@@ -10,4 +10,5 @@
     <string name="no_user_password_tip">密码不能为空</string>
     <string name="login_failed">登录失败</string>
     <!--LoginActivity end-->
+    <string name="no_contact_list">请选择一个联系人会话</string>
 </resources>
