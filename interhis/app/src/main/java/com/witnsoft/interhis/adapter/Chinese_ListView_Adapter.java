@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.NumberBean;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.fragment.HelperFragment;
 import com.witnsoft.interhis.inter.FilterListener;
 
@@ -25,11 +26,11 @@ import java.util.List;
 
 public class Chinese_ListView_Adapter extends BaseAdapter {
 
-    private List<NumberBean> list=new ArrayList<NumberBean>();
+    private List<ChineseDetailModel> list=new ArrayList<ChineseDetailModel>();
     private Context context;
     private FilterListener listener=null;//接口对象
 
-    public Chinese_ListView_Adapter(List<NumberBean> list, Context context, FilterListener listener) {
+    public Chinese_ListView_Adapter(List<ChineseDetailModel> list, Context context, FilterListener listener) {
         this.list = list;
         this.context = context;
         this.listener = listener;
@@ -60,7 +61,7 @@ public class Chinese_ListView_Adapter extends BaseAdapter {
             convertView.setTag(holder);
         }
         holder= (ViewHolder) convertView.getTag();
-        holder.tv_ss.setText(list.get(position).getName());
+        holder.tv_ss.setText(list.get(position).getCmc());
         return convertView;
     }
 

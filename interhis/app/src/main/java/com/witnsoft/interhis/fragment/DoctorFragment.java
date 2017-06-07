@@ -322,6 +322,8 @@ public class DoctorFragment extends Fragment {
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClicked(PatAdapter adapter, int position) {
+                Intent intent=new Intent("SHUAXIN");
+                getActivity().sendBroadcast(intent);
                 patAdapter.setPos(position);
                 patAdapter.notifyDataSetChanged();
                 //启动会话列表

@@ -21,7 +21,6 @@ public class NumberBean {
     }
 
     public NumberBean(String name, int count) {
-
         this.name = name;
         this.count = count;
     }

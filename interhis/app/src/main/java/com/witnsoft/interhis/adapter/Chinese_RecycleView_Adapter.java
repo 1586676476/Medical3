@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.NumberBean;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.fragment.HelperFragment;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
@@ -21,7 +22,7 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
     private static final String TAG = "Chinese_RecycleView_Ada";
 
     private Context context;
-    private List<NumberBean> list;
+    private List<ChineseDetailModel> list;
     private OnClick onClick;
     private int count;
 
@@ -29,26 +30,17 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
         this.onClick = onClick;
     }
 
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
     public Chinese_RecycleView_Adapter(Context context){
         this.context = context;
     }
 
-    public void setList(List<NumberBean> list) {
+    public void setList(List<ChineseDetailModel> list) {
         this.list = list;
         notifyDataSetChanged();
     }
     //定义一个添加text的方法
-    public void addTextView(NumberBean str){
+    public void addTextView(ChineseDetailModel str){
         list.add(str);
-    }
-
-    public void onCountChanged(int count){
-        this.count = count;
-        notifyDataSetChanged();
     }
 
     public void deleteTextView(int position){
@@ -70,8 +62,8 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
 //            }
 //        });
 
-        holder.setText(R.id.fragment_helper_chinese_recycleview_item_text,list.get(position).getName());
-        holder.setText(R.id.fragment_helper_chinese_recycleview_item_number,list.get(position).getCount()+""+"g");
+        holder.setText(R.id.fragment_helper_chinese_recycleview_item_text,list.get(position).getCmc());
+        holder.setText(R.id.fragment_helper_chinese_recycleview_item_number,list.get(position).getSl()+""+"g");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.NumberBean;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 
 public class Chinese_Fixed_Adapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private List<NumberBean> list;
+    private List<ChineseDetailModel> list;
     private Context context;
     private OnFixClick onFixClick;
 
@@ -26,7 +27,7 @@ public class Chinese_Fixed_Adapter extends RecyclerView.Adapter<BaseViewHolder> 
         this.onFixClick = onFixClick;
     }
 
-    public void setList(List<NumberBean> list) {
+    public void setList(List<ChineseDetailModel> list) {
         this.list = list;
     }
 
@@ -42,7 +43,7 @@ public class Chinese_Fixed_Adapter extends RecyclerView.Adapter<BaseViewHolder> 
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, final int position) {
-        holder.setText(R.id.fragment_helper_chinese_fixed_recycleview_text,list.get(position).getName());
+        holder.setText(R.id.fragment_helper_chinese_fixed_recycleview_text,list.get(position).getCmc());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

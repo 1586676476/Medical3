@@ -29,8 +29,6 @@ public class KeyboardUtil {
     public boolean isupper = false;//是否大写
     private EditText ed;
 
-    private Chinese_RecycleView_Adapter chinese_adapter;
-
     public KeyboardUtil(Activity act, Context ctx, EditText ed) {
         this.ctx = ctx;
         this.act = act;
