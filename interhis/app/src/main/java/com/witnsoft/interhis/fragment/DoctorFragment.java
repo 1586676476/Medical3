@@ -88,8 +88,6 @@ public class DoctorFragment extends Fragment {
 
     private PatAdapter patAdapter;
 
-//    private List<CeShi> data;
-
     private String docId = "";
 
     // 下拉刷新
@@ -289,12 +287,6 @@ public class DoctorFragment extends Fragment {
             }
         });
     }
-
-    // TODO: 2017/6/2 测试数据 
-    private String[] name = new String[]{"ceshi2", "test001", "patid001"};
-    private String[] sex = new String[]{"男", "女", "男"};
-    private int[] age = new int[]{22, 40, 55};
-    private String[] content = new String[]{"头痛", "嗓子痛", "感冒"};
 
     private RefreshFriendListBroadcastReceiver receiver;
     private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
