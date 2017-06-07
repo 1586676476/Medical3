@@ -357,11 +357,6 @@ public class DoctorFragment extends Fragment {
         EMMessage message = null;
         java.util.List<EMMessage> var = conversation.getAllMessages();
         message = var.get(0);
-        Map<String, Object> extMap = message.ext();
-
-        Map<String, Object> objectMap = new HashMap<String, Object>();
-        String content = (String) extMap.get("content");
-
         // 姓名
         String patname = "";
         // 性别
@@ -373,18 +368,26 @@ public class DoctorFragment extends Fragment {
 
         Map<String, Object> contentMap = null;
         Map<String, Object> patinfoMap = null;
-        contentMap = gson.fromJson(content, objectMap.getClass());
-        if (null != contentMap) {
-            // 症状
-            patContent = (String) contentMap.get("jbmc");
+        try {
+            Map<String, Object> extMap = message.ext();
+            Map<String, Object> objectMap = new HashMap<String, Object>();
+            String content = (String) extMap.get("content");
+            contentMap = gson.fromJson(content, objectMap.getClass());
+            if (null != contentMap) {
+                // 症状
+                patContent = (String) contentMap.get("jbmc");
 
-            patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
-            // 姓名
-            patname = getText(patinfoMap, "patname");
-            // 性别
-            patsexname = getText(patinfoMap, "patsexname");
-            // 年龄
-            patnlmc = getText(patinfoMap, "patnlmc");
+                patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+                // 姓名
+                patname = getText(patinfoMap, "patname");
+                // 性别
+                patsexname = getText(patinfoMap, "patsexname");
+                // 年龄
+                patnlmc = getText(patinfoMap, "patnlmc");
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            Log.e(TAG, "!!!!!!ERROR!!!!!NullPointerException in getting first chat list");
         }
         return new CeShi(userName, patname, patsexname, patContent, patnlmc);
     }
