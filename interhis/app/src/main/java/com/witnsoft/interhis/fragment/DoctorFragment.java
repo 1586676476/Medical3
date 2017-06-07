@@ -27,7 +27,6 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
-import com.hyphenate.exceptions.HyphenateException;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.R;
@@ -93,6 +92,9 @@ public class DoctorFragment extends Fragment {
     // 下拉刷新
     @ViewInject(R.id.sl_refresh)
     private SwipeRefreshLayout slRefresh;
+    // 联系人优化页
+    @ViewInject(R.id.tv_no_contact)
+    private TextView tvNoContact;
     // 患者列表
     @ViewInject(R.id.rv_pat)
     private RecyclerView recyclerView;
@@ -240,7 +242,6 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    // TODO: 2017/5/26 当获取环信新消息，得知患者列表改变动作，调用统计接口，主动请求刷新视图
     // F27.APP.01.05 获得统计值
     private void callCountApi() {
         OTRequest otRequest = new OTRequest(getActivity());
@@ -351,7 +352,6 @@ public class DoctorFragment extends Fragment {
     }
 
     private CeShi ceshi(String userName) {
-        // TODO: 2017/6/6 明天验证这种方法是否合适（通过第一条消息获取患者信息）
         EMConversation conversation;
         conversation = EMClient.getInstance().chatManager().getConversation(userName, EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_SINGLE), true);
         EMMessage message = null;
@@ -362,16 +362,29 @@ public class DoctorFragment extends Fragment {
         Map<String, Object> objectMap = new HashMap<String, Object>();
         String content = (String) extMap.get("content");
 
-        Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
-        Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
         // 姓名
-        String patname = (String) patinfoMap.get("patname");
+        String patname = "";
         // 性别
-        String patsexname = (String) patinfoMap.get("patsexname");
+        String patsexname = "";
         // 年龄
-        String patnlmc = (String) patinfoMap.get("patnlmc");
+        String patnlmc = "";
         // 症状
-        String patContent = (String) contentMap.get("jbmc");
+        String patContent = "";
+
+        try {
+            Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
+            Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+            // 姓名
+            patname = (String) patinfoMap.get("patname");
+            // 性别
+            patsexname = (String) patinfoMap.get("patsexname");
+            // 年龄
+            patnlmc = (String) patinfoMap.get("patnlmc");
+            // 症状
+            patContent = (String) contentMap.get("jbmc");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return new CeShi(userName, patname, patsexname, patContent, patnlmc);
     }
 
@@ -380,6 +393,15 @@ public class DoctorFragment extends Fragment {
 
     // 初始化出诊患者列表
     private void freshUi() {
+        // 会话列表变化时调用统计接口刷新统计数值
+        callCountApi();
+        if (null != data && 0 < data.size()) {
+            tvNoContact.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            tvNoContact.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
         patAdapter = new PatAdapter(getContext(), data);
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
@@ -390,7 +412,7 @@ public class DoctorFragment extends Fragment {
                 try {
                     Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
                     helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-                            data.get(position).getName(),
+                            data.get(position).getUserName(),
                             EaseConstant.EXTRA_CHAT_TYPE,
                             EaseConstant.CHATTYPE_SINGLE);
                 } catch (ArrayIndexOutOfBoundsException e) {

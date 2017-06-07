@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -73,6 +74,8 @@ import java.util.List;
 
 public class HelperFragment extends Fragment implements View.OnClickListener, OnClick, OnFixClick {
     private static final String TAG = "HelperFragment";
+    private LinearLayout llContent;
+    private TextView tvNoData;
     //手写签名
     private Bitmap mSignBitmap;
     private String signPath;
@@ -116,6 +119,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_helper, container, false);
+
+        llContent = (LinearLayout) view.findViewById(R.id.ll_content);
+        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
 
         ask = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_ask);
         chat = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_chat);
@@ -455,6 +461,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     public void getContent(String userName, String userId, String type, int single) {
+        tvNoData.setVisibility(View.GONE);
+        llContent.setVisibility(View.VISIBLE);
 
         id = userId;
         this.userName = userName;
