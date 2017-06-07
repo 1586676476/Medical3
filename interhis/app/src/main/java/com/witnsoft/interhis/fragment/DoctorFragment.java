@@ -27,7 +27,6 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
-import com.hyphenate.exceptions.HyphenateException;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.bean.CeShi;
 import com.witnsoft.interhis.R;
@@ -240,7 +239,6 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    // TODO: 2017/5/26 当获取环信新消息，得知患者列表改变动作，调用统计接口，主动请求刷新视图
     // F27.APP.01.05 获得统计值
     private void callCountApi() {
         OTRequest otRequest = new OTRequest(getActivity());
@@ -351,7 +349,6 @@ public class DoctorFragment extends Fragment {
     }
 
     private CeShi ceshi(String userName) {
-        // TODO: 2017/6/6 明天验证这种方法是否合适（通过第一条消息获取患者信息）
         EMConversation conversation;
         conversation = EMClient.getInstance().chatManager().getConversation(userName, EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_SINGLE), true);
         EMMessage message = null;
@@ -380,6 +377,8 @@ public class DoctorFragment extends Fragment {
 
     // 初始化出诊患者列表
     private void freshUi() {
+        // 会话列表变化时调用统计接口刷新统计数值
+        callCountApi();
         patAdapter = new PatAdapter(getContext(), data);
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
