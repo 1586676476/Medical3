@@ -60,7 +60,6 @@ import java.util.Map;
 public class DoctorFragment extends Fragment {
     private static final String TAG = "DoctorFragment";
     private static LogUtils logUtils = LogUtils.getLog();
-    private Gson gson;
 
     private static final String TN_DOC_INFO = "F27.APP.01.01";
     private static final String TN_COUNT = "F27.APP.01.05";
@@ -89,7 +88,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private PatAdapter patAdapter;
-
+    private Gson gson;
     private String docId = "";
 
     // 下拉刷新
@@ -375,6 +374,9 @@ public class DoctorFragment extends Fragment {
             Map<String, Object> extMap = message.ext();
             Map<String, Object> objectMap = new HashMap<String, Object>();
             String content = (String) extMap.get("content");
+            if (null == gson) {
+                gson = new Gson();
+            }
             contentMap = gson.fromJson(content, objectMap.getClass());
             if (null != contentMap) {
                 // 症状
@@ -421,7 +423,7 @@ public class DoctorFragment extends Fragment {
         patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClicked(PatAdapter adapter, int position) {
-                Intent intent=new Intent("SHUAXIN");
+                Intent intent = new Intent("SHUAXIN");
                 getActivity().sendBroadcast(intent);
                 patAdapter.setPos(position);
                 //启动会话列表
@@ -438,7 +440,7 @@ public class DoctorFragment extends Fragment {
 
                 }
                 //将UserName作为主键 存入数据库
-                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
+                ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
                 chineseDetailModel.setAcmId(data.get(position).getUserName());
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
