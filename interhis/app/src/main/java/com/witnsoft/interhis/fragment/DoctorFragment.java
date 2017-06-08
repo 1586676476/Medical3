@@ -489,10 +489,12 @@ public class DoctorFragment extends Fragment {
                             // 收工
                             isVisiting = false;
                             setBtnRest();
-                            // TODO: 2017/6/8 环信聊天退出
+                            // TODO: 2017/6/8 环信聊天退出,和请求接口显示progressing判断
                             dataChatList.clear();
-                            patAdapter.notifyDataSetChanged();
                             pageNo = 1;
+                            if (null != patAdapter) {
+                                patAdapter.notifyDataSetChanged();
+                            }
                         }
                     }
                 } else if (ErrCode.ErrCode_504.equals(resultCode)) {
@@ -739,6 +741,14 @@ public class DoctorFragment extends Fragment {
             @Override
             public void onError(int i, String s) {
                 Log.e("onError: ", i + " " + s + "登录失败");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        isVisiting = false;
+                        setBtnRest();
+                        Toast.makeText(getActivity(), getResources().getString(R.string.chat_failed), Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
 

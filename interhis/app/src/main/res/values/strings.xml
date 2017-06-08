@@ -19,4 +19,5 @@
     <string name="visiting">接诊中</string>
     <string name="take_rest">收工</string>
     <string name="logout">退出登录</string>
+    <string name="chat_failed">聊天创建失败</string>
 </resources>
