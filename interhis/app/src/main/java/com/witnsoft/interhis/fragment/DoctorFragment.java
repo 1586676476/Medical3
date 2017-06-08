@@ -28,7 +28,7 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.witnsoft.interhis.adapter.PatAdapter;
-import com.witnsoft.interhis.bean.CeShi;
+import com.witnsoft.interhis.bean.PatChatInfo;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
@@ -340,7 +340,7 @@ public class DoctorFragment extends Fragment {
         if (null != nameList && 0 < nameList.size()) {
             data.clear();
             for (int i = 0; i < nameList.size(); i++) {
-                CeShi ceshi = ceshi(nameList.get(i));
+                PatChatInfo ceshi = patChatInfo(nameList.get(i));
                 data.add(ceshi);
             }
         }
@@ -353,7 +353,7 @@ public class DoctorFragment extends Fragment {
         Log.e(TAG, "!!!!!chatList done");
     }
 
-    private CeShi ceshi(String userName) {
+    private PatChatInfo patChatInfo(String userName) {
         EMConversation conversation;
         conversation = EMClient.getInstance().chatManager().getConversation(userName, EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_SINGLE), true);
         EMMessage message = null;
@@ -394,7 +394,7 @@ public class DoctorFragment extends Fragment {
             e.printStackTrace();
             Log.e(TAG, "!!!!!!ERROR!!!!!NullPointerException in getting first chat list");
         }
-        return new CeShi(userName, patname, patsexname, patContent, patnlmc);
+        return new PatChatInfo(userName, patname, patsexname, patContent, patnlmc);
     }
 
     private String getText(Map<String, Object> map, String key) {
@@ -405,7 +405,7 @@ public class DoctorFragment extends Fragment {
         return str;
     }
 
-    private List<CeShi> data = new ArrayList();
+    private List<PatChatInfo> data = new ArrayList();
     private boolean isVisit = false;
 
     // 初始化出诊患者列表

@@ -4,7 +4,7 @@ package com.witnsoft.interhis.bean;
  * Created by ${liyan} on 2017/5/15.
  */
 
-public class CeShi {
+public class PatChatInfo {
     // 环信用户唯一标识
     private String userName;
     // 用户名
@@ -53,7 +53,7 @@ public class CeShi {
         this.userName = userName;
     }
 
-    public CeShi(String userName,String name, String sex, String content, String age) {
+    public PatChatInfo(String userName, String name, String sex, String content, String age) {
 
         this.userName = userName;
         this.name = name;

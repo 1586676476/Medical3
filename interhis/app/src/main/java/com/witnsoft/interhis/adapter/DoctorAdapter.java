@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.bean.CeShi;
+import com.witnsoft.interhis.bean.PatChatInfo;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.tool.BaseViewHolder;
 
@@ -21,7 +21,7 @@ import java.util.List;
 public class DoctorAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final String TAG = "DoctorAdapter";
     private Context context;
-    private List<CeShi> list;
+    private List<PatChatInfo> list;
     private OnClick onClick;
     private int pos;
 
@@ -34,7 +34,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.onClick = onClick;
     }
 
-    public void setList(List<CeShi> list) {
+    public void setList(List<PatChatInfo> list) {
         this.list = list;
 
     }

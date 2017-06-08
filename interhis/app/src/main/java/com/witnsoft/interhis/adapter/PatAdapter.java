@@ -1,19 +1,15 @@
 package com.witnsoft.interhis.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
 import com.witnsoft.interhis.R;
-import com.witnsoft.interhis.bean.CeShi;
+import com.witnsoft.interhis.bean.PatChatInfo;
 
 import java.util.List;
 
@@ -24,12 +20,12 @@ import java.util.List;
 public class PatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private List<CeShi> list;
+    private List<PatChatInfo> list;
     private int pos = -1;
     OnRecyclerViewItemClickListener clickListener;
     private int unread;
 
-    public PatAdapter(Context context, List<CeShi> list) {
+    public PatAdapter(Context context, List<PatChatInfo> list) {
         this.context = context;
         this.list = list;
     }
@@ -56,7 +52,7 @@ public class PatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final CeShi item = list.get(position);
+        final PatChatInfo item = list.get(position);
         if (position == pos) {
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
         } else {
