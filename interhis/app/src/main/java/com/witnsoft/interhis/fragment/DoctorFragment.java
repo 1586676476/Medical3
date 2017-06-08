@@ -359,7 +359,7 @@ public class DoctorFragment extends Fragment {
                                     @Override
                                     public void OnBottom() {
                                         Log.d(TAG, "OnBottom: out");
-                                        if (respList != null && dataChatList.size() == 10) {
+                                        if (respList != null && respList.size() == 10) {
                                             patAdapter.setCanNotReadBottom(true);
                                             Log.d(TAG, "OnBottom: in");
                                             pageNo++;
