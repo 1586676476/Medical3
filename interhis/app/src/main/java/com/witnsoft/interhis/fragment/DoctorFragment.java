@@ -20,8 +20,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.EaseConstant;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.R;
@@ -32,6 +35,7 @@ import com.witnsoft.interhis.utils.ComRecyclerAdapter;
 import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.DataModel;
+import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
@@ -42,6 +46,7 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,12 +63,14 @@ public class DoctorFragment extends Fragment {
     private static final String TN_DOC_INFO = "F27.APP.01.01";
     private static final String TN_COUNT = "F27.APP.01.05";
     private static final String TN_PAT_LIST = "F27.APP.01.02";
+    private static final String TN_VISIT = "F27.APP.01.03";
     private static final String DOC_ID = "docid";
     private static final String DATA = "DATA";
     private static final String ROWSPERPAGE = "rowsperpage";
     private static final String PAGE_NO = "pageno";
     private static final String ORDER_COLUMN = "ordercolumn";
     private static final String ORDER_TYPE = "ordertype";
+    private static final String WORK_FLAG = "workflag";
     private static final int PAGE_COUNT = 10;
 
     private final class ErrCode {
@@ -136,6 +143,9 @@ public class DoctorFragment extends Fragment {
     //出诊按钮
     @ViewInject(R.id.doctor_visit)
     private Button btnVisit;
+    // 退出登录／收工
+    @ViewInject(R.id.btn_take_rest)
+    private Button btnTakeRest;
 
     @Nullable
     @Override
@@ -162,6 +172,13 @@ public class DoctorFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (!isVisiting) {
+            // 不在出诊状态
+            setBtnRest();
+        } else {
+            // 出诊中
+            setBtnVisiting();
+        }
         docId = ThriftPreUtils.getDocId(getActivity());
         callDocInfoApi();
         callCountApi();
@@ -170,9 +187,22 @@ public class DoctorFragment extends Fragment {
             public void onClick(View v) {
                 doctor_message.setVisibility(View.VISIBLE);
                 doctor_number.setVisibility(View.VISIBLE);
-                slRefresh.setEnabled(true);
+                // 出诊
+                callVisitApi();
 //                    getChatList();
-                callPatListApi();
+//                callPatListApi();
+            }
+        });
+        btnTakeRest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isVisiting) {
+                    // 退出登录
+                    callLogoutApi();
+                } else {
+                    // 收工
+                    callVisitApi();
+                }
             }
         });
     }
@@ -342,7 +372,7 @@ public class DoctorFragment extends Fragment {
                                 if (null != dataChatList && 0 < dataChatList.size()) {
                                     tvNoContact.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
-                                } else if (0 == pageNo) {
+                                } else if (1 == pageNo) {
                                     // 保证是第一次加载时的判断，分页加载不显示优化页
                                     tvNoContact.setVisibility(View.VISIBLE);
                                     recyclerView.setVisibility(View.GONE);
@@ -425,6 +455,60 @@ public class DoctorFragment extends Fragment {
         });
     }
 
+    // 是否出诊状态
+    private boolean isVisiting = false;
+
+    // F27.APP.01.03 出诊／收工／离开
+    private void callVisitApi() {
+        OTRequest otRequest = new OTRequest(getActivity());
+        // DATA
+        DataModel data = new DataModel();
+        if (!isVisiting) {
+            // 出诊
+            data.setParam(WORK_FLAG, "online");
+        } else {
+            // 收工
+            data.setParam(WORK_FLAG, "offline");
+        }
+        data.setParam(DOC_ID, docId);
+        otRequest.setDATA(data);
+        // TN 接口辨别
+        otRequest.setTN(TN_VISIT);
+
+        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
+            @Override
+            public void onSuccess(Map response, String resultCode) {
+                if (ErrCode.ErrCode_200.equals(resultCode)) {
+                    if (null != response) {
+                        if (!isVisiting) {
+                            // 出诊
+                            isVisiting = true;
+                            setBtnVisiting();
+                            chatLogin();
+                        } else {
+                            // 收工
+                            isVisiting = false;
+                            setBtnRest();
+                            // TODO: 2017/6/8 环信聊天退出
+                            dataChatList.clear();
+                            patAdapter.notifyDataSetChanged();
+                            pageNo = 1;
+                        }
+                    }
+                } else if (ErrCode.ErrCode_504.equals(resultCode)) {
+                    // token失效
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+            }
+        });
+    }
+
     private RefreshFriendListBroadcastReceiver receiver;
     private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
     private static final String MESSAGE_USER_NAME = "messageUserName";
@@ -456,6 +540,37 @@ public class DoctorFragment extends Fragment {
                 callPatListApi();
             }
         }
+    }
+
+    // 医生登出
+    private void callLogoutApi() {
+        LoginRequest request = new LoginRequest();
+        request.setReqType("logout");
+        NetTool.getInstance().startRequest(true, getActivity(), request, null, new CallBack<Map, String>() {
+            @Override
+            public void onSuccess(Map response, String resultCode) {
+                if ("200".equals(resultCode)) {
+                    // 登出成功
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                } else {
+                    if (null != response.get("errmsg")) {
+                        try {
+                            Toast.makeText(getActivity(),
+                                    String.valueOf(response.get("errmsg")), Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Toast.makeText(getActivity(), getResources().getString(R.string.login_failed), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 //    private void getChatList() {
@@ -610,5 +725,43 @@ public class DoctorFragment extends Fragment {
                 }, 600);
             }
         });
+    }
+
+    private void chatLogin() {
+        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                Log.e("onSuccess: ", "登录成功");
+                // 获取患者列表
+                callPatListApi();
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                Log.e("onError: ", i + " " + s + "登录失败");
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+    }
+
+    // 出诊状态
+    private void setBtnVisiting() {
+        btnVisit.setText(getResources().getString(R.string.visiting));
+        btnVisit.setTextColor(getResources().getColor(R.color.visit_blue));
+        btnVisit.setEnabled(false);
+        btnTakeRest.setText(getResources().getString(R.string.take_rest));
+    }
+
+    // 休息状态
+    private void setBtnRest() {
+        btnVisit.setText(getResources().getString(R.string.visit));
+        btnVisit.setTextColor(getResources().getColor(R.color.colorWhite));
+        btnVisit.setEnabled(true);
+        btnTakeRest.setText(getResources().getString(R.string.logout));
     }
 }

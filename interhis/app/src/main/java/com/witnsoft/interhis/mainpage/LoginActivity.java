@@ -91,7 +91,8 @@ public class LoginActivity extends BaseActivity {
                 // 登录成功将用户名存本地
                 ThriftPreUtils.putLoginName(LoginActivity.this, name);
                 if ("200".equals(resultCode)) {
-                    chatLogin();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 } else {
                     if (null != response.get(ERR_MSG)) {
                         try {
@@ -111,30 +112,6 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private void chatLogin() {
-        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
-            @Override
-            public void onSuccess() {
-                Log.e("onSuccess: ", "登录成功");
-                // 获取所有会话列表
-                EMClient.getInstance().chatManager().loadAllConversations();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                Log.e("onError: ", i + " " + s + "登录失败");
-
-            }
-
-            @Override
-            public void onProgress(int i, String s) {
-
-            }
-        });
-    }
-
     private void initClick(View view, Action1<Void> action1) {
         RxView.clicks(view)
                 .throttleFirst(THROTTLE_TIME, TimeUnit.MILLISECONDS)
@@ -142,40 +119,4 @@ public class LoginActivity extends BaseActivity {
                 .subscribe(action1);
     }
 
-    // 医生登出
-//    private void callLogoutApi() {
-//        LoginRequest request = new LoginRequest();
-//        request.setReqType("logout");
-//        NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<String>() {
-//            @Override
-//            public void onSuccess(String response, String resultCode) {
-//                Gson gson = new Gson();
-//                Map<String, Map<String, Object>> mapObj = new HashMap<String, Map<String, Object>>();
-//                final Map<String, Map<String, Object>> map = gson.fromJson(response, mapObj.getClass());
-//                if ("200".equals(resultCode)) {
-//                    // 登出成功
-//                    Intent intent = new Intent(LoginActivity.this,LoginActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                } else {
-//                    if (null != map.get("errmsg")) {
-//                        try {
-//                            Toast.makeText(LoginActivity.this,
-//                                    String.valueOf(map.get("errmsg")), Toast.LENGTH_LONG).show();
-//                        } catch (Exception e) {
-//
-//                        }
-//                    }
-//                }
-//            }
-//
-//
-//
-//
-//            @Override
-//            public void onError(Throwable throwable) {
-//                Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_failed), Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
 }

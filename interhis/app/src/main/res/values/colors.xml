@@ -9,4 +9,6 @@
     <color name="colorYellow">#FFFFCC</color>
     <color name="colorBlue">#169BD5</color>
     <color name="colorRed">#FF0000</color>
+    <color name="visit_blue">#98ceff</color>
+    <color name="visit_gray">#a1b3ad</color>
 </resources>

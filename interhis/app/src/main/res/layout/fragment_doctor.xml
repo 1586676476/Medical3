@@ -237,9 +237,28 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
         android:background="@drawable/btn_visit"
-        android:text="出诊"/>
+        android:text="@string/visit"
+        android:textColor="@color/colorWhite"
+        android:textSize="12dp"/>
+
+    <Button
+        android:id="@+id/btn_take_rest"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/btn_logout"
+        android:text="@string/logout"
+        android:textColor="@color/colorWhite"
+        android:textSize="8dp"/>
+
+
     <!--android:layout_marginLeft="100dp"-->
     <!--android:layout_marginTop="400dp"-->
 
