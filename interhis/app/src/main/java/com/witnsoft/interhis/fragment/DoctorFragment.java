@@ -298,6 +298,8 @@ public class DoctorFragment extends Fragment {
 
     private int pageNo = 1;
     private List<Map<String, String>> respList = new ArrayList<Map<String, String>>();
+    // 记录点击位置
+    private int checkedPosition = -1;
 
     // F27.APP.01.02 查询问诊人员列表
     private void callPatListApi() {
@@ -332,6 +334,15 @@ public class DoctorFragment extends Fragment {
                                 // 不是第一页，表示分页加载
                                 for (int i = 0; i < respList.size(); i++) {
                                     dataChatList.add(respList.get(i));
+                                }
+                            }
+                            // 记录点击位置
+                            if (-1 < checkedPosition) {
+                                try {
+                                    dataChatList.get(checkedPosition).put("color", "changed");
+                                } catch (ArrayIndexOutOfBoundsException e) {
+                                    e.printStackTrace();
+                                    Log.e(TAG, "!!!!ArrayIndexOutOfBoundsException in checkedPosition");
                                 }
                             }
                         }
@@ -371,6 +382,7 @@ public class DoctorFragment extends Fragment {
                                 patAdapter.setOnItemClickListener(new ComRecyclerAdapter.OnItemClickListener() {
                                     @Override
                                     public void onClick(View v, int position) {
+                                        checkedPosition = position;
                                         for (int i = 0; i < dataChatList.size(); i++) {
                                             dataChatList.get(i).put("color", "unchanged");
                                         }
