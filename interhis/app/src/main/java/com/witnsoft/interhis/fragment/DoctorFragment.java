@@ -33,6 +33,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.interhis.utils.ComRecyclerAdapter;
 import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.DataModel;
@@ -63,8 +64,13 @@ public class DoctorFragment extends Fragment {
 
     private static final String TN_DOC_INFO = "F27.APP.01.01";
     private static final String TN_COUNT = "F27.APP.01.05";
+    private static final String TN_PAT_LIST = "F27.APP.01.02";
     private static final String DOC_ID = "docid";
     private static final String DATA = "DATA";
+    private static final String ROWSPERPAGE = "rowsperpage";
+    private static final String PAGE_NO = "pageno";
+    private static final String ORDER_COLUMN = "ordercolumn";
+    private static final String ORDER_TYPE = "ordertype";
 
     private final class ErrCode {
         private static final String ErrCode_200 = "200";
@@ -87,7 +93,7 @@ public class DoctorFragment extends Fragment {
         private static final String LJSR = "ljsr";
     }
 
-    private PatAdapter patAdapter;
+    private PatAdapter patAdapter = null;
     private Gson gson;
     private String docId = "";
 
@@ -172,12 +178,11 @@ public class DoctorFragment extends Fragment {
             public void onClick(View v) {
                 doctor_message.setVisibility(View.VISIBLE);
                 doctor_number.setVisibility(View.VISIBLE);
-//                recyclerView.setVisibility(View.VISIBLE);
                 if (!isVisit) {
                     isVisit = true;
                     slRefresh.setEnabled(true);
-                    getChatList();
-//                    initPatList();
+//                    getChatList();
+                    callPatListApi();
                 }
             }
         });
@@ -291,6 +296,127 @@ public class DoctorFragment extends Fragment {
         });
     }
 
+    private int pageNo = 1;
+    private List<Map<String, String>> respList = new ArrayList<Map<String, String>>();
+
+    // F27.APP.01.02 查询问诊人员列表
+    private void callPatListApi() {
+        OTRequest otRequest = new OTRequest(getActivity());
+        // DATA
+        final DataModel data = new DataModel();
+        data.setParam(DOC_ID, docId);
+        data.setParam(ORDER_COLUMN, "paytime");
+        data.setParam(ORDER_TYPE, "asc");
+        data.setParam(ROWSPERPAGE, "10");
+        //分页
+        data.setParam(PAGE_NO, String.valueOf(pageNo));
+        otRequest.setDATA(data);
+        // TN 接口辨别
+        otRequest.setTN(TN_PAT_LIST);
+
+        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
+            @Override
+            public void onSuccess(Map response, String resultCode) {
+                if (ErrCode.ErrCode_200.equals(resultCode)) {
+                    if (null != response) {
+                        respList.clear();
+                        respList = (List<Map<String, String>>) response.get(DATA);
+                        if (null != respList && 0 < respList.size()) {
+                            // 会话列表变化时调用统计接口刷新统计数值
+                            callCountApi();
+                            if (1 == pageNo) {
+                                // 如果是第一页，表示重新加载数据
+                                dataChatList.clear();
+                                dataChatList = respList;
+                            } else {
+                                // 不是第一页，表示分页加载
+                                for (int i = 0; i < respList.size(); i++) {
+                                    dataChatList.add(respList.get(i));
+                                }
+                            }
+                        }
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (null != dataChatList && 0 < dataChatList.size()) {
+                                    tvNoContact.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                } else if (0 == pageNo) {
+                                    // 保证是第一次加载时的判断，分页加载不显示优化页
+                                    tvNoContact.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                }
+                                if (null == patAdapter) {
+                                    patAdapter = new PatAdapter(getContext(), dataChatList, R.layout.fragment_doctor_recycleview_item);
+                                    patAdapter.setFootViewId(R.layout.activity_load_footer);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                    recyclerView.setHasFixedSize(true);
+                                    recyclerView.setAdapter(patAdapter);
+                                }
+                                patAdapter.setCanNotReadBottom(false);
+                                patAdapter.notifyDataSetChanged();
+                                patAdapter.setOnRecyclerViewBottomListener(new ComRecyclerAdapter.OnRecyclerViewBottomListener() {
+                                    @Override
+                                    public void OnBottom() {
+                                        Log.d(TAG, "OnBottom: out");
+                                        if (respList != null && dataChatList.size() == 10) {
+                                            patAdapter.setCanNotReadBottom(true);
+                                            Log.d(TAG, "OnBottom: in");
+                                            pageNo++;
+                                            callPatListApi();
+
+                                        }
+                                    }
+                                });
+                                patAdapter.setOnItemClickListener(new ComRecyclerAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onClick(View v, int position) {
+                                        Intent intent = new Intent("SHUAXIN");
+                                        getActivity().sendBroadcast(intent);
+                                        //启动会话列表
+                                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+                                        try {
+                                            Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("LOGINNAME"));
+                                            helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
+                                                    dataChatList.get(position).get("LOGINNAME"),
+                                                    EaseConstant.EXTRA_CHAT_TYPE,
+                                                    EaseConstant.CHATTYPE_SINGLE);
+
+                                        } catch (ArrayIndexOutOfBoundsException e) {
+                                            Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
+
+                                        }
+                                        //将UserName作为主键 存入数据库
+                                        ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
+                                        chineseDetailModel.setAcmId(dataChatList.get(position).get("LOGINNAME"));
+                                        try {
+                                            HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                                        } catch (DbException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                                slRefresh.setRefreshing(false);
+                                slRefresh.setEnabled(true);
+                                refreshRecyclerView();
+                            }
+                        });
+                        Log.e(TAG, "!!!!!chatList done");
+                    }
+                } else if (ErrCode.ErrCode_504.equals(resultCode)) {
+                    // token失效
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+            }
+        });
+    }
+
     private RefreshFriendListBroadcastReceiver receiver;
     private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
     private static final String MESSAGE_USER_NAME = "messageUserName";
@@ -304,159 +430,160 @@ public class DoctorFragment extends Fragment {
             String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
             if (isVisit) {
                 // 出诊
-                if (null != data && 0 < data.size()) {
+                if (null != dataChatList && 0 < dataChatList.size()) {
                     // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
                     boolean isRefresh = true;
-                    for (int i = 0; i < data.size(); i++) {
-                        if (data.get(i).getName().equals(messageUserName)) {
+                    for (int i = 0; i < dataChatList.size(); i++) {
+                        if (dataChatList.get(i).get("LOGINNAME").equals(messageUserName)) {
                             isRefresh = false;
                         }
                     }
                     if (isRefresh) {
-//                        getFriendListAndRefreshData();
-                        getChatList();
+//                        getChatList();
+                        callPatListApi();
 
                         Log.e(TAG, "getFriendsList");
                     }
                 } else {
-//                    getFriendListAndRefreshData();
-                    getChatList();
+//                    getChatList();
+                    callPatListApi();
                 }
             }
         }
     }
 
-    private void getChatList() {
-        Log.e(TAG, "!!!!!chatList begin");
-        // 获取环信会话列表
-        List<String> nameList = new ArrayList<String>();
-        EMClient.getInstance().chatManager().loadAllConversations();
-        Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
-        Iterator<String> iter = conversations.keySet().iterator();
-        while (iter.hasNext()) {
-            String key = iter.next();
-            nameList.add(key);
-        }
-        if (null != nameList && 0 < nameList.size()) {
-            data.clear();
-            for (int i = 0; i < nameList.size(); i++) {
-                PatChatInfo ceshi = patChatInfo(nameList.get(i));
-                data.add(ceshi);
-            }
-        }
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                freshUi();
-            }
-        });
-        Log.e(TAG, "!!!!!chatList done");
-    }
+//    private void getChatList() {
+//        Log.e(TAG, "!!!!!chatList begin");
+//        // 获取环信会话列表
+//        List<String> nameList = new ArrayList<String>();
+//        EMClient.getInstance().chatManager().loadAllConversations();
+//        Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
+//        Iterator<String> iter = conversations.keySet().iterator();
+//        while (iter.hasNext()) {
+//            String key = iter.next();
+//            nameList.add(key);
+//        }
+//        if (null != nameList && 0 < nameList.size()) {
+//            dataChatList.clear();
+//            for (int i = 0; i < nameList.size(); i++) {
+//                PatChatInfo ceshi = patChatInfo(nameList.get(i));
+////                data.add(ceshi);
+//            }
+//        }
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                freshUi();
+//            }
+//        });
+//        Log.e(TAG, "!!!!!chatList done");
+//    }
+//
+//    //整合患者信息集合
+//    private PatChatInfo patChatInfo(String userName) {
+//        EMConversation conversation;
+//        conversation = EMClient.getInstance().chatManager().getConversation(userName, EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_SINGLE), true);
+//        EMMessage message = null;
+//        java.util.List<EMMessage> var = conversation.getAllMessages();
+//        message = var.get(0);
+//        // 姓名
+//        String patname = "";
+//        // 性别
+//        String patsexname = "";
+//        // 年龄
+//        String patnlmc = "";
+//        // 症状
+//        String patContent = "";
+//
+//        Map<String, Object> contentMap = null;
+//        Map<String, Object> patinfoMap = null;
+//        try {
+//            Map<String, Object> extMap = message.ext();
+//            Map<String, Object> objectMap = new HashMap<String, Object>();
+//            String content = (String) extMap.get("content");
+//            if (null == gson) {
+//                gson = new Gson();
+//            }
+//            contentMap = gson.fromJson(content, objectMap.getClass());
+//            if (null != contentMap) {
+//                // 症状
+//                patContent = (String) contentMap.get("jbmc");
+//
+//                patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+//                // 姓名
+//                patname = getText(patinfoMap, "patname");
+//                // 性别
+//                patsexname = getText(patinfoMap, "patsexname");
+//                // 年龄
+//                patnlmc = getText(patinfoMap, "patnlmc");
+//            }
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//            Log.e(TAG, "!!!!!!ERROR!!!!!NullPointerException in getting first chat list");
+//        }
+//        return new PatChatInfo(userName, patname, patsexname, patContent, patnlmc);
+//    }
+//
+//    private String getText(Map<String, Object> map, String key) {
+//        String str = "";
+//        if (null != map) {
+//            str = (String) map.get(key);
+//        }
+//        return str;
+//    }
 
-    private PatChatInfo patChatInfo(String userName) {
-        EMConversation conversation;
-        conversation = EMClient.getInstance().chatManager().getConversation(userName, EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_SINGLE), true);
-        EMMessage message = null;
-        java.util.List<EMMessage> var = conversation.getAllMessages();
-        message = var.get(0);
-        // 姓名
-        String patname = "";
-        // 性别
-        String patsexname = "";
-        // 年龄
-        String patnlmc = "";
-        // 症状
-        String patContent = "";
-
-        Map<String, Object> contentMap = null;
-        Map<String, Object> patinfoMap = null;
-        try {
-            Map<String, Object> extMap = message.ext();
-            Map<String, Object> objectMap = new HashMap<String, Object>();
-            String content = (String) extMap.get("content");
-            if (null == gson) {
-                gson = new Gson();
-            }
-            contentMap = gson.fromJson(content, objectMap.getClass());
-            if (null != contentMap) {
-                // 症状
-                patContent = (String) contentMap.get("jbmc");
-
-                patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
-                // 姓名
-                patname = getText(patinfoMap, "patname");
-                // 性别
-                patsexname = getText(patinfoMap, "patsexname");
-                // 年龄
-                patnlmc = getText(patinfoMap, "patnlmc");
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            Log.e(TAG, "!!!!!!ERROR!!!!!NullPointerException in getting first chat list");
-        }
-        return new PatChatInfo(userName, patname, patsexname, patContent, patnlmc);
-    }
-
-    private String getText(Map<String, Object> map, String key) {
-        String str = "";
-        if (null != map) {
-            str = (String) map.get(key);
-        }
-        return str;
-    }
-
-    private List<PatChatInfo> data = new ArrayList();
+    private List<Map<String, String>> dataChatList = new ArrayList();
     private boolean isVisit = false;
 
-    // 初始化出诊患者列表
-    private void freshUi() {
-        // 会话列表变化时调用统计接口刷新统计数值
-        callCountApi();
-        if (null != data && 0 < data.size()) {
-            tvNoContact.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-        } else {
-            tvNoContact.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
-        }
-        patAdapter = new PatAdapter(getContext(), data);
-        patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClicked(PatAdapter adapter, int position) {
-                Intent intent = new Intent("SHUAXIN");
-                getActivity().sendBroadcast(intent);
-                patAdapter.setPos(position);
-                //启动会话列表
-                HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
-                try {
-                    Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + data.get(position).getName());
-                    helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-                            data.get(position).getUserName(),
-                            EaseConstant.EXTRA_CHAT_TYPE,
-                            EaseConstant.CHATTYPE_SINGLE);
-
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
-
-                }
-                //将UserName作为主键 存入数据库
-                ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
-                chineseDetailModel.setAcmId(data.get(position).getUserName());
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
-                patAdapter.notifyDataSetChanged();
-            }
-        });
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(patAdapter);
-        slRefresh.setRefreshing(false);
-        slRefresh.setEnabled(true);
-        refreshRecyclerView();
-    }
+//    // 初始化出诊患者列表
+//    private void freshUi() {
+//        // 会话列表变化时调用统计接口刷新统计数值
+//        callCountApi();
+//        if (null != dataChatList && 0 < dataChatList.size()) {
+//            tvNoContact.setVisibility(View.GONE);
+//            recyclerView.setVisibility(View.VISIBLE);
+//        } else {
+//            tvNoContact.setVisibility(View.VISIBLE);
+//            recyclerView.setVisibility(View.GONE);
+//        }
+//        patAdapter = new PatAdapter(getContext(), dataChatList);
+//        patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
+//            @Override
+//            public void onItemClicked(PatAdapter adapter, int position) {
+//                Intent intent = new Intent("SHUAXIN");
+//                getActivity().sendBroadcast(intent);
+//                patAdapter.setPos(position);
+//                //启动会话列表
+//                HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+//                try {
+//                    Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("LOGINNAME"));
+//                    helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
+//                            dataChatList.get(position).get("LOGINNAME"),
+//                            EaseConstant.EXTRA_CHAT_TYPE,
+//                            EaseConstant.CHATTYPE_SINGLE);
+//
+//                } catch (ArrayIndexOutOfBoundsException e) {
+//                    Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
+//
+//                }
+//                //将UserName作为主键 存入数据库
+//                ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
+//                chineseDetailModel.setAcmId(dataChatList.get(position).get("LOGINNAME"));
+//                try {
+//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+//                } catch (DbException e) {
+//                    e.printStackTrace();
+//                }
+//                patAdapter.notifyDataSetChanged();
+//            }
+//        });
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setAdapter(patAdapter);
+//        slRefresh.setRefreshing(false);
+//        slRefresh.setEnabled(true);
+//        refreshRecyclerView();
+//    }
 
     private void refreshRecyclerView() {
         slRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -469,7 +596,11 @@ public class DoctorFragment extends Fragment {
                     public void run() {
                         slRefresh.setEnabled(false);
                         slRefresh.setRefreshing(true);
-                        getChatList();
+//                        getChatList();
+                        pageNo = 1;
+                        dataChatList.clear();
+                        patAdapter = null;
+                        callPatListApi();
                     }
                 }, 600);
             }

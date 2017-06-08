@@ -10,115 +10,74 @@ import android.widget.TextView;
 
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.bean.PatChatInfo;
+import com.witnsoft.interhis.utils.ComRecyclerAdapter;
+import com.witnsoft.interhis.utils.ComRecyclerViewHolder;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhengchengpeng on 2017/6/2.
  */
 
-public class PatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
 
     private Context context;
-    private List<PatChatInfo> list;
+    private List<Map<String, String>> list;
     private int pos = -1;
-    OnRecyclerViewItemClickListener clickListener;
     private int unread;
+    //三种布局Id：item,foot,empty
+    public int layoutId;
+    public int layoutId_foot;
+    public int layoutId_empty = -1;
+    //是否有head布局，foot布局
+    public boolean isHaveFootView = false;
+    //三种ViewType
+    public static final int TYPE_FOOTER = 0;
+    public static final int TYPE_BODY = 1;
+    public static final int TYPE_EMPTY = 2;
 
-    public PatAdapter(Context context, List<PatChatInfo> list) {
+    public PatAdapter(Context context, List<Map<String, String>> list, int layoutId) {
+        super(context, list, layoutId);
         this.context = context;
         this.list = list;
     }
 
-    public void setPos(int pos) {
-        this.pos = pos;
-    }
-
-    public void setUnread(int unread) {
-        this.unread = unread;
-        notifyDataSetChanged();
-    }
-
     @Override
-    public int getItemViewType(int position) {
-        return super.getItemViewType(position);
-    }
-
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.fragment_doctor_recycleview_item, parent, false);
-        return new PatViewHolder(v);
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final PatChatInfo item = list.get(position);
-        if (position == pos) {
-            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
+    public void convert(ComRecyclerViewHolder comRecyclerViewHolder, Map<String, String> item) {
+        if (!TextUtils.isEmpty(item.get("PATNAME"))) {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, item.get("PATNAME"));
         } else {
-            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.colorGray));
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, "");
         }
-        setText(((PatViewHolder) holder).tvName, item.getName());
-        setText(((PatViewHolder) holder).tvAge, item.getAge());
-        setText(((PatViewHolder) holder).tvSex, item.getSex());
-        setText(((PatViewHolder) holder).tvContent, item.getContent());
+        if (!TextUtils.isEmpty(item.get("PATNL"))) {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_age, item.get("PATNL"));
+        } else {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_age, "");
+        }
+        if (!TextUtils.isEmpty(item.get("PATSEXNAME"))) {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_sex, item.get("PATSEXNAME"));
+        } else {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_sex, "");
+        }
+        if (!TextUtils.isEmpty(item.get("JBMC"))) {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_content, item.get("JBMC"));
+        } else {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_content, "");
+        }
+    }
 
-
+    @Override
+    public void convertHeader(ComRecyclerViewHolder comRecyclerViewHolder) {
 
     }
 
     @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
-    private void setText(TextView tv, String str) {
-        if (!TextUtils.isEmpty(str)) {
-            tv.setText(str);
+    public void convertFooter(ComRecyclerViewHolder comRecyclerViewHolder) {
+        if (!canNotReadBottom) {
+            comRecyclerViewHolder.setText(R.id.load_more, context.getString(R.string.load_done));
         } else {
-            tv.setText("");
+            comRecyclerViewHolder.setText(R.id.load_more, context.getString(R.string.load_more));
         }
-    }
-
-    private void setText(TextView tv, int i) {
-        String str = String.valueOf(i);
-        tv.setText(str);
-    }
-
-    class PatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        // 年龄
-        TextView tvAge;
-        // 姓名
-        TextView tvName;
-        // 性别
-        TextView tvSex;
-        // 内容
-        TextView tvContent;
-
-
-        public PatViewHolder(View itemView) {
-            super(itemView);
-            tvAge = (TextView) itemView.findViewById(R.id.fragment_doctor_recycleView_item_age);
-            tvName = (TextView) itemView.findViewById(R.id.fragment_doctor_recycleView_item_name);
-            tvSex = (TextView) itemView.findViewById(R.id.fragment_doctor_recycleView_item_sex);
-            tvContent = (TextView) itemView.findViewById(R.id.fragment_doctor_recycleView_item_content);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            if (clickListener != null) {
-                clickListener.onItemClicked(PatAdapter.this, getAdapterPosition());
-            }
-        }
-    }
-
-    public void setOnRecyclerViewItemClickListener(OnRecyclerViewItemClickListener listener) {
-        this.clickListener = listener;
-    }
-
-    public interface OnRecyclerViewItemClickListener {
-        void onItemClicked(PatAdapter adapter, int position);
     }
 }

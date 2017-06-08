@@ -13,4 +13,6 @@
     <!--LoginActivity end-->
     <string name="no_contact_list">请选择一个联系人会话</string>
     <string name="not_ever_visit">还未出诊或暂无患者会话</string>
+    <string name="load_done">已经全部加载完毕</string>
+    <string name="load_more">加载更多…</string>
 </resources>
