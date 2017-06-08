@@ -23,19 +23,8 @@ import java.util.Map;
 public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
 
     private Context context;
-    private List<Map<String, String>> list;
     private int pos = -1;
     private int unread;
-    //三种布局Id：item,foot,empty
-    public int layoutId;
-    public int layoutId_foot;
-    public int layoutId_empty = -1;
-    //是否有head布局，foot布局
-    public boolean isHaveFootView = false;
-    //三种ViewType
-    public static final int TYPE_FOOTER = 0;
-    public static final int TYPE_BODY = 1;
-    public static final int TYPE_EMPTY = 2;
 
     public PatAdapter(Context context, List<Map<String, String>> list, int layoutId) {
         super(context, list, layoutId);
