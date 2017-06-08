@@ -71,6 +71,7 @@ public class DoctorFragment extends Fragment {
     private static final String PAGE_NO = "pageno";
     private static final String ORDER_COLUMN = "ordercolumn";
     private static final String ORDER_TYPE = "ordertype";
+    private static final int PAGE_COUNT = 10;
 
     private final class ErrCode {
         private static final String ErrCode_200 = "200";
@@ -141,7 +142,7 @@ public class DoctorFragment extends Fragment {
     private LinearLayout doctor_number;
     //出诊按钮
     @ViewInject(R.id.doctor_visit)
-    private Button visit;
+    private Button btnVisit;
 
     @Nullable
     @Override
@@ -171,19 +172,14 @@ public class DoctorFragment extends Fragment {
         docId = ThriftPreUtils.getDocId(getActivity());
         callDocInfoApi();
         callCountApi();
-
-
-        visit.setOnClickListener(new View.OnClickListener() {
+        btnVisit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doctor_message.setVisibility(View.VISIBLE);
                 doctor_number.setVisibility(View.VISIBLE);
-                if (!isVisit) {
-                    isVisit = true;
-                    slRefresh.setEnabled(true);
+                slRefresh.setEnabled(true);
 //                    getChatList();
-                    callPatListApi();
-                }
+                callPatListApi();
             }
         });
     }
@@ -309,7 +305,7 @@ public class DoctorFragment extends Fragment {
         data.setParam(DOC_ID, docId);
         data.setParam(ORDER_COLUMN, "paytime");
         data.setParam(ORDER_TYPE, "asc");
-        data.setParam(ROWSPERPAGE, "10");
+        data.setParam(ROWSPERPAGE, String.valueOf(PAGE_COUNT));
         //分页
         data.setParam(PAGE_NO, String.valueOf(pageNo));
         otRequest.setDATA(data);
@@ -320,6 +316,7 @@ public class DoctorFragment extends Fragment {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
+                    btnVisit.setEnabled(false);
                     if (null != response) {
                         respList.clear();
                         respList = (List<Map<String, String>>) response.get(DATA);
@@ -370,12 +367,13 @@ public class DoctorFragment extends Fragment {
                                     @Override
                                     public void OnBottom() {
                                         Log.d(TAG, "OnBottom: out");
-                                        if (respList != null && respList.size() == 10) {
+                                        if (respList != null && respList.size() == PAGE_COUNT) {
+                                            slRefresh.setEnabled(false);
+                                            slRefresh.setRefreshing(true);
                                             patAdapter.setCanNotReadBottom(true);
                                             Log.d(TAG, "OnBottom: in");
                                             pageNo++;
                                             callPatListApi();
-
                                         }
                                     }
                                 });
@@ -445,26 +443,24 @@ public class DoctorFragment extends Fragment {
             Log.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
             // 获取到新消息的用户名
             String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
-            if (isVisit) {
-                // 出诊
-                if (null != dataChatList && 0 < dataChatList.size()) {
-                    // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
-                    boolean isRefresh = true;
-                    for (int i = 0; i < dataChatList.size(); i++) {
-                        if (dataChatList.get(i).get("LOGINNAME").equals(messageUserName)) {
-                            isRefresh = false;
-                        }
+            // 出诊
+            if (null != dataChatList && 0 < dataChatList.size()) {
+                // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
+                boolean isRefresh = true;
+                for (int i = 0; i < dataChatList.size(); i++) {
+                    if (dataChatList.get(i).get("LOGINNAME").equals(messageUserName)) {
+                        isRefresh = false;
                     }
-                    if (isRefresh) {
-//                        getChatList();
-                        callPatListApi();
-
-                        Log.e(TAG, "getFriendsList");
-                    }
-                } else {
-//                    getChatList();
-                    callPatListApi();
                 }
+                if (isRefresh) {
+//                        getChatList();
+                    callPatListApi();
+
+                    Log.e(TAG, "getFriendsList");
+                }
+            } else {
+//                    getChatList();
+                callPatListApi();
             }
         }
     }
@@ -550,7 +546,6 @@ public class DoctorFragment extends Fragment {
 //    }
 
     private List<Map<String, String>> dataChatList = new ArrayList();
-    private boolean isVisit = false;
 
 //    // 初始化出诊患者列表
 //    private void freshUi() {
