@@ -54,6 +54,15 @@ public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
         } else {
             comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_content, "");
         }
+        if (!TextUtils.isEmpty(item.get("color"))) {
+            if ("changed".equals(item.get("color"))) {
+                comRecyclerViewHolder.setBackgroundColor(R.id.ll_back, R.color.colorWhite);
+            } else {
+                comRecyclerViewHolder.setBackgroundColor(R.id.ll_back, R.color.colorGray);
+            }
+        } else {
+            comRecyclerViewHolder.setBackgroundColor(R.id.ll_back, R.color.colorGray);
+        }
     }
 
     @Override

@@ -371,6 +371,11 @@ public class DoctorFragment extends Fragment {
                                 patAdapter.setOnItemClickListener(new ComRecyclerAdapter.OnItemClickListener() {
                                     @Override
                                     public void onClick(View v, int position) {
+                                        for (int i = 0; i < dataChatList.size(); i++) {
+                                            dataChatList.get(i).put("color", "unchanged");
+                                        }
+                                        dataChatList.get(position).put("color", "changed");
+                                        patAdapter.notifyDataSetChanged();
                                         Intent intent = new Intent("SHUAXIN");
                                         getActivity().sendBroadcast(intent);
                                         //启动会话列表

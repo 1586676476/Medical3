@@ -98,6 +98,13 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
         }
     }
 
+    /**
+     * 设置点击变颜色
+     */
+    public void setItem(int position) {
+
+    }
+
 
     /**
      * 设置是否监听底部
@@ -174,7 +181,6 @@ public abstract class ComRecyclerAdapter<T> extends RecyclerView.Adapter<Recycle
             }
             ComRecyclerViewHolder comRecyclerViewHolder = ComRecyclerViewHolder.getComRecyclerViewHolder(context, layoutId_empty, parent);
             return comRecyclerViewHolder;
-
         } else if (viewType == TYPE_HEADER) {
             //headView布局
             ComRecyclerViewHolder comRecyclerViewHolder = ComRecyclerViewHolder.getComRecyclerViewHolder(context, layoutId_head, parent);
