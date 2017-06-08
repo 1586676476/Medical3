@@ -19,6 +19,7 @@ import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
+
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -80,7 +81,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     // 医生登录
-    private void callLoginApi(final String name, String password) {
+    private void callLoginApi(final String name, final String password) {
         LoginRequest request = new LoginRequest();
         request.setUsername(name);
         request.setPassword(password);
@@ -90,6 +91,7 @@ public class LoginActivity extends BaseActivity {
             public void onSuccess(Map response, String resultCode) {
                 // 登录成功将用户名存本地
                 ThriftPreUtils.putLoginName(LoginActivity.this, name);
+                ThriftPreUtils.putLoginPassword(LoginActivity.this, password);
                 if ("200".equals(resultCode)) {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();

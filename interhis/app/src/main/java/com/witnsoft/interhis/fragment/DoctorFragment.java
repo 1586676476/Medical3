@@ -728,7 +728,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private void chatLogin() {
-        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
+        EMClient.getInstance().login(docId, ThriftPreUtils.getLoginPassword(getActivity()), new EMCallBack() {
             @Override
             public void onSuccess() {
                 Log.e("onSuccess: ", "登录成功");
