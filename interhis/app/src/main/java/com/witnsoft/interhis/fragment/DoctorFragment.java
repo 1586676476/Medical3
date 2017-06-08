@@ -22,13 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
-import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.witnsoft.interhis.adapter.PatAdapter;
-import com.witnsoft.interhis.bean.PatChatInfo;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
@@ -47,8 +42,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
