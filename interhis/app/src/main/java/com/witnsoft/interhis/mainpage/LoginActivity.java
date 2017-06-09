@@ -86,7 +86,7 @@ public class LoginActivity extends BaseActivity {
         request.setUsername(name);
         request.setPassword(password);
         request.setReqType(LOGIN);
-        NetTool.getInstance().startRequest(true, LoginActivity.this, request, null, new CallBack<Map, String>() {
+        NetTool.getInstance().startRequest(true, true, LoginActivity.this, request, null, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 // 登录成功将用户名存本地

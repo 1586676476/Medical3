@@ -181,7 +181,7 @@ public class DoctorFragment extends Fragment {
         }
         docId = ThriftPreUtils.getDocId(getActivity());
         callDocInfoApi();
-        callCountApi();
+        callCountApi(true);
         btnVisit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,7 +217,7 @@ public class DoctorFragment extends Fragment {
         // TN 接口辨别
         otRequest.setTN(TN_DOC_INFO);
 
-        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
+        NetTool.getInstance().startRequest(false, true, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
@@ -269,7 +269,7 @@ public class DoctorFragment extends Fragment {
     }
 
     // F27.APP.01.05 获得统计值
-    private void callCountApi() {
+    private void callCountApi(boolean isProgress) {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
         DataModel data = new DataModel();
@@ -278,7 +278,7 @@ public class DoctorFragment extends Fragment {
         // TN 接口辨别
         otRequest.setTN(TN_COUNT);
 
-        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
+        NetTool.getInstance().startRequest(false, isProgress, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
@@ -321,7 +321,7 @@ public class DoctorFragment extends Fragment {
     private int checkedPosition = -1;
 
     // F27.APP.01.02 查询问诊人员列表
-    private void callPatListApi() {
+    private void callPatListApi(boolean isProgress) {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
         final DataModel data = new DataModel();
@@ -335,7 +335,7 @@ public class DoctorFragment extends Fragment {
         // TN 接口辨别
         otRequest.setTN(TN_PAT_LIST);
 
-        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
+        NetTool.getInstance().startRequest(false, isProgress, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
@@ -345,7 +345,7 @@ public class DoctorFragment extends Fragment {
                         respList = (List<Map<String, String>>) response.get(DATA);
                         if (null != respList && 0 < respList.size()) {
                             // 会话列表变化时调用统计接口刷新统计数值
-                            callCountApi();
+                            callCountApi(false);
                             if (1 == pageNo) {
                                 // 如果是第一页，表示重新加载数据
                                 dataChatList.clear();
@@ -396,7 +396,7 @@ public class DoctorFragment extends Fragment {
                                             patAdapter.setCanNotReadBottom(true);
                                             Log.d(TAG, "OnBottom: in");
                                             pageNo++;
-                                            callPatListApi();
+                                            callPatListApi(true);
                                         }
                                     }
                                 });
@@ -475,7 +475,7 @@ public class DoctorFragment extends Fragment {
         // TN 接口辨别
         otRequest.setTN(TN_VISIT);
 
-        NetTool.getInstance().startRequest(false, getActivity(), null, otRequest, new CallBack<Map, String>() {
+        NetTool.getInstance().startRequest(false, true, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
@@ -533,13 +533,13 @@ public class DoctorFragment extends Fragment {
                 }
                 if (isRefresh) {
 //                        getChatList();
-                    callPatListApi();
+                    callPatListApi(true);
 
                     Log.e(TAG, "getFriendsList");
                 }
             } else {
 //                    getChatList();
-                callPatListApi();
+                callPatListApi(true);
             }
         }
     }
@@ -548,7 +548,7 @@ public class DoctorFragment extends Fragment {
     private void callLogoutApi() {
         LoginRequest request = new LoginRequest();
         request.setReqType("logout");
-        NetTool.getInstance().startRequest(true, getActivity(), request, null, new CallBack<Map, String>() {
+        NetTool.getInstance().startRequest(true, true, getActivity(), request, null, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 if ("200".equals(resultCode)) {
@@ -722,7 +722,7 @@ public class DoctorFragment extends Fragment {
                         pageNo = 1;
                         dataChatList.clear();
                         patAdapter = null;
-                        callPatListApi();
+                        callPatListApi(false);
                     }
                 }, 600);
             }
@@ -735,7 +735,7 @@ public class DoctorFragment extends Fragment {
             public void onSuccess() {
                 Log.e("onSuccess: ", "登录成功");
                 // 获取患者列表
-                callPatListApi();
+                callPatListApi(true);
             }
 
             @Override
