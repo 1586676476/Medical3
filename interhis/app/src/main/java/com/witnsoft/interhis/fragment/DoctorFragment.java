@@ -487,14 +487,8 @@ public class DoctorFragment extends Fragment {
                             chatLogin();
                         } else {
                             // 收工
-                            isVisiting = false;
-                            setBtnRest();
-                            // TODO: 2017/6/8 环信聊天退出,和请求接口显示progressing判断
-                            dataChatList.clear();
-                            pageNo = 1;
-                            if (null != patAdapter) {
-                                patAdapter.notifyDataSetChanged();
-                            }
+                            // 退出环信聊天
+                            chatLogout();
                         }
                     }
                 } else if (ErrCode.ErrCode_504.equals(resultCode)) {
@@ -755,6 +749,38 @@ public class DoctorFragment extends Fragment {
             @Override
             public void onProgress(int i, String s) {
 
+            }
+        });
+    }
+
+    private void chatLogout() {
+        EMClient.getInstance().logout(true, new EMCallBack() {
+
+            @Override
+            public void onSuccess() {
+                isVisiting = false;
+                setBtnRest();
+                dataChatList.clear();
+                pageNo = 1;
+                if (null != patAdapter) {
+                    patAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), getResources().getString(R.string.chat_logout_failed), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }
