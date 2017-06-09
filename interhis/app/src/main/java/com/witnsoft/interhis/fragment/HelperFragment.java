@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -42,7 +41,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.Chinese_Fixed_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
-import com.witnsoft.interhis.bean.MedicalStructure;
+import com.witnsoft.interhis.db.DataHelper;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.inter.DialogListener;
@@ -53,7 +52,6 @@ import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.inter.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
-import com.witnsoft.interhis.tool.DBManager;
 import com.witnsoft.interhis.tool.KeyboardUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -115,6 +113,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     private Receiver receiver;
     private Refresh refresh;
+
+    //中药表
+    private ChineseDetailModel chineseDetailModel;
+
+    private String pinyin;
 
 
     @Nullable
@@ -286,14 +289,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         fix_data.add(h);
         fix_data.add(i);
 
-        list.add(a);
-        list.add(b);
-        list.add(c);
-        list.add(d);
-        list.add(e);
-        list.add(f);
-        list.add(g);
-        list.add(h);
+//        list.add(a);
+//        list.add(b);
+//        list.add(c);
+//        list.add(d);
+//        list.add(e);
+//        list.add(f);
+//        list.add(g);
+//        list.add(h);
 
     }
 
@@ -318,17 +321,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             case R.id.fragment_helper_radioButton_chinese:
                 playChineseView();
                 //查询本地数据库
-                List<ChineseDetailModel> chineseDetail=new ArrayList<>();
-                ChineseDetailModel chineseDetailModel=null;
                 try {
-                    chineseDetail=HisDbManager.getManager().findChineseDeatilModel(chineseDetailModel);
+                    data=HisDbManager.getManager().findChineseDeatilModel(chineseDetailModel);
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
-
-                chinese_adapter.setList(chineseDetail);
+                chinese_adapter.setList(data);
                 chinese_adapter.notifyDataSetChanged();
-
 
                 chinese_edittext.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -336,13 +335,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                         chinese_edittextOnClick();
                     }
                 });
+
                 break;
             case R.id.fragment_helper_radioButton_western:
                 playWesternView();
                 break;
             case R.id.fragment_helper_chinese_button:
-//                Toast.makeText(getActivity(), "确认处方", Toast.LENGTH_SHORT).show();
-               createYaoFang(id, "中药","1029405","7","1000");
+//               createYaoFang(id, "中药","1029405","7","1000");
                 chinese_button.setOnClickListener(signListener);
                 break;
         }}
@@ -350,6 +349,26 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private void chinese_edittextOnClick() {
         chinese_listView.setVisibility(View.VISIBLE);
         chinese_fixed.setVisibility(View.GONE);
+
+        //根据拼音查询数据
+        pinyin=chinese_edittext.getText().toString();
+        String xmmc=null;
+        List<String> asd=new ArrayList<>();
+        Cursor cursor= DataHelper.getInstance(getContext()).getXMRJ(pinyin);
+        if (cursor!=null&&cursor.moveToFirst()){
+            do {
+                xmmc=cursor.getString(cursor.getColumnIndex("xmmc"));
+                asd.add(xmmc);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        //显示搜索列表药名
+        for (String s : asd) {
+            ChineseDetailModel chinese=new ChineseDetailModel();
+            chinese.setCmc(s);
+            list.add(chinese);
+        }
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -528,20 +547,26 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     public void onIteClick(int position) {
         Intent intent=new Intent(getActivity(), SecondDialogActivity.class);
         intent.putExtra("position",position);
+        intent.putExtra("chinese_name",data.get(position).getCmc());
         startActivity(intent);
+        chinese_adapter.deleteTextView(position);
 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getData(ChineseDetailModel numberBean){
+        String chinese_name=numberBean.getCmc();
         int count=numberBean.getSl();
-        String name=numberBean.getCmc();
-        Log.e(TAG, "getData: "+name);
+        Log.e(TAG, "getData: "+count );
         ChineseDetailModel a=new ChineseDetailModel();
-        a.setCmc(name);
+
         a.setSl(count);
+        a.setCmc(chinese_name);
         chinese_adapter.addTextView(a);
         chinese_adapter.notifyDataSetChanged();
+
+        chinese_listView.setVisibility(View.GONE);
+        chinese_fixed.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -563,10 +588,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show();
-            int pos=intent.getIntExtra("pos",0);
-            chinese_adapter.deleteTextView(pos);
+            int pos = intent.getIntExtra("pos", 0);
+            String name=intent.getStringExtra("name");
             chinese_adapter.notifyDataSetChanged();
+            try {
+                HisDbManager.getManager().deleteAskChinese(name);
+                Log.e(TAG, "onReceive: "+"已删除" );
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

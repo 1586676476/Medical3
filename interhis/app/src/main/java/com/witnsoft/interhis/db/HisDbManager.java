@@ -9,6 +9,7 @@ import com.witnsoft.libinterhis.utils.FileUtils;
 import com.witnsoft.libinterhis.utils.LogUtils;
 
 import org.xutils.DbManager;
+import org.xutils.db.sqlite.WhereBuilder;
 import org.xutils.ex.DbException;
 import org.xutils.x;
 
@@ -68,6 +69,7 @@ public class HisDbManager {
         mContext = context.getApplicationContext();
     }
 
+
     // 版本更新内容
 //    private synchronized void upgradeDatabase(DbManager db, int oldVersion, int newVersion)
 //            throws IOException, ParserConfigurationException, SAXException {
@@ -117,8 +119,17 @@ public class HisDbManager {
         this.manager.saveOrUpdate(model);
     }
 
+    public void saveAskChinese(ChineseDetailModel model) throws DbException {
+        this.manager.saveOrUpdate(model);
+    }
+
+
     public void deleteAskChinese(ChineseModel model) throws DbException {
         this.manager.delete(model);
+    }
+
+    public void deleteAskChinese(String str) throws DbException {
+        this.manager.delete(ChineseDetailModel.class, WhereBuilder.b("CMC","=",str));
     }
 
     public List<ChineseModel> findChineseByPrimId(String acId) throws DbException {
@@ -136,13 +147,6 @@ public class HisDbManager {
             message=new ArrayList();
         }
         return (List<ChineseDetailModel>) message;
-    }
-
-    public void saveAskChinese(ChineseDetailModel model) throws DbException {
-        this.manager.saveOrUpdate(model);
-    }
-    public void deleteAskChinese(ChineseDetailModel model) throws DbException {
-        this.manager.delete(model);
     }
 
 }

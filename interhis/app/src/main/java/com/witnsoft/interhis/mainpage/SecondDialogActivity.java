@@ -28,7 +28,7 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
     private static final String TAG = "DialogActivity";
     private LinearLayout ll_root,ll_dialog;
     private Button cancel,delete;
-    private TextView five,ten,fifteen,twenty,number,add,less,name,show;
+    private TextView five,ten,fifteen,twenty,number,add,less,name;
     private LinearLayout linearLayout;
     private String medical;
     private int position;
@@ -76,8 +76,9 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
         SetViewListener();
 
         //接受传递过来的药名
-        medical = getIntent().getStringExtra("medical_name");
+        medical = getIntent().getStringExtra("chinese_name");
         name.setText(medical);
+
 
 
     }
@@ -97,26 +98,31 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.second_dialog_five:
+                chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(5);
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_ten:
+                chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(10);
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_fifteen:
+                chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(15);
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_twenty:
+                chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(20);
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_number:
+                chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(num);
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
@@ -127,6 +133,7 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
             case R.id.second_bt_delete:
                 Intent intent=new Intent("shanchu");
                 intent.putExtra("pos",position);
+                intent.putExtra("name",medical);
                 sendBroadcast(intent);
                 finish();
                 break;

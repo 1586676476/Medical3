@@ -22,7 +22,7 @@ public class ChineseDetailModel {
 
     // 中药处方ID
     @Column(name = "ACID")
-    private String acId;
+    private String sfxmbm;
 
     // 中药代码
     @Column(name = "CDM")
@@ -50,8 +50,35 @@ public class ChineseDetailModel {
 
     // 单价
     @Column(name = "dj")
-    private String dj;
+    private int bzjg;
 
+    private String XMMC;//药名
+    private String XMRJ;//药品拼音
+    private int SFDLBM;//药品类别
+
+    public String getXMMC() {
+        return XMMC;
+    }
+
+    public void setXMMC(String XMMC) {
+        this.XMMC = XMMC;
+    }
+
+    public String getXMRJ() {
+        return XMRJ;
+    }
+
+    public void setXMRJ(String XMRJ) {
+        this.XMRJ = XMRJ;
+    }
+
+    public int getSFDLBM() {
+        return SFDLBM;
+    }
+
+    public void setSFDLBM(int SFDLBM) {
+        this.SFDLBM = SFDLBM;
+    }
 
     public ChineseModel getChinese(DbManager db) throws DbException {
         return db.findById(ChineseModel.class, acmId);
@@ -66,11 +93,11 @@ public class ChineseDetailModel {
     }
 
     public void setAcId(String acId) {
-        this.acId = acId;
+        this.sfxmbm = acId;
     }
 
     public String getAcId() {
-        return acId;
+        return sfxmbm;
     }
 
     public void setCdm(String cdm) {
@@ -121,12 +148,12 @@ public class ChineseDetailModel {
         return je;
     }
 
-    public void setDj(String dj) {
-        this.dj = dj;
+    public void setDj(int dj) {
+        this.bzjg = dj;
     }
 
-    public String getDj() {
-        return dj;
+    public int getDj() {
+        return bzjg;
     }
 
 }
