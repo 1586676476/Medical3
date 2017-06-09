@@ -121,7 +121,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_helper, container, false);
-
+        /**
+         * xiugai de neirong
+         * 444444444444444444
+         */
 //        llContent = (LinearLayout) view.findViewById(R.id.ll_content);
 //        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
 
