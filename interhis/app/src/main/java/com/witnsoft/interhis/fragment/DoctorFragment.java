@@ -97,6 +97,7 @@ public class DoctorFragment extends Fragment {
     private PatAdapter patAdapter = null;
     private Gson gson;
     private String docId = "";
+    private List<Map<String, String>> dataChatList = new ArrayList();
 
     // 下拉刷新
     @ViewInject(R.id.sl_refresh)
@@ -207,7 +208,9 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    // F27.APP.01.01 查询医生详细信息
+    /**
+     * F27.APP.01.01 查询医生详细信息
+     */
     private void callDocInfoApi() {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
@@ -268,7 +271,9 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    // F27.APP.01.05 获得统计值
+    /**
+     * F27.APP.01.05 获得统计值
+     */
     private void callCountApi(boolean isProgress) {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
@@ -320,7 +325,9 @@ public class DoctorFragment extends Fragment {
     // 记录点击位置
     private int checkedPosition = -1;
 
-    // F27.APP.01.02 查询问诊人员列表
+    /**
+     * F27.APP.01.02 查询问诊人员列表
+     */
     private void callPatListApi(boolean isProgress) {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
@@ -458,7 +465,9 @@ public class DoctorFragment extends Fragment {
     // 是否出诊状态
     private boolean isVisiting = false;
 
-    // F27.APP.01.03 出诊／收工／离开
+    /**
+     * F27.APP.01.03 出诊／收工／离开
+     */
     private void callVisitApi() {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
@@ -509,7 +518,9 @@ public class DoctorFragment extends Fragment {
     private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
     private static final String MESSAGE_USER_NAME = "messageUserName";
 
-    // 接收application发来的广播，更新好友列表
+    /**
+     * 接收application发来的广播，更新好友列表
+     */
     private class RefreshFriendListBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -538,7 +549,9 @@ public class DoctorFragment extends Fragment {
         }
     }
 
-    // 医生登出
+    /**
+     * 医生登出
+     */
     private void callLogoutApi() {
         LoginRequest request = new LoginRequest();
         request.setReqType("logout");
@@ -649,8 +662,6 @@ public class DoctorFragment extends Fragment {
 //        return str;
 //    }
 
-    private List<Map<String, String>> dataChatList = new ArrayList();
-
 //    // 初始化出诊患者列表
 //    private void freshUi() {
 //        // 会话列表变化时调用统计接口刷新统计数值
@@ -701,6 +712,9 @@ public class DoctorFragment extends Fragment {
 //        refreshRecyclerView();
 //    }
 
+    /**
+     * 下拉刷新
+     */
     private void refreshRecyclerView() {
         slRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
@@ -723,6 +737,9 @@ public class DoctorFragment extends Fragment {
         });
     }
 
+    /**
+     * 环信登录
+     */
     private void chatLogin() {
         EMClient.getInstance().login(docId, ThriftPreUtils.getLoginPassword(getActivity()), new EMCallBack() {
             //        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
@@ -754,6 +771,9 @@ public class DoctorFragment extends Fragment {
         });
     }
 
+    /**
+     * 环信登出
+     */
     private void chatLogout() {
         EMClient.getInstance().logout(true, new EMCallBack() {
 
@@ -790,7 +810,9 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    // 出诊状态
+    /**
+     * 出诊状态底部按钮处理
+     */
     private void setBtnVisiting() {
         btnVisit.setText(getResources().getString(R.string.visiting));
         btnVisit.setTextColor(getResources().getColor(R.color.visit_blue));
@@ -798,7 +820,9 @@ public class DoctorFragment extends Fragment {
         btnTakeRest.setText(getResources().getString(R.string.take_rest));
     }
 
-    // 休息状态
+    /**
+     * 休息状态底部按钮处理
+     */
     private void setBtnRest() {
         btnVisit.setText(getResources().getString(R.string.visit));
         btnVisit.setTextColor(getResources().getColor(R.color.colorWhite));
