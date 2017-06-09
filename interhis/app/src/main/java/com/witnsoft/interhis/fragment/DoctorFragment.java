@@ -725,6 +725,7 @@ public class DoctorFragment extends Fragment {
 
     private void chatLogin() {
         EMClient.getInstance().login(docId, ThriftPreUtils.getLoginPassword(getActivity()), new EMCallBack() {
+            //        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
             @Override
             public void onSuccess() {
                 Log.e("onSuccess: ", "登录成功");
@@ -758,14 +759,18 @@ public class DoctorFragment extends Fragment {
 
             @Override
             public void onSuccess() {
-                isVisiting = false;
-                setBtnRest();
-                dataChatList.clear();
-                pageNo = 1;
-                if (null != patAdapter) {
-                    patAdapter.notifyDataSetChanged();
-                }
-
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        isVisiting = false;
+                        setBtnRest();
+                        dataChatList.clear();
+                        pageNo = 1;
+                        if (null != patAdapter) {
+                            patAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
             }
 
             @Override
