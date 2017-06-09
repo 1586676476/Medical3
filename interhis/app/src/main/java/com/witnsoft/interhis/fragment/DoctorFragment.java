@@ -71,6 +71,9 @@ public class DoctorFragment extends Fragment {
     private static final String ORDER_COLUMN = "ordercolumn";
     private static final String ORDER_TYPE = "ordertype";
     private static final String WORK_FLAG = "workflag";
+    private static final String LOGOUT = "logout";
+    private static final String LOGIN_NAME = "LOGINNAME";
+    private static final String ERRO_MSG = "errmsg";
     private static final int PAGE_COUNT = 10;
 
     private final class ErrCode {
@@ -423,7 +426,7 @@ public class DoctorFragment extends Fragment {
                                         try {
                                             Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("LOGINNAME"));
                                             helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-                                                    dataChatList.get(position).get("LOGINNAME"),
+                                                    dataChatList.get(position).get(LOGIN_NAME),
                                                     EaseConstant.EXTRA_CHAT_TYPE,
                                                     EaseConstant.CHATTYPE_SINGLE);
 
@@ -433,7 +436,7 @@ public class DoctorFragment extends Fragment {
                                         }
                                         //将UserName作为主键 存入数据库
                                         ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
-                                        chineseDetailModel.setAcmId(dataChatList.get(position).get("LOGINNAME"));
+                                        chineseDetailModel.setAcmId(dataChatList.get(position).get(LOGIN_NAME));
                                         try {
                                             HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                                         } catch (DbException e) {
@@ -532,7 +535,7 @@ public class DoctorFragment extends Fragment {
                 // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
                 boolean isRefresh = true;
                 for (int i = 0; i < dataChatList.size(); i++) {
-                    if (dataChatList.get(i).get("LOGINNAME").equals(messageUserName)) {
+                    if (dataChatList.get(i).get(LOGIN_NAME).equals(messageUserName)) {
                         isRefresh = false;
                     }
                 }
@@ -554,7 +557,7 @@ public class DoctorFragment extends Fragment {
      */
     private void callLogoutApi() {
         LoginRequest request = new LoginRequest();
-        request.setReqType("logout");
+        request.setReqType(LOGOUT);
         NetTool.getInstance().startRequest(true, true, getActivity(), request, null, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
@@ -564,10 +567,10 @@ public class DoctorFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 } else {
-                    if (null != response.get("errmsg")) {
+                    if (null != response.get(ERRO_MSG)) {
                         try {
                             Toast.makeText(getActivity(),
-                                    String.valueOf(response.get("errmsg")), Toast.LENGTH_LONG).show();
+                                    String.valueOf(response.get(ERRO_MSG)), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
 
                         }
