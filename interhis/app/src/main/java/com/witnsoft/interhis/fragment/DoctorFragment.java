@@ -492,6 +492,8 @@ public class DoctorFragment extends Fragment {
 
             @Override
             public void onError(Throwable throwable) {
+                slRefresh.setRefreshing(false);
+                slRefresh.setEnabled(true);
             }
         });
     }
