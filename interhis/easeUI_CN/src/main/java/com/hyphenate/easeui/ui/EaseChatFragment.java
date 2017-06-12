@@ -589,6 +589,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
             }
 
             // if the message is for current conversation
+
+            // username = e26a4fda3a3b25f4;toChatUsername = E26A4FDA3A3B25F4
             if (username.equals(toChatUsername) || message.getTo().equals(toChatUsername)) {
                 messageList.refreshSelectLast();
                 EaseUI.getInstance().getNotifier().vibrateAndPlayTone(message);

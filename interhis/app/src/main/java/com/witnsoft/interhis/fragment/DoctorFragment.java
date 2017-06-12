@@ -360,8 +360,6 @@ public class DoctorFragment extends Fragment {
                                 respList.clear();
                                 respList = (List<Map<String, String>>) response.get(DATA);
                                 if (null != respList && 0 < respList.size()) {
-                                    // 会话列表变化时调用统计接口刷新统计数值
-                                    callCountApi(false);
                                     if (1 == pageNo) {
                                         // 如果是第一页，表示重新加载数据
                                         dataChatList.clear();
@@ -411,7 +409,7 @@ public class DoctorFragment extends Fragment {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                                     recyclerView.setHasFixedSize(true);
                                     recyclerView.setAdapter(patAdapter);
-                                }else {
+                                } else {
                                     patAdapter.notifyDataSetChanged();
                                 }
                                 patAdapter.setCanNotReadBottom(false);
@@ -478,6 +476,8 @@ public class DoctorFragment extends Fragment {
                                 slRefresh.setRefreshing(false);
                                 slRefresh.setEnabled(true);
                                 refreshRecyclerView();
+                                // 会话列表变化时调用统计接口刷新统计数值
+                                callCountApi(false);
                             }
                             Log.e(TAG, "!!!!!chatList done");
                         }
@@ -526,7 +526,7 @@ public class DoctorFragment extends Fragment {
                         if (!ThriftPreUtils.getIsVisiting(getActivity())) {
                             // 出诊
 //                            isVisiting = true;
-                            ThriftPreUtils.putIsVisiting(getActivity(),true);
+                            ThriftPreUtils.putIsVisiting(getActivity(), true);
                             setBtnVisiting();
                             chatLogin();
                         } else {
@@ -582,6 +582,9 @@ public class DoctorFragment extends Fragment {
 //                callPatListApi(true);
 //            }
             if (Application.BROADCAST_REFRESH_LIST.equals(intent.getAction())) {
+                pageNo = 1;
+                dataChatList.clear();
+                patAdapter = null;
                 callPatListApi(true);
             }
         }
@@ -619,136 +622,6 @@ public class DoctorFragment extends Fragment {
             }
         });
     }
-
-//    private void getChatList() {
-//        Log.e(TAG, "!!!!!chatList begin");
-//        // 获取环信会话列表
-//        List<String> nameList = new ArrayList<String>();
-//        EMClient.getInstance().chatManager().loadAllConversations();
-//        Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
-//        Iterator<String> iter = conversations.keySet().iterator();
-//        while (iter.hasNext()) {
-//            String key = iter.next();
-//            nameList.add(key);
-//        }
-//        if (null != nameList && 0 < nameList.size()) {
-//            dataChatList.clear();
-//            for (int i = 0; i < nameList.size(); i++) {
-//                PatChatInfo ceshi = patChatInfo(nameList.get(i));
-////                data.add(ceshi);
-//            }
-//        }
-//        getActivity().runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                freshUi();
-//            }
-//        });
-//        Log.e(TAG, "!!!!!chatList done");
-//    }
-//
-//    //整合患者信息集合
-//    private PatChatInfo patChatInfo(String userName) {
-//        EMConversation conversation;
-//        conversation = EMClient.getInstance().chatManager().getConversation(userName, EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_SINGLE), true);
-//        EMMessage message = null;
-//        java.util.List<EMMessage> var = conversation.getAllMessages();
-//        message = var.get(0);
-//        // 姓名
-//        String patname = "";
-//        // 性别
-//        String patsexname = "";
-//        // 年龄
-//        String patnlmc = "";
-//        // 症状
-//        String patContent = "";
-//
-//        Map<String, Object> contentMap = null;
-//        Map<String, Object> patinfoMap = null;
-//        try {
-//            Map<String, Object> extMap = message.ext();
-//            Map<String, Object> objectMap = new HashMap<String, Object>();
-//            String content = (String) extMap.get("content");
-//            if (null == gson) {
-//                gson = new Gson();
-//            }
-//            contentMap = gson.fromJson(content, objectMap.getClass());
-//            if (null != contentMap) {
-//                // 症状
-//                patContent = (String) contentMap.get("jbmc");
-//
-//                patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
-//                // 姓名
-//                patname = getText(patinfoMap, "patname");
-//                // 性别
-//                patsexname = getText(patinfoMap, "patsexname");
-//                // 年龄
-//                patnlmc = getText(patinfoMap, "patnlmc");
-//            }
-//        } catch (NullPointerException e) {
-//            e.printStackTrace();
-//            Log.e(TAG, "!!!!!!ERROR!!!!!NullPointerException in getting first chat list");
-//        }
-//        return new PatChatInfo(userName, patname, patsexname, patContent, patnlmc);
-//    }
-//
-//    private String getText(Map<String, Object> map, String key) {
-//        String str = "";
-//        if (null != map) {
-//            str = (String) map.get(key);
-//        }
-//        return str;
-//    }
-
-//    // 初始化出诊患者列表
-//    private void freshUi() {
-//        // 会话列表变化时调用统计接口刷新统计数值
-//        callCountApi();
-//        if (null != dataChatList && 0 < dataChatList.size()) {
-//            tvNoContact.setVisibility(View.GONE);
-//            recyclerView.setVisibility(View.VISIBLE);
-//        } else {
-//            tvNoContact.setVisibility(View.VISIBLE);
-//            recyclerView.setVisibility(View.GONE);
-//        }
-//        patAdapter = new PatAdapter(getContext(), dataChatList);
-//        patAdapter.setOnRecyclerViewItemClickListener(new PatAdapter.OnRecyclerViewItemClickListener() {
-//            @Override
-//            public void onItemClicked(PatAdapter adapter, int position) {
-//                Intent intent = new Intent("SHUAXIN");
-//                getActivity().sendBroadcast(intent);
-//                patAdapter.setPos(position);
-//                //启动会话列表
-//                HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
-//                try {
-//                    Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("LOGINNAME"));
-//                    helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-//                            dataChatList.get(position).get("LOGINNAME"),
-//                            EaseConstant.EXTRA_CHAT_TYPE,
-//                            EaseConstant.CHATTYPE_SINGLE);
-//
-//                } catch (ArrayIndexOutOfBoundsException e) {
-//                    Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
-//
-//                }
-//                //将UserName作为主键 存入数据库
-//                ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
-//                chineseDetailModel.setAcmId(dataChatList.get(position).get("LOGINNAME"));
-//                try {
-//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-//                } catch (DbException e) {
-//                    e.printStackTrace();
-//                }
-//                patAdapter.notifyDataSetChanged();
-//            }
-//        });
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setAdapter(patAdapter);
-//        slRefresh.setRefreshing(false);
-//        slRefresh.setEnabled(true);
-//        refreshRecyclerView();
-//    }
 
     /**
      * 下拉刷新
@@ -795,7 +668,7 @@ public class DoctorFragment extends Fragment {
                     @Override
                     public void run() {
 //                        isVisiting = false;
-                        ThriftPreUtils.putIsVisiting(getActivity(),false);
+                        ThriftPreUtils.putIsVisiting(getActivity(), false);
                         setBtnRest();
                         Toast.makeText(getActivity(), getResources().getString(R.string.chat_failed), Toast.LENGTH_LONG).show();
                     }
@@ -821,7 +694,7 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ThriftPreUtils.putIsVisiting(getActivity(),false);
+                        ThriftPreUtils.putIsVisiting(getActivity(), false);
 //                        isVisiting = false;
                         setBtnRest();
                         dataChatList.clear();
