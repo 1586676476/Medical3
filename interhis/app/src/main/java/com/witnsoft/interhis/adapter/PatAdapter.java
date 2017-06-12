@@ -63,6 +63,22 @@ public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
         } else {
             comRecyclerViewHolder.setBackgroundColor(R.id.ll_back, R.color.colorGray);
         }
+        int unReadNumber = 0;
+        if (!TextUtils.isEmpty(item.get("readNo"))) {
+            try {
+                unReadNumber = Integer.valueOf(item.get("readNo"));
+            } catch (ClassCastException e) {
+                unReadNumber = 0;
+            }
+        } else {
+            unReadNumber = 0;
+        }
+        if (0 < unReadNumber) {
+            comRecyclerViewHolder.setVisible(R.id.tv_read, true);
+            comRecyclerViewHolder.setText(R.id.tv_read, String.valueOf(unReadNumber));
+        } else {
+            comRecyclerViewHolder.setVisible(R.id.tv_read, false);
+        }
     }
 
     @Override

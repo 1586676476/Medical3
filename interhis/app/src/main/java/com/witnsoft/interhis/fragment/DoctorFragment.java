@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.EaseConstant;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.R;
@@ -347,38 +348,53 @@ public class DoctorFragment extends Fragment {
 
         NetTool.getInstance().startRequest(false, isProgress, getActivity(), null, otRequest, new CallBack<Map, String>() {
             @Override
-            public void onSuccess(Map response, String resultCode) {
+            public void onSuccess(final Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
                     btnVisit.setEnabled(false);
                     if (null != response) {
-                        respList.clear();
-                        respList = (List<Map<String, String>>) response.get(DATA);
-                        if (null != respList && 0 < respList.size()) {
-                            // 会话列表变化时调用统计接口刷新统计数值
-                            callCountApi(false);
-                            if (1 == pageNo) {
-                                // 如果是第一页，表示重新加载数据
-                                dataChatList.clear();
-                                dataChatList = respList;
-                            } else {
-                                // 不是第一页，表示分页加载
-                                for (int i = 0; i < respList.size(); i++) {
-                                    dataChatList.add(respList.get(i));
-                                }
-                            }
-                            // 记录点击位置
-                            if (-1 < checkedPosition) {
-                                try {
-                                    dataChatList.get(checkedPosition).put("color", "changed");
-                                } catch (ArrayIndexOutOfBoundsException e) {
-                                    e.printStackTrace();
-                                    Log.e(TAG, "!!!!ArrayIndexOutOfBoundsException in checkedPosition");
-                                }
-                            }
-                        }
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                respList.clear();
+                                respList = (List<Map<String, String>>) response.get(DATA);
+                                if (null != respList && 0 < respList.size()) {
+                                    // 会话列表变化时调用统计接口刷新统计数值
+                                    callCountApi(false);
+                                    if (1 == pageNo) {
+                                        // 如果是第一页，表示重新加载数据
+                                        dataChatList.clear();
+                                        dataChatList = respList;
+                                    } else {
+                                        // 不是第一页，表示分页加载
+                                        for (int i = 0; i < respList.size(); i++) {
+                                            dataChatList.add(respList.get(i));
+                                        }
+                                    }
+                                    // 记录点击位置
+                                    if (-1 < checkedPosition) {
+                                        try {
+                                            dataChatList.get(checkedPosition).put("color", "changed");
+                                        } catch (ArrayIndexOutOfBoundsException e) {
+                                            e.printStackTrace();
+                                            Log.e(TAG, "!!!!ArrayIndexOutOfBoundsException in checkedPosition");
+                                        }
+                                    }
+                                    // 获取未读消息
+                                    if (null != dataChatList && 0 < dataChatList.size()) {
+                                        for (int i = 0; i < dataChatList.size(); i++) {
+                                            int unReadNumber = 0;
+                                            try {
+                                                EMConversation conversation = EMClient.getInstance().chatManager().getConversation(dataChatList.get(i).get("ACCID"));
+                                                unReadNumber = conversation.getUnreadMsgCount();
+                                                Log.e(TAG, "unReadNumber = " + String.valueOf(unReadNumber));
+                                            } catch (Exception e) {
+                                                unReadNumber = 0;
+                                            }
+                                            dataChatList.get(i).put("readNo", String.valueOf(unReadNumber));
+                                        }
+                                    }
+                                }
+
                                 if (null != dataChatList && 0 < dataChatList.size()) {
                                     tvNoContact.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
@@ -415,7 +431,19 @@ public class DoctorFragment extends Fragment {
                                     public void onClick(View v, int position) {
                                         checkedPosition = position;
                                         for (int i = 0; i < dataChatList.size(); i++) {
+                                            // 设置点击变色
                                             dataChatList.get(i).put("color", "unchanged");
+                                        }
+                                        // 设置已读
+                                        dataChatList.get(position).put("readNo", "0");
+                                        if (!TextUtils.isEmpty(dataChatList.get(position).get("ACCID"))) {
+                                            try {
+                                                EMConversation conversation = EMClient.getInstance().chatManager().getConversation(dataChatList.get(position).get("ACCID"));
+                                                //指定会话消息未读数清零
+                                                conversation.markAllMessagesAsRead();
+                                            } catch (Exception e) {
+
+                                            }
                                         }
                                         dataChatList.get(position).put("color", "changed");
                                         patAdapter.notifyDataSetChanged();
@@ -424,9 +452,9 @@ public class DoctorFragment extends Fragment {
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                                         try {
-                                            Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("LOGINNAME"));
+                                            Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("ACCID"));
                                             helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
-                                                    dataChatList.get(position).get(LOGIN_NAME),
+                                                    dataChatList.get(position).get("ACCID"),
                                                     EaseConstant.EXTRA_CHAT_TYPE,
                                                     EaseConstant.CHATTYPE_SINGLE);
 
@@ -529,26 +557,27 @@ public class DoctorFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             Log.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
             // 获取到新消息的用户名
-            String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
-            // 出诊
-            if (null != dataChatList && 0 < dataChatList.size()) {
-                // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
-                boolean isRefresh = true;
-                for (int i = 0; i < dataChatList.size(); i++) {
-                    if (dataChatList.get(i).get(LOGIN_NAME).equals(messageUserName)) {
-                        isRefresh = false;
-                    }
-                }
-                if (isRefresh) {
-//                        getChatList();
-                    callPatListApi(true);
-
-                    Log.e(TAG, "getFriendsList");
-                }
-            } else {
-//                    getChatList();
-                callPatListApi(true);
-            }
+//            String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
+//            // 出诊
+//            if (null != dataChatList && 0 < dataChatList.size()) {
+//                // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
+//                boolean isRefresh = true;
+//                for (int i = 0; i < dataChatList.size(); i++) {
+//                    if (dataChatList.get(i).get(LOGIN_NAME).equals(messageUserName)) {
+//                        isRefresh = false;
+//                    }
+//                }
+//                if (isRefresh) {
+////                        getChatList();
+//                    callPatListApi(true);
+//
+//                    Log.e(TAG, "getFriendsList");
+//                }
+//            } else {
+////                    getChatList();
+//                callPatListApi(true);
+//            }
+            callPatListApi(true);
         }
     }
 

@@ -72,14 +72,18 @@ public class Application extends MultiDexApplication {
                     if (!EaseUI.getInstance().hasForegroundActivies()) {
                         EaseUI.getInstance().getNotifier().onNewMsg(message);
 
-                        // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
-                        Intent intent = new Intent();
-                        intent.setAction(BROADCAST_REFRESH_LIST);
-                        intent.putExtra(MESSAGE_USER_NAME, message.getUserName());
-                        sendBroadcast(intent);
+//                        // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
+//                        Intent intent = new Intent();
+//                        intent.setAction(BROADCAST_REFRESH_LIST);
+//                        intent.putExtra(MESSAGE_USER_NAME, message.getUserName());
+//                        sendBroadcast(intent);
                     }
 
                 }
+                // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
+                Intent intent = new Intent();
+                intent.setAction(BROADCAST_REFRESH_LIST);
+                sendBroadcast(intent);
 
             }
 
