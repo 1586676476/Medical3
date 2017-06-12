@@ -74,9 +74,11 @@ public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
             unReadNumber = 0;
         }
         if (0 < unReadNumber) {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, String.valueOf(unReadNumber));
             comRecyclerViewHolder.setVisible(R.id.tv_read, true);
             comRecyclerViewHolder.setText(R.id.tv_read, String.valueOf(unReadNumber));
         } else {
+            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, String.valueOf(unReadNumber));
             comRecyclerViewHolder.setVisible(R.id.tv_read, false);
         }
     }

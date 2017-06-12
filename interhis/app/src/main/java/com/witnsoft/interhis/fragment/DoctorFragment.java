@@ -32,6 +32,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.utils.ComRecyclerAdapter;
 import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
@@ -350,11 +351,11 @@ public class DoctorFragment extends Fragment {
             @Override
             public void onSuccess(final Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
-                    btnVisit.setEnabled(false);
-                    if (null != response) {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            btnVisit.setEnabled(false);
+                            if (null != response) {
                                 respList.clear();
                                 respList = (List<Map<String, String>>) response.get(DATA);
                                 if (null != respList && 0 < respList.size()) {
@@ -409,9 +410,10 @@ public class DoctorFragment extends Fragment {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                                     recyclerView.setHasFixedSize(true);
                                     recyclerView.setAdapter(patAdapter);
+                                }else {
+                                    patAdapter.notifyDataSetChanged();
                                 }
                                 patAdapter.setCanNotReadBottom(false);
-                                patAdapter.notifyDataSetChanged();
                                 patAdapter.setOnRecyclerViewBottomListener(new ComRecyclerAdapter.OnRecyclerViewBottomListener() {
                                     @Override
                                     public void OnBottom() {
@@ -476,9 +478,9 @@ public class DoctorFragment extends Fragment {
                                 slRefresh.setEnabled(true);
                                 refreshRecyclerView();
                             }
-                        });
-                        Log.e(TAG, "!!!!!chatList done");
-                    }
+                            Log.e(TAG, "!!!!!chatList done");
+                        }
+                    });
                 } else if (ErrCode.ErrCode_504.equals(resultCode)) {
                     // token失效
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -577,7 +579,9 @@ public class DoctorFragment extends Fragment {
 ////                    getChatList();
 //                callPatListApi(true);
 //            }
-            callPatListApi(true);
+            if (Application.BROADCAST_REFRESH_LIST.equals(intent.getAction())) {
+                callPatListApi(true);
+            }
         }
     }
 

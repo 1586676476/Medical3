@@ -31,7 +31,7 @@ public class Application extends MultiDexApplication {
 
     private static Application app = null;
     private EMMessageListener mMessageListener;
-    private static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
+    public static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
     private static final String MESSAGE_USER_NAME = "messageUserName";
     private int unread;
 
