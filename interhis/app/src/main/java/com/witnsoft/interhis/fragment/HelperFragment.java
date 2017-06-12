@@ -369,6 +369,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             list.add(chinese);
         }
         adapter.notifyDataSetChanged();
+
     }
 
 
