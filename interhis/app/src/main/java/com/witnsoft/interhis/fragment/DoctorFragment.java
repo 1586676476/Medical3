@@ -178,7 +178,8 @@ public class DoctorFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (!isVisiting) {
+//        isVisiting = ThriftPreUtils.getIsVisiting(getActivity());
+        if (!ThriftPreUtils.getIsVisiting(getActivity())) {
             // 不在出诊状态
             setBtnRest();
         } else {
@@ -201,7 +202,7 @@ public class DoctorFragment extends Fragment {
         btnTakeRest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isVisiting) {
+                if (!ThriftPreUtils.getIsVisiting(getActivity())) {
                     // 退出登录
                     callLogoutApi();
                 } else {
@@ -496,7 +497,7 @@ public class DoctorFragment extends Fragment {
     }
 
     // 是否出诊状态
-    private boolean isVisiting = false;
+//    private boolean isVisiting = false;
 
     /**
      * F27.APP.01.03 出诊／收工／离开
@@ -505,7 +506,7 @@ public class DoctorFragment extends Fragment {
         OTRequest otRequest = new OTRequest(getActivity());
         // DATA
         DataModel data = new DataModel();
-        if (!isVisiting) {
+        if (!ThriftPreUtils.getIsVisiting(getActivity())) {
             // 出诊
             data.setParam(WORK_FLAG, "online");
         } else {
@@ -522,9 +523,10 @@ public class DoctorFragment extends Fragment {
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
                     if (null != response) {
-                        if (!isVisiting) {
+                        if (!ThriftPreUtils.getIsVisiting(getActivity())) {
                             // 出诊
-                            isVisiting = true;
+//                            isVisiting = true;
+                            ThriftPreUtils.putIsVisiting(getActivity(),true);
                             setBtnVisiting();
                             chatLogin();
                         } else {
@@ -792,7 +794,8 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        isVisiting = false;
+//                        isVisiting = false;
+                        ThriftPreUtils.putIsVisiting(getActivity(),false);
                         setBtnRest();
                         Toast.makeText(getActivity(), getResources().getString(R.string.chat_failed), Toast.LENGTH_LONG).show();
                     }
@@ -818,7 +821,8 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        isVisiting = false;
+                        ThriftPreUtils.putIsVisiting(getActivity(),false);
+//                        isVisiting = false;
                         setBtnRest();
                         dataChatList.clear();
                         pageNo = 1;

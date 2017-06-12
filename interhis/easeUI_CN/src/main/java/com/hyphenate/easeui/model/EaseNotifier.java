@@ -14,6 +14,7 @@ package com.hyphenate.easeui.model;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -231,7 +232,7 @@ public class EaseNotifier {
                                                                         .setWhen(System.currentTimeMillis())
                                                                         .setAutoCancel(true);
 
-            Intent msgIntent = appContext.getPackageManager().getLaunchIntentForPackage("com.witnsoft.interhis.mainpage.MainActivity");
+            Intent msgIntent = appContext.getPackageManager().getLaunchIntentForPackage(packageName);
             if (notificationInfoProvider != null) {
                 msgIntent = notificationInfoProvider.getLaunchIntent(message);
             }
