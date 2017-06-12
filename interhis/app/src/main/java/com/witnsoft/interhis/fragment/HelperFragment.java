@@ -128,8 +128,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
          * xiugai de neirong
          * 444444444444444444
          */
-//        llContent = (LinearLayout) view.findViewById(R.id.ll_content);
-//        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
+        llContent = (LinearLayout) view.findViewById(R.id.ll_content);
+        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
 
         ask = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_ask);
         chat = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_chat);
@@ -510,7 +510,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     public void getContent(String userName, String userId, String type, int single) {
-
+        llContent.setVisibility(View.VISIBLE);
+        tvNoData.setVisibility(View.GONE);
         id = userId;
         this.userName = userName;
         type1 = type;
