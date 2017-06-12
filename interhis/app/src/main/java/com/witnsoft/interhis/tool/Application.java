@@ -67,19 +67,17 @@ public class Application extends MultiDexApplication {
             @Override
             public void onMessageReceived(List<EMMessage> list) {
                 Log.e("MainActivity", "!!!!!!!!!!!!########");
-                // 收到新消息，发通知给doctorFragment
-                for (EMMessage message : list) {
-                    if (!EaseUI.getInstance().hasForegroundActivies()) {
-                        EaseUI.getInstance().getNotifier().onNewMsg(message);
-
-//                        // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
-//                        Intent intent = new Intent();
-//                        intent.setAction(BROADCAST_REFRESH_LIST);
-//                        intent.putExtra(MESSAGE_USER_NAME, message.getUserName());
-//                        sendBroadcast(intent);
-                    }
-
+//                for (EMMessage message : list) {
+//                    if (!EaseUI.getInstance().hasForegroundActivies()) {
+//                        EaseUI.getInstance().getNotifier().onNewMsg(message);
+//                    }
+//
+//                }
+                if (!EaseUI.getInstance().hasForegroundActivies()) {
+                    // 推送
+                    EaseUI.getInstance().getNotifier().onNewMesg(list);
                 }
+                // 收到新消息，发通知给doctorFragment
                 // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
                 Intent intent = new Intent();
                 intent.setAction(BROADCAST_REFRESH_LIST);

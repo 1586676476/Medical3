@@ -231,7 +231,7 @@ public class EaseNotifier {
                                                                         .setWhen(System.currentTimeMillis())
                                                                         .setAutoCancel(true);
 
-            Intent msgIntent = appContext.getPackageManager().getLaunchIntentForPackage(packageName);
+            Intent msgIntent = appContext.getPackageManager().getLaunchIntentForPackage("com.witnsoft.interhis.mainpage.MainActivity");
             if (notificationInfoProvider != null) {
                 msgIntent = notificationInfoProvider.getLaunchIntent(message);
             }
