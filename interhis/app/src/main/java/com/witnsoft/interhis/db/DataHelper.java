@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class DataHelper {
-    private static int DB_VERSION = 4;
+    private static int DB_VERSION = 6;
     private SQLiteDatabase db;
     private YaoListDBHelper yaoListDBHelper;
 
