@@ -153,13 +153,17 @@ public class DoctorFragment extends Fragment {
     @ViewInject(R.id.btn_take_rest)
     private Button btnTakeRest;
 
+    View rootView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = x.view().inject(this, inflater, container);
-        initViews();
-        return view;
+        if (rootView == null) {
+            rootView = x.view().inject(this, inflater, container);
+        }
+        return rootView;
     }
+
 
     @Override
     public void onDestroy() {
@@ -178,6 +182,7 @@ public class DoctorFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initViews();
 //        isVisiting = ThriftPreUtils.getIsVisiting(getActivity());
         if (!ThriftPreUtils.getIsVisiting(getActivity())) {
             // 不在出诊状态
@@ -363,7 +368,10 @@ public class DoctorFragment extends Fragment {
                                     if (1 == pageNo) {
                                         // 如果是第一页，表示重新加载数据
                                         dataChatList.clear();
-                                        dataChatList = respList;
+                                        for (int i = 0; i < respList.size(); i++) {
+                                            dataChatList.add(respList.get(i));
+                                        }
+//                                        dataChatList = respList;
                                     } else {
                                         // 不是第一页，表示分页加载
                                         for (int i = 0; i < respList.size(); i++) {
@@ -409,8 +417,6 @@ public class DoctorFragment extends Fragment {
                                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                                     recyclerView.setHasFixedSize(true);
                                     recyclerView.setAdapter(patAdapter);
-                                } else {
-                                    patAdapter.notifyDataSetChanged();
                                 }
                                 patAdapter.setCanNotReadBottom(false);
                                 patAdapter.setOnRecyclerViewBottomListener(new ComRecyclerAdapter.OnRecyclerViewBottomListener() {
@@ -473,6 +479,7 @@ public class DoctorFragment extends Fragment {
                                         }
                                     }
                                 });
+                                patAdapter.notifyDataSetChanged();
                                 slRefresh.setRefreshing(false);
                                 slRefresh.setEnabled(true);
                                 refreshRecyclerView();
@@ -584,9 +591,9 @@ public class DoctorFragment extends Fragment {
 //                callPatListApi(true);
 //            }
             if (Application.BROADCAST_REFRESH_LIST.equals(intent.getAction())) {
-                pageNo = 1;
-                dataChatList.clear();
-                patAdapter = null;
+//                pageNo = 1;
+//                dataChatList.clear();
+//                patAdapter = null;
                 callPatListApi(true);
             }
         }
@@ -660,6 +667,9 @@ public class DoctorFragment extends Fragment {
             public void onSuccess() {
                 Log.e("onSuccess: ", "登录成功");
                 // 获取患者列表
+                pageNo = 1;
+                dataChatList.clear();
+                patAdapter = null;
                 callPatListApi(true);
             }
 
