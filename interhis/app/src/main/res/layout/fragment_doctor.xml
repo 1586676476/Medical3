@@ -117,13 +117,13 @@
                 android:id="@+id/tv_pat_waiting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                tools:text="20"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="等待中"
+                android:text="@string/waiting"
                 android:textSize="10dp"/>
 
         </LinearLayout>
@@ -141,13 +141,13 @@
                 android:id="@+id/tv_pat_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="77"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                tools:text="77"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="累计"
+                android:text="@string/all_count"
                 android:textSize="10dp"/>
 
         </LinearLayout>
@@ -165,13 +165,13 @@
                 android:id="@+id/tv_daily_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="320"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                tools:text="320"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="本日收入"
+                android:text="@string/today_income"
                 android:textSize="10dp"/>
 
         </LinearLayout>
@@ -189,13 +189,13 @@
                 android:id="@+id/tv_all_income"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="320"
-                android:textSize="15dp"/>
+                android:textSize="15dp"
+                tools:text="320"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="累计"
+                android:text="@string/all_count"
                 android:textSize="10dp"/>
 
         </LinearLayout>
