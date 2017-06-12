@@ -328,12 +328,12 @@
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_record_animate_01.png"
     },
     {
-        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_search_bar_icon_normal.png",
-        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_search_bar_icon_normal.png"
-    },
-    {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_location_msg.9.png",
         "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_location_msg.9.png"
+    },
+    {
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_search_bar_icon_normal.png",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ease_search_bar_icon_normal.png"
     },
     {
         "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ease_dx_checkbox_gray_on.png",

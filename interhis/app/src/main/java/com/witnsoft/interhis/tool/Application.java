@@ -16,6 +16,7 @@ import com.hyphenate.easeui.controller.EaseUI;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.fragment.DoctorFragment;
+import com.witnsoft.interhis.mainpage.MainActivity;
 
 import org.xutils.x;
 
@@ -53,7 +54,7 @@ public class Application extends MultiDexApplication {
 
     private void init() {
         //环信聊天初始化
-        EaseUI.getInstance().init(this, null);
+        EaseUI.getInstance().init(this, null, MainActivity.class);
         EMClient.getInstance().setDebugMode(true);
 
     }
