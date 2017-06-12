@@ -191,7 +191,6 @@ public class DoctorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 doctor_message.setVisibility(View.VISIBLE);
-                doctor_number.setVisibility(View.VISIBLE);
                 // 出诊
                 callVisitApi();
 //                    getChatList();
@@ -292,6 +291,7 @@ public class DoctorFragment extends Fragment {
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {
                     if (null != response) {
+                        doctor_number.setVisibility(View.VISIBLE);
                         Map<String, String> data = (Map<String, String>) response.get(DATA);
                         // 等待人数
                         if (!TextUtils.isEmpty(data.get(CountResponseKey.DD))) {
