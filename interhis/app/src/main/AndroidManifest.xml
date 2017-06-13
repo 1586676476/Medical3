@@ -89,7 +89,7 @@
             android:theme="@style/MyDialogActivityTheme"/>
 
         <activity
-            android:name=".mainpage.setting.SettingActivity"
+            android:name=".setting.SettingActivity"
             android:screenOrientation="landscape"/>
 
     </application>

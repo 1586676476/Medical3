@@ -26,4 +26,12 @@
     <string name="waiting">等待中</string>
     <string name="all_count">累计</string>
     <string name="today_income">本日收入</string>
+
+    <!--SettingActivity end-->
+    <string name="setting_title">设置</string>
+    <string name="my_info">我的信息</string>
+    <string name="my_ask_history">我的问诊记录</string>
+    <string name="my_income">我的收入</string>
+    <string name="about">关于</string>
+    <!--SettingActivity end-->
 </resources>
