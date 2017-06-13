@@ -83,7 +83,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     //所对应布局
     private LinearLayout chinese_linearLayout, western_linearLayout, chat_linearLayout;
     private LinearLayout chinese_linearLayout_linearLayout, western_linearLayout_linearLayout;
-    private ImageView chinese_img, western_img;
+    private ImageView chinese_img, western_img,chahao;
     //中药显示部分
     private RecyclerView chinese_recyclerView;
     private Chinese_RecycleView_Adapter chinese_adapter;
@@ -110,14 +110,15 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     private Context ctx;
     private Activity act;
-
+    //动态广播
     private Receiver receiver;
     private Refresh refresh;
+    private KeyboarrReceiver keyboarrReceiver;
 
     //中药表
     private ChineseDetailModel chineseDetailModel;
 
-    private String pinyin;
+    private String pinyin,accid;
 
 
     @Nullable
@@ -143,6 +144,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_fixed= (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_fixed_recycleview);
         chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
         western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout_image);
+        chahao= (ImageView) view.findViewById(R.id.fragment_helper_chinese_chahao);
 
         chinese_linearLayout_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout);
         western_linearLayout_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_western_medical_linearLayout_linearLayout);
@@ -183,6 +185,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese.setOnClickListener(this);
         western.setOnClickListener(this);
         chinese_button.setOnClickListener(this);
+        chahao.setOnClickListener(this);
 
         //显示药方的地方
         chinese_adapter = new Chinese_RecycleView_Adapter(getContext());
@@ -221,9 +224,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         IntentFilter intentRefresh=new IntentFilter("SHUAXIN");
         getActivity().registerReceiver(refresh,intentRefresh);
 
-//        RefreshReceiver refreshReceiver = new RefreshReceiver();
-//        IntentFilter filter = new IntentFilter("refresh");
-//        getActivity().registerReceiver(refreshReceiver,filter);
+        keyboarrReceiver=new KeyboarrReceiver();
+        IntentFilter intentKey=new IntentFilter("RUANJIANPAN");
+        getActivity().registerReceiver(keyboarrReceiver,intentKey);
+
+
     }
 
     private void setListener() {
@@ -289,15 +294,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         fix_data.add(h);
         fix_data.add(i);
 
-//        list.add(a);
-//        list.add(b);
-//        list.add(c);
-//        list.add(d);
-//        list.add(e);
-//        list.add(f);
-//        list.add(g);
-//        list.add(h);
-
     }
 
     @Override
@@ -322,19 +318,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 playChineseView();
                 //查询本地数据库
                 try {
-                    data=HisDbManager.getManager().findChineseDeatilModel(chineseDetailModel);
+                    data=HisDbManager.getManager().findChineseDeatilModel(id);
+                    Log.e(TAG, "onClick222222222222: "+id );
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
                 chinese_adapter.setList(data);
                 chinese_adapter.notifyDataSetChanged();
-
-                chinese_edittext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        chinese_edittextOnClick();
-                    }
-                });
 
                 break;
             case R.id.fragment_helper_radioButton_western:
@@ -344,33 +334,13 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 //               createYaoFang(id, "中药","1029405","7","1000");
                 chinese_button.setOnClickListener(signListener);
                 break;
+
+            case R.id.fragment_helper_chinese_chahao:
+                chinese_edittext.setText(null);
+                chinese_listView.setVisibility(View.GONE);
+                chinese_fixed.setVisibility(View.VISIBLE);
         }}
 
-    private void chinese_edittextOnClick() {
-        chinese_listView.setVisibility(View.VISIBLE);
-        chinese_fixed.setVisibility(View.GONE);
-
-        //根据拼音查询数据
-        pinyin=chinese_edittext.getText().toString();
-        String xmmc=null;
-        List<String> asd=new ArrayList<>();
-        Cursor cursor= DataHelper.getInstance(getContext()).getXMRJ(pinyin);
-        if (cursor!=null&&cursor.moveToFirst()){
-            do {
-                xmmc=cursor.getString(cursor.getColumnIndex("xmmc"));
-                asd.add(xmmc);
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        //显示搜索列表药名
-        for (String s : asd) {
-            ChineseDetailModel chinese=new ChineseDetailModel();
-            chinese.setCmc(s);
-            list.add(chinese);
-        }
-        adapter.notifyDataSetChanged();
-
-    }
 
 
     private View.OnClickListener signListenerWestern = new View.OnClickListener() {
@@ -595,7 +565,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             chinese_adapter.notifyDataSetChanged();
             try {
                 HisDbManager.getManager().deleteAskChinese(name);
-                Log.e(TAG, "onReceive: "+"已删除" );
+//                HisDbManager.getManager().deleteAskNumbwe(0);
             } catch (DbException e) {
                 e.printStackTrace();
             }
@@ -611,23 +581,36 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             ask.setChecked(true);
         }
     }
-//    class RefreshReceiver extends BroadcastReceiver{
-//
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//
-//            chatFragment = new EaseChatFragment();
-//            bundle = new Bundle();
-//            bundle.putString("userName", userName);
-//            bundle.putString("userId", id);
-//            bundle.putString("type", type1);
-//            bundle.putInt("single", single1);
-//            chatFragment.setArguments(bundle);
-//            getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
-//
-//*
-//        }
-//    }
+
+    class KeyboarrReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //根据拼音查询数据
+            pinyin=chinese_edittext.getText().toString();
+            String xmmc=null;
+            List<String> asd=new ArrayList<>();
+            Cursor cursor= DataHelper.getInstance(getContext()).getXMRJ(pinyin);
+            if (pinyin.length()>=2){
+                if (cursor!=null&&cursor.moveToFirst()){
+                    do {
+                        xmmc=cursor.getString(cursor.getColumnIndex("xmmc"));
+                        asd.add(xmmc);
+                    }while (cursor.moveToNext());
+                }
+                cursor.close();
+                //显示搜索列表药名
+                for (String s : asd) {
+                    ChineseDetailModel chinese=new ChineseDetailModel();
+                    chinese.setCmc(s);
+                    list.add(chinese);
+                }
+                adapter.notifyDataSetChanged();
+                chinese_listView.setVisibility(View.VISIBLE);
+                chinese_fixed.setVisibility(View.GONE);
+            }
+        }
+    }
 
 
 }

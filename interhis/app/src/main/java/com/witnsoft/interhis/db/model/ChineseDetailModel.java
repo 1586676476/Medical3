@@ -15,10 +15,10 @@ import org.xutils.ex.DbException;
 public class ChineseDetailModel {
 
     // primary key
-    @Column(name = "ACMID",
+    @Column(name = "ACCID",
             isId = true,
             autoGen = false)
-    private String acmId;
+    private String accid;
 
     // 中药处方ID
     @Column(name = "ACID")
@@ -81,15 +81,15 @@ public class ChineseDetailModel {
     }
 
     public ChineseModel getChinese(DbManager db) throws DbException {
-        return db.findById(ChineseModel.class, acmId);
+        return db.findById(ChineseModel.class, accid);
     }
 
-    public void setAcmId(String acmId){
-        this.acmId = acmId;
+    public void setAccid(String acmId){
+        this.accid = acmId;
     }
 
-    public String getAcmId() {
-        return acmId;
+    public String getAccid() {
+        return accid;
     }
 
     public void setAcId(String acId) {

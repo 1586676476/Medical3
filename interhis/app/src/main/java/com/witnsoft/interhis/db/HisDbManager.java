@@ -132,6 +132,10 @@ public class HisDbManager {
         this.manager.delete(ChineseDetailModel.class, WhereBuilder.b("CMC","=",str));
     }
 
+    public void deleteAskNumbwe(int count) throws DbException{
+        this.manager.delete(ChineseDetailModel.class,WhereBuilder.b("sl","=",count));
+    }
+
     public List<ChineseModel> findChineseByPrimId(String acId) throws DbException {
         Object messages = this.manager.selector(ChineseModel.class).
                 where("ACID", "=", acId).findAll();
@@ -141,12 +145,19 @@ public class HisDbManager {
         return (List) messages;
     }
 
-    public List<ChineseDetailModel> findChineseDeatilModel(ChineseDetailModel cmc) throws DbException{
-        Object message=this.manager.selector(ChineseDetailModel.class).findAll();
+//    public List<ChineseDetailModel> findChineseDeatilModel(ChineseDetailModel cmc) throws DbException{
+//        Object message=this.manager.selector(ChineseDetailModel.class).findAll();
+//        if(null==message){
+//            message=new ArrayList();
+//        }
+//        return (List<ChineseDetailModel>) message;
+//    }
+
+    public List<ChineseDetailModel> findChineseDeatilModel(String acmid) throws DbException{
+        Object message=this.manager.selector(ChineseDetailModel.class).where("ACCID","=",acmid).orderBy(acmid,true).findAll();
         if(null==message){
             message=new ArrayList();
         }
         return (List<ChineseDetailModel>) message;
     }
-
 }
