@@ -450,7 +450,10 @@ public class DoctorFragment extends Fragment {
                                         }
                                         dataChatList.get(position).put("color", "changed");
                                         patAdapter.notifyDataSetChanged();
+                                        //发送广播
                                         Intent intent = new Intent("SHUAXIN");
+                                        intent.putExtra("accid",dataChatList.get(position).get("ACCID"));
+                                        Log.e(TAG, "onClick33333333: "+dataChatList.get(position).get("ACCID"));
                                         getActivity().sendBroadcast(intent);
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
@@ -465,9 +468,10 @@ public class DoctorFragment extends Fragment {
                                             Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
 
                                         }
+
                                         //将UserName作为主键 存入数据库
                                         ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
-                                        chineseDetailModel.setAcmId(dataChatList.get(position).get(LOGIN_NAME));
+                                        chineseDetailModel.setAccid(dataChatList.get(position).get("ACCID"));
                                         try {
                                             HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                                         } catch (DbException e) {

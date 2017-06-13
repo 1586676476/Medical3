@@ -2,6 +2,7 @@ package com.witnsoft.interhis.tool;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard.Key;
@@ -56,6 +57,8 @@ public class KeyboardUtil {
 
         @Override
         public void onKey(int primaryCode, int[] keyCodes) {
+            Intent intent=new Intent("RUANJIANPAN");
+            ctx.sendBroadcast(intent);
             Editable editable = ed.getText();
             int start = ed.getSelectionStart();
             if (primaryCode == Keyboard.KEYCODE_DELETE) {//删除

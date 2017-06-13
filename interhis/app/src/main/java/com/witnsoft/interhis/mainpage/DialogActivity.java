@@ -1,8 +1,13 @@
 package com.witnsoft.interhis.mainpage;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,7 +35,9 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     private Button first_cancel;
     private TextView five,ten,fifteen,twenty,number,add,less,name,show;
 
-    private String medical;
+    private String medical,accid;
+    private AccidReceiver accidReceiver;
+
 
     private int num=0;
     @Override
@@ -77,6 +84,9 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         medical = getIntent().getStringExtra("medical_name");
         name.setText(medical);
 
+        accidReceiver=new AccidReceiver();
+        IntentFilter intentFilter=new IntentFilter("SHUAXIN");
+        registerReceiver(accidReceiver,intentFilter);
     }
 
     private void SetViewListener() {
@@ -93,6 +103,8 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_five:
+                chineseDetailModel.setAccid(accid);
+                Log.e(TAG, "onClick111111: "+accid );
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(5);
                 EventBus.getDefault().post(chineseDetailModel);
@@ -104,6 +116,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_ten:
+                chineseDetailModel.setAccid(accid);
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(10);
                 EventBus.getDefault().post(chineseDetailModel);
@@ -115,6 +128,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_fifteen:
+                chineseDetailModel.setAccid(accid);
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(15);
                 EventBus.getDefault().post(chineseDetailModel);
@@ -126,6 +140,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_twenty:
+                chineseDetailModel.setAccid(accid);
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(20);
                 EventBus.getDefault().post(chineseDetailModel);
@@ -137,6 +152,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_number:
+                chineseDetailModel.setAccid(accid);
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(num);
                 EventBus.getDefault().post(chineseDetailModel);
@@ -243,6 +259,13 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         {
 
         }
+    }
 
+    class AccidReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            accid=getIntent().getStringExtra("accid");
+        }
     }
 }
