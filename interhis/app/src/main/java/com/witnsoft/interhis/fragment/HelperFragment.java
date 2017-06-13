@@ -511,7 +511,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     public void setContent(String userName, String userId, String type, int single) {
-        llContent.setVisibility(View.VISIBLE);
+//        llContent.setVisibility(View.VISIBLE);
 
         tvNoData.setVisibility(View.GONE);
         id = userId;
