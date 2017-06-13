@@ -33,6 +33,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.witnsoft.interhis.R;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
@@ -85,26 +86,26 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     //所对应布局
     private LinearLayout chinese_linearLayout, western_linearLayout, chat_linearLayout;
     private LinearLayout chinese_linearLayout_linearLayout, western_linearLayout_linearLayout;
-    private ImageView chinese_img, western_img,chahao,western_chahao;
+    private ImageView chinese_img, western_img, chahao, western_chahao;
     //中西药显示部分
-    private RecyclerView chinese_recyclerView,western_recycleView;
+    private RecyclerView chinese_recyclerView, western_recycleView;
     private Chinese_RecycleView_Adapter chinese_adapter;
     private Western_RecycleView_Adapter western_adapter;
     private List<ChineseDetailModel> data;
     private List<WesternDetailModel> western_data;
 
     //中西药按钮
-    private Button chinese_button,western_button;
+    private Button chinese_button, western_button;
 
     //中西药搜索框
-    private EditText chinese_edittext,western_edittext;
+    private EditText chinese_edittext, western_edittext;
     private Chinese_ListView_Adapter adapter = null;
-    private Western_ListView_Adapter western_listView_adapter=null;
-    private ListView chinese_listView,western_listView;
+    private Western_ListView_Adapter western_listView_adapter = null;
+    private ListView chinese_listView, western_listView;
     private List<ChineseDetailModel> list = new ArrayList<>();
-    private List<WesternDetailModel> western_list=new ArrayList<>();
+    private List<WesternDetailModel> western_list = new ArrayList<>();
     //固定药方显示部分
-    private RecyclerView chinese_fixed,western_fixed;
+    private RecyclerView chinese_fixed, western_fixed;
     private Chinese_Fixed_Adapter fixed_adapter;
     private List<ChineseDetailModel> fix_data;
 
@@ -123,7 +124,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private Refresh refresh;
     private KeyboarrReceiver keyboarrReceiver;
 
-    private String pinyin,accid;
+    private String pinyin, accid;
 
 
     @Nullable
@@ -134,7 +135,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
          * xiugai de neirong
          * 444444444444444444
          */
-//        llContent = (LinearLayout) view.findViewById(R.id.ll_content);
+        llContent = (LinearLayout) view.findViewById(R.id.ll_content);
         tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
 
         ask = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_ask);
@@ -146,21 +147,21 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout);
         chat_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chat_linearLayout);
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
-        chinese_fixed= (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_fixed_recycleview);
-        western_fixed= (RecyclerView) view.findViewById(R.id.fragment_helper_western_fixed_recycleview);
+        chinese_fixed = (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_fixed_recycleview);
+        western_fixed = (RecyclerView) view.findViewById(R.id.fragment_helper_western_fixed_recycleview);
         chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
         western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_linearLayout_linearLayout_image);
-        chahao= (ImageView) view.findViewById(R.id.fragment_helper_chinese_chahao);
-        western_chahao= (ImageView) view.findViewById(R.id.fragment_helper_western_chahao);
+        chahao = (ImageView) view.findViewById(R.id.fragment_helper_chinese_chahao);
+        western_chahao = (ImageView) view.findViewById(R.id.fragment_helper_western_chahao);
 
         chinese_linearLayout_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout);
         western_linearLayout_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_western_linearLayout_linearLayout);
         chinese_recyclerView = (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_recycleView);
         western_recycleView = (RecyclerView) view.findViewById(R.id.fragment_helper_western_linearLayout_recycleView);
         chinese_button = (Button) view.findViewById(R.id.fragment_helper_chinese_button);
-        western_button= (Button) view.findViewById(R.id.fragment_helper_western_button);
+        western_button = (Button) view.findViewById(R.id.fragment_helper_western_button);
         chinese_edittext = (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
-        western_edittext= (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
+        western_edittext = (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
 
 
         ask = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_ask);
@@ -179,10 +180,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
-        western_listView= (ListView) view.findViewById(R.id.fragment_helper_western_listview);
+        western_listView = (ListView) view.findViewById(R.id.fragment_helper_western_listview);
 
-        ctx=getContext();
-        act=getActivity();
+        ctx = getContext();
+        act = getActivity();
 
         return view;
 
@@ -206,28 +207,28 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         chinese_recyclerView.setAdapter(chinese_adapter);
 
-        western_adapter=new Western_RecycleView_Adapter(getContext());
-        western_data=new ArrayList<>();
+        western_adapter = new Western_RecycleView_Adapter(getContext());
+        western_data = new ArrayList<>();
         western_adapter.setList(western_data);
         western_adapter.setOnClick(this);
         western_recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         western_recycleView.setAdapter(western_adapter);
 
         //固定药方
-        fix_data=new ArrayList<>();
+        fix_data = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-           initData();
+            initData();
         }
 
-        fixed_adapter=new Chinese_Fixed_Adapter(getContext());
-        chinese_fixed.setLayoutManager(new GridLayoutManager(getContext(),3));
+        fixed_adapter = new Chinese_Fixed_Adapter(getContext());
+        chinese_fixed.setLayoutManager(new GridLayoutManager(getContext(), 3));
         fixed_adapter.setList(fix_data);
         fixed_adapter.setOnFixClick(this);
         chinese_fixed.setAdapter(fixed_adapter);
 
         //点击edittext实现自定义软键盘
         chinese_edittext.setInputType(InputType.TYPE_NULL);
-        new KeyboardUtil(act,ctx,chinese_edittext).showKeyboard();
+        new KeyboardUtil(act, ctx, chinese_edittext).showKeyboard();
 
 
         //实现搜索功能
@@ -236,17 +237,17 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         EventBus.getDefault().register(this);
         //动态广播
-        receiver=new Receiver();
-        IntentFilter intentFilter=new IntentFilter("shanchu");
-        getActivity().registerReceiver(receiver,intentFilter);
+        receiver = new Receiver();
+        IntentFilter intentFilter = new IntentFilter("shanchu");
+        getActivity().registerReceiver(receiver, intentFilter);
 
-        refresh=new Refresh();
-        IntentFilter intentRefresh=new IntentFilter("SHUAXIN");
-        getActivity().registerReceiver(refresh,intentRefresh);
+        refresh = new Refresh();
+        IntentFilter intentRefresh = new IntentFilter("SHUAXIN");
+        getActivity().registerReceiver(refresh, intentRefresh);
 
-        keyboarrReceiver=new KeyboarrReceiver();
-        IntentFilter intentKey=new IntentFilter("RUANJIANPAN");
-        getActivity().registerReceiver(keyboarrReceiver,intentKey);
+        keyboarrReceiver = new KeyboarrReceiver();
+        IntentFilter intentKey = new IntentFilter("RUANJIANPAN");
+        getActivity().registerReceiver(keyboarrReceiver, intentKey);
 
 
     }
@@ -271,12 +272,12 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     private void setItemClick(final List<ChineseDetailModel> datas) {
-         chinese_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        chinese_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(MainActivity.this, filter_lists.get(position), Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getActivity(), DialogActivity.class);
-                intent.putExtra("medical_name",list.get(position).getCmc());
+                Intent intent = new Intent(getActivity(), DialogActivity.class);
+                intent.putExtra("medical_name", list.get(position).getCmc());
                 startActivity(intent);
 
             }
@@ -285,15 +286,15 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     private void initData() {
 
-        ChineseDetailModel a=new ChineseDetailModel();
-        ChineseDetailModel b=new ChineseDetailModel();
-        ChineseDetailModel c=new ChineseDetailModel();
-        ChineseDetailModel d=new ChineseDetailModel();
-        ChineseDetailModel e=new ChineseDetailModel();
-        ChineseDetailModel f=new ChineseDetailModel();
-        ChineseDetailModel g=new ChineseDetailModel();
-        ChineseDetailModel h=new ChineseDetailModel();
-        ChineseDetailModel i=new ChineseDetailModel();
+        ChineseDetailModel a = new ChineseDetailModel();
+        ChineseDetailModel b = new ChineseDetailModel();
+        ChineseDetailModel c = new ChineseDetailModel();
+        ChineseDetailModel d = new ChineseDetailModel();
+        ChineseDetailModel e = new ChineseDetailModel();
+        ChineseDetailModel f = new ChineseDetailModel();
+        ChineseDetailModel g = new ChineseDetailModel();
+        ChineseDetailModel h = new ChineseDetailModel();
+        ChineseDetailModel i = new ChineseDetailModel();
         a.setCmc("车前子");
         b.setCmc("人参");
         c.setCmc("卜芥");
@@ -338,7 +339,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 playChineseView();
                 //查询本地数据库
                 try {
-                    data=HisDbManager.getManager().findChineseDeatilModel(id);
+                    data = HisDbManager.getManager().findChineseDeatilModel(id);
 
                 } catch (DbException e) {
                     e.printStackTrace();
@@ -359,64 +360,64 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 chinese_edittext.setText(null);
                 chinese_listView.setVisibility(View.GONE);
                 chinese_fixed.setVisibility(View.VISIBLE);
-        }}
-
+        }
+    }
 
 
     private View.OnClickListener signListenerWestern = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WritePadDialog writeTabletDialog = new WritePadDialog(
-                        getContext(), R.style.SignBoardDialog, new DialogListener() {
-                    public void refreshActivity(Object object) {
-                        mSignBitmap = (Bitmap) object;
-                        signPath = createFile();
+        @Override
+        public void onClick(View v) {
+            WritePadDialog writeTabletDialog = new WritePadDialog(
+                    getContext(), R.style.SignBoardDialog, new DialogListener() {
+                public void refreshActivity(Object object) {
+                    mSignBitmap = (Bitmap) object;
+                    signPath = createFile();
 
-                        //对图片进行压缩
+                    //对图片进行压缩
                             /*BitmapFactory.Options options = new BitmapFactory.Options();
                             options.inSampleSize = 15;
 							options.inTempStorage = new byte[5 * 1024];
 							Bitmap zoombm = BitmapFactory.decodeFile(signPath, options);
 */
-                        Bitmap zoombm = getCompressBitmap(signPath);
-                        western_img.setImageBitmap(zoombm);
+                    Bitmap zoombm = getCompressBitmap(signPath);
+                    western_img.setImageBitmap(zoombm);
 
 
-                    }
-                });
-                writeTabletDialog.show();
-            }
-        };
+                }
+            });
+            writeTabletDialog.show();
+        }
+    };
 
-        private View.OnClickListener signListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WritePadDialog writeTabletDialog = new WritePadDialog(
-                        getContext(), R.style.SignBoardDialog, new DialogListener() {
-                    public void refreshActivity(Object object) {
-                        mSignBitmap = (Bitmap) object;
-                        signPath = createFile();
+    private View.OnClickListener signListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            WritePadDialog writeTabletDialog = new WritePadDialog(
+                    getContext(), R.style.SignBoardDialog, new DialogListener() {
+                public void refreshActivity(Object object) {
+                    mSignBitmap = (Bitmap) object;
+                    signPath = createFile();
 
-                        //对图片进行压缩
-							/*BitmapFactory.Options options = new BitmapFactory.Options();
+                    //对图片进行压缩
+                            /*BitmapFactory.Options options = new BitmapFactory.Options();
 							options.inSampleSize = 15;
 							options.inTempStorage = new byte[5 * 1024];
 							Bitmap zoombm = BitmapFactory.decodeFile(signPath, options);
 */
-                        Bitmap zoombm = getCompressBitmap(signPath);
-                        chinese_img.setImageBitmap(zoombm);
+                    Bitmap zoombm = getCompressBitmap(signPath);
+                    chinese_img.setImageBitmap(zoombm);
 
-                    }
-                });
-                writeTabletDialog.show();
-            }
-        };
+                }
+            });
+            writeTabletDialog.show();
+        }
+    };
 
-        /**
-         * 创建手写签名文件
-         *
-         * @return
-         */
+    /**
+     * 创建手写签名文件
+     *
+     * @return
+     */
 
     private String createFile() {
         ByteArrayOutputStream baos = null;
@@ -505,7 +506,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
 
-    public void setRest(){
+    public void setRest() {
         llContent.setVisibility(View.GONE);
         tvNoData.setVisibility(View.VISIBLE);
     }
@@ -537,10 +538,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         EMMessage message = EMMessage.createTxtSendMessage("yaofang", id);
 
         message.setAttribute("type", "yaofang");
-        message.setAttribute("userName",userName);
-        message.setAttribute("yaofangType",yaofangType);
+        message.setAttribute("userName", userName);
+        message.setAttribute("yaofangType", yaofangType);
         message.setAttribute("yaofangNum", yaofangNum);
-        message.setAttribute("yaoNum",yaoNum);
+        message.setAttribute("yaoNum", yaoNum);
         message.setAttribute("yaofangPrice", yaofangPrice);
 
         EMClient.getInstance().chatManager().sendMessage(message);
@@ -549,9 +550,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     @Override
     public void onIteClick(int position) {
-        Intent intent=new Intent(getActivity(), SecondDialogActivity.class);
-        intent.putExtra("position",position);
-        intent.putExtra("chinese_name",data.get(position).getCmc());
+        Intent intent = new Intent(getActivity(), SecondDialogActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("chinese_name", data.get(position).getCmc());
         startActivity(intent);
         chinese_adapter.deleteTextView(position);
 //        western_adapter.deleteTextView(position);
@@ -559,11 +560,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getData(ChineseDetailModel numberBean){
-        String chinese_name=numberBean.getCmc();
-        int count=numberBean.getSl();
-        Log.e(TAG, "getData: "+count );
-        ChineseDetailModel a=new ChineseDetailModel();
+    public void getData(ChineseDetailModel numberBean) {
+        String chinese_name = numberBean.getCmc();
+        int count = numberBean.getSl();
+        Log.e(TAG, "getData: " + count);
+        ChineseDetailModel a = new ChineseDetailModel();
 
         a.setSl(count);
         a.setCmc(chinese_name);
@@ -584,8 +585,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     @Override
     public void OnFixItemClick(int position) {
-        Intent intent=new Intent(getActivity(), DialogActivity.class);
-        intent.putExtra("medical_name",fix_data.get(position).getCmc());
+        Intent intent = new Intent(getActivity(), DialogActivity.class);
+        intent.putExtra("medical_name", fix_data.get(position).getCmc());
         startActivity(intent);
     }
 
@@ -594,7 +595,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         @Override
         public void onReceive(Context context, Intent intent) {
             int pos = intent.getIntExtra("pos", 0);
-            String name=intent.getStringExtra("name");
+            String name = intent.getStringExtra("name");
             chinese_adapter.notifyDataSetChanged();
             try {
                 HisDbManager.getManager().deleteAskChinese(name);
@@ -606,7 +607,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         }
     }
 
-    class Refresh extends BroadcastReceiver{
+    class Refresh extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -615,26 +616,26 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         }
     }
 
-    class KeyboarrReceiver extends BroadcastReceiver{
+    class KeyboarrReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             //根据拼音查询数据
-            pinyin=chinese_edittext.getText().toString();
-            String xmmc=null;
-            List<String> asd=new ArrayList<>();
-            Cursor cursor= DataHelper.getInstance(getContext()).getXMRJ(pinyin);
-            if (pinyin.length()>=2){
-                if (cursor!=null&&cursor.moveToFirst()){
+            pinyin = chinese_edittext.getText().toString();
+            String xmmc = null;
+            List<String> asd = new ArrayList<>();
+            Cursor cursor = DataHelper.getInstance(getContext()).getXMRJ(pinyin);
+            if (pinyin.length() >= 2) {
+                if (cursor != null && cursor.moveToFirst()) {
                     do {
-                        xmmc=cursor.getString(cursor.getColumnIndex("xmmc"));
+                        xmmc = cursor.getString(cursor.getColumnIndex("xmmc"));
                         asd.add(xmmc);
-                    }while (cursor.moveToNext());
+                    } while (cursor.moveToNext());
                 }
                 cursor.close();
                 //显示搜索列表药名
                 for (String s : asd) {
-                    ChineseDetailModel chinese=new ChineseDetailModel();
+                    ChineseDetailModel chinese = new ChineseDetailModel();
                     chinese.setCmc(s);
                     list.add(chinese);
                 }
