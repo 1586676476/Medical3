@@ -182,6 +182,12 @@ public class DoctorFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        int notificationAction = getActivity().getIntent().getIntExtra("Notification", -1);
+        Log.e("MainActivity", "notification test in fragment = " + String.valueOf(notificationAction));
+        if (1 == notificationAction) {
+            // 通过点击通知进入
+            isVisiting = true;
+        }
         initViews();
         if (!isVisiting) {
             // 不在出诊状态

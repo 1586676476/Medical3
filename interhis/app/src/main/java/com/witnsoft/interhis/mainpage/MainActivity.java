@@ -31,9 +31,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
-        // TODO: 2017/6/12 测试推送通知点击动作 
-        int notification = getIntent().getIntExtra("Notification", -1);
-        Log.e("MainActivity", "notification = " + String.valueOf(notification));
     }
 
     private long exitTime = 0;
