@@ -634,7 +634,7 @@ public class DoctorFragment extends Fragment {
 
             @Override
             public void onError(Throwable throwable) {
-                Toast.makeText(getActivity(), getResources().getString(R.string.login_failed), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.logout_failed), Toast.LENGTH_LONG).show();
             }
         });
     }
