@@ -33,12 +33,10 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
+import com.witnsoft.interhis.R;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.ui.EaseChatFragment;
-import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.adapter.Chinese_Fixed_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_ListView_Adapter;
 import com.witnsoft.interhis.adapter.Chinese_RecycleView_Adapter;
@@ -501,10 +499,12 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_linearLayout.setVisibility(View.GONE);
     }
 
-<<<<<<< HEAD
+
     public void getContent(String userName, String userId, String type, int single) {
-//        llContent.setVisibility(View.VISIBLE);
-=======
+
+    }
+
+
     public void setRest(){
         llContent.setVisibility(View.GONE);
         tvNoData.setVisibility(View.VISIBLE);
@@ -512,7 +512,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     public void setContent(String userName, String userId, String type, int single) {
         llContent.setVisibility(View.VISIBLE);
->>>>>>> 756862df6a08352dc972bdced53ac9ac2313b7d5
+
         tvNoData.setVisibility(View.GONE);
         id = userId;
         this.userName = userName;

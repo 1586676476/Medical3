@@ -668,6 +668,7 @@ public class DoctorFragment extends Fragment {
      * 环信登录
      */
     private void chatLogin() {
+        Log.e(TAG,"!!!!!!!!!!!!!!!!!!!!!!!!!chat =   "+docId+" and = "+ThriftPreUtils.getLoginPassword(getActivity()));
         EMClient.getInstance().login(docId, ThriftPreUtils.getLoginPassword(getActivity()), new EMCallBack() {
             //        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
             @Override
@@ -712,6 +713,7 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        Log.e(TAG,"chat logout success");
                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                         helperFragment.setRest();
                         isVisiting = false;
