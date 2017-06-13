@@ -4,16 +4,23 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <!--<TextView-->
-        <!--android:id="@+id/tv_no_data"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/no_contact_list"-->
-        <!--android:textColor="@color/text_gray_color"-->
-        <!--android:textSize="20dp"-->
-        <!--android:visibility="visible"/>-->
-    <!---->
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_contact_list"
+        android:textColor="@color/text_gray_color"
+        android:textSize="20dp"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
         <RadioGroup
             android:id="@+id/fragment_helper_button"
             android:layout_width="match_parent"
@@ -79,8 +86,7 @@
             <TextView
                 android:id="@+id/fragment_helper_ask_linearLayout_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="match_parent"/>
 
 
         </FrameLayout>
@@ -130,12 +136,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/fragment_helper_chinese_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhite"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <!--<LinearLayout-->
             <!--android:layout_width="690dp"-->
@@ -245,20 +251,86 @@
                     android:layout_marginTop="-13dp"/>
             </LinearLayout>
 
+<<<<<<< HEAD
             <TextView
                 android:id="@+id/fragment_helper_chinese_medical_number"
                 style="@style/bigSize"
                 android:layout_marginLeft="330dp"
                 android:layout_marginTop="-35dp"
                 android:text="共7付"/>
+=======
 
-            <TextView
-                style="@style/bigSize"
-                android:layout_marginLeft="450dp"
-                android:layout_marginTop="-18dp"
-                android:text="金额：      700元"
-                android:textColor="@color/colorBlack"/>
+            <LinearLayout
+                android:id="@+id/fragment_helper_chinese_linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"
+                android:orientation="vertical"
+                android:visibility="gone">
 
+                <!--<LinearLayout-->
+                <!--android:layout_width="690dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:background="@color/colorYellow">-->
+
+                <!--<TextView-->
+                <!--style="@style/smallSize"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:text="天津市瑞城大药房王顶缇店  022-38475896\n南开区王顶缇应随路92号"-->
+                <!--android:textColor="@color/colorBlack" />-->
+
+                <!--</LinearLayout>-->
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fragment_helper_chinese_linearLayout_recycleView"
+                    android:layout_width="690dp"
+                    android:layout_height="150dp"/>
+
+                <EditText
+                    android:id="@+id/fragment_helper_chinese_advice"
+                    android:layout_width="395dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/edittext"
+                    android:hint="请输入医嘱"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/colorBlack"/>
+
+                <EditText
+                    android:id="@+id/fragment_helper_chinese_edittext"
+                    android:layout_width="395dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext"
+                    android:hint="请输入药方"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/colorBlack"/>
+
+                <android.inputmethodservice.KeyboardView
+                    android:id="@+id/keyboard_view"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"/>
+
+                <TextView
+                    android:id="@+id/fragment_helper_chinese_medical_number"
+                    style="@style/bigSize"
+                    android:layout_marginLeft="330dp"
+                    android:layout_marginTop="-35dp"
+                    android:text="共7付"/>
+
+                <TextView
+                    style="@style/bigSize"
+                    android:layout_marginLeft="450dp"
+                    android:layout_marginTop="-18dp"
+                    android:text="金额：      700元"
+                    android:textColor="@color/colorBlack"/>
+
+            </LinearLayout>
+>>>>>>> a9f0eb0dbc67bdc60b804bde28525c58a70e86e7
+
+
+<<<<<<< HEAD
     </LinearLayout>
 
         <LinearLayout
@@ -392,6 +464,84 @@
 
         </LinearLayout>
 
+=======
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/fragment_helper_western_medical_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="690dp"
+                android:layout_height="50dp"
+                android:background="@color/colorYellow">
+
+                <TextView
+                    style="@style/smallSize"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:text="天津市瑞城大药房王顶缇店  022-38475896\n南开区王顶缇应随路92号"
+                    android:textColor="@color/colorBlack"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fragment_helper_western_edittext"
+                android:layout_width="670dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext"
+                android:hint="西药药方"
+                android:paddingBottom="150dp"
+                android:paddingLeft="10dp"/>
+
+            <Button
+                android:id="@+id/fragment_helper_western_medical_button"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button"
+                android:text="确认处方"/>
+
+            <LinearLayout
+                android:id="@+id/fragment_helper_western_medical_linearLayout_linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="-25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/bigSize"
+                    android:text="医师签名:"
+                    android:textColor="@color/colorBlack"
+                    />
+
+                <ImageView
+                    android:id="@+id/fragment_helper_western_medical_linearLayout_linearLayout_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="-13dp"/>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/bigSize"
+                android:layout_marginLeft="450dp"
+                android:layout_marginTop="-40dp"
+                android:text="金额：      700元"
+                android:textColor="@color/colorBlack"/>
+
+>>>>>>> a9f0eb0dbc67bdc60b804bde28525c58a70e86e7
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
