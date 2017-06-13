@@ -32,7 +32,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
-import com.witnsoft.interhis.mainpage.setting.SettingActivity;
+import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.utils.ComRecyclerAdapter;
 import com.witnsoft.libinterhis.utils.LogUtils;
