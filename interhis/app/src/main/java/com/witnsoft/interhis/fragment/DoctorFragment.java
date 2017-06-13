@@ -721,6 +721,7 @@ public class DoctorFragment extends Fragment {
                         if (null != patAdapter) {
                             patAdapter.notifyDataSetChanged();
                         }
+                        checkedPosition = -1;
                         tvNoContact.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
                     }
