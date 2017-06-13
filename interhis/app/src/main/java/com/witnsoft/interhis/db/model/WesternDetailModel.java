@@ -11,18 +11,18 @@ import org.xutils.db.annotation.Table;
 @Table(name = "ASK_WESTERN_MX")
 public class WesternDetailModel {
     // primary key
-    @Column(name = "AWMID",
+    @Column(name = "ACCID",
             isId = true,
             autoGen = false)
-    private String awmId;
+    private String accid;
 
     // 西药代码
     @Column(name = "AWDM")
     private String awDm;
 
     // 西药名称
-    @Column(name = "AWMC")
-    private String awMc;
+    @Column(name = "CMC")
+    private String cmc;
 
     // 西药规格代码
     @Column(name = "AWGGDM")
@@ -33,8 +33,8 @@ public class WesternDetailModel {
     private String awGgMc;
 
     // 西药数量
-    @Column(name = "AWSL")
-    private String awSl;
+    @Column(name = "SL")
+    private String sl;
 
     // 西药用法说明
     @Column(name = "AWSM")
@@ -48,12 +48,40 @@ public class WesternDetailModel {
     @Column(name = "DJ")
     private String dj;
 
-    public void setAwmId(String awmId) {
-        this.awmId = awmId;
+    private String XMMC;//药名
+    private String XMRJ;//药品拼音
+    private int SFDLBM;//药品类别
+
+    public String getXMMC() {
+        return XMMC;
     }
 
-    public String getAwmId() {
-        return awmId;
+    public void setXMMC(String XMMC) {
+        this.XMMC = XMMC;
+    }
+
+    public String getXMRJ() {
+        return XMRJ;
+    }
+
+    public void setXMRJ(String XMRJ) {
+        this.XMRJ = XMRJ;
+    }
+
+    public int getSFDLBM() {
+        return SFDLBM;
+    }
+
+    public void setSFDLBM(int SFDLBM) {
+        this.SFDLBM = SFDLBM;
+    }
+
+    public void setAccid(String awmId) {
+        this.accid = awmId;
+    }
+
+    public String getAccid() {
+        return accid;
     }
 
     public void setAwDm(String awDm) {
@@ -64,12 +92,12 @@ public class WesternDetailModel {
         return awDm;
     }
 
-    public void setAwMc(String awMc) {
-        this.awMc = awMc;
+    public void setCmc(String awMc) {
+        this.cmc = awMc;
     }
 
-    public String getAwMc() {
-        return awMc;
+    public String getCmc() {
+        return cmc;
     }
 
     public void setAwGgDm(String awGgDm) {
@@ -88,12 +116,12 @@ public class WesternDetailModel {
         return awGgMc;
     }
 
-    public void setAwSl(String awSl) {
-        this.awSl = awSl;
+    public String getSl() {
+        return sl;
     }
 
-    private String getAwSl() {
-        return awSl;
+    public void setSl(String sl) {
+        this.sl = sl;
     }
 
     public void setAwSm(String awSm) {

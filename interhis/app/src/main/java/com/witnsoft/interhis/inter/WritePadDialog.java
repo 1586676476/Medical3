@@ -17,8 +17,19 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.FrameLayout;
-
 import com.witnsoft.interhis.R;
+import com.witnsoft.libnet.model.DataModel;
+import com.witnsoft.libnet.model.OTRequest;
+import com.witnsoft.libnet.net.CallBack;
+import com.witnsoft.libnet.net.NetTool;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.util.Map;
 
 
 public class WritePadDialog extends Dialog {
@@ -26,6 +37,8 @@ public class WritePadDialog extends Dialog {
 	Context context;
 	LayoutParams p;
 	DialogListener dialogListener;
+
+	private static final String TN_DOC_INFO = "F27.APP.01.06";
 
 	public WritePadDialog(Context context, int themeResId, DialogListener dialogListener) {
 		super(context,themeResId);
@@ -77,9 +90,12 @@ public class WritePadDialog extends Dialog {
 				try {
 					dialogListener.refreshActivity(mView.getCachebBitmap());
 					WritePadDialog.this.dismiss();
-				} catch (Exception e) {
+                    Log.e(TAG, "onClick111111111111111111111111111111111111111111: "+12456 );
+                } catch (Exception e) {
 					e.printStackTrace();
 				}
+
+
 			}
 		});
 
