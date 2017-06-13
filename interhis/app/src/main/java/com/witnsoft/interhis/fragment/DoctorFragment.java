@@ -467,7 +467,7 @@ public class DoctorFragment extends Fragment {
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                                         try {
                                             Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("ACCID"));
-                                            helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
+                                            helperFragment.setContent(EaseConstant.EXTRA_USER_ID,
                                                     dataChatList.get(position).get("ACCID"),
                                                     EaseConstant.EXTRA_CHAT_TYPE,
                                                     EaseConstant.CHATTYPE_SINGLE);
@@ -712,6 +712,8 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+                        helperFragment.setRest();
                         isVisiting = false;
                         setBtnRest();
                         dataChatList.clear();
@@ -719,6 +721,8 @@ public class DoctorFragment extends Fragment {
                         if (null != patAdapter) {
                             patAdapter.notifyDataSetChanged();
                         }
+                        tvNoContact.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
                     }
                 });
             }
