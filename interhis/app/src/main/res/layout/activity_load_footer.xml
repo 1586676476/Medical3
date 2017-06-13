@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="horizontal"
-    android:padding="3px">
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/load_more"
