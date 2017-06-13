@@ -336,7 +336,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private int pageNo = 1;
-    private List<Map<String, String>> respList = new ArrayList<Map<String, String>>();
+    private List<Map<String, String>> respList;
     // 记录点击位置
     private int checkedPosition = -1;
 
@@ -366,7 +366,7 @@ public class DoctorFragment extends Fragment {
                         public void run() {
                             btnVisit.setEnabled(false);
                             if (null != response) {
-                                respList.clear();
+                                respList = new ArrayList<Map<String, String>>();
                                 respList = (List<Map<String, String>>) response.get(DATA);
                                 if (null != respList && 0 < respList.size()) {
                                     if (1 == pageNo) {
@@ -460,8 +460,8 @@ public class DoctorFragment extends Fragment {
                                         patAdapter.notifyDataSetChanged();
                                         //发送广播
                                         Intent intent = new Intent("SHUAXIN");
-                                        intent.putExtra("accid",dataChatList.get(position).get("ACCID"));
-                                        Log.e(TAG, "onClick33333333: "+dataChatList.get(position).get("ACCID"));
+                                        intent.putExtra("accid", dataChatList.get(position).get("ACCID"));
+                                        Log.e(TAG, "onClick33333333: " + dataChatList.get(position).get("ACCID"));
                                         getActivity().sendBroadcast(intent);
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
