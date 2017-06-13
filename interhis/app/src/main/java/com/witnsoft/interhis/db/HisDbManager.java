@@ -71,33 +71,6 @@ public class HisDbManager {
 
 
     // 版本更新内容
-//    private synchronized void upgradeDatabase(DbManager db, int oldVersion, int newVersion)
-//            throws IOException, ParserConfigurationException, SAXException {
-//        InputStream is = mContext.getAssets().open("db_upgrade.xml");
-//        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder builder = factory.newDocumentBuilder();
-//        Document document = builder.parse(is);
-//        Element root = document.getDocumentElement();
-//        NodeList versions = root.getElementsByTagName("version");
-//
-//        for (int m = oldVersion; m < newVersion; ++m) {
-//            Node version = versions.item(m);
-//            if (null != version) {
-//                NodeList modifications = version.getChildNodes();
-//                int length = modifications.getLength();
-//
-//                for (int n = 0; n < length; ++n) {
-//                    Node modification = modifications.item(n);
-//                    if (null != modification && "modification".equals(modification.getNodeName())) {
-//                        db.execNonQuery(modification.getTextContent());
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
-
-    // 版本更新内容
     private void upgradeDb(DbManager db, int newVersion, int oldVersion) {
         for (int i = oldVersion; i < newVersion; i++) {
             List<String> sols;

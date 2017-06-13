@@ -94,7 +94,11 @@ public class WritePadDialog extends Dialog {
                 } catch (Exception e) {
 					e.printStackTrace();
 				}
-
+				OTRequest otRequest = new OTRequest(getContext());
+				// DATA
+				DataModel data = new DataModel();
+				data.setParam("","");
+				otRequest.setDATA(data);
 
 			}
 		});
