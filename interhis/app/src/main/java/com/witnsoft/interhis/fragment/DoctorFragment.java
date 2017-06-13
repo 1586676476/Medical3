@@ -48,7 +48,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -182,6 +181,12 @@ public class DoctorFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        int notificationAction = getActivity().getIntent().getIntExtra("Notification", -1);
+        Log.e("MainActivity", "notification test in fragment = " + String.valueOf(notificationAction));
+        if (1 == notificationAction) {
+            // 通过点击通知进入
+            isVisiting = true;
+        }
         initViews();
         if (!isVisiting) {
             // 不在出诊状态
@@ -331,7 +336,7 @@ public class DoctorFragment extends Fragment {
     }
 
     private int pageNo = 1;
-    private List<Map<String, String>> respList = new ArrayList<Map<String, String>>();
+    private List<Map<String, String>> respList;
     // 记录点击位置
     private int checkedPosition = -1;
 
@@ -361,7 +366,7 @@ public class DoctorFragment extends Fragment {
                         public void run() {
                             btnVisit.setEnabled(false);
                             if (null != response) {
-                                respList.clear();
+                                respList = new ArrayList<Map<String, String>>();
                                 respList = (List<Map<String, String>>) response.get(DATA);
                                 if (null != respList && 0 < respList.size()) {
                                     if (1 == pageNo) {
@@ -455,14 +460,14 @@ public class DoctorFragment extends Fragment {
                                         patAdapter.notifyDataSetChanged();
                                         //发送广播
                                         Intent intent = new Intent("SHUAXIN");
-                                        intent.putExtra("accid",dataChatList.get(position).get("ACCID"));
-                                        Log.e(TAG, "onClick33333333: "+dataChatList.get(position).get("ACCID"));
+                                        intent.putExtra("accid", dataChatList.get(position).get("ACCID"));
+                                        Log.e(TAG, "onClick33333333: " + dataChatList.get(position).get("ACCID"));
                                         getActivity().sendBroadcast(intent);
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                                         try {
                                             Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("ACCID"));
-                                            helperFragment.getContent(EaseConstant.EXTRA_USER_ID,
+                                            helperFragment.setContent(EaseConstant.EXTRA_USER_ID,
                                                     dataChatList.get(position).get("ACCID"),
                                                     EaseConstant.EXTRA_CHAT_TYPE,
                                                     EaseConstant.CHATTYPE_SINGLE);
@@ -629,7 +634,7 @@ public class DoctorFragment extends Fragment {
 
             @Override
             public void onError(Throwable throwable) {
-                Toast.makeText(getActivity(), getResources().getString(R.string.login_failed), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getResources().getString(R.string.logout_failed), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -707,6 +712,8 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+                        helperFragment.setRest();
                         isVisiting = false;
                         setBtnRest();
                         dataChatList.clear();
@@ -714,6 +721,9 @@ public class DoctorFragment extends Fragment {
                         if (null != patAdapter) {
                             patAdapter.notifyDataSetChanged();
                         }
+                        checkedPosition = -1;
+                        tvNoContact.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
                     }
                 });
             }

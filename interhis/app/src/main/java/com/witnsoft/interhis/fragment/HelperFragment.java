@@ -501,8 +501,18 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_linearLayout.setVisibility(View.GONE);
     }
 
+<<<<<<< HEAD
     public void getContent(String userName, String userId, String type, int single) {
 //        llContent.setVisibility(View.VISIBLE);
+=======
+    public void setRest(){
+        llContent.setVisibility(View.GONE);
+        tvNoData.setVisibility(View.VISIBLE);
+    }
+
+    public void setContent(String userName, String userId, String type, int single) {
+        llContent.setVisibility(View.VISIBLE);
+>>>>>>> 756862df6a08352dc972bdced53ac9ac2313b7d5
         tvNoData.setVisibility(View.GONE);
         id = userId;
         this.userName = userName;
