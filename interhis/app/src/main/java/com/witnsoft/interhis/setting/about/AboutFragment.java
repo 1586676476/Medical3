@@ -1,6 +1,5 @@
 package com.witnsoft.interhis.setting.about;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.setting.ChildBaseFragment;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
@@ -17,7 +17,7 @@ import org.xutils.x;
  */
 
 @ContentView(R.layout.fragment_about)
-public class AboutFragment extends Fragment {
+public class AboutFragment extends ChildBaseFragment {
     View rootView;
 
     @Nullable

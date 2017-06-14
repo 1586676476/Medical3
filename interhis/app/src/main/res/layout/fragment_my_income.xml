@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -136,7 +136,8 @@
     <com.witnsoft.interhis.utils.ui.ItemSettingRight
         android:id="@+id/rl_bank_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
 
     <!--收入账单-->
     <com.witnsoft.interhis.utils.ui.ItemSettingRight
