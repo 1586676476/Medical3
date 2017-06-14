@@ -5,11 +5,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
-import com.witnsoft.interhis.utils.ui.ItemSettingRight;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -20,15 +20,15 @@ import java.util.concurrent.TimeUnit;
 import rx.functions.Action1;
 
 /**
- * Created by zhengchengpeng on 2017/6/13.
+ * Created by zhengchengpeng on 2017/6/14.
  */
 
-@ContentView(R.layout.fragment_about)
-public class AboutFragment extends ChildBaseFragment {
+@ContentView(R.layout.fragment_imprint)
+public class ImPrintFragment extends ChildBaseFragment {
     View rootView;
 
-    @ViewInject(R.id.rl_imprint)
-    private ItemSettingRight rlImprint;
+    @ViewInject(R.id.ll_back)
+    private LinearLayout llBack;
 
     @Nullable
     @Override
@@ -43,27 +43,17 @@ public class AboutFragment extends ChildBaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initClick();
-        init();
-    }
-
-    private void init() {
-        rlImprint.setTvTitle(getActivity().getResources().getString(R.string.imprint));
     }
 
     private void initClick() {
-        RxView.clicks(rlImprint)
+        RxView.clicks(llBack)
                 .throttleFirst(500, TimeUnit.MILLISECONDS)
                 .compose(this.<Void>bindToLifecycle())
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-                        toImprint();
+                        finishFragment();
                     }
                 });
-    }
-
-    private void toImprint() {
-        ImPrintFragment imPrintFragment = new ImPrintFragment();
-        pushFragment(imPrintFragment, null, true);
     }
 }

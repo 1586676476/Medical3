@@ -43,5 +43,9 @@
     <string name="to_cash">提现</string>
     <string name="my_bank_card">我的银行卡</string>
     <string name="income_bill">收入账单</string>
+    <string name="visit_count_all">总计接诊量：</string>
+    <string name="visit_count_daily">本日接诊量：</string>
+    <string name="visit_count_month">月接诊量：</string>
+    <string name="imprint">版本说明</string>
     <!--SettingActivity end-->
 </resources>

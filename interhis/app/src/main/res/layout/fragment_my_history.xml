@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_divider_color"
@@ -43,9 +44,118 @@
         android:layout_height="1dp"
         android:background="@color/divider_color"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="history"/>
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp">
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/visit_count_all"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:id="@+id/tv_visit_count_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/visit_count_all"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="15dp"
+                    tools:text="11100"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/visit_count_month"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:id="@+id/tv_visit_count_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/visit_count_all"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="15dp"
+                    tools:text="11100"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/visit_count_daily"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:id="@+id/tv_visit_count_daily"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/visit_count_all"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="15dp"
+                    tools:text="11100"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/sl_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/doctor_count"
+            android:layout_marginTop="10dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGray"
+                android:scrollbars="vertical"
+                android:visibility="gone"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
