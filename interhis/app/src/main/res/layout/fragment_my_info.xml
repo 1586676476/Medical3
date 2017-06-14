@@ -94,44 +94,10 @@
                 android:textSize="15dp"
                 tools:text="天津市第一人民医院"/>
 
-
-            <RelativeLayout
-                android:id="@+id/rl_introduction"
+            <com.witnsoft.interhis.utils.ui.ItemSettingRight
+                android:id="@+id/view_introduction"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/colorWhite">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentTop="true"
-                    android:background="@color/divider_color"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/divider_color"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/personal_introduction"
-                    android:textColor="@color/text_medium_color"
-                    android:textSize="15dp"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/right"/>
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

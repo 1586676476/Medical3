@@ -14,6 +14,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
 import com.witnsoft.interhis.setting.myhistory.MyHistoryFragment;
+import com.witnsoft.interhis.utils.ui.ItemSettingRight;
 import com.witnsoft.libinterhis.base.BaseFragment;
 
 import org.xutils.view.annotation.ContentView;
@@ -39,8 +40,9 @@ public class MyInfoFragment extends ChildBaseFragment {
     private TextView tvLevel;
     @ViewInject(R.id.tv_hosp)
     private TextView tvHosp;
-    @ViewInject(R.id.rl_introduction)
-    private RelativeLayout rlIntroduction;
+    // 个人简介
+    @ViewInject(R.id.view_introduction)
+    private ItemSettingRight viewIntroduction;
 
     @Nullable
     @Override
@@ -60,7 +62,7 @@ public class MyInfoFragment extends ChildBaseFragment {
 
     private void initClick() {
         // 个人简介
-        RxView.clicks(rlIntroduction)
+        RxView.clicks(viewIntroduction)
                 .throttleFirst(500, TimeUnit.MILLISECONDS)
                 .compose(this.<Void>bindToLifecycle())
                 .subscribe(new Action1<Void>() {
@@ -73,12 +75,13 @@ public class MyInfoFragment extends ChildBaseFragment {
     }
 
     private void init() {
+        viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction));
         tvName.setText("医生名字");
         tvLevel.setText("主任医师");
         tvHosp.setText("天津市第一人民医院");
     }
 
-    private void toIntroduction(){
+    private void toIntroduction() {
         IntroductionFragment introductionFragment = new IntroductionFragment();
         pushFragment(introductionFragment, null, true);
     }
