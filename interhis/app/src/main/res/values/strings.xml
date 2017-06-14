@@ -41,5 +41,7 @@
     <string name="my_all_income">我的总收入(¥)：</string>
     <string name="my_month_income">本月收入金额(¥)：</string>
     <string name="to_cash">提现</string>
+    <string name="my_bank_card">我的银行卡</string>
+    <string name="income_bill">收入账单</string>
     <!--SettingActivity end-->
 </resources>

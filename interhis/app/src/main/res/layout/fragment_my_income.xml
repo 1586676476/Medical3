@@ -125,25 +125,23 @@
             tools:text="100202020"/>
     </LinearLayout>
 
+    <!--提现-->
     <com.witnsoft.interhis.utils.ui.ItemSettingRight
         android:id="@+id/rl_to_cash"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+
+    <!--我的银行卡-->
+    <com.witnsoft.interhis.utils.ui.ItemSettingRight
+        android:id="@+id/rl_bank_card"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/sl_refresh"
+    <!--收入账单-->
+    <com.witnsoft.interhis.utils.ui.ItemSettingRight
+        android:id="@+id/rl_bill"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/doctor_count">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_income"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorGray"
-            android:scrollbars="vertical"
-            android:visibility="gone"/>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

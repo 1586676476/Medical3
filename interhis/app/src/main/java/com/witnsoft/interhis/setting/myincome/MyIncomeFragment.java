@@ -31,12 +31,15 @@ import rx.functions.Action1;
 public class MyIncomeFragment extends ChildBaseFragment {
     View rootView;
 
-    @ViewInject(R.id.rv_income)
-    private RecyclerView rvIncome;
-    @ViewInject(R.id.sl_refresh)
-    private SwipeRefreshLayout slRefresh;
+    // 提现入口
     @ViewInject(R.id.rl_to_cash)
     private ItemSettingRight rlToCash;
+    // 我的银行卡入口
+    @ViewInject(R.id.rl_bank_card)
+    private ItemSettingRight rlBankCard;
+    // 收入账单入口
+    @ViewInject(R.id.rl_bill)
+    private ItemSettingRight rlBill;
 
     // 账户余额
     @ViewInject(R.id.tv_balance)
@@ -67,6 +70,10 @@ public class MyIncomeFragment extends ChildBaseFragment {
     private void init() {
         // 提现
         rlToCash.setTvTitle(getResources().getString(R.string.to_cash));
+        // 银行卡
+        rlBankCard.setTvTitle(getResources().getString(R.string.my_bank_card));
+        // 收入账单
+        rlBill.setTvTitle(getResources().getString(R.string.income_bill));
         tvBalance.setText("1500");
         tvIncome.setText("3000");
         tvMonth.setText("1000");
@@ -82,10 +89,38 @@ public class MyIncomeFragment extends ChildBaseFragment {
                         toWithdrawCrash();
                     }
                 });
+        RxView.clicks(rlBankCard)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .compose(this.<Void>bindToLifecycle())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        toMyBankCard();
+                    }
+                });
+        RxView.clicks(rlBill)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .compose(this.<Void>bindToLifecycle())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        toIncomeBill();
+                    }
+                });
     }
 
     private void toWithdrawCrash() {
         WithdrawCrashFragment introductionFragment = new WithdrawCrashFragment();
         pushFragment(introductionFragment, null, true);
+    }
+
+    private void toMyBankCard() {
+        MyBankCardFragment myBankCardFragment = new MyBankCardFragment();
+        pushFragment(myBankCardFragment, null, true);
+    }
+
+    private void toIncomeBill() {
+        InComeBillFragment inComeBillFragment = new InComeBillFragment();
+        pushFragment(inComeBillFragment, null, true);
     }
 }
