@@ -32,6 +32,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.utils.ComRecyclerAdapter;
 import com.witnsoft.libinterhis.utils.LogUtils;
@@ -141,7 +142,7 @@ public class DoctorFragment extends Fragment {
     private TextView tvAllIncome;
     //医生信息
     @ViewInject(R.id.doctor_message)
-    private LinearLayout doctor_message;
+    private LinearLayout llDocMessage;
     //医生接诊数量
     @ViewInject(R.id.doctor_count)
     private LinearLayout doctor_number;
@@ -201,11 +202,17 @@ public class DoctorFragment extends Fragment {
         btnVisit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doctor_message.setVisibility(View.VISIBLE);
                 // 出诊
                 callVisitApi();
 //                    getChatList();
 //                callPatListApi();
+            }
+        });
+        llDocMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
             }
         });
         btnTakeRest.setOnClickListener(new View.OnClickListener() {
@@ -668,7 +675,7 @@ public class DoctorFragment extends Fragment {
      * 环信登录
      */
     private void chatLogin() {
-        Log.e(TAG,"!!!!!!!!!!!!!!!!!!!!!!!!!chat =   "+docId+" and = "+ThriftPreUtils.getLoginPassword(getActivity()));
+        Log.e(TAG, "!!!!!!!!!!!!!!!!!!!!!!!!!chat =   " + docId + " and = " + ThriftPreUtils.getLoginPassword(getActivity()));
         EMClient.getInstance().login(docId, ThriftPreUtils.getLoginPassword(getActivity()), new EMCallBack() {
             //        EMClient.getInstance().login("ceshi", "111111", new EMCallBack() {
             @Override
@@ -713,7 +720,7 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.e(TAG,"chat logout success");
+                        Log.e(TAG, "chat logout success");
                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                         helperFragment.setRest();
                         isVisiting = false;

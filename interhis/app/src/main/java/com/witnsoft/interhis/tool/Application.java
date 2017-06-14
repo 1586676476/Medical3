@@ -1,27 +1,20 @@
 package com.witnsoft.interhis.tool;
 
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.controller.EaseUI;
-import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.db.HisDbManager;
-import com.witnsoft.interhis.fragment.DoctorFragment;
 import com.witnsoft.interhis.mainpage.MainActivity;
 
 import org.xutils.x;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by zhengchengpeng on 2017/5/12.
@@ -34,8 +27,6 @@ public class Application extends MultiDexApplication {
     private EMMessageListener mMessageListener;
     public static final String BROADCAST_REFRESH_LIST = "broadcastRefreshList";
     private static final String MESSAGE_USER_NAME = "messageUserName";
-    private int unread;
-
 
     public static synchronized Application getInstance() {
         return app;
@@ -56,13 +47,10 @@ public class Application extends MultiDexApplication {
         //环信聊天初始化
         EaseUI.getInstance().init(this, null, MainActivity.class);
         EMClient.getInstance().setDebugMode(true);
-
     }
 
 
     public void registerMessageListener() {
-
-
         mMessageListener = new EMMessageListener() {
 
             @Override
@@ -107,7 +95,6 @@ public class Application extends MultiDexApplication {
             }
         };
         EMClient.getInstance().chatManager().addMessageListener(mMessageListener);
-
 
     }
 
