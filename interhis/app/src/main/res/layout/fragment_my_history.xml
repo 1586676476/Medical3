@@ -151,8 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorGray"
-                android:scrollbars="vertical"
-                android:visibility="gone"/>
+                android:scrollbars="vertical"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
