@@ -1,19 +1,16 @@
 package com.witnsoft.interhis.setting.myinfo;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
-import com.witnsoft.interhis.setting.myhistory.MyHistoryFragment;
 import com.witnsoft.libinterhis.base.BaseFragment;
 
 import org.xutils.view.annotation.ContentView;
@@ -25,22 +22,16 @@ import java.util.concurrent.TimeUnit;
 import rx.functions.Action1;
 
 /**
- * Created by zhengchengpeng on 2017/6/13.
+ * Created by zhengchengpeng on 2017/6/14.
  */
 
-@ContentView(R.layout.fragment_my_info)
-public class MyInfoFragment extends ChildBaseFragment {
+@ContentView(R.layout.fragment_intrduction)
+public class IntroductionFragment extends ChildBaseFragment {
+
+    @ViewInject(R.id.ll_back)
+    private LinearLayout llBack;
 
     View rootView;
-
-    @ViewInject(R.id.tv_name)
-    private TextView tvName;
-    @ViewInject(R.id.tv_level)
-    private TextView tvLevel;
-    @ViewInject(R.id.tv_hosp)
-    private TextView tvHosp;
-    @ViewInject(R.id.rl_introduction)
-    private RelativeLayout rlIntroduction;
 
     @Nullable
     @Override
@@ -55,32 +46,17 @@ public class MyInfoFragment extends ChildBaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initClick();
-        init();
     }
 
-    private void initClick() {
-        // 个人简介
-        RxView.clicks(rlIntroduction)
+    private void initClick(){
+        RxView.clicks(llBack)
                 .throttleFirst(500, TimeUnit.MILLISECONDS)
                 .compose(this.<Void>bindToLifecycle())
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-                        toIntroduction();
-                        Toast.makeText(getActivity(), "点击了个人简介", Toast.LENGTH_LONG).show();
+                        finishFragment();
                     }
                 });
     }
-
-    private void init() {
-        tvName.setText("医生名字");
-        tvLevel.setText("主任医师");
-        tvHosp.setText("天津市第一人民医院");
-    }
-
-    private void toIntroduction(){
-        IntroductionFragment introductionFragment = new IntroductionFragment();
-        pushFragment(introductionFragment, null, true);
-    }
-
 }

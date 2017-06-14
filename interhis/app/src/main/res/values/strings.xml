@@ -33,5 +33,6 @@
     <string name="my_ask_history">我的问诊记录</string>
     <string name="my_income">我的收入</string>
     <string name="about">关于</string>
+    <string name="personal_introduction">个人简介</string>
     <!--SettingActivity end-->
 </resources>

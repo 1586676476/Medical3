@@ -52,7 +52,6 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
         initCLick();
-        fragmentManager = getFragmentManager();
         init();
     }
 
@@ -114,7 +113,9 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void init() {
-
+        fragmentManager = getFragmentManager();
+        MyInfoFragment myInfoFragment = new MyInfoFragment();
+        setChecked(myInfoFragment, rlMyInfo, rlAbout, rlMyHistory, rlMyIncome);
     }
 
     private void setChecked(Fragment fragment, RelativeLayout llChecked, RelativeLayout ll1, RelativeLayout ll2, RelativeLayout ll3) {
@@ -123,7 +124,7 @@ public class SettingActivity extends BaseActivity {
         ll2.setBackgroundColor(getResources().getColor(R.color.background_divider_color));
         ll3.setBackgroundColor(getResources().getColor(R.color.background_divider_color));
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.ll_content, fragment);
+        ft.replace(R.id.fl_content, fragment);
         ft.commit();
     }
 }
