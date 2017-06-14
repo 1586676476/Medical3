@@ -37,8 +37,9 @@
     <string name="input_personal_introduction">填写个人简介</string>
     <string name="edit">编辑</string>
     <string name="save">保存</string>
-    <string name="my_all_income">我的总收入</string>
-    <string name="my_month_income">本月收入金额</string>
+    <string name="income_balance">账户余额(¥)：</string>
+    <string name="my_all_income">我的总收入(¥)：</string>
+    <string name="my_month_income">本月收入金额(¥)：</string>
     <string name="to_cash">提现</string>
     <!--SettingActivity end-->
 </resources>
