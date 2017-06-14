@@ -1,5 +1,6 @@
 package com.witnsoft.interhis.inter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,13 +24,20 @@ import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class WritePadDialog extends Dialog {
@@ -90,15 +98,11 @@ public class WritePadDialog extends Dialog {
 				try {
 					dialogListener.refreshActivity(mView.getCachebBitmap());
 					WritePadDialog.this.dismiss();
-                    Log.e(TAG, "onClick111111111111111111111111111111111111111111: "+12456 );
-                } catch (Exception e) {
+					Log.e(TAG, "onClick111111111111111111111111111111111111111111: "+12456 );
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				OTRequest otRequest = new OTRequest(getContext());
-				// DATA
-				DataModel data = new DataModel();
-				data.setParam("","");
-				otRequest.setDATA(data);
+
 
 			}
 		});
@@ -109,7 +113,7 @@ public class WritePadDialog extends Dialog {
 	 * 获取通知栏的高度
 	 * @param context
 	 * @return
-     */
+	 */
 	public int getStatusBarHeight(Context context){
 		int result = 0;
 		int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -149,7 +153,7 @@ public class WritePadDialog extends Dialog {
 			cachebBitmap = Bitmap.createBitmap(p.width, (int) (p.height * 0.8),
 					Config.ARGB_8888);
 			cacheCanvas = new Canvas(cachebBitmap);
-            //设置背景为白色，不然点击缩略图查看的时候是全黑色
+			//设置背景为白色，不然点击缩略图查看的时候是全黑色
 			//cacheCanvas.drawColor(R.color.transparent);
 		}
 
@@ -222,3 +226,7 @@ public class WritePadDialog extends Dialog {
 		}
 	}
 }
+
+
+
+

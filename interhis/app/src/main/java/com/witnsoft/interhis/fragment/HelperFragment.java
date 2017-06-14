@@ -126,6 +126,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     private String pinyin, accid;
 
+    private Object object;
+
 
     @Nullable
     @Override
@@ -213,6 +215,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         western_adapter.setOnClick(this);
         western_recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         western_recycleView.setAdapter(western_adapter);
+
 
         //固定药方
         fix_data = new ArrayList<>();
@@ -360,6 +363,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 chinese_edittext.setText(null);
                 chinese_listView.setVisibility(View.GONE);
                 chinese_fixed.setVisibility(View.VISIBLE);
+
+
         }
     }
 
@@ -512,7 +517,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
     public void setContent(String userName, String userId, String type, int single) {
-//        llContent.setVisibility(View.VISIBLE);
+        llContent.setVisibility(View.VISIBLE);
 
         tvNoData.setVisibility(View.GONE);
         id = userId;
