@@ -1,21 +1,16 @@
 package com.witnsoft.interhis.setting.myinfo;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
-import com.witnsoft.interhis.setting.myhistory.MyHistoryFragment;
 import com.witnsoft.interhis.utils.ui.ItemSettingRight;
-import com.witnsoft.libinterhis.base.BaseFragment;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -69,7 +64,6 @@ public class MyInfoFragment extends ChildBaseFragment {
                     @Override
                     public void call(Void aVoid) {
                         toIntroduction();
-                        Toast.makeText(getActivity(), "点击了个人简介", Toast.LENGTH_LONG).show();
                     }
                 });
     }
