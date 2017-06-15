@@ -33,7 +33,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     private static final String TAG = "DialogActivity";
     private LinearLayout ll_root,ll_dialog;
     private Button first_cancel;
-    private TextView five,ten,fifteen,twenty,number,add,less,name,show;
+    private TextView five,ten,fifteen,twenty,number,add,less,name;
 
     private String medical,accid;
     private int num=0;
@@ -92,70 +92,67 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-
+        ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
+        chineseDetailModel.setAccid(accid);
         switch (v.getId()){
             case R.id.ll_root:
                 finish();
                 break;
             case R.id.dialog_five:
-                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
-                chineseDetailModel.setAccid(accid);
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl("5");
                 Log.e(TAG, "onClick!!!!!!!!!!!!!: " +accid + medical + 5 );
                 EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-                    Log.e(TAG, "onClick: "+chineseDetailModel );
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
                 finish();
                 break;
             case R.id.dialog_ten:
-                ChineseDetailModel chineseDetailMode11=new ChineseDetailModel();
-                chineseDetailMode11.setAccid(accid);
-                chineseDetailMode11.setCmc(medical);
-                chineseDetailMode11.setSl("10");
-                EventBus.getDefault().post(chineseDetailMode11);
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl("10");
+                EventBus.getDefault().post(chineseDetailModel);
                 try {
-                    HisDbManager.getManager().saveAskChinese(chineseDetailMode11);
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
                 finish();
                 break;
             case R.id.dialog_fifteen:
-//                chineseDetailModel.setCmc(medical);
-//                chineseDetailModel.setSl("15");
-//                EventBus.getDefault().post(chineseDetailModel);
-//                try {
-//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-//                } catch (DbException e) {
-//                    e.printStackTrace();
-//                }
-//                finish();
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl("15");
+                EventBus.getDefault().post(chineseDetailModel);
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+                finish();
                 break;
             case R.id.dialog_twenty:
-//                chineseDetailModel.setCmc(medical);
-//                chineseDetailModel.setSl("20");
-//                EventBus.getDefault().post(chineseDetailModel);
-//                try {
-//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-//                } catch (DbException e) {
-//                    e.printStackTrace();
-//                }
-//                finish();
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl("20");
+                EventBus.getDefault().post(chineseDetailModel);
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+                finish();
                 break;
             case R.id.dialog_number:
-//                chineseDetailModel.setCmc(medical);
-//                chineseDetailModel.setSl(String.valueOf(num));
-//                EventBus.getDefault().post(chineseDetailModel);
-//                try {
-//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-//                } catch (DbException e) {
-//                    e.printStackTrace();
-//                }
+                chineseDetailModel.setAccid(accid);
+                chineseDetailModel.setCmc(medical);
+                chineseDetailModel.setSl(String.valueOf(num));
+                EventBus.getDefault().post(chineseDetailModel);
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.first_cancel:

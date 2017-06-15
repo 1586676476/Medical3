@@ -94,9 +94,7 @@ public class HisDbManager {
 
     public void saveAskChinese(ChineseDetailModel model) throws DbException {
         this.manager.saveOrUpdate(model);
-        
     }
-
 
     public void deleteAskChinese(ChineseModel model) throws DbException {
         this.manager.delete(model);
