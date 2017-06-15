@@ -50,5 +50,9 @@ public class DataHelper {
         return cursor;
     }
 
+    public Cursor getAll(String id){
+        Cursor cursor=db.query(id,null,null,null,null,null,null);
+        return cursor;
+    }
 
 }

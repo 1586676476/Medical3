@@ -18,6 +18,9 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+
+import com.witnsoft.interhis.Chufang.ChuFangChinese;
 import com.witnsoft.interhis.R;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
@@ -42,14 +45,17 @@ import java.util.Objects;
 
 public class WritePadDialog extends Dialog {
 	private static final String TAG = "WritePadDialog";
+	private Activity act;
 	Context context;
 	LayoutParams p;
 	DialogListener dialogListener;
+	private OTRequest otRequest;
 
-	private static final String TN_DOC_INFO = "F27.APP.01.06";
+	private static final String TN_DOC_KAIYAO = "F27.APP.01.06";
 
-	public WritePadDialog(Context context, int themeResId, DialogListener dialogListener) {
+	public WritePadDialog(Activity a,Context context, int themeResId, DialogListener dialogListener) {
 		super(context,themeResId);
+		this.act=a;
 		this.context = context;
 		this.dialogListener = dialogListener;
 	}
@@ -102,7 +108,24 @@ public class WritePadDialog extends Dialog {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				ChuFangChinese chufang=new ChuFangChinese();
+				chufang.fromJSON();
 
+				otRequest=new OTRequest(TN_DOC_KAIYAO);
+				DataModel data = new DataModel();
+				data.setDataJSONStr(String.valueOf(chufang.fromJSON()));
+				otRequest.setDATA(data);
+				NetTool.getInstance().startRequest(false, true , act , null, otRequest, new CallBack<Map, String>() {
+					@Override
+					public void onSuccess(Map map, String s) {
+						Log.e(TAG, "onSuccess@@@@@@@@@@@@@@: "+"请求成功" );
+					}
+
+					@Override
+					public void onError(Throwable throwable) {
+						Log.e(TAG, "onError!!!!!!!!!!!!!: "+"请求失败" );
+					}
+				});
 
 			}
 		});

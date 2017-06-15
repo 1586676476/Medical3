@@ -372,7 +372,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private View.OnClickListener signListenerWestern = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            WritePadDialog writeTabletDialog = new WritePadDialog(
+            WritePadDialog writeTabletDialog = new WritePadDialog(getActivity(),
                     getContext(), R.style.SignBoardDialog, new DialogListener() {
                 public void refreshActivity(Object object) {
                     mSignBitmap = (Bitmap) object;
@@ -398,7 +398,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         @Override
         public void onClick(View v) {
             WritePadDialog writeTabletDialog = new WritePadDialog(
-                    getContext(), R.style.SignBoardDialog, new DialogListener() {
+                    getActivity(),getContext(), R.style.SignBoardDialog, new DialogListener() {
                 public void refreshActivity(Object object) {
                     mSignBitmap = (Bitmap) object;
                     signPath = createFile();
@@ -416,6 +416,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             });
             writeTabletDialog.show();
         }
+
     };
 
     /**
@@ -506,8 +507,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     }
 
 
-    public void getContent(String userName, String userId, String type, int single) {
-
+    public void getContent(String userId) {
+            id=userId;
     }
 
 
