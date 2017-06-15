@@ -58,14 +58,7 @@ public class ChuFangChinese extends ChuFangBase {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        // 最终JSONObject
-        JSONObject finalJo = new JSONObject();
-        try {
-            finalJo.put("DATA", dataJo);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.e(TAG, "initData: "+finalJo.toString() );
-            return finalJo;
+        Log.e(TAG, "initData: "+dataJo.toString() );
+            return dataJo;
     }
 }

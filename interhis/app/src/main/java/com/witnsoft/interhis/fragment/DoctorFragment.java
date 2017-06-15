@@ -483,15 +483,6 @@ public class DoctorFragment extends Fragment {
                                             Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
 
                                         }
-
-                                        //将UserName作为主键 存入数据库
-                                        ChineseDetailModel chineseDetailModel = new ChineseDetailModel();
-                                        chineseDetailModel.setAccid(dataChatList.get(position).get("ACCID"));
-                                        try {
-                                            HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-                                        } catch (DbException e) {
-                                            e.printStackTrace();
-                                        }
                                     }
                                 });
                                 patAdapter.notifyDataSetChanged();

@@ -36,9 +36,6 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     private TextView five,ten,fifteen,twenty,number,add,less,name,show;
 
     private String medical,accid;
-    private AccidReceiver accidReceiver;
-
-
     private int num=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +80,8 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         //接受传递过来的药名
         medical = getIntent().getStringExtra("medical_name");
         name.setText(medical);
+        accid=getIntent().getStringExtra("accid");
 
-        accidReceiver=new AccidReceiver();
-        IntentFilter intentFilter=new IntentFilter("SHUAXIN");
-        registerReceiver(accidReceiver,intentFilter);
     }
 
     private void SetViewListener() {
@@ -97,70 +92,70 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
+
         switch (v.getId()){
             case R.id.ll_root:
                 finish();
                 break;
             case R.id.dialog_five:
+                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
                 chineseDetailModel.setAccid(accid);
-                Log.e(TAG, "onClick111111: "+accid );
                 chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(5);
+                chineseDetailModel.setSl("5");
+                Log.e(TAG, "onClick!!!!!!!!!!!!!: " +accid + medical + 5 );
                 EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                    Log.e(TAG, "onClick: "+chineseDetailModel );
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
                 finish();
                 break;
             case R.id.dialog_ten:
-                chineseDetailModel.setAccid(accid);
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(10);
-                EventBus.getDefault().post(chineseDetailModel);
+                ChineseDetailModel chineseDetailMode11=new ChineseDetailModel();
+                chineseDetailMode11.setAccid(accid);
+                chineseDetailMode11.setCmc(medical);
+                chineseDetailMode11.setSl("10");
+                EventBus.getDefault().post(chineseDetailMode11);
                 try {
-                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+                    HisDbManager.getManager().saveAskChinese(chineseDetailMode11);
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
                 finish();
                 break;
             case R.id.dialog_fifteen:
-                chineseDetailModel.setAccid(accid);
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(15);
-                EventBus.getDefault().post(chineseDetailModel);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
-                finish();
+//                chineseDetailModel.setCmc(medical);
+//                chineseDetailModel.setSl("15");
+//                EventBus.getDefault().post(chineseDetailModel);
+//                try {
+//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+//                } catch (DbException e) {
+//                    e.printStackTrace();
+//                }
+//                finish();
                 break;
             case R.id.dialog_twenty:
-                chineseDetailModel.setAccid(accid);
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(20);
-                EventBus.getDefault().post(chineseDetailModel);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
-                finish();
+//                chineseDetailModel.setCmc(medical);
+//                chineseDetailModel.setSl("20");
+//                EventBus.getDefault().post(chineseDetailModel);
+//                try {
+//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+//                } catch (DbException e) {
+//                    e.printStackTrace();
+//                }
+//                finish();
                 break;
             case R.id.dialog_number:
-                chineseDetailModel.setAccid(accid);
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(num);
-                EventBus.getDefault().post(chineseDetailModel);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
+//                chineseDetailModel.setCmc(medical);
+//                chineseDetailModel.setSl(String.valueOf(num));
+//                EventBus.getDefault().post(chineseDetailModel);
+//                try {
+//                    HisDbManager.getManager().saveAskChinese(chineseDetailModel);
+//                } catch (DbException e) {
+//                    e.printStackTrace();
+//                }
                 finish();
                 break;
             case R.id.first_cancel:
@@ -258,14 +253,6 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                                   int count)
         {
 
-        }
-    }
-
-    class AccidReceiver extends BroadcastReceiver{
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            accid=getIntent().getStringExtra("accid");
         }
     }
 }

@@ -111,10 +111,13 @@ public class WritePadDialog extends Dialog {
 				ChuFangChinese chufang=new ChuFangChinese();
 				chufang.fromJSON();
 
-				otRequest=new OTRequest(TN_DOC_KAIYAO);
+				otRequest=new OTRequest(getContext());
+				otRequest.setTN(TN_DOC_KAIYAO);
 				DataModel data = new DataModel();
 				data.setDataJSONStr(String.valueOf(chufang.fromJSON()));
+				Log.e(TAG, "onClick!!!!!!!!!!!!!!!!!!!: "+chufang.fromJSON() );
 				otRequest.setDATA(data);
+				Log.e(TAG, "onClick2@@@@@@@@@@@@: "+data.toString() );
 				NetTool.getInstance().startRequest(false, true , act , null, otRequest, new CallBack<Map, String>() {
 					@Override
 					public void onSuccess(Map map, String s) {

@@ -12,10 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.libinterhis.base.BaseActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
 
@@ -99,31 +101,30 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.second_dialog_five:
                 chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(5);
-                EventBus.getDefault().post(chineseDetailModel);
+                chineseDetailModel.setSl("5");
                 finish();
                 break;
             case R.id.second_dialog_ten:
                 chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(10);
+                chineseDetailModel.setSl("10");
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_fifteen:
                 chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(15);
+                chineseDetailModel.setSl("15");
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_twenty:
                 chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(20);
+                chineseDetailModel.setSl("20");
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_number:
                 chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(num);
+                chineseDetailModel.setSl(String.valueOf(num));
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;

@@ -17,7 +17,7 @@ public class ChineseDetailModel {
     // primary key
     @Column(name = "ACCID",
             isId = true,
-            autoGen = false)
+            autoGen = true)
     private String accid;
 
     // 中药处方ID
@@ -42,7 +42,7 @@ public class ChineseDetailModel {
 
     // 中药数量
     @Column(name = "SL")
-    private int sl;
+    private String sl;
 
     // 总金额
     @Column(name = "je")
@@ -50,7 +50,7 @@ public class ChineseDetailModel {
 
     // 单价
     @Column(name = "dj")
-    private int bzjg;
+    private String bzjg;
 
     private String XMMC;//药名
     private String XMRJ;//药品拼音
@@ -132,11 +132,11 @@ public class ChineseDetailModel {
         return cggMc;
     }
 
-    public void setSl(int sl) {
+    public void setSl(String sl) {
         this.sl = sl;
     }
 
-    public int getSl() {
+    public String getSl() {
         return sl;
     }
 
@@ -148,11 +148,11 @@ public class ChineseDetailModel {
         return je;
     }
 
-    public void setDj(int dj) {
+    public void setDj(String dj) {
         this.bzjg = dj;
     }
 
-    public int getDj() {
+    public String getDj() {
         return bzjg;
     }
 
