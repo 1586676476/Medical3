@@ -386,7 +386,7 @@ public class MainActivity extends BaseActivity {
 
     private ProgressDialog getProgressDialog() {
         ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setProgressNumberFormat(getString(R.string.updating_progress_tip));
+        progressDialog.setProgressNumberFormat("%1d KB/%2d KB");
         progressDialog.setMessage(getString(R.string.updating_progress_tittle));
         progressDialog.setIndeterminate(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);

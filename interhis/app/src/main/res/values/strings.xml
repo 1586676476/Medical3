@@ -67,6 +67,5 @@
     <string name="alert_dialog_title">温馨提示</string>
     <string name="share_title_url">https://zy.renyibao.com/ver.json</string>
     <string name="updating_progress_tittle">正在更新...</string>
-    <string name="updating_progress_tip">%1d KB/%2d KB</string>
     <!-- 更新(End) -->
 </resources>
