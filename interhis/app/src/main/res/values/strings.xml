@@ -48,4 +48,23 @@
     <string name="visit_count_month">月接诊量：</string>
     <string name="imprint">版本说明</string>
     <!--SettingActivity end-->
+
+    <!-- 更新(Start) -->
+    <string name="apk_name">app-debug%1$s.apk</string>
+    <string name="update_title">软件版本更新</string>
+    <string name="update_otherwise">您的软件版本过低，如不更新将无法使用</string>
+    <string name="update_txt">有最新的软件包，请确认更新！</string>
+    <string name="update_ok">更 新</string>
+    <string name="update_cancel">以后再说</string>
+    <string name="not_need_update">已经是最新版</string>
+    <string name="network_is_mobile">您正处于移动网络环境下，下载会消耗您的数据流量，是否继续？</string>
+    <string name="later_wifi_download">等待WiFi</string>
+    <string name="network_continue">继续</string>
+    <string name="download_fail_title">下载失败</string>
+    <string name="download_fail_message">创建下载失败，请尝试去官网下载最新版</string>
+    <string name="cancle">取消</string>
+    <string name="confirm">确定</string>
+    <string name="alert_dialog_title">温馨提示</string>
+    <string name="share_title_url">https://zy.renyibao.com/ver.json</string>
+    <!-- 更新(End) -->
 </resources>
