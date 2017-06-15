@@ -47,6 +47,7 @@
     <string name="visit_count_daily">本日接诊量：</string>
     <string name="visit_count_month">月接诊量：</string>
     <string name="imprint">版本说明</string>
+    <string name="about_version_name">中怡在线%1$s</string>
     <!--SettingActivity end-->
 
     <!-- 更新(Start) -->
