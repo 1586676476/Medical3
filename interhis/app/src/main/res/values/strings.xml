@@ -33,5 +33,19 @@
     <string name="my_ask_history">我的问诊记录</string>
     <string name="my_income">我的收入</string>
     <string name="about">关于</string>
+    <string name="personal_introduction">个人简介</string>
+    <string name="input_personal_introduction">填写个人简介</string>
+    <string name="edit">编辑</string>
+    <string name="save">保存</string>
+    <string name="income_balance">账户余额(¥)：</string>
+    <string name="my_all_income">我的总收入(¥)：</string>
+    <string name="my_month_income">本月收入金额(¥)：</string>
+    <string name="to_cash">提现</string>
+    <string name="my_bank_card">我的银行卡</string>
+    <string name="income_bill">收入账单</string>
+    <string name="visit_count_all">总计接诊量：</string>
+    <string name="visit_count_daily">本日接诊量：</string>
+    <string name="visit_count_month">月接诊量：</string>
+    <string name="imprint">版本说明</string>
     <!--SettingActivity end-->
 </resources>

@@ -5,13 +5,14 @@
               android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="210dp"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
+            android:background="@color/colorWhite"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -23,9 +24,9 @@
                 android:paddingRight="20dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@color/colorRed"/>
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/back"/>
 
             </LinearLayout>
 
@@ -53,13 +54,22 @@
             <RelativeLayout
                 android:id="@+id/rl_my_info"
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_my_info"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/my_info"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/iv_my_info"
                     android:text="@string/my_info"
                     android:textColor="@color/text_medium_color"
                     android:textSize="12dp"/>
@@ -75,13 +85,22 @@
             <RelativeLayout
                 android:id="@+id/rl_my_history"
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_my_history"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/ask_history"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/iv_my_history"
                     android:text="@string/my_ask_history"
                     android:textColor="@color/text_medium_color"
                     android:textSize="12dp"/>
@@ -97,13 +116,22 @@
             <RelativeLayout
                 android:id="@+id/rl_my_income"
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_my_income"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/to_crash"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/iv_my_income"
                     android:text="@string/my_income"
                     android:textColor="@color/text_medium_color"
                     android:textSize="12dp"/>
@@ -119,13 +147,22 @@
             <RelativeLayout
                 android:id="@+id/rl_about"
                 android:layout_width="match_parent"
-                android:layout_height="40dp">
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_about"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/about"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/iv_about"
                     android:text="@string/about"
                     android:textColor="@color/text_medium_color"
                     android:textSize="12dp"/>
@@ -147,12 +184,12 @@
         android:layout_height="match_parent"
         android:background="@color/divider_color"/>
 
-    <LinearLayout
-        android:id="@+id/ll_content"
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/background_divider_color">
 
-    </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>
