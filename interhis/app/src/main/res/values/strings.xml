@@ -48,6 +48,9 @@
     <string name="visit_count_month">月接诊量：</string>
     <string name="imprint">版本说明</string>
     <string name="about_version_name">中怡在线%1$s</string>
+    <string name="head_take_photo">拍照</string>
+    <string name="head_from_photo">从相册选择</string>
+    <string name="cancel">取消</string>
     <!--SettingActivity end-->
 
     <!-- 更新(Start) -->
