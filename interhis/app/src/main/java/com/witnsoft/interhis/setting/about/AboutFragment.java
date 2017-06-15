@@ -2,13 +2,16 @@ package com.witnsoft.interhis.setting.about;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
+import com.witnsoft.interhis.utils.AppUtils;
 import com.witnsoft.interhis.utils.ui.ItemSettingRight;
 
 import org.xutils.view.annotation.ContentView;
@@ -29,6 +32,8 @@ public class AboutFragment extends ChildBaseFragment {
 
     @ViewInject(R.id.rl_imprint)
     private ItemSettingRight rlImprint;
+    @ViewInject(R.id.tv_version_name)
+    private TextView tvVersionName;
 
     @Nullable
     @Override
@@ -48,6 +53,11 @@ public class AboutFragment extends ChildBaseFragment {
 
     private void init() {
         rlImprint.setTvTitle(getActivity().getResources().getString(R.string.imprint));
+        final String pkgVersionName = AppUtils.getAppVersionName(getActivity());
+        String fileName = String.format(getString(R.string.about_version_name), pkgVersionName);
+        if (!TextUtils.isEmpty(fileName)) {
+            tvVersionName.setText(fileName);
+        }
     }
 
     private void initClick() {
