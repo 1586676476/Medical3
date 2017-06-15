@@ -3,9 +3,11 @@ package com.witnsoft.interhis.mainpage;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -56,6 +58,10 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 /**
  * Created by zhengchengpeng on 2017/5/12.
@@ -80,6 +86,7 @@ public class MainActivity extends BaseActivity {
         x.view().inject(this);
         //注册一个监听连接状态的listener，监听环信账号登录状态
         EMClient.getInstance().addConnectionListener(new MyConnectionListener());
+        mProgressDialog = getProgressDialog();
         callUpdate();
     }
 
@@ -220,11 +227,18 @@ public class MainActivity extends BaseActivity {
         builder.create().show();
     }
 
+    private long mDownloadId;
+    private boolean isCompleted;
+    private DownloadManager manager;
+
+    /**
+     * 下载apk
+     */
     public void downloadNewApp(String url, String fileName, boolean canMobileNetworkDownload) {
         try {
             String filePath = getApplicationContext().getFilesDir().getAbsolutePath();
 
-            DownloadManager manager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+            manager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
             DownloadManager.Request down = new DownloadManager.Request(Uri.parse(url));
             down.setTitle(fileName);
             if (canMobileNetworkDownload) {
@@ -247,10 +261,58 @@ public class MainActivity extends BaseActivity {
             if (hasSDCard()) {
                 down.setDestinationInExternalPublicDir(filePath, fileName);
             }
-            manager.enqueue(down);
+//            manager.enqueue(down);
+            mDownloadId = manager.enqueue(down);
+            //使用RxJava对下载信息进行轮询，500毫秒一次
+            Observable.interval(300, 500, TimeUnit.MILLISECONDS)
+                    .takeUntil(new Func1<Long, Boolean>() {
+                        @Override
+                        public Boolean call(Long aLong) {
+                            return isCompleted;
+                        }
+                    })
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<Long>() {
+                        @Override
+                        public void call(Long aLong) {
+                            checkDownloadStatus();
+                        }
+                    });
         } catch (Exception e) {
             showDownloadFailedDialog();
         }
+    }
+
+    private ProgressDialog mProgressDialog;
+
+    private void checkDownloadStatus() {
+        DownloadManager.Query query = new DownloadManager.Query();
+        query.setFilterById(mDownloadId);//筛选下载任务，传入任务ID，可变参数
+        Cursor cursor = manager.query(query);
+        if (cursor.moveToFirst()) {
+            long downloadedBytes = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+            long totalBytes = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+            mProgressDialog.setMax(((int) (totalBytes / 1024)));
+            int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+            switch (status) {
+                case DownloadManager.STATUS_RUNNING:
+                    mProgressDialog.setProgress(((int) (downloadedBytes / 1024)));
+                    if (!mProgressDialog.isShowing()) {
+                        mProgressDialog.show();
+                    }
+                    break;
+                case DownloadManager.STATUS_SUCCESSFUL:
+                    isCompleted = true;
+                    if (mProgressDialog.isShowing()) {
+                        mProgressDialog.dismiss();
+                    }
+                    break;
+            }
+        }
+        cursor.close();
     }
 
     private void createFolder(String url) {
@@ -320,6 +382,16 @@ public class MainActivity extends BaseActivity {
                 }
             });
         }
+    }
+
+    private ProgressDialog getProgressDialog() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressNumberFormat(getString(R.string.updating_progress_tip));
+        progressDialog.setMessage(getString(R.string.updating_progress_tittle));
+        progressDialog.setIndeterminate(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(true);
+        return progressDialog;
     }
 
     private long exitTime = 0;
