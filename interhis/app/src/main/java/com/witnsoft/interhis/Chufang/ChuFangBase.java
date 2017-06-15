@@ -1,16 +1,5 @@
 package com.witnsoft.interhis.Chufang;
 
-import android.content.Context;
-import android.database.Cursor;
-
-import com.witnsoft.interhis.db.DataHelper;
-import com.witnsoft.interhis.db.model.ChineseDetailModel;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
 
 /**
  * Created by ${liyan} on 2017/6/14.

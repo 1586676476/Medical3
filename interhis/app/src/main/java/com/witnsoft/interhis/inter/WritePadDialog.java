@@ -117,7 +117,6 @@ public class WritePadDialog extends Dialog {
 				data.setDataJSONStr(String.valueOf(chufang.fromJSON()));
 				Log.e(TAG, "onClick!!!!!!!!!!!!!!!!!!!: "+chufang.fromJSON() );
 				otRequest.setDATA(data);
-				Log.e(TAG, "onClick2@@@@@@@@@@@@: "+data.toString() );
 				NetTool.getInstance().startRequest(false, true , act , null, otRequest, new CallBack<Map, String>() {
 					@Override
 					public void onSuccess(Map map, String s) {

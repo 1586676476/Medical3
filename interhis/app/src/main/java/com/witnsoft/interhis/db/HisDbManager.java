@@ -61,7 +61,6 @@ public class HisDbManager {
         if (null == nManager) {
             nManager = new HisDbManager();
         }
-
         return nManager;
     }
 

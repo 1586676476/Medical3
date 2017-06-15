@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class DataHelper {
-    private static int DB_VERSION = 8;
+    private static int DB_VERSION = 9;
     private SQLiteDatabase db;
     private YaoListDBHelper yaoListDBHelper;
 
@@ -41,7 +41,6 @@ public class DataHelper {
         yaoListDBHelper.close();
     }
 
-
     //根据拼音进行查询
     public Cursor getXMRJ(String keyword){
         Log.e("11111", "getXMRJ: "+keyword );
@@ -49,10 +48,4 @@ public class DataHelper {
         Log.e("2222", "getXMRJ: "+cursor.getCount() );
         return cursor;
     }
-
-    public Cursor getAll(String id){
-        Cursor cursor=db.query(id,null,null,null,null,null,null);
-        return cursor;
-    }
-
 }

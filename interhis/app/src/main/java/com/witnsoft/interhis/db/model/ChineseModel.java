@@ -17,10 +17,12 @@ import java.util.List;
 public class ChineseModel {
 
     // primary key
-    @Column(
-            name = "ACID",
-            isId = true,
-            autoGen = false)
+    @Column(name = "TIME",
+    isId = true,
+    autoGen = true)
+    private String time;
+
+    @Column(name = "ACID")
     private String acId;
 
     // 问诊ID

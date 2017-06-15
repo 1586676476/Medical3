@@ -347,20 +347,11 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             //诊断界面
             case R.id.fragment_helper_radioButton_chat:
                 playChatView();
-                //将输入的医嘱存入数据库当中
-                String diagnosis=diagnosis_edittext.getText().toString();
-                chineseModel.setZdsm(diagnosis);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
                 break;
             //中药界面
             case R.id.fragment_helper_radioButton_chinese:
                 playChineseView();
                 //查询本地数据库
-                ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
                 try {
                     data = HisDbManager.getManager().findChineseDeatilModel(id);
 

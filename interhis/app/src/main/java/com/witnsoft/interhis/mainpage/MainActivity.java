@@ -30,6 +30,7 @@ import com.hyphenate.easeui.model.EaseNotifier;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.util.NetUtils;
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.db.DataHelper;
 import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.utils.AppUtils;
 import com.witnsoft.interhis.utils.ConnectionUtils;
@@ -88,6 +89,9 @@ public class MainActivity extends BaseActivity {
         EMClient.getInstance().addConnectionListener(new MyConnectionListener());
         mProgressDialog = getProgressDialog();
         callUpdate();
+
+        DataHelper dataHelper=new DataHelper(this);
+
     }
 
     private void callUpdate() {

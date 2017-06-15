@@ -33,7 +33,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     private static final String TAG = "DialogActivity";
     private LinearLayout ll_root,ll_dialog;
     private Button first_cancel;
-    private TextView five,ten,fifteen,twenty,number,add,less,name;
+    private TextView five,ten,fifteen,twenty,number,add,less,name,show;
 
     private String medical,accid;
     private int num=0;
@@ -43,6 +43,9 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         x.view().inject(this);
         getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         initView();
+
+
+
     }
 
     private void initView() {
@@ -58,7 +61,6 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         name = (TextView) findViewById(R.id.type);
         first_cancel = (Button) findViewById(R.id.first_cancel);
 
-//        show= (TextView) findViewById(R.id.show_number);
 
         ll_root.setOnClickListener(this);
         ll_dialog.setOnClickListener(this);
@@ -101,7 +103,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
             case R.id.dialog_five:
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl("5");
-                Log.e(TAG, "onClick!!!!!!!!!!!!!: " +accid + medical + 5 );
+                Log.e(TAG, "onClick: "+accid+"------"+medical+"------"+5 );
                 EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
@@ -133,6 +135,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_twenty:
+
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl("20");
                 EventBus.getDefault().post(chineseDetailModel);
@@ -144,7 +147,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.dialog_number:
-                chineseDetailModel.setAccid(accid);
+
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl(String.valueOf(num));
                 EventBus.getDefault().post(chineseDetailModel);

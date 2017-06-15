@@ -15,6 +15,11 @@ import org.xutils.ex.DbException;
 public class ChineseDetailModel {
 
     // primary key
+    @Column(name = "Time",
+            isId = true,
+            autoGen = true)
+    private String time;
+
     @Column(name = "ACCID")
     private String accid;
 
