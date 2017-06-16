@@ -31,6 +31,7 @@ import java.util.List;
 public class MyHistoryFragment extends ChildBaseFragment {
     View rootView;
     private MyHistoryAdapter adapter;
+    private List<String> list = new ArrayList<>();
 
     // 总计接诊量
     @ViewInject(R.id.tv_visit_count_all)
@@ -67,13 +68,21 @@ public class MyHistoryFragment extends ChildBaseFragment {
         tvVisitCountMonth.setText("22");
         tvVisitCountDaily.setText("11");
         callList();
+
     }
 
     private void callList() {
-        List<String> list = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             list.add(String.valueOf(i));
         }
+        try {
+            freshUi();
+        } catch (NullPointerException e) {
+
+        }
+    }
+
+    private void freshUi() {
         if (null == adapter) {
             adapter = new MyHistoryAdapter(getActivity().getBaseContext(), list, R.layout.item_ask_history);
             adapter.setFootViewId(R.layout.activity_load_footer);
@@ -115,6 +124,7 @@ public class MyHistoryFragment extends ChildBaseFragment {
                         slRefresh.setEnabled(false);
                         slRefresh.setRefreshing(true);
                         adapter = null;
+                        list.clear();
                         callList();
                     }
                 }, 600);

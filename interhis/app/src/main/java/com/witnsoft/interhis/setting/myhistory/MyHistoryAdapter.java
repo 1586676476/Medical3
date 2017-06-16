@@ -40,10 +40,14 @@ public class MyHistoryAdapter extends ComRecyclerAdapter<String> {
 
     @Override
     public void convertFooter(ComRecyclerViewHolder comRecyclerViewHolder) {
-        if (!canNotReadBottom) {
-            comRecyclerViewHolder.setText(R.id.load_more, context.getString(R.string.load_done));
-        } else {
-            comRecyclerViewHolder.setText(R.id.load_more, context.getString(R.string.load_more));
+        try {
+            if (!canNotReadBottom) {
+                comRecyclerViewHolder.setText(R.id.load_more, context.getString(R.string.load_done));
+            } else {
+                comRecyclerViewHolder.setText(R.id.load_more, context.getString(R.string.load_more));
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 }
