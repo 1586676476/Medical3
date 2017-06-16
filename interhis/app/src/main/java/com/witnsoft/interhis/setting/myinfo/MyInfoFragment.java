@@ -80,9 +80,17 @@ public class MyInfoFragment extends ChildBaseFragment {
     private TextView tvHosp;
     @ViewInject(R.id.iv_head)
     private CircleImageView ivHead;
+    @ViewInject(R.id.tv_dept)
+    private TextView tvDept;
     // 个人简介
     @ViewInject(R.id.view_introduction)
     private ItemSettingRight viewIntroduction;
+    // 我的擅长
+    @ViewInject(R.id.view_my_expert)
+    private ItemSettingRight viewMyExpert;
+    @ViewInject(R.id.view_evaluate)
+    // 患者评价
+    private ItemSettingRight viewEvaluate;
     // 注销登录
     @ViewInject(R.id.rl_logout)
     private RelativeLayout rlLogout;
@@ -136,6 +144,26 @@ public class MyInfoFragment extends ChildBaseFragment {
                         toIntroduction();
                     }
                 });
+        // 我的擅长
+        RxView.clicks(viewMyExpert)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .compose(this.<Void>bindToLifecycle())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        toMyExpert();
+                    }
+                });
+        // 患者评价
+        RxView.clicks(viewEvaluate)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .compose(this.<Void>bindToLifecycle())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        Toast.makeText(getActivity(), "不想写了，周一再写", Toast.LENGTH_LONG).show();
+                    }
+                });
         // 退出登录
         RxView.clicks(rlLogout)
                 .throttleFirst(500, TimeUnit.MILLISECONDS)
@@ -160,14 +188,21 @@ public class MyInfoFragment extends ChildBaseFragment {
 
     private void init() {
         viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction));
+        viewMyExpert.setTvTitle(getResources().getString(R.string.personal_my_expert));
         tvName.setText("医生名字");
         tvLevel.setText("主任医师");
         tvHosp.setText("天津市第一人民医院");
+        tvDept.setText("儿科");
     }
 
     private void toIntroduction() {
         IntroductionFragment introductionFragment = new IntroductionFragment();
         pushFragment(introductionFragment, null, true);
+    }
+
+    private void toMyExpert() {
+        MyExpertFragment myExpertFragment = new MyExpertFragment();
+        pushFragment(myExpertFragment, null, true);
     }
 
     /**

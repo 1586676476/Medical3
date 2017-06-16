@@ -34,7 +34,9 @@
     <string name="my_income">我的收入</string>
     <string name="about">关于</string>
     <string name="personal_introduction">个人简介</string>
+    <string name="personal_my_expert">我的擅长</string>
     <string name="input_personal_introduction">填写个人简介</string>
+    <string name="input_my_expert">填写我的擅长</string>
     <string name="edit">编辑</string>
     <string name="save">保存</string>
     <string name="income_balance">账户余额(¥)：</string>
