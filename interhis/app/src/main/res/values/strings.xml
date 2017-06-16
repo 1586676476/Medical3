@@ -58,6 +58,7 @@
     <string name="camera_fail_msg">请确认是否开启了摄像头权限</string>
     <string name="go_setting">去设置</string>
     <string name="fileprovider">com.witnsoft.interhis.fileprovider</string>
+    <string name="evaluate">患者评价</string>
     <!--SettingActivity end-->
 
     <!-- 更新(Start) -->

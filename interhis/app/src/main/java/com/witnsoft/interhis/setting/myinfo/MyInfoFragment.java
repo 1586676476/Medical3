@@ -189,6 +189,7 @@ public class MyInfoFragment extends ChildBaseFragment {
     private void init() {
         viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction));
         viewMyExpert.setTvTitle(getResources().getString(R.string.personal_my_expert));
+        viewMyExpert.setTvTitle(getResources().getString(R.string.evaluate));
         tvName.setText("医生名字");
         tvLevel.setText("主任医师");
         tvHosp.setText("天津市第一人民医院");
