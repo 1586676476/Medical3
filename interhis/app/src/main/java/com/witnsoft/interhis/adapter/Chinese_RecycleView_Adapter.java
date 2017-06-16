@@ -45,6 +45,11 @@ public class Chinese_RecycleView_Adapter extends RecyclerView.Adapter<BaseViewHo
         list.remove(position);
     }
 
+    public void ReSrart(){
+        list.clear();
+    }
+
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return BaseViewHolder.onCreatMyViewHolder(context,parent, R.layout.fragment_helper_chinese_recycleview_item);

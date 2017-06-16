@@ -1,8 +1,9 @@
-package com.witnsoft.interhis.inter;
+package com.witnsoft.interhis.mainpage;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -18,29 +19,16 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.witnsoft.interhis.Chufang.ChuFangChinese;
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.inter.DialogListener;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONStringer;
-
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class WritePadDialog extends Dialog {
@@ -108,7 +96,7 @@ public class WritePadDialog extends Dialog {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				ChuFangChinese chufang=new ChuFangChinese();
+				final ChuFangChinese chufang=new ChuFangChinese();
 				chufang.fromJSON();
 
 				otRequest=new OTRequest(getContext());
@@ -120,7 +108,9 @@ public class WritePadDialog extends Dialog {
 				NetTool.getInstance().startRequest(false, true , act , null, otRequest, new CallBack<Map, String>() {
 					@Override
 					public void onSuccess(Map map, String s) {
-						Log.e(TAG, "onSuccess@@@@@@@@@@@@@@: "+"请求成功" );
+						Intent intent=new Intent("CHUSHIHUA");
+						getContext().sendBroadcast(intent);
+						Log.e(TAG, "onSuccess: "+chufang.fromJSON() );
 					}
 
 					@Override

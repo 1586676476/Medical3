@@ -80,9 +80,6 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
         //接受传递过来的药名
         medical = getIntent().getStringExtra("chinese_name");
         name.setText(medical);
-
-
-
     }
 
     private void SetViewListener() {

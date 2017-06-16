@@ -28,11 +28,11 @@ import org.xutils.x;
 
 @ContentView(R.layout.activity_number_medical_acmxs)
 public class ACMXSDialog extends BaseActivity implements View.OnClickListener {
-
+    private static final String TAG = "ACMXSDialog";
     private LinearLayout ll_root,ll_dialog;
     private Button first_cancel;
     private TextView seven,fourteen,twenty_one,number,add,less;
-
+    private String acid;
     private int num=0;
 
     @Override
@@ -54,7 +54,6 @@ public class ACMXSDialog extends BaseActivity implements View.OnClickListener {
         less = (TextView) findViewById(R.id.acmxs_dialog_less);
         first_cancel = (Button) findViewById(R.id.acmxs_first_cancel);
 
-//        show= (TextView) findViewById(R.id.show_number);
 
         ll_root.setOnClickListener(this);
         ll_dialog.setOnClickListener(this);
@@ -67,34 +66,66 @@ public class ACMXSDialog extends BaseActivity implements View.OnClickListener {
         first_cancel.setOnClickListener(this);
         less.setTag("+");
         add.setTag("-");
+
+        acid=getIntent().getStringExtra("accid");
+        Log.e(TAG, "initView: "+acid );
+        SetViewListener();
+
+
+    }
+
+    private void SetViewListener() {
+        add.setOnClickListener(new OnButtonClickListener());
+        less.setOnClickListener(new OnButtonClickListener());
+        number.addTextChangedListener(new OnTextChangeListener());
     }
 
     @Override
     public void onClick(View v) {
         ChineseModel chineseModel=new ChineseModel();
+        chineseModel.setAcId(acid);
         switch (v.getId()){
             case R.id.acmxs_ll_root:
                 finish();
                 break;
             case R.id.acmxs_dialog_seven:
                 chineseModel.setAcMxs("7");
-//              EventBus.getDefault().post(chineseModel);
+                EventBus.getDefault().post(chineseModel);
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.acmxs_dialog_fourteen:
                 chineseModel.setAcMxs("14");
-//              EventBus.getDefault().post(chineseModel);
+                EventBus.getDefault().post(chineseModel);
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.acmxs_dialog_twenty_one:
                 chineseModel.setAcMxs("21");
-//              EventBus.getDefault().post(chineseModel);
+                EventBus.getDefault().post(chineseModel);
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
-
-            case R.id.dialog_number:
+            case R.id.acmxs_dialog_number:
                 chineseModel.setAcMxs(String.valueOf(num));
-//              EventBus.getDefault().post(chineseModel);
+                EventBus.getDefault().post(chineseModel);
+                try {
+                    HisDbManager.getManager().saveAskChinese(chineseModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.first_cancel:

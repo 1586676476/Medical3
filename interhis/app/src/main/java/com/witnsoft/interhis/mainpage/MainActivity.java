@@ -90,8 +90,6 @@ public class MainActivity extends BaseActivity {
         mProgressDialog = getProgressDialog();
         callUpdate();
 
-        DataHelper dataHelper=new DataHelper(this);
-
     }
 
     private void callUpdate() {

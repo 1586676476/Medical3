@@ -88,6 +88,9 @@
             android:name=".mainpage.SecondDialogActivity"
             android:theme="@style/MyDialogActivityTheme"/>
 
+        <activity android:name=".mainpage.ACMXSDialog"
+            android:theme="@style/MyDialogActivityTheme"/>
+
         <activity
             android:name=".setting.SettingActivity"
             android:screenOrientation="landscape"/>

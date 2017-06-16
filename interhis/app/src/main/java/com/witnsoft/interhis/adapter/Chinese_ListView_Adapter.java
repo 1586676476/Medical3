@@ -62,5 +62,6 @@ public class Chinese_ListView_Adapter extends BaseAdapter {
 
     class ViewHolder{
         TextView tv_ss;
+
     }
 }

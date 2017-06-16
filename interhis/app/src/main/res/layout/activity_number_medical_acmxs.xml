@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
-            android:text="14"
+            android:text="14付"
             android:textColor="@color/colorBlack"/>
 
         <TextView
@@ -61,7 +61,7 @@
             <TextView
                 android:id="@+id/acmxs_dialog_number"
                 style="@style/bigSize"
-                android:text="2"
+                android:text="0"
                 android:textSize="16sp"
                 android:textColor="@color/colorBlack"
                 android:layout_marginLeft="180dp"/>
