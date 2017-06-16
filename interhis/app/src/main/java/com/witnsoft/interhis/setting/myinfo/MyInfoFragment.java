@@ -30,6 +30,7 @@ import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.mainpage.LoginActivity;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
 import com.witnsoft.interhis.utils.ui.ItemSettingRight;
+import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
