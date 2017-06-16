@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,9 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -65,6 +70,7 @@ public class MyInfoFragment extends ChildBaseFragment {
     }
 
     View rootView;
+    private String strImgPath;
 
     @ViewInject(R.id.tv_name)
     private TextView tvName;
@@ -103,15 +109,16 @@ public class MyInfoFragment extends ChildBaseFragment {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == ActivityRequestCode.REQUEST_CODE_CAMERA) {
                 // 相机返回
-                String path = Environment.getExternalStorageDirectory()
-                        + "/" + TMP_PATH;
+                String path = Environment.getExternalStorageDirectory().toString()
+                        + TMP_PATH + pathFileName;
+                Log.e(TAG, "path = " + path);
                 load(path, this.ivHead, R.drawable.touxiang);
             } else if (requestCode == ActivityRequestCode.START_ALBUM_REQUESTCODE) {
                 // 相册返回
                 if (data != null) {
                     Uri selectedImage = data.getData();
                     if (selectedImage != null) {
-                        load(getImagePath(selectedImage), this.ivHead, R.drawable.touxiang);
+                        load(getFilePath(selectedImage), this.ivHead, R.drawable.touxiang);
                     }
                 }
             }
@@ -278,17 +285,43 @@ public class MyInfoFragment extends ChildBaseFragment {
     /**
      * 相机拍照
      */
-    public static final String TMP_PATH = "clip_temp.png";
+    public static final String TMP_PATH = "/DCIM/Camera/";
+    protected static String pathFileName = "";
+    private static Uri uri;
 
     private void startCamera() {
         if (!EaseCommonUtils.isSdcardExist()) {
             Toast.makeText(getActivity(), com.hyphenate.easeui.R.string.sd_card_does_not_exist, Toast.LENGTH_SHORT).show();
             return;
         }
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(
-                Environment.getExternalStorageDirectory(), TMP_PATH)));
-        startActivityForResult(intent, ActivityRequestCode.REQUEST_CODE_CAMERA);
+        // 照片保存路径
+        strImgPath = Environment.getExternalStorageDirectory().toString() + TMP_PATH;
+        // 照片以格式化日期方式命名
+        String fileName = new SimpleDateFormat("yyyyMMddHHmmss")
+                .format(new Date()) + ".png";
+        pathFileName = fileName;
+        File outPutImage = new File(strImgPath);
+        if (!outPutImage.exists()) {
+            outPutImage.mkdirs();
+        }
+        outPutImage = new File(strImgPath, fileName);
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
+                uri = FileProvider.getUriForFile(getActivity(), "com.witnsoft.interhis.fileprovider", outPutImage);
+            } catch (Exception e) {
+            }
+
+        } else {
+            uri = Uri.fromFile(outPutImage);
+        }
+        if (uri == null) {
+            Toast.makeText(getActivity(), R.string.card_fali_msg, Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+            startActivityForResult(intent, ActivityRequestCode.REQUEST_CODE_CAMERA);
+        }
     }
 
     /**
@@ -306,33 +339,38 @@ public class MyInfoFragment extends ChildBaseFragment {
         startActivityForResult(intent, ActivityRequestCode.START_ALBUM_REQUESTCODE);
     }
 
-    protected String getImagePath(Uri selectedImage) {
-        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            cursor = null;
-            if (picturePath == null || picturePath.equals("null")) {
-                Toast toast = Toast.makeText(getActivity(), com.hyphenate.easeui.R.string.cant_find_pictures, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                return null;
+    public String getFilePath(Uri mUri) {
+        try {
+            if (mUri.getScheme().equals("file")) {
+                return mUri.getPath();
+            } else {
+                return getFilePathByUri(mUri);
             }
-            return picturePath;
-        } else {
-            File file = new File(selectedImage.getPath());
-            if (!file.exists()) {
-                Toast toast = Toast.makeText(getActivity(), com.hyphenate.easeui.R.string.cant_find_pictures, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                return null;
-
-            }
-            return file.getAbsolutePath();
+        } catch (FileNotFoundException ex) {
+            return null;
         }
+    }
 
+    // 获取文件路径通过url
+    private String getFilePathByUri(Uri mUri) throws FileNotFoundException {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = null;
+        String url = "";
+        try {
+            cursor = getActivity().getContentResolver()
+                    .query(mUri, proj, null, null, null);
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            // 最后根据索引值获取图片路径
+            url = cursor.getString(column_index);
+        } catch (Exception e) {
+
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return url;
     }
 }
