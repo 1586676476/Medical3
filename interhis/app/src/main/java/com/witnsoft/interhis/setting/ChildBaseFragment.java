@@ -3,10 +3,13 @@ package com.witnsoft.interhis.setting;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.witnsoft.interhis.R;
 import com.witnsoft.libinterhis.base.BaseFragment;
 
@@ -54,5 +57,17 @@ public class ChildBaseFragment extends BaseFragment {
     public void finishFragment() {
         mFragmentManager = getFragmentManager();
         mFragmentManager.popBackStack();
+    }
+
+    public void load(String url, ImageView iv, int id) {
+        if (!TextUtils.isEmpty(url)) {
+            if (!(url.endsWith(".png"))) {
+                url = url + ".png";
+            }
+            Glide.with(this)
+                    .load(url)
+                    .error(id)
+                    .into(iv);
+        }
     }
 }
