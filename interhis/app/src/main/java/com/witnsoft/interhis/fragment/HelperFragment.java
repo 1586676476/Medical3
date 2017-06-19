@@ -184,7 +184,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
         //中药数量
         chinese_medical_number= (TextView) view.findViewById(R.id.fragment_helper_chinese_medical_number);
-        allPrice= (TextView) view.findViewById(R.id.fragment_helper_chinese_medical_price);
+//        all mPrice= (TextView) view.findViewById(R.idb.fragment_helper_chinese_medical_price);
 
         //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
@@ -384,6 +384,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                     try {
                         chufang.setList(data);
                     }catch (Exception e){
+
                         e.printStackTrace();
                     }
                 }
@@ -426,11 +427,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
                 if (diagnosis==null){
                     Toast.makeText(ctx, "请输入诊断内容", Toast.LENGTH_SHORT).show();
-                }else if(advice==null){
-                    Toast.makeText(ctx, "请输入医嘱", Toast.LENGTH_SHORT).show();
-                }else if (chinese_medical_number==null){
-                    Toast.makeText(ctx, "请输入处方数量", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     chinese_button.setOnClickListener(signListener);
                     //将字表加入到主表当中
                     chineseModel.setChineseDetailModel(data);
@@ -719,6 +716,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
         @Override
         public void onReceive(Context context, Intent intent) {
+
             //根据拼音查询数据
             pinyin = chinese_edittext.getText().toString();
             String xmmc = null;
@@ -735,6 +733,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 }
                 cursor.close();
                 //显示搜索列表药名
+                if (adapter!=null){
+                    adapter.delete();
+                }
                 for (String s : asd) {
                     ChineseDetailModel chinese = new ChineseDetailModel();
                     chinese.setCmc(s);
@@ -743,7 +744,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 adapter.notifyDataSetChanged();
                 chinese_listView.setVisibility(View.VISIBLE);
                 chinese_fixed.setVisibility(View.GONE);
-
             }
         }
     }

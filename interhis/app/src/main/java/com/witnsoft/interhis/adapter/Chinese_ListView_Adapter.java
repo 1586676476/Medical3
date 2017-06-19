@@ -31,6 +31,10 @@ public class Chinese_ListView_Adapter extends BaseAdapter {
         this.listener = listener;
     }
 
+    public void delete(){
+        list.clear();
+    }
+
     @Override
     public int getCount() {
         return list.size();

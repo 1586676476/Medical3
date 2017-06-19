@@ -152,7 +152,7 @@
                 android:layout_width="395dp"
                 android:layout_height="40dp"
                 android:background="@drawable/edittext"
-                android:hint="请输入医嘱"
+                android:hint="请输入用法用量"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorBlack"/>
 
@@ -166,7 +166,7 @@
                     android:layout_width="395dp"
                     android:layout_height="40dp"
                     android:background="@drawable/edittext"
-                    android:hint="请输入药方"
+                    android:hint="请输入拼音首字母"
                     android:paddingLeft="10dp"
                     android:textColor="@color/colorBlack"/>
 
@@ -261,20 +261,20 @@
 
             </LinearLayout>
 
-            <TextView
-                style="@style/bigSize"
-                android:layout_marginLeft="450dp"
-                android:layout_marginTop="-20dp"
-                android:text="金额："
-                android:textColor="@color/colorBlack"/>
+            <!--<TextView-->
+                <!--style="@style/bigSize"-->
+                <!--android:layout_marginLeft="450dp"-->
+                <!--android:layout_marginTop="-20dp"-->
+                <!--android:text="金额："-->
+                <!--android:textColor="@color/colorBlack"/>-->
 
-            <TextView
-                android:id="@+id/fragment_helper_chinese_medical_price"
-               style="@style/bigSize"
-                android:layout_marginLeft="500dp"
-                android:layout_marginTop="-19dp"
-                android:text="700元"
-                android:textColor="@color/colorBlack"/>
+            <!--<TextView-->
+                <!--android:id="@+id/fragment_helper_chinese_medical_price"-->
+               <!--style="@style/bigSize"-->
+                <!--android:layout_marginLeft="500dp"-->
+                <!--android:layout_marginTop="-19dp"-->
+                <!--android:text="700元"-->
+                <!--android:textColor="@color/colorBlack"/>-->
 
         </LinearLayout>
 
