@@ -184,7 +184,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
         //中药数量
         chinese_medical_number= (TextView) view.findViewById(R.id.fragment_helper_chinese_medical_number);
-        allPrice= (TextView) view.findViewById(R.id.fragment_helper_chinese_medical_price);
+//        allPrice= (TextView) view.findViewById(R.id.fragment_helper_chinese_medical_price);
 
         //搜索列表
         chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
