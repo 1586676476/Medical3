@@ -22,12 +22,15 @@ import android.widget.FrameLayout;
 
 import com.witnsoft.interhis.Chufang.ChuFangChinese;
 import com.witnsoft.interhis.R;
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.inter.DialogListener;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -38,11 +41,15 @@ public class WritePadDialog extends Dialog {
 	LayoutParams p;
 	DialogListener dialogListener;
 	private OTRequest otRequest;
+	List<ChineseDetailModel> list=new ArrayList<>();
+	String str;
 
 	private static final String TN_DOC_KAIYAO = "F27.APP.01.06";
 
-	public WritePadDialog(Activity a,Context context, int themeResId, DialogListener dialogListener) {
+	public WritePadDialog(List<ChineseDetailModel> list,String str,Activity a,Context context, int themeResId, DialogListener dialogListener) {
 		super(context,themeResId);
+		this.str=str;
+		this.list=list;
 		this.act=a;
 		this.context = context;
 		this.dialogListener = dialogListener;
@@ -92,25 +99,24 @@ public class WritePadDialog extends Dialog {
 				try {
 					dialogListener.refreshActivity(mView.getCachebBitmap());
 					WritePadDialog.this.dismiss();
-					Log.e(TAG, "onClick111111111111111111111111111111111111111111: "+12456 );
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				final ChuFangChinese chufang=new ChuFangChinese();
-				chufang.fromJSON();
 
-				otRequest=new OTRequest(getContext());
+				//生成json串 并上传服务器
+				final ChuFangChinese chufang=new ChuFangChinese();
+				chufang.fromJSON(list,str);
+                otRequest=new OTRequest(getContext());
 				otRequest.setTN(TN_DOC_KAIYAO);
 				DataModel data = new DataModel();
-				data.setDataJSONStr(String.valueOf(chufang.fromJSON()));
-				Log.e(TAG, "onClick!!!!!!!!!!!!!!!!!!!: "+chufang.fromJSON() );
+				data.setDataJSONStr(String.valueOf(chufang.fromJSON(list,str)));
 				otRequest.setDATA(data);
 				NetTool.getInstance().startRequest(false, true , act , null, otRequest, new CallBack<Map, String>() {
 					@Override
 					public void onSuccess(Map map, String s) {
 						Intent intent=new Intent("CHUSHIHUA");
 						getContext().sendBroadcast(intent);
-						Log.e(TAG, "onSuccess: "+chufang.fromJSON() );
+						Log.e(TAG, "onSuccess: "+chufang.fromJSON(list,str) );
 					}
 
 					@Override

@@ -1,6 +1,10 @@
 package com.witnsoft.interhis.Chufang;
 
 
+import com.witnsoft.interhis.db.model.ChineseDetailModel;
+
+import java.util.List;
+
 /**
  * Created by ${liyan} on 2017/6/14.
  */
@@ -23,6 +27,16 @@ public class ChuFangBase {
     private String acsm;
     //价格
     private String je;
+
+    private List<ChineseDetailModel> list;
+
+    public List<ChineseDetailModel> getList() {
+        return list;
+    }
+
+    public void setList(List<ChineseDetailModel> list) {
+        this.list = list;
+    }
 
     public String getHelperId() {
         return helperId;

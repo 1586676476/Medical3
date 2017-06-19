@@ -1,8 +1,10 @@
 package com.witnsoft.interhis.db;
 
 import android.content.Context;
+import android.view.View;
 
 
+import com.witnsoft.interhis.Chufang.ChuFangChinese;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.db.model.ChineseModel;
 import com.witnsoft.libinterhis.utils.FileUtils;
@@ -115,20 +117,19 @@ public class HisDbManager {
         return (List<ChineseDetailModel>) message;
     }
 
-    public List<ChineseModel> findChineseByPrimId(String acId) throws DbException {
-        Object messages = this.manager.selector(ChineseModel.class).
-                where("ACID", "=", acId).findAll();
-        if (null == messages) {
-            messages = new ArrayList();
-        }
-        return (List) messages;
-    }
-
     public List<ChineseDetailModel> findChineseDeatilModel(String accid) throws DbException{
         Object message=this.manager.selector(ChineseDetailModel.class).where("ACCID","=",accid).findAll();
         if(null==message){
             message=new ArrayList();
         }
         return (List<ChineseDetailModel>) message;
+    }
+
+    public List<ChineseModel> findChineseModel(String acid) throws DbException{
+        Object message=this.manager.selector(ChineseModel.class).where("ACID","=",acid).findAll();
+        if (message!=null){
+            message=new ArrayList<>();
+        }
+        return (List<ChineseModel>) message;
     }
 }

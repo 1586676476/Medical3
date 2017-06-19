@@ -107,7 +107,7 @@ public class ChineseModel {
 
     //从表
     @Column(name = "ASK_CHINESE_MX")
-    private ChineseDetailModel chineseDetailModel;
+    private List<ChineseDetailModel> chineseDetailModel;
 
 
     public void setAcId(String acId) {
@@ -278,12 +278,12 @@ public class ChineseModel {
         return ydDh;
     }
 
-    public void setChineseDetailModel(ChineseDetailModel chineseDetailModel) {
-        this.chineseDetailModel = chineseDetailModel;
+    public List<ChineseDetailModel> getChineseDetailModel() {
+        return chineseDetailModel;
     }
 
-    public ChineseDetailModel getChineseDetailModel() {
-        return chineseDetailModel;
+    public void setChineseDetailModel(List<ChineseDetailModel> chineseDetailModel) {
+        this.chineseDetailModel = chineseDetailModel;
     }
 
     public List<ChineseDetailModel> getChineseDetail(DbManager db) throws DbException {

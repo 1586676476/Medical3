@@ -238,6 +238,7 @@
 
 
             <LinearLayout
+                android:id="@+id/fragment_helper_chinese_medical_allNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="330dp"
@@ -263,7 +264,7 @@
             <TextView
                 style="@style/bigSize"
                 android:layout_marginLeft="450dp"
-                android:layout_marginTop="-21dp"
+                android:layout_marginTop="-20dp"
                 android:text="金额："
                 android:textColor="@color/colorBlack"/>
 
@@ -271,7 +272,7 @@
                 android:id="@+id/fragment_helper_chinese_medical_price"
                style="@style/bigSize"
                 android:layout_marginLeft="500dp"
-                android:layout_marginTop="-21dp"
+                android:layout_marginTop="-19dp"
                 android:text="700元"
                 android:textColor="@color/colorBlack"/>
 

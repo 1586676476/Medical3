@@ -27,6 +27,7 @@ import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.EaseConstant;
+import com.witnsoft.interhis.Chufang.ChuFangChinese;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
@@ -340,6 +341,7 @@ public class DoctorFragment extends Fragment {
             public void onError(Throwable throwable) {
             }
         });
+
     }
 
     private int pageNo = 1;
