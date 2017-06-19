@@ -3,9 +3,7 @@ package com.witnsoft.interhis.setting;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -15,6 +13,8 @@ import com.witnsoft.interhis.setting.myhistory.MyHistoryFragment;
 import com.witnsoft.interhis.setting.myincome.MyIncomeFragment;
 import com.witnsoft.interhis.setting.myinfo.MyInfoFragment;
 import com.witnsoft.libinterhis.base.BaseActivity;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -42,19 +42,19 @@ public class SettingActivity extends BaseActivity {
     private String docDept = "";
 
     @ViewInject(R.id.ll_back)
-    private LinearLayout llBack;
+    private AutoScaleLinearLayout llBack;
     // 我的信息
     @ViewInject(R.id.rl_my_info)
-    private RelativeLayout rlMyInfo;
+    private AutoScaleRelativeLayout rlMyInfo;
     // 我的问诊记录
     @ViewInject(R.id.rl_my_history)
-    private RelativeLayout rlMyHistory;
+    private AutoScaleRelativeLayout rlMyHistory;
     // 我的收入
     @ViewInject(R.id.rl_my_income)
-    private RelativeLayout rlMyIncome;
+    private AutoScaleRelativeLayout rlMyIncome;
     // 关于
     @ViewInject(R.id.rl_about)
-    private RelativeLayout rlAbout;
+    private AutoScaleRelativeLayout rlAbout;
 
     private FragmentManager fragmentManager;
 

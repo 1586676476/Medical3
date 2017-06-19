@@ -11,12 +11,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.witnsoft.interhis.R;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout;
 
 /**
  * Created by zhengchengpeng on 2017/6/14.
  */
 
-public class ItemSettingRight extends RelativeLayout {
+public class ItemSettingRight extends AutoScaleRelativeLayout {
 
     private TextView tvTitle;
     private ImageView ivIcon;
