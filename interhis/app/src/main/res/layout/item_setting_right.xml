@@ -28,10 +28,12 @@
         android:background="@color/divider_color"/>
 
     <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/divider_color"/>
+        android:background="@color/divider_color"
+        android:visibility="visible"/>
 
     <ImageView
         android:id="@+id/iv_icon"

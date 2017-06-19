@@ -215,7 +215,7 @@ public class MyInfoFragment extends ChildBaseFragment {
     }
 
     private void init() {
-        viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction));
+        viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction), false);
         viewMyExpert.setTvTitle(getResources().getString(R.string.personal_my_expert));
         viewEvaluate.setTvTitle(getResources().getString(R.string.evaluate));
         Bundle bundle = getArguments();
