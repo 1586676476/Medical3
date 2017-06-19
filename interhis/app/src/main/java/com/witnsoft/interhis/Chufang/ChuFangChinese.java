@@ -66,17 +66,19 @@ public class ChuFangChinese extends ChuFangBase {
         this.aiid = aiid;
     }
 
-    public JSONObject fromJSON(List<ChineseDetailModel> list,String acmxs) {
+    public JSONObject fromJSON(List<ChineseDetailModel> list,String acmxs,String acsm,String zdsm) {
         setList(list);
         setAcmxs(acmxs);
+        setAcsm(acsm);
+        setZdsm(zdsm);
         // DATA
         JSONObject dataJo = new JSONObject();
         try {
             dataJo.put("yftype", "chinese")
                     .put("aiid","aiid001")
-                    .put("zdsm", "咳嗽头痛")
+                    .put("zdsm",zdsm)
                     .put("acmxs",acmxs)
-                    .put("acsm","一天两次")
+                    .put("acsm",acsm)
                     .put("je", "1293")
                     .put("chufangmx",jsonArray);
 
