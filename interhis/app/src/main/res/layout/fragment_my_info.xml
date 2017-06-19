@@ -89,18 +89,48 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_hosp"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/text_medium_color"
-                android:textSize="15dp"
-                tools:text="天津市第一人民医院"/>
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/tv_hosp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/text_medium_color"
+                    android:textSize="15dp"
+                    tools:text="天津市第一人民医院"/>
+
+                <TextView
+                    android:id="@+id/tv_dept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_hosp"
+                    android:textColor="@color/text_medium_color"
+                    android:textSize="15dp"
+                    tools:text="科室"/>
+
+            </RelativeLayout>
 
             <com.witnsoft.interhis.utils.ui.ItemSettingRight
                 android:id="@+id/view_introduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"/>
+
+            <com.witnsoft.interhis.utils.ui.ItemSettingRight
+                android:id="@+id/view_my_expert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.witnsoft.interhis.utils.ui.ItemSettingRight
+                android:id="@+id/view_evaluate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"/>

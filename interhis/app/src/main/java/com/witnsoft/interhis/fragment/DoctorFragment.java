@@ -105,6 +105,11 @@ public class DoctorFragment extends Fragment {
     private String docId = "";
     private List<Map<String, String>> dataChatList = new ArrayList();
 
+    private String docName = "";
+    private String docLevel = "";
+    private String docHospName = "";
+    private String docDept = "";
+
     // 下拉刷新
     @ViewInject(R.id.sl_refresh)
     private SwipeRefreshLayout slRefresh;
@@ -213,6 +218,10 @@ public class DoctorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingActivity.class);
+                intent.putExtra(SettingActivity.DOC_NAME, docName);
+                intent.putExtra(SettingActivity.DOC_LEVEL, docLevel);
+                intent.putExtra(SettingActivity.DOC_HOSP, docHospName);
+                intent.putExtra(SettingActivity.DOC_DEPT, docDept);
                 startActivity(intent);
             }
         });
@@ -251,10 +260,12 @@ public class DoctorFragment extends Fragment {
                             Map<String, String> data = (Map<String, String>) response.get(DATA);
                             // 医生姓名
                             if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.DOC_NAME))) {
+                                docName = data.get(DocInfoResponseKey.DOC_NAME);
                                 tvDocName.setText(data.get(DocInfoResponseKey.DOC_NAME));
                             }
                             // 医生职称
                             if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.ZYDJ))) {
+                                docLevel = data.get(DocInfoResponseKey.ZYDJ);
                                 tvDocDuties.setText(data.get(DocInfoResponseKey.ZYDJ));
                             }
                             // 医生评分
@@ -268,9 +279,11 @@ public class DoctorFragment extends Fragment {
                             // 医生所在医院，科室
                             String hosp = "";
                             if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.SSYYMC))) {
+                                docHospName = data.get(DocInfoResponseKey.SSYYMC);
                                 hosp = data.get(DocInfoResponseKey.SSYYMC);
                             }
                             if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.SSKB1MC))) {
+                                docDept = data.get(DocInfoResponseKey.SSKB1MC);
                                 hosp = hosp + " " + data.get(DocInfoResponseKey.SSKB1MC);
                             }
                             if (!TextUtils.isEmpty(hosp)) {

@@ -73,7 +73,7 @@ public class MyIncomeFragment extends ChildBaseFragment {
         // 提现
         rlToCash.setTvTitle(getResources().getString(R.string.to_cash));
         // 银行卡
-        rlBankCard.setTvTitle(getResources().getString(R.string.my_bank_card));
+        rlBankCard.setTvTitle(getResources().getString(R.string.my_bank_card), false);
         // 收入账单
         rlBill.setTvTitle(getResources().getString(R.string.income_bill));
         tvBalance.setText("1500");

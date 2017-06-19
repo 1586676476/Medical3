@@ -1,8 +1,10 @@
 package com.witnsoft.interhis.setting.myinfo;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -10,7 +12,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +33,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.mainpage.LoginActivity;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
+import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.utils.ui.ItemSettingRight;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.LoginRequest;
@@ -40,6 +45,9 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -57,6 +65,8 @@ public class MyInfoFragment extends ChildBaseFragment {
     private static final String LOGOUT = "logout";
     private static final String ERRO_MSG = "errmsg";
 
+    private static final String PKG = "com.witnsoft.interhis";
+
     public final class ActivityRequestCode {
         //启动相机
         public static final int REQUEST_CODE_CAMERA = 1;
@@ -64,7 +74,15 @@ public class MyInfoFragment extends ChildBaseFragment {
         public static final int START_ALBUM_REQUESTCODE = 2;
     }
 
+    public final class PermissionRequestCode {
+        // 相机权限返回
+        public static final int REQUEST_CAMERA_PERMISSION = 100;
+        // 相册权限返回
+        public static final int REQUEST_ALBUM_PERMISSION = 200;
+    }
+
     View rootView;
+    private String strImgPath;
 
     @ViewInject(R.id.tv_name)
     private TextView tvName;
@@ -74,9 +92,17 @@ public class MyInfoFragment extends ChildBaseFragment {
     private TextView tvHosp;
     @ViewInject(R.id.iv_head)
     private CircleImageView ivHead;
+    @ViewInject(R.id.tv_dept)
+    private TextView tvDept;
     // 个人简介
     @ViewInject(R.id.view_introduction)
     private ItemSettingRight viewIntroduction;
+    // 我的擅长
+    @ViewInject(R.id.view_my_expert)
+    private ItemSettingRight viewMyExpert;
+    @ViewInject(R.id.view_evaluate)
+    // 患者评价
+    private ItemSettingRight viewEvaluate;
     // 注销登录
     @ViewInject(R.id.rl_logout)
     private RelativeLayout rlLogout;
@@ -103,18 +129,35 @@ public class MyInfoFragment extends ChildBaseFragment {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == ActivityRequestCode.REQUEST_CODE_CAMERA) {
                 // 相机返回
-                String path = Environment.getExternalStorageDirectory()
-                        + "/" + TMP_PATH;
+                String path = Environment.getExternalStorageDirectory().toString()
+                        + TMP_PATH + pathFileName;
+                Log.e(TAG, "path = " + path);
                 load(path, this.ivHead, R.drawable.touxiang);
             } else if (requestCode == ActivityRequestCode.START_ALBUM_REQUESTCODE) {
                 // 相册返回
                 if (data != null) {
                     Uri selectedImage = data.getData();
                     if (selectedImage != null) {
-                        load(getImagePath(selectedImage), this.ivHead, R.drawable.touxiang);
+                        load(getFilePath(selectedImage), this.ivHead, R.drawable.touxiang);
                     }
                 }
             }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PermissionRequestCode.REQUEST_CAMERA_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            try {
+                startCamera();
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), getResources().getString(R.string.none_permission), Toast.LENGTH_LONG).show();
+            }
+        }
+
+        if (requestCode == PermissionRequestCode.REQUEST_ALBUM_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startAlbum();
         }
     }
 
@@ -127,6 +170,26 @@ public class MyInfoFragment extends ChildBaseFragment {
                     @Override
                     public void call(Void aVoid) {
                         toIntroduction();
+                    }
+                });
+        // 我的擅长
+        RxView.clicks(viewMyExpert)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .compose(this.<Void>bindToLifecycle())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        toMyExpert();
+                    }
+                });
+        // 患者评价
+        RxView.clicks(viewEvaluate)
+                .throttleFirst(500, TimeUnit.MILLISECONDS)
+                .compose(this.<Void>bindToLifecycle())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        toEvaluate();
                     }
                 });
         // 退出登录
@@ -152,15 +215,39 @@ public class MyInfoFragment extends ChildBaseFragment {
     }
 
     private void init() {
-        viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction));
-        tvName.setText("医生名字");
-        tvLevel.setText("主任医师");
-        tvHosp.setText("天津市第一人民医院");
+        viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction), false);
+        viewMyExpert.setTvTitle(getResources().getString(R.string.personal_my_expert));
+        viewEvaluate.setTvTitle(getResources().getString(R.string.evaluate));
+        Bundle bundle = getArguments();
+        if (null != bundle) {
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_NAME))) {
+                tvName.setText(bundle.getString(SettingActivity.DOC_NAME));
+            }
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_LEVEL))) {
+                tvLevel.setText(bundle.getString(SettingActivity.DOC_LEVEL));
+            }
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_HOSP))) {
+                tvHosp.setText(bundle.getString(SettingActivity.DOC_HOSP));
+            }
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_DEPT))) {
+                tvDept.setText(bundle.getString(SettingActivity.DOC_DEPT));
+            }
+        }
     }
 
     private void toIntroduction() {
         IntroductionFragment introductionFragment = new IntroductionFragment();
         pushFragment(introductionFragment, null, true);
+    }
+
+    private void toMyExpert() {
+        MyExpertFragment myExpertFragment = new MyExpertFragment();
+        pushFragment(myExpertFragment, null, true);
+    }
+
+    private void toEvaluate() {
+        EvaluateFragment evaluateFragment = new EvaluateFragment();
+        pushFragment(evaluateFragment, null, true);
     }
 
     /**
@@ -236,8 +323,10 @@ public class MyInfoFragment extends ChildBaseFragment {
     private TextView tvTakePhoto;
     private TextView tvFromPhoto;
     private TextView tvCancel;
+    private PackageManager pm;
 
     private void showHeadDialog() {
+        pm = getActivity().getPackageManager();
         final LayoutInflater linearLayout = getActivity().getLayoutInflater();
         View view = linearLayout.inflate(R.layout.dialog_select_head, null);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -254,7 +343,28 @@ public class MyInfoFragment extends ChildBaseFragment {
         tvTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startCamera();
+                // 获取相机读写权限
+                // 如果没有权限，强开
+                boolean cameraPermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.CAMERA, PKG));
+                boolean readPermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, PKG));
+                boolean writePermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, PKG));
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (cameraPermission && readPermission && writePermission) {
+                        startCamera();
+                    } else {
+                        String[] PERMISSIONS_CAMERA = {
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
+                        };
+                        requestPermissions(PERMISSIONS_CAMERA, PermissionRequestCode.REQUEST_CAMERA_PERMISSION);
+                    }
+                } else {
+                    startCamera();
+                }
                 dialog.dismiss();
             }
         });
@@ -262,7 +372,22 @@ public class MyInfoFragment extends ChildBaseFragment {
         tvFromPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAlbum();
+                // 获取读权限
+                // 如果没有权限，强开
+                boolean readPermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, PKG));
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (readPermission) {
+                        startAlbum();
+                    } else {
+                        String[] PERMISSIONS_STORAGE = {
+                                Manifest.permission.READ_EXTERNAL_STORAGE
+                        };
+                        requestPermissions(PERMISSIONS_STORAGE, PermissionRequestCode.REQUEST_ALBUM_PERMISSION);
+                    }
+                } else {
+                    startAlbum();
+                }
                 dialog.dismiss();
             }
         });
@@ -278,17 +403,43 @@ public class MyInfoFragment extends ChildBaseFragment {
     /**
      * 相机拍照
      */
-    public static final String TMP_PATH = "clip_temp.png";
+    public static final String TMP_PATH = "/DCIM/Camera/";
+    protected static String pathFileName = "";
+    private static Uri uri;
 
     private void startCamera() {
         if (!EaseCommonUtils.isSdcardExist()) {
             Toast.makeText(getActivity(), com.hyphenate.easeui.R.string.sd_card_does_not_exist, Toast.LENGTH_SHORT).show();
             return;
         }
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(
-                Environment.getExternalStorageDirectory(), TMP_PATH)));
-        startActivityForResult(intent, ActivityRequestCode.REQUEST_CODE_CAMERA);
+        // 照片保存路径
+        strImgPath = Environment.getExternalStorageDirectory().toString() + TMP_PATH;
+        // 照片以格式化日期方式命名
+        String fileName = new SimpleDateFormat("yyyyMMddHHmmss")
+                .format(new Date()) + ".png";
+        pathFileName = fileName;
+        File outPutImage = new File(strImgPath);
+        if (!outPutImage.exists()) {
+            outPutImage.mkdirs();
+        }
+        outPutImage = new File(strImgPath, fileName);
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
+                uri = FileProvider.getUriForFile(getActivity(), "com.witnsoft.interhis.fileprovider", outPutImage);
+            } catch (Exception e) {
+            }
+
+        } else {
+            uri = Uri.fromFile(outPutImage);
+        }
+        if (uri == null) {
+            Toast.makeText(getActivity(), R.string.card_fali_msg, Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+            startActivityForResult(intent, ActivityRequestCode.REQUEST_CODE_CAMERA);
+        }
     }
 
     /**
@@ -306,33 +457,38 @@ public class MyInfoFragment extends ChildBaseFragment {
         startActivityForResult(intent, ActivityRequestCode.START_ALBUM_REQUESTCODE);
     }
 
-    protected String getImagePath(Uri selectedImage) {
-        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            cursor = null;
-            if (picturePath == null || picturePath.equals("null")) {
-                Toast toast = Toast.makeText(getActivity(), com.hyphenate.easeui.R.string.cant_find_pictures, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                return null;
+    public String getFilePath(Uri mUri) {
+        try {
+            if (mUri.getScheme().equals("file")) {
+                return mUri.getPath();
+            } else {
+                return getFilePathByUri(mUri);
             }
-            return picturePath;
-        } else {
-            File file = new File(selectedImage.getPath());
-            if (!file.exists()) {
-                Toast toast = Toast.makeText(getActivity(), com.hyphenate.easeui.R.string.cant_find_pictures, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                return null;
-
-            }
-            return file.getAbsolutePath();
+        } catch (FileNotFoundException ex) {
+            return null;
         }
+    }
 
+    // 获取文件路径通过url
+    private String getFilePathByUri(Uri mUri) throws FileNotFoundException {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = null;
+        String url = "";
+        try {
+            cursor = getActivity().getContentResolver()
+                    .query(mUri, proj, null, null, null);
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            // 最后根据索引值获取图片路径
+            url = cursor.getString(column_index);
+        } catch (Exception e) {
+
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return url;
     }
 }

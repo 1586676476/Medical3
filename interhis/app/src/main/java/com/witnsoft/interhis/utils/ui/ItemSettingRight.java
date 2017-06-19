@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,12 +20,14 @@ public class ItemSettingRight extends RelativeLayout {
 
     private TextView tvTitle;
     private ImageView ivIcon;
+    private View line;
 
     public ItemSettingRight(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.item_setting_right, this, true);
         tvTitle = (TextView) findViewById(R.id.tv_title);
         ivIcon = (ImageView) findViewById(R.id.iv_icon);
+        line = (View) findViewById(R.id.line);
     }
 
     public void setTvTitle(String str) {
@@ -32,6 +35,19 @@ public class ItemSettingRight extends RelativeLayout {
             tvTitle.setText(str);
         } else {
             tvTitle.setText(str);
+        }
+    }
+
+    public void setTvTitle(String str, boolean isLineBottomVisible) {
+        if (!TextUtils.isEmpty(str)) {
+            tvTitle.setText(str);
+        } else {
+            tvTitle.setText(str);
+        }
+        if (isLineBottomVisible) {
+            line.setVisibility(VISIBLE);
+        } else {
+            line.setVisibility(GONE);
         }
     }
 
