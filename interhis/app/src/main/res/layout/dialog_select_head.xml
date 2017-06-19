@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,15 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
+        android:paddingBottom="40px"
+        android:paddingTop="40px"
         android:text="@string/head_take_photo"
         android:textColor="@color/text_dark_color"
-        android:textSize="18dp"/>
+        android:textSize="@dimen/text_big"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
@@ -29,15 +29,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
+        android:paddingBottom="40px"
+        android:paddingTop="40px"
         android:text="@string/head_from_photo"
         android:textColor="@color/text_dark_color"
-        android:textSize="18dp"/>
+        android:textSize="@dimen/text_big"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
@@ -48,18 +48,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
+        android:paddingBottom="40px"
+        android:paddingTop="40px"
         android:text="@string/cancel"
         android:textColor="@color/text_dark_color"
-        android:textSize="18dp"/>
+        android:textSize="@dimen/text_big"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:background="@color/divider_color"/>
 
-</LinearLayout>
+</com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
