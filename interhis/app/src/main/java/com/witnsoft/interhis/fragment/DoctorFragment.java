@@ -38,6 +38,7 @@ import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.utils.ComRecyclerAdapter;
 import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.model.OTRequest;
@@ -148,10 +149,10 @@ public class DoctorFragment extends Fragment {
     private TextView tvAllIncome;
     //医生信息
     @ViewInject(R.id.doctor_message)
-    private LinearLayout llDocMessage;
+    private AutoScaleLinearLayout llDocMessage;
     //医生接诊数量
     @ViewInject(R.id.doctor_count)
-    private LinearLayout doctor_number;
+    private AutoScaleLinearLayout doctor_number;
     //出诊按钮
     @ViewInject(R.id.doctor_visit)
     private Button btnVisit;
