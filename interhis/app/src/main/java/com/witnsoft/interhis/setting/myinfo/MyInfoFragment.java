@@ -161,7 +161,7 @@ public class MyInfoFragment extends ChildBaseFragment {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-                        Toast.makeText(getActivity(), "不想写了，周一再写", Toast.LENGTH_LONG).show();
+                        toEvaluate();
                     }
                 });
         // 退出登录
@@ -204,6 +204,11 @@ public class MyInfoFragment extends ChildBaseFragment {
     private void toMyExpert() {
         MyExpertFragment myExpertFragment = new MyExpertFragment();
         pushFragment(myExpertFragment, null, true);
+    }
+
+    private void toEvaluate() {
+        EvaluateFragment evaluateFragment = new EvaluateFragment();
+        pushFragment(evaluateFragment, null, true);
     }
 
     /**
