@@ -61,7 +61,7 @@ public class ChildBaseFragment extends BaseFragment {
 
     public void load(String url, ImageView iv, int id) {
         if (!TextUtils.isEmpty(url)) {
-            if (!(url.endsWith(".png"))) {
+            if ((!(url.endsWith(".png"))) && (!(url.endsWith(".jpg")))) {
                 url = url + ".png";
             }
             Glide.with(this)

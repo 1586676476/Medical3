@@ -1,8 +1,10 @@
 package com.witnsoft.interhis.setting.myinfo;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -62,11 +64,20 @@ public class MyInfoFragment extends ChildBaseFragment {
     private static final String LOGOUT = "logout";
     private static final String ERRO_MSG = "errmsg";
 
+    private static final String PKG = "com.witnsoft.interhis";
+
     public final class ActivityRequestCode {
         //启动相机
         public static final int REQUEST_CODE_CAMERA = 1;
         //启动相册
         public static final int START_ALBUM_REQUESTCODE = 2;
+    }
+
+    public final class PermissionRequestCode {
+        // 相机权限返回
+        public static final int REQUEST_CAMERA_PERMISSION = 100;
+        // 相册权限返回
+        public static final int REQUEST_ALBUM_PERMISSION = 200;
     }
 
     View rootView;
@@ -130,6 +141,18 @@ public class MyInfoFragment extends ChildBaseFragment {
                     }
                 }
             }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PermissionRequestCode.REQUEST_CAMERA_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startCamera();
+        }
+
+        if (requestCode == PermissionRequestCode.REQUEST_ALBUM_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startAlbum();
         }
     }
 
@@ -284,8 +307,10 @@ public class MyInfoFragment extends ChildBaseFragment {
     private TextView tvTakePhoto;
     private TextView tvFromPhoto;
     private TextView tvCancel;
+    private PackageManager pm;
 
     private void showHeadDialog() {
+        pm = getActivity().getPackageManager();
         final LayoutInflater linearLayout = getActivity().getLayoutInflater();
         View view = linearLayout.inflate(R.layout.dialog_select_head, null);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -302,7 +327,28 @@ public class MyInfoFragment extends ChildBaseFragment {
         tvTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startCamera();
+                // 获取相机读写权限
+                // 如果没有权限，强开
+                boolean cameraPermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.CAMERA, PKG));
+                boolean readPermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, PKG));
+                boolean writePermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, PKG));
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (cameraPermission && readPermission && writePermission) {
+                        startCamera();
+                    } else {
+                        String[] PERMISSIONS_CAMERA = {
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
+                        };
+                        requestPermissions(PERMISSIONS_CAMERA, PermissionRequestCode.REQUEST_CAMERA_PERMISSION);
+                    }
+                } else {
+                    startCamera();
+                }
                 dialog.dismiss();
             }
         });
@@ -310,7 +356,22 @@ public class MyInfoFragment extends ChildBaseFragment {
         tvFromPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAlbum();
+                // 获取读权限
+                // 如果没有权限，强开
+                boolean readPermission = (PackageManager.PERMISSION_GRANTED ==
+                        pm.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, PKG));
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (readPermission) {
+                        startAlbum();
+                    } else {
+                        String[] PERMISSIONS_STORAGE = {
+                                Manifest.permission.READ_EXTERNAL_STORAGE
+                        };
+                        requestPermissions(PERMISSIONS_STORAGE, PermissionRequestCode.REQUEST_ALBUM_PERMISSION);
+                    }
+                } else {
+                    startAlbum();
+                }
                 dialog.dismiss();
             }
         });
