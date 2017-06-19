@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <fragment
         android:id="@+id/doctor"
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
         android:name="com.witnsoft.interhis.fragment.DoctorFragment"
-        />
+        android:layout_width="480px"
+        android:layout_height="match_parent"/>
 
     <fragment
         android:id="@+id/helper"
+        android:name="com.witnsoft.interhis.fragment.HelperFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       android:name="com.witnsoft.interhis.fragment.HelperFragment"
         android:layout_marginLeft="10dp"/>
 
-</LinearLayout>
+</com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>

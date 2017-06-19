@@ -24,9 +24,12 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMConnectionListener;
+import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.util.NetUtils;
 import com.witnsoft.interhis.Chufang.ChuFangChinese;
 import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.R;
@@ -34,11 +37,13 @@ import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.db.model.ChineseModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.interhis.mainpage.MainActivity;
 import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.utils.ComRecyclerAdapter;
 import com.witnsoft.libinterhis.utils.LogUtils;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout;
 import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.model.OTRequest;
@@ -149,10 +154,10 @@ public class DoctorFragment extends Fragment {
     private TextView tvAllIncome;
     //医生信息
     @ViewInject(R.id.doctor_message)
-    private LinearLayout llDocMessage;
+    private AutoScaleLinearLayout llDocMessage;
     //医生接诊数量
     @ViewInject(R.id.doctor_count)
-    private LinearLayout doctor_number;
+    private AutoScaleLinearLayout doctor_number;
     //出诊按钮
     @ViewInject(R.id.doctor_visit)
     private Button btnVisit;
@@ -189,6 +194,8 @@ public class DoctorFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //注册一个监听连接状态的listener，监听环信账号登录状态
+        EMClient.getInstance().addConnectionListener(new MyConnectionListener());
         int notificationAction = getActivity().getIntent().getIntExtra("Notification", -1);
         Log.e("MainActivity", "notification test in fragment = " + String.valueOf(notificationAction));
         if (1 == notificationAction) {
@@ -486,6 +493,7 @@ public class DoctorFragment extends Fragment {
                                         intent.putExtra("accid", dataChatList.get(position).get("ACCID"));
                                         getActivity().sendBroadcast(intent);
 
+<<<<<<< HEAD
                                         //将aiid存入数据库
                                         ChineseModel chinesemodel=new ChineseModel();
                                         chinesemodel.setAiId(dataChatList.get(position).get("AIID"));
@@ -497,11 +505,14 @@ public class DoctorFragment extends Fragment {
                                         }
 
                                         Log.e(TAG, "onClick: "+dataChatList.get(position).get("AIID"));
+=======
+                                        Log.e(TAG, "onClick: " + dataChatList.get(position).get("AIID"));
+>>>>>>> a3f9e18456d3471552a91c78e1952a10134dc252
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                                         try {
                                             Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("ACCID"));
-                                            helperFragment.setContent(dataChatList.get(position).get("AIID"),EaseConstant.EXTRA_USER_ID,
+                                            helperFragment.setContent(dataChatList.get(position).get("AIID"), EaseConstant.EXTRA_USER_ID,
                                                     dataChatList.get(position).get("ACCID"),
                                                     EaseConstant.EXTRA_CHAT_TYPE,
                                                     EaseConstant.CHATTYPE_SINGLE);
@@ -769,6 +780,38 @@ public class DoctorFragment extends Fragment {
                 });
             }
         });
+    }
+
+    // TODO: 2017/6/19 测试监听被踢掉的监听
+    //实现ConnectionListener接口
+    private class MyConnectionListener implements EMConnectionListener {
+        @Override
+        public void onConnected() {
+        }
+
+        @Override
+        public void onDisconnected(final int error) {
+            getActivity().runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    if (error == EMError.USER_REMOVED) {
+                        // 显示帐号已经被移除
+                    } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
+                        // 显示帐号在其他设备登录
+                        Toast.makeText(getActivity(), getResources().getString(R.string.chat_has_been_tick_out), Toast.LENGTH_LONG).show();
+                        setBtnRest();
+                    } else {
+                        if (NetUtils.hasNetwork(getActivity())) {
+                            //连接不到聊天服务器
+                        } else {
+                            //当前网络不可用，请检查网络设置
+                        }
+
+                    }
+                }
+            });
+        }
     }
 
     /**
