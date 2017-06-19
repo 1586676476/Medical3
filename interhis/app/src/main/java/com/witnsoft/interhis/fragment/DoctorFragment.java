@@ -492,8 +492,11 @@ public class DoctorFragment extends Fragment {
                                         Intent intent = new Intent("SHUAXIN");
                                         intent.putExtra("accid", dataChatList.get(position).get("ACCID"));
                                         getActivity().sendBroadcast(intent);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 65eab7513e175bd30ae590121528816c4c72b773
                                         //将aiid存入数据库
                                         ChineseModel chinesemodel=new ChineseModel();
                                         chinesemodel.setAiId(dataChatList.get(position).get("AIID"));
@@ -503,11 +506,13 @@ public class DoctorFragment extends Fragment {
                                         } catch (DbException e) {
                                             e.printStackTrace();
                                         }
-
                                         Log.e(TAG, "onClick: "+dataChatList.get(position).get("AIID"));
+<<<<<<< HEAD
 
                                         Log.e(TAG, "onClick: " + dataChatList.get(position).get("AIID"));
 
+=======
+>>>>>>> 65eab7513e175bd30ae590121528816c4c72b773
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                                         try {
