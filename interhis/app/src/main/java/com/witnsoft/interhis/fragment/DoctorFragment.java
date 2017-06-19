@@ -32,6 +32,7 @@ import com.witnsoft.interhis.adapter.PatAdapter;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.HisDbManager;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
+import com.witnsoft.interhis.db.model.ChineseModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
 import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.tool.Application;
@@ -484,6 +485,16 @@ public class DoctorFragment extends Fragment {
                                         Intent intent = new Intent("SHUAXIN");
                                         intent.putExtra("accid", dataChatList.get(position).get("ACCID"));
                                         getActivity().sendBroadcast(intent);
+
+                                        //将aiid存入数据库
+                                        ChineseModel chinesemodel=new ChineseModel();
+                                        chinesemodel.setAiId(dataChatList.get(position).get("AIID"));
+                                        chinesemodel.setAcId(dataChatList.get(position).get("ACCID"));
+                                        try {
+                                            HisDbManager.getManager().saveAskChinese(chinesemodel);
+                                        } catch (DbException e) {
+                                            e.printStackTrace();
+                                        }
 
                                         Log.e(TAG, "onClick: "+dataChatList.get(position).get("AIID"));
                                         //启动会话列表

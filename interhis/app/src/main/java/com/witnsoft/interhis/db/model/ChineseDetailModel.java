@@ -31,6 +31,14 @@ public class ChineseDetailModel {
     @Column(name = "CDM")
     private String cdm;
 
+    public String getSfxmbm() {
+        return sfxmbm;
+    }
+
+    public void setSfxmbm(String sfxmbm) {
+        this.sfxmbm = sfxmbm;
+    }
+
     // 中药名称
     @Column(name = "CMC")
     private String cmc;
@@ -57,7 +65,7 @@ public class ChineseDetailModel {
 
     private String XMMC;//药名
     private String XMRJ;//药品拼音
-    private int SFDLBM;//药品类别
+    private String SFDLBM;//药品类别
 
     public String getXMMC() {
         return XMMC;
@@ -75,13 +83,7 @@ public class ChineseDetailModel {
         this.XMRJ = XMRJ;
     }
 
-    public int getSFDLBM() {
-        return SFDLBM;
-    }
 
-    public void setSFDLBM(int SFDLBM) {
-        this.SFDLBM = SFDLBM;
-    }
 
     public ChineseModel getChinese(DbManager db) throws DbException {
         return db.findById(ChineseModel.class, accid);

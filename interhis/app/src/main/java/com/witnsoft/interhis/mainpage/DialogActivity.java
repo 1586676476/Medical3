@@ -35,7 +35,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     private Button first_cancel;
     private TextView five,ten,fifteen,twenty,number,add,less,name,show;
 
-    private String medical,accid,price;
+    private String medical,accid,price,medical_id;
     private int num=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +84,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         name.setText(medical);
         accid=getIntent().getStringExtra("accid");
         price=getIntent().getStringExtra("dj");
+        medical_id=getIntent().getStringExtra("cdm");
 
     }
 
@@ -98,6 +99,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
         ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
         chineseDetailModel.setAccid(accid);
         chineseDetailModel.setDj(price);
+        chineseDetailModel.setCdm(medical_id);
         switch (v.getId()){
             case R.id.ll_root:
                 finish();
@@ -105,7 +107,7 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
             case R.id.dialog_five:
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl("5");
-                Log.e(TAG, "onClick: "+accid+"------"+medical+"------"+5+"------"+price );
+                Log.e(TAG, "onClick: "+ medical_id + medical + price + accid );
                 EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);

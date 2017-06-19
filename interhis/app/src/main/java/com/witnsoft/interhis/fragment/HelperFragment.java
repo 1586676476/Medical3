@@ -119,7 +119,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private String type1;
     private int single1;
     private String helperId,aiid;
-    private String pinyin,price,amount;
+    private String pinyin,price,amount,medical_id;
     private boolean isUpLoad=false;
 
     private EaseChatFragment chatFragment;
@@ -293,6 +293,8 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 intent.putExtra("medical_name", list.get(position).getCmc());
                 intent.putExtra("accid",helperId);
                 intent.putExtra("dj",price);
+                intent.putExtra("cdm",medical_id);
+                Log.e(TAG, "onItemClick: "+medical_id+list.get(position).getCmc() );
                 startActivity(intent);
 
             }
@@ -392,11 +394,23 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 break;
             //中药医嘱
             case R.id.fragment_helper_chinese_advice:
+
+                break;
+                //中药edittext当中叉号
+            case R.id.fragment_helper_chinese_chahao:
+                chinese_edittext.setText(null);
+                chinese_listView.setVisibility(View.GONE);
+                chinese_fixed.setVisibility(View.VISIBLE);
+                break;
+
+            //中药保存按钮
+            case R.id.fragment_helper_chinese_button:
+//               createYaoFang(id, "中药","1029405","7","1000");
                 //将中药界面的医嘱存入数据库当中
                 advice=chinese_advice.getText().toString();
-                Log.e(TAG, "onClick333333333: "+advice );
                 chineseModel.setAcId(helperId);
                 chineseModel.setAcSm(advice);
+                Log.e(TAG, "onClick222222222222222: "+advice );
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseModel);
                 } catch (DbException e) {
@@ -409,17 +423,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                break;
-                //中药edittext当中叉号
-            case R.id.fragment_helper_chinese_chahao:
-                chinese_edittext.setText(null);
-                chinese_listView.setVisibility(View.GONE);
-                chinese_fixed.setVisibility(View.VISIBLE);
-                break;
-
-            //中药保存按钮
-            case R.id.fragment_helper_chinese_button:
-//               createYaoFang(id, "中药","1029405","7","1000");
 
                 if (diagnosis==null){
                     Toast.makeText(ctx, "请输入诊断内容", Toast.LENGTH_SHORT).show();
@@ -451,7 +454,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private View.OnClickListener signListenerWestern = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            WritePadDialog writeTabletDialog = new WritePadDialog(data,chinese_number,advice,diagnosis,getActivity(),
+            WritePadDialog writeTabletDialog = new WritePadDialog(data,chinese_number,advice,diagnosis,aiid,getActivity(),
                     getContext(), R.style.SignBoardDialog, new DialogListener() {
                 public void refreshActivity(Object object) {
                     mSignBitmap = (Bitmap) object;
@@ -475,7 +478,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private View.OnClickListener signListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            WritePadDialog writeTabletDialog = new WritePadDialog(data,chinese_number,advice,diagnosis,
+            WritePadDialog writeTabletDialog = new WritePadDialog(data,chinese_number,advice,diagnosis,aiid,
                     getActivity(),getContext(), R.style.SignBoardDialog, new DialogListener() {
                 public void refreshActivity(Object object) {
                     mSignBitmap = (Bitmap) object;
@@ -685,6 +688,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             intent.putExtra("medical_name", fix_data.get(position).getCmc());
             intent.putExtra("accid",helperId);
             intent.putExtra("dj",price);
+            intent.putExtra("cdm",medical_id);
             startActivity(intent);
     }
 
@@ -725,6 +729,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                     do {
                         xmmc = cursor.getString(cursor.getColumnIndex("xmmc"));
                         price=cursor.getString(cursor.getColumnIndex("bzjg"));
+                        medical_id=cursor.getString(cursor.getColumnIndex("sfxmbm"));
                         asd.add(xmmc);
                     } while (cursor.moveToNext());
                 }
