@@ -330,7 +330,7 @@ public class MyInfoFragment extends ChildBaseFragment {
         dialog = builder.show();
         android.view.Window window = dialog.getWindow();
         window.setBackgroundDrawableResource(R.drawable.round);
-        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCanceledOnTouchOutside(true);
         tvTakePhoto = (TextView) view.findViewById(R.id.tv_take_photo);
         tvFromPhoto = (TextView) view.findViewById(R.id.tv_from_photo);
         tvCancel = (TextView) view.findViewById(R.id.tv_cancel);
