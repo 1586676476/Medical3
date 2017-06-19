@@ -11,4 +11,6 @@
     <color name="colorRed">#FF0000</color>
     <color name="visit_blue">#98ceff</color>
     <color name="visit_gray">#a1b3ad</color>
+    <color name="login_back">#99cdff</color>
+    <color name="login_btn">#189ad5</color>
 </resources>
