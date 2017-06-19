@@ -3,6 +3,7 @@ package com.witnsoft.interhis.setting;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,6 +30,16 @@ import rx.functions.Action1;
 
 @ContentView(R.layout.activity_setting)
 public class SettingActivity extends BaseActivity {
+
+    public static final String DOC_NAME = "docName";
+    public static final String DOC_LEVEL = "docLevel";
+    public static final String DOC_HOSP = "docHosp";
+    public static final String DOC_DEPT = "docDept";
+
+    private String docName = "";
+    private String docLevel = "";
+    private String docHospName = "";
+    private String docDept = "";
 
     @ViewInject(R.id.ll_back)
     private LinearLayout llBack;
@@ -74,6 +85,12 @@ public class SettingActivity extends BaseActivity {
                     @Override
                     public void call(Void aVoid) {
                         MyInfoFragment myInfoFragment = new MyInfoFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(DOC_NAME, docName);
+                        bundle.putString(DOC_LEVEL, docLevel);
+                        bundle.putString(DOC_HOSP, docHospName);
+                        bundle.putString(DOC_DEPT, docDept);
+                        myInfoFragment.setArguments(bundle);
                         setChecked(myInfoFragment, rlMyInfo, rlAbout, rlMyHistory, rlMyIncome);
                     }
                 });
@@ -113,8 +130,18 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void init() {
+        docName = getIntent().getStringExtra(DOC_NAME);
+        docLevel = getIntent().getStringExtra(DOC_LEVEL);
+        docHospName = getIntent().getStringExtra(DOC_HOSP);
+        docDept = getIntent().getStringExtra(DOC_DEPT);
         fragmentManager = getFragmentManager();
         MyInfoFragment myInfoFragment = new MyInfoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(DOC_NAME, docName);
+        bundle.putString(DOC_LEVEL, docLevel);
+        bundle.putString(DOC_HOSP, docHospName);
+        bundle.putString(DOC_DEPT, docDept);
+        myInfoFragment.setArguments(bundle);
         setChecked(myInfoFragment, rlMyInfo, rlAbout, rlMyHistory, rlMyIncome);
     }
 

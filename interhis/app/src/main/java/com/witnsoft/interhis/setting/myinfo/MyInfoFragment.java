@@ -33,6 +33,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.mainpage.LoginActivity;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
+import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.utils.ui.ItemSettingRight;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libnet.model.LoginRequest;
@@ -217,10 +218,21 @@ public class MyInfoFragment extends ChildBaseFragment {
         viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction));
         viewMyExpert.setTvTitle(getResources().getString(R.string.personal_my_expert));
         viewEvaluate.setTvTitle(getResources().getString(R.string.evaluate));
-        tvName.setText("医生名字");
-        tvLevel.setText("主任医师");
-        tvHosp.setText("天津市第一人民医院");
-        tvDept.setText("儿科");
+        Bundle bundle = getArguments();
+        if (null != bundle) {
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_NAME))) {
+                tvName.setText(bundle.getString(SettingActivity.DOC_NAME));
+            }
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_LEVEL))) {
+                tvLevel.setText(bundle.getString(SettingActivity.DOC_LEVEL));
+            }
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_HOSP))) {
+                tvHosp.setText(bundle.getString(SettingActivity.DOC_HOSP));
+            }
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_DEPT))) {
+                tvDept.setText(bundle.getString(SettingActivity.DOC_DEPT));
+            }
+        }
     }
 
     private void toIntroduction() {
