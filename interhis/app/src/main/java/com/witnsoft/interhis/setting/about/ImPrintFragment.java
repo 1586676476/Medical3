@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -28,7 +29,7 @@ public class ImPrintFragment extends ChildBaseFragment {
     View rootView;
 
     @ViewInject(R.id.ll_back)
-    private LinearLayout llBack;
+    private AutoScaleLinearLayout llBack;
 
     @Nullable
     @Override

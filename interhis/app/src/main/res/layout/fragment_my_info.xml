@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,27 +7,27 @@
     android:background="@color/background_divider_color"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="85px"
         android:background="@color/colorWhite"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
             android:id="@+id/ll_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35px"
+                android:layout_height="35px"
                 android:background="@drawable/back"/>
 
-        </LinearLayout>
+        </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,20 +35,20 @@
             android:layout_centerInParent="true"
             android:text="@string/my_info"
             android:textColor="@color/text_dark_color"
-            android:textSize="15dp"/>
+            android:textSize="@dimen/text_big"/>
 
-    </RelativeLayout>
+    </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@color/divider_color"/>
 
-    <ScrollView
+    <com.witnsoft.libinterhis.utils.ui.AutoScaleScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -56,15 +56,15 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_head"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_marginTop="@dimen/margin_normal_25"
                 android:src="@mipmap/touxiang"/>
 
-            <RelativeLayout
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="@dimen/margin_normal_25">
 
                 <TextView
                     android:id="@+id/tv_name"
@@ -73,7 +73,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_medium"
                     tools:text="名字"/>
 
                 <TextView
@@ -81,18 +81,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20px"
                     android:layout_toRightOf="@id/tv_name"
                     android:textColor="@color/text_medium_color"
-                    android:textSize="10dp"
+                    android:textSize="@dimen/text_small"
                     tools:text="主任医师"/>
 
-            </RelativeLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
-            <RelativeLayout
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="10px">
 
                 <TextView
                     android:id="@+id/tv_hosp"
@@ -101,7 +101,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/text_medium_color"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_small"
                     tools:text="天津市第一人民医院"/>
 
                 <TextView
@@ -110,19 +110,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20px"
                     android:layout_toRightOf="@id/tv_hosp"
                     android:textColor="@color/text_medium_color"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_small"
                     tools:text="科室"/>
 
-            </RelativeLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
             <com.witnsoft.interhis.utils.ui.ItemSettingRight
                 android:id="@+id/view_introduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="@dimen/margin_normal_25"/>
 
             <com.witnsoft.interhis.utils.ui.ItemSettingRight
                 android:id="@+id/view_my_expert"
@@ -133,26 +133,26 @@
                 android:id="@+id/view_evaluate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="@dimen/margin_normal_25"/>
 
             <!--注销-->
-            <RelativeLayout
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout
                 android:id="@+id/rl_logout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="@dimen/normal_item_height"
+                android:layout_marginLeft="@dimen/margin_normal_25"
+                android:layout_marginRight="@dimen/margin_normal_25"
+                android:layout_marginTop="@dimen/margin_normal_25"
                 android:background="@color/colorWhite">
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:background="@color/divider_color"/>
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
@@ -160,13 +160,13 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:layout_alignParentTop="true"
                     android:background="@color/divider_color"/>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="1px"
                     android:layout_alignParentBottom="true"
                     android:background="@color/divider_color"/>
 
@@ -177,12 +177,12 @@
                     android:layout_centerInParent="true"
                     android:text="@string/logout"
                     android:textColor="@color/colorRed"
-                    android:textSize="15dp"/>
+                    android:textSize="@dimen/text_medium"/>
 
-            </RelativeLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
-        </LinearLayout>
+        </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-    </ScrollView>
+    </com.witnsoft.libinterhis.utils.ui.AutoScaleScrollView>
 
-</LinearLayout>
+</com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>

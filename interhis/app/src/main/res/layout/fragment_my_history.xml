@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,27 +7,27 @@
     android:background="@color/background_divider_color"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/title_height"
         android:background="@color/colorWhite"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
             android:id="@+id/ll_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/margin_normal_25"
+            android:paddingRight="@dimen/margin_normal_25"
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35px"
+                android:layout_height="35px"
                 android:background="@drawable/back"/>
 
-        </LinearLayout>
+        </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,29 +35,29 @@
             android:layout_centerInParent="true"
             android:text="@string/my_ask_history"
             android:textColor="@color/text_dark_color"
-            android:textSize="15dp"/>
+            android:textSize="@dimen/text_big"/>
 
-    </RelativeLayout>
+    </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:background="@color/divider_color"/>
 
-    <LinearLayout
+    <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp">
+            android:paddingBottom="@dimen/margin_normal_25"
+            android:paddingTop="@dimen/margin_normal_25">
 
-            <LinearLayout
-                android:layout_width="1dp"
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
+                android:layout_width="1px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal">
@@ -69,7 +69,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/visit_count_all"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="15dp"/>
+                    android:textSize="@dimen/text_medium"/>
 
                 <TextView
                     android:id="@+id/tv_visit_count_all"
@@ -78,13 +78,13 @@
                     android:layout_marginLeft="5dp"
                     android:text="@string/visit_count_all"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_medium"
                     tools:text="11100"/>
 
-            </LinearLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-            <LinearLayout
-                android:layout_width="1dp"
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
+                android:layout_width="1px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal">
@@ -96,7 +96,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/visit_count_month"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="15dp"/>
+                    android:textSize="@dimen/text_medium"/>
 
                 <TextView
                     android:id="@+id/tv_visit_count_month"
@@ -105,13 +105,13 @@
                     android:layout_marginLeft="5dp"
                     android:text="@string/visit_count_all"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_medium"
                     tools:text="11100"/>
 
-            </LinearLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-            <LinearLayout
-                android:layout_width="1dp"
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
+                android:layout_width="1px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal">
@@ -123,7 +123,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/visit_count_daily"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="15dp"/>
+                    android:textSize="@dimen/text_medium"/>
 
                 <TextView
                     android:id="@+id/tv_visit_count_daily"
@@ -132,19 +132,18 @@
                     android:layout_marginLeft="5dp"
                     android:text="@string/visit_count_all"
                     android:textColor="@color/text_dark_color"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/text_medium"
                     tools:text="11100"/>
 
-            </LinearLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-        </LinearLayout>
+        </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/sl_refresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/doctor_count"
-            android:layout_marginTop="10dp">
+            android:layout_below="@id/doctor_count">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_history"
@@ -155,6 +154,6 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-    </LinearLayout>
+    </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-</LinearLayout>
+</com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
