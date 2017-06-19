@@ -12,7 +12,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorGray"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_normal_25">
+        android:paddingBottom="10px"
+        android:paddingLeft="@dimen/margin_normal_25"
+        android:paddingRight="@dimen/margin_normal_25"
+        android:paddingTop="@dimen/margin_normal_25">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fragment_doctor_image"
@@ -54,7 +57,7 @@
             <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
+                android:layout_marginTop="5px"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -95,7 +98,7 @@
             <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
+                android:layout_marginTop="5px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -126,8 +129,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="10px"
-            android:paddingTop="10px">
+            android:paddingBottom="10px">
 
             <TextView
                 android:id="@+id/tv_pat_waiting"
@@ -152,8 +154,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="10px"
-            android:paddingTop="10px">
+            android:paddingBottom="10px">
 
             <TextView
                 android:id="@+id/tv_pat_all"
@@ -178,8 +179,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="10px"
-            android:paddingTop="10px">
+            android:paddingBottom="10px">
 
             <TextView
                 android:id="@+id/tv_daily_income"
@@ -204,8 +204,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="10px"
-            android:paddingTop="10px">
+            android:paddingBottom="10px">
 
             <TextView
                 android:id="@+id/tv_all_income"

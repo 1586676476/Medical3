@@ -36,7 +36,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@id/tv_read"
                 android:orientation="horizontal"
-                android:padding="@dimen/margin_normal_25">
+                android:paddingBottom="15px"
+                android:paddingLeft="@dimen/margin_normal_25"
+                android:paddingRight="@dimen/margin_normal_25"
+                android:paddingTop="15px">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/fragment_doctor_recycleView_item_image"
@@ -87,7 +90,7 @@
                         android:id="@+id/fragment_doctor_recycleView_item_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4px"
+                        android:layout_marginTop="15px"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/text_small"
                         tools:text="咳嗽头痛"/>
