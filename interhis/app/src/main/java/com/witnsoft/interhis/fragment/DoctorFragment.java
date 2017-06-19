@@ -483,20 +483,20 @@ public class DoctorFragment extends Fragment {
                                         //发送广播
                                         Intent intent = new Intent("SHUAXIN");
                                         intent.putExtra("accid", dataChatList.get(position).get("ACCID"));
-                                        Log.e(TAG, "onClick33333333: " + dataChatList.get(position).get("ACCID"));
                                         getActivity().sendBroadcast(intent);
+
+                                        Log.e(TAG, "onClick: "+dataChatList.get(position).get("AIID"));
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                                         try {
                                             Log.e(TAG, "!!!!arryay position = " + position + "  and data = " + dataChatList.get(position).get("ACCID"));
-                                            helperFragment.setContent(EaseConstant.EXTRA_USER_ID,
+                                            helperFragment.setContent(dataChatList.get(position).get("AIID"),EaseConstant.EXTRA_USER_ID,
                                                     dataChatList.get(position).get("ACCID"),
                                                     EaseConstant.EXTRA_CHAT_TYPE,
                                                     EaseConstant.CHATTYPE_SINGLE);
 
                                         } catch (ArrayIndexOutOfBoundsException e) {
                                             Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
-
                                         }
                                     }
                                 });

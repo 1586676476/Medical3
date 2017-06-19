@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <RadioGroup
             android:id="@+id/fragment_helper_button"
@@ -91,7 +91,7 @@
         </FrameLayout>
 
         <LinearLayout
-            android:id="@+id/fragment_helper_chat_linearLayout"
+            android:id="@+id/fragment_helper_diagnosis_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -113,18 +113,18 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/fragment_helper_ask_editText"
+                android:id="@+id/fragment_helper_diagnosis_editText"
                 android:layout_width="660dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext"
-                android:hint="请输入诊断，该诊断内容将会在处方中显示出来"
+                android:hint="请输入诊断内容"
                 android:paddingBottom="150dp"
                 android:paddingLeft="10dp"/>
 
             <Button
-                android:id="@+id/fragment_helper_ask_button"
+                android:id="@+id/fragment_helper_diagnosis_button"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
