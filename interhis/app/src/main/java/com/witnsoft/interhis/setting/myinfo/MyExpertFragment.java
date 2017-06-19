@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -32,9 +33,9 @@ public class MyExpertFragment extends ChildBaseFragment {
     View rootView;
 
     @ViewInject(R.id.ll_back)
-    private LinearLayout llBack;
+    private AutoScaleLinearLayout llBack;
     @ViewInject(R.id.ll_edit)
-    private LinearLayout llEdit;
+    private AutoScaleLinearLayout llEdit;
     @ViewInject(R.id.tv_edit)
     private TextView tvEdit;
     @ViewInject(R.id.et_my_expert)

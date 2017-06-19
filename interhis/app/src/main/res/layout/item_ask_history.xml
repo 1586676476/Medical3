@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_doctor_recycleview_item"
@@ -7,82 +7,90 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
         android:id="@+id/ll_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@id/tv_read"
                 android:orientation="horizontal"
-                android:padding="20dp">
+                android:padding="@dimen/margin_normal_25">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/fragment_doctor_recycleView_item_image"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="90px"
+                    android:layout_height="90px"
                     android:src="@mipmap/touxiang"/>
 
-                <LinearLayout
+                <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/margin_normal_25"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/fragment_doctor_recycleView_item_name"
-                            style="@style/bigSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="李四"
                             android:textColor="@color/colorBlack"
-                            android:text="李四"/>
+                            android:textSize="@dimen/text_small"/>
 
                         <TextView
                             android:id="@+id/fragment_doctor_recycleView_item_sex"
-                            style="@style/smallSize"
-                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10px"
+                            android:text="男"
                             android:textColor="@color/colorBlack"
-                            android:text="男"/>
+                            android:textSize="@dimen/text_small"/>
 
                         <TextView
                             android:id="@+id/fragment_doctor_recycleView_item_age"
-                            style="@style/smallSize"
-                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10px"
+                            android:text="54"
                             android:textColor="@color/colorBlack"
-                            android:text="54"/>
+                            android:textSize="@dimen/text_small"/>
 
-                    </LinearLayout>
+                    </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
                     <TextView
                         android:id="@+id/fragment_doctor_recycleView_item_content"
-                        style="@style/smallSize"
-                        android:layout_marginTop="2dp"
-                        android:text="咳嗽头痛"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4px"
+                        android:text="咳嗽头痛"
+                        android:textSize="@dimen/text_small"/>
 
-                </LinearLayout>
+                </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-            </LinearLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-        </RelativeLayout>
+        </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
-    </LinearLayout>
+    </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/divider_color"/>
 
-</LinearLayout>
+</com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>

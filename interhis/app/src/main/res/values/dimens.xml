@@ -5,4 +5,5 @@
     <dimen name="text_small">20px</dimen>
     <dimen name="margin_normal_25">25px</dimen>
     <dimen name="normal_item_height">80px</dimen>
+    <dimen name="title_height">85px</dimen>
 </resources>

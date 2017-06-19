@@ -36,6 +36,7 @@ import com.witnsoft.interhis.setting.ChildBaseFragment;
 import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.utils.ui.ItemSettingRight;
 import com.witnsoft.libinterhis.utils.ThriftPreUtils;
+import com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
@@ -105,7 +106,7 @@ public class MyInfoFragment extends ChildBaseFragment {
     private ItemSettingRight viewEvaluate;
     // 注销登录
     @ViewInject(R.id.rl_logout)
-    private RelativeLayout rlLogout;
+    private AutoScaleRelativeLayout rlLogout;
 
     @Nullable
     @Override
