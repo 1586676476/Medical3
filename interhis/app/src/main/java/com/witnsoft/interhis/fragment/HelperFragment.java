@@ -147,8 +147,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_chinese);
         western = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_western);
 
-        western_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_western_medical_linearLayout);
-        chinese_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout);
         chat_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_diagnosis_linearLayout);
         ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
         chinese_fixed = (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_fixed_recycleview);
@@ -166,7 +164,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         western_recycleView = (RecyclerView) view.findViewById(R.id.fragment_helper_western_linearLayout_recycleView);
         chinese_button = (Button) view.findViewById(R.id.fragment_helper_chinese_button);
         western_button = (Button) view.findViewById(R.id.fragment_helper_western_button);
-        diagnosis_button= (Button) view.findViewById(R.id.fragment_helper_diagnosis_button);
+//        diagnosis_button= (Button) view.findViewById(R.id.fragment_helper_diagnosis_button);
         chinese_advice = (EditText) view.findViewById(R.id.fragment_helper_chinese_advice);
         chinese_edittext= (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
         western_edittext = (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
@@ -208,7 +206,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chat.setOnClickListener(this);
         chinese.setOnClickListener(this);
         western.setOnClickListener(this);
-        diagnosis_button.setOnClickListener(this);
+//        diagnosis_button.setOnClickListener(this);
         chinese_button.setOnClickListener(this);
         chinese_advice.setOnClickListener(this);
         chahao.setOnClickListener(this);
@@ -428,11 +426,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
-                if (diagnosis==null){
-                    Toast.makeText(ctx, "请输入诊断内容", Toast.LENGTH_SHORT).show();
-                } else {
-                    chinese_button.setOnClickListener(signListener);
+                chinese_button.setOnClickListener(signListener);
                     //将字表加入到主表当中
                     chineseModel.setChineseDetailModel(data);
                     try {
@@ -440,8 +434,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                     } catch (DbException e) {
                         e.printStackTrace();
                     }
-                }
-
                 break;
             //点击几付药
             case R.id.fragment_helper_chinese_medical_allNumber:
