@@ -781,7 +781,6 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    // TODO: 2017/6/19 测试监听被踢掉的监听
     //实现ConnectionListener接口
     private class MyConnectionListener implements EMConnectionListener {
         @Override
@@ -799,7 +798,16 @@ public class DoctorFragment extends Fragment {
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
                         Toast.makeText(getActivity(), getResources().getString(R.string.chat_has_been_tick_out), Toast.LENGTH_LONG).show();
+                        isVisiting = false;
                         setBtnRest();
+                        dataChatList.clear();
+                        pageNo = 1;
+                        if (null != patAdapter) {
+                            patAdapter.notifyDataSetChanged();
+                        }
+                        checkedPosition = -1;
+                        tvNoContact.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
                     } else {
                         if (NetUtils.hasNetwork(getActivity())) {
                             //连接不到聊天服务器
