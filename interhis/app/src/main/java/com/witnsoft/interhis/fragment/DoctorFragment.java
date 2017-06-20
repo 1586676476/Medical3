@@ -808,6 +808,8 @@ public class DoctorFragment extends Fragment {
                         checkedPosition = -1;
                         tvNoContact.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
+                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+                        helperFragment.setRest();
                     } else {
                         if (NetUtils.hasNetwork(getActivity())) {
                             //连接不到聊天服务器
