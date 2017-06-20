@@ -421,19 +421,7 @@ public class DoctorFragment extends Fragment {
                                         }
                                     }
                                     // 获取未读消息
-                                    if (null != dataChatList && 0 < dataChatList.size()) {
-                                        for (int i = 0; i < dataChatList.size(); i++) {
-                                            int unReadNumber = 0;
-                                            try {
-                                                EMConversation conversation = EMClient.getInstance().chatManager().getConversation(dataChatList.get(i).get("ACCID"));
-                                                unReadNumber = conversation.getUnreadMsgCount();
-                                                Log.e(TAG, "unReadNumber = " + String.valueOf(unReadNumber));
-                                            } catch (Exception e) {
-                                                unReadNumber = 0;
-                                            }
-                                            dataChatList.get(i).put("readNo", String.valueOf(unReadNumber));
-                                        }
-                                    }
+                                    setDataChatListUnRead();
                                 }
 
                                 if (null != dataChatList && 0 < dataChatList.size()) {
@@ -628,8 +616,26 @@ public class DoctorFragment extends Fragment {
                     callPatListApi(false);
                 }
                 if (null != patAdapter) {
+                    setDataChatListUnRead();
+                    // 获取未读消息
                     patAdapter.notifyDataSetChanged();
                 }
+            }
+        }
+    }
+
+    private void setDataChatListUnRead() {
+        if (null != dataChatList && 0 < dataChatList.size()) {
+            for (int i = 0; i < dataChatList.size(); i++) {
+                int unReadNumber = 0;
+                try {
+                    EMConversation conversation = EMClient.getInstance().chatManager().getConversation(dataChatList.get(i).get("ACCID"));
+                    unReadNumber = conversation.getUnreadMsgCount();
+                    Log.e(TAG, "unReadNumber = " + String.valueOf(unReadNumber));
+                } catch (Exception e) {
+                    unReadNumber = 0;
+                }
+                dataChatList.get(i).put("readNo", String.valueOf(unReadNumber));
             }
         }
     }
