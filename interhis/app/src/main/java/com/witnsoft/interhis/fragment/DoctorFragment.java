@@ -798,18 +798,19 @@ public class DoctorFragment extends Fragment {
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
                         Toast.makeText(getActivity(), getResources().getString(R.string.chat_has_been_tick_out), Toast.LENGTH_LONG).show();
-                        isVisiting = false;
-                        setBtnRest();
-                        dataChatList.clear();
-                        pageNo = 1;
-                        if (null != patAdapter) {
-                            patAdapter.notifyDataSetChanged();
-                        }
-                        checkedPosition = -1;
-                        tvNoContact.setVisibility(View.VISIBLE);
-                        recyclerView.setVisibility(View.GONE);
-                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
-                        helperFragment.setRest();
+//                        isVisiting = false;
+//                        setBtnRest();
+//                        dataChatList.clear();
+//                        pageNo = 1;
+//                        if (null != patAdapter) {
+//                            patAdapter.notifyDataSetChanged();
+//                        }
+//                        checkedPosition = -1;
+//                        tvNoContact.setVisibility(View.VISIBLE);
+//                        recyclerView.setVisibility(View.GONE);
+//                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+//                        helperFragment.setRest();
+                        chatLogout();
                     } else {
                         if (NetUtils.hasNetwork(getActivity())) {
                             //连接不到聊天服务器
