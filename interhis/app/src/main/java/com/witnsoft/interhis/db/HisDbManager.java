@@ -88,11 +88,11 @@ public class HisDbManager {
             }
         }
     }
-
+    //将数据存入主表
     public void saveAskChinese(ChineseModel model) throws DbException {
         this.manager.saveOrUpdate(model);
     }
-
+    //将数据存入子表
     public void saveAskChinese(ChineseDetailModel model) throws DbException {
         this.manager.saveOrUpdate(model);
     }
@@ -100,7 +100,7 @@ public class HisDbManager {
     public void deleteAskChinese(ChineseModel model) throws DbException {
         this.manager.delete(model);
     }
-
+    //根据药名删除数据库
     public void deleteAskChinese(String str) throws DbException {
         this.manager.delete(ChineseDetailModel.class, WhereBuilder.b("CMC","=",str));
     }
@@ -108,15 +108,16 @@ public class HisDbManager {
     public void deleteAskNumbwe(int count) throws DbException{
         this.manager.delete(ChineseDetailModel.class,WhereBuilder.b("sl","=",count));
     }
-
-    public List<ChineseDetailModel> upDate(String sl) throws DbException{
-        Object message=this.manager.update(ChineseDetailModel.class,WhereBuilder.b("sl","=",sl));
-        if (message!=null){
-            message=new ArrayList<>();
-        }
-        return (List<ChineseDetailModel>) message;
+    //更新数据的方法
+    public void upDate(ChineseDetailModel chineseDetailModel) throws DbException{
+       this.manager.update(chineseDetailModel,"SL");
+    }
+    //更新是否上传服务器状态
+    public void upDateIsUpLoad(ChineseDetailModel chineseDetailModel) throws DbException{
+        this.manager.update(chineseDetailModel,"isUploadSever");
     }
 
+    //查询字表中所有的数据
     public List<ChineseDetailModel> findChineseDeatilModel(String accid) throws DbException{
         Object message=this.manager.selector(ChineseDetailModel.class).where("ACCID","=",accid).findAll();
         if(null==message){
@@ -124,12 +125,21 @@ public class HisDbManager {
         }
         return (List<ChineseDetailModel>) message;
     }
-
-    public List<ChineseModel> findChineseModel(String acid) throws DbException{
-        Object message=this.manager.selector(ChineseModel.class).where("ACID","=",acid).findAll();
-        if (message!=null){
-            message=new ArrayList<>();
+    //查询字表中的药品数量
+    public ChineseDetailModel findChineseDeatilModelA(String accid,String cmc,String sl) throws DbException{
+        Object message=this.manager.selector(ChineseDetailModel.class).where("ACCID","=",accid).and("CMC","=",cmc).and("SL","=",sl).findFirst();
+        if(null==message){
+            message=new ChineseDetailModel();
         }
-        return (List<ChineseModel>) message;
+        return (ChineseDetailModel) message;
+    }
+
+    //查询是否上传服务器
+    public ChineseDetailModel findIsUpLoad(String acid,boolean isUplodaSever) throws DbException{
+        Object message=this.manager.selector(ChineseDetailModel.class).where("ACCID","=",acid).and("isUploadSever","=",isUplodaSever).findFirst();
+        if (message==null){
+            message=new ChineseDetailModel();
+        }
+        return (ChineseDetailModel) message;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +22,10 @@ import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ${liyan} on 2017/5/26.
  */
@@ -30,9 +35,17 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
     private static final String TAG = "DialogActivity";
     private LinearLayout ll_root,ll_dialog;
     private Button cancel,delete;
-    private TextView five,ten,fifteen,twenty,number,add,less,name;
+    private TextView five;
+    private TextView ten;
+    private TextView fifteen;
+    private TextView twenty;
+    private TextView number;
+    private TextView add;
+    private TextView less;
+    private TextView name;
+    private String chineseCount;
     private LinearLayout linearLayout;
-    private String medical;
+    private String medical,accid;
     private int position;
     private int num=0;
     @Override
@@ -79,7 +92,11 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
 
         //接受传递过来的药名
         medical = getIntent().getStringExtra("chinese_name");
+        accid=getIntent().getStringExtra("accid");
+        chineseCount=getIntent().getStringExtra("sl");
+        Log.e(TAG, "initView: &&&&&&&&&&&&&&&&&"+chineseCount );
         name.setText(medical);
+        Log.e(TAG, "onClick: "+accid+medical+chineseCount );
     }
 
     private void SetViewListener() {
@@ -92,36 +109,93 @@ public class SecondDialogActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
         position=getIntent().getIntExtra("position",0);
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date = sDateFormat.format(new java.util.Date());
+        chineseDetailModel.setTime(date);
+        chineseDetailModel.setCmc(medical);
+        chineseDetailModel.setAccid(accid);
+        chineseDetailModel.setUploadSever(false);
         switch (v.getId()){
             case R.id.second_ll_root:
                 finish();
                 break;
             case R.id.second_dialog_five:
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl("5");
+                try {
+                    chineseDetailModel=HisDbManager.getManager().findChineseDeatilModelA(accid,medical,chineseCount);
+                    chineseDetailModel.setSl("5");
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    HisDbManager.getManager().upDate(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+                EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_ten:
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl("10");
+                try {
+                    chineseDetailModel=HisDbManager.getManager().findChineseDeatilModelA(accid,medical,chineseCount);
+                    chineseDetailModel.setSl("10");
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    HisDbManager.getManager().upDate(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_fifteen:
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl("15");
+                try {
+                    chineseDetailModel=HisDbManager.getManager().findChineseDeatilModelA(accid,medical,chineseCount);
+                    chineseDetailModel.setSl("15");
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    HisDbManager.getManager().upDate(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_twenty:
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl("20");
+                try {
+                    chineseDetailModel=HisDbManager.getManager().findChineseDeatilModelA(accid,medical,chineseCount);
+                    chineseDetailModel.setSl("20");
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    HisDbManager.getManager().upDate(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;
             case R.id.second_dialog_number:
-                chineseDetailModel.setCmc(medical);
-                chineseDetailModel.setSl(String.valueOf(num));
+                try {
+                    chineseDetailModel=HisDbManager.getManager().findChineseDeatilModelA(accid,medical,chineseCount);
+                    chineseDetailModel.setSl(String.valueOf(num));
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    HisDbManager.getManager().upDate(chineseDetailModel);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
                 EventBus.getDefault().post(chineseDetailModel);
                 finish();
                 break;

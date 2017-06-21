@@ -255,7 +255,7 @@
                         android:id="@+id/fragment_helper_chinese_medical_number"
                         style="@style/bigSize"
                         android:layout_marginLeft="10dp"
-                        android:text="0"/>
+                       />
 
                     <TextView
                         style="@style/bigSize"

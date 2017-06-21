@@ -6,6 +6,8 @@ import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 import org.xutils.ex.DbException;
 
+import java.io.Serializable;
+
 /**
  * Created by zhengchengpeng on 2017/6/5.
  */
@@ -19,6 +21,14 @@ public class ChineseDetailModel {
             isId = true,
             autoGen = true)
     private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     @Column(name = "ACCID")
     private String accid;
@@ -66,6 +76,19 @@ public class ChineseDetailModel {
     private String XMMC;//药名
     private String XMRJ;//药品拼音
     private String SFDLBM;//药品类别
+
+    //判断是否上传服务器
+    @Column(name ="isUploadSever")
+    private boolean isUploadSever;
+
+
+    public boolean isUploadSever() {
+        return isUploadSever;
+    }
+
+    public void setUploadSever(boolean uploadSever) {
+        isUploadSever = uploadSever;
+    }
 
     public String getXMMC() {
         return XMMC;

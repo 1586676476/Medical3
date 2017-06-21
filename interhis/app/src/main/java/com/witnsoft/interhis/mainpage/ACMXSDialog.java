@@ -91,41 +91,21 @@ public class ACMXSDialog extends BaseActivity implements View.OnClickListener {
             case R.id.acmxs_dialog_seven:
                 chineseModel.setAcMxs("7");
                 EventBus.getDefault().post(chineseModel);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
                 finish();
                 break;
             case R.id.acmxs_dialog_fourteen:
                 chineseModel.setAcMxs("14");
                 EventBus.getDefault().post(chineseModel);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
                 finish();
                 break;
             case R.id.acmxs_dialog_twenty_one:
                 chineseModel.setAcMxs("21");
                 EventBus.getDefault().post(chineseModel);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
                 finish();
                 break;
             case R.id.acmxs_dialog_number:
                 chineseModel.setAcMxs(String.valueOf(num));
                 EventBus.getDefault().post(chineseModel);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
                 finish();
                 break;
             case R.id.first_cancel:

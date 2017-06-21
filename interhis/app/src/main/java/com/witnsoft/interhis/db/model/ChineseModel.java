@@ -109,6 +109,17 @@ public class ChineseModel {
     @Column(name = "ASK_CHINESE_MX")
     private List<ChineseDetailModel> chineseDetailModel;
 
+    //判断是否上传服务器
+    @Column(name ="isUploadSever")
+    private boolean isUploadSever;
+
+    public boolean isUploadSever() {
+        return isUploadSever;
+    }
+
+    public void setUploadSever(boolean uploadSever) {
+        isUploadSever = uploadSever;
+    }
 
     public void setAcId(String acId) {
         this.acId = acId;

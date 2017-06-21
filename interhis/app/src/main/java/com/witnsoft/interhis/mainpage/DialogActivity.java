@@ -25,6 +25,8 @@ import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by ${liyan} on 2017/5/25.
  */
@@ -97,9 +99,14 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         ChineseDetailModel chineseDetailModel=new ChineseDetailModel();
+        //将时间存入数据库当中
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date = sDateFormat.format(new java.util.Date());
+        chineseDetailModel.setTime(date);
         chineseDetailModel.setAccid(accid);
         chineseDetailModel.setDj(price);
         chineseDetailModel.setCdm(medical_id);
+        chineseDetailModel.setUploadSever(false);
         switch (v.getId()){
             case R.id.ll_root:
                 finish();
@@ -107,7 +114,6 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
             case R.id.dialog_five:
                 chineseDetailModel.setCmc(medical);
                 chineseDetailModel.setSl("5");
-                Log.e(TAG, "onClick: "+ medical_id + medical + price + accid );
                 EventBus.getDefault().post(chineseDetailModel);
                 try {
                     HisDbManager.getManager().saveAskChinese(chineseDetailModel);
