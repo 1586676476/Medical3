@@ -421,19 +421,7 @@ public class DoctorFragment extends Fragment {
                                         }
                                     }
                                     // 获取未读消息
-                                    if (null != dataChatList && 0 < dataChatList.size()) {
-                                        for (int i = 0; i < dataChatList.size(); i++) {
-                                            int unReadNumber = 0;
-                                            try {
-                                                EMConversation conversation = EMClient.getInstance().chatManager().getConversation(dataChatList.get(i).get("ACCID"));
-                                                unReadNumber = conversation.getUnreadMsgCount();
-                                                Log.e(TAG, "unReadNumber = " + String.valueOf(unReadNumber));
-                                            } catch (Exception e) {
-                                                unReadNumber = 0;
-                                            }
-                                            dataChatList.get(i).put("readNo", String.valueOf(unReadNumber));
-                                        }
-                                    }
+                                    setDataChatListUnRead();
                                 }
 
                                 if (null != dataChatList && 0 < dataChatList.size()) {
@@ -493,10 +481,8 @@ public class DoctorFragment extends Fragment {
                                         getActivity().sendBroadcast(intent);
 
 
-
-
                                         //将aiid存入数据库
-                                        ChineseModel chinesemodel=new ChineseModel();
+                                        ChineseModel chinesemodel = new ChineseModel();
                                         chinesemodel.setAiId(dataChatList.get(position).get("AIID"));
                                         chinesemodel.setAcId(dataChatList.get(position).get("ACCID"));
                                         try {
@@ -504,7 +490,7 @@ public class DoctorFragment extends Fragment {
                                         } catch (DbException e) {
                                             e.printStackTrace();
                                         }
-                                        Log.e(TAG, "onClick: "+dataChatList.get(position).get("AIID"));
+                                        Log.e(TAG, "onClick: " + dataChatList.get(position).get("AIID"));
 
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
@@ -609,32 +595,47 @@ public class DoctorFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.e(TAG, "!!!!!!!!!!!!doctorFragment has received message");
-            // 获取到新消息的用户名
-//            String messageUserName = intent.getStringExtra(MESSAGE_USER_NAME);
-//            // 出诊
-//            if (null != dataChatList && 0 < dataChatList.size()) {
-//                // 如果本地列表没有当前用户会话，重新获取环信会话列表，刷新界面
-//                boolean isRefresh = true;
-//                for (int i = 0; i < dataChatList.size(); i++) {
-//                    if (dataChatList.get(i).get(LOGIN_NAME).equals(messageUserName)) {
-//                        isRefresh = false;
-//                    }
-//                }
-//                if (isRefresh) {
-////                        getChatList();
-//                    callPatListApi(true);
-//
-//                    Log.e(TAG, "getFriendsList");
-//                }
-//            } else {
-////                    getChatList();
-//                callPatListApi(true);
-//            }
             if (Application.BROADCAST_REFRESH_LIST.equals(intent.getAction())) {
-//                pageNo = 1;
-//                dataChatList.clear();
-//                patAdapter = null;
-                callPatListApi(true);
+                ArrayList<String> fromList = intent.getStringArrayListExtra("user_from");
+                boolean isRefresh = true;
+                if (null != fromList && 0 < fromList.size()) {
+                    for (String from : fromList) {
+                        if (null != dataChatList && 0 < dataChatList.size()) {
+                            for (Map<String, String> map : dataChatList) {
+                                if (map.get("ACCID").equalsIgnoreCase(from)) {
+                                    isRefresh = false;
+                                }
+                            }
+                        } else {
+                            isRefresh = false;
+                        }
+                    }
+                }
+                // 判断当前列表中没有该患者再去调用接口，减少请求服务器次数
+                if (isRefresh) {
+                    callPatListApi(false);
+                }
+                if (null != patAdapter) {
+                    setDataChatListUnRead();
+                    // 获取未读消息
+                    patAdapter.notifyDataSetChanged();
+                }
+            }
+        }
+    }
+
+    private void setDataChatListUnRead() {
+        if (null != dataChatList && 0 < dataChatList.size()) {
+            for (int i = 0; i < dataChatList.size(); i++) {
+                int unReadNumber = 0;
+                try {
+                    EMConversation conversation = EMClient.getInstance().chatManager().getConversation(dataChatList.get(i).get("ACCID"));
+                    unReadNumber = conversation.getUnreadMsgCount();
+                    Log.e(TAG, "unReadNumber = " + String.valueOf(unReadNumber));
+                } catch (Exception e) {
+                    unReadNumber = 0;
+                }
+                dataChatList.get(i).put("readNo", String.valueOf(unReadNumber));
             }
         }
     }
@@ -780,7 +781,6 @@ public class DoctorFragment extends Fragment {
         });
     }
 
-    // TODO: 2017/6/19 测试监听被踢掉的监听
     //实现ConnectionListener接口
     private class MyConnectionListener implements EMConnectionListener {
         @Override
@@ -798,7 +798,19 @@ public class DoctorFragment extends Fragment {
                     } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                         // 显示帐号在其他设备登录
                         Toast.makeText(getActivity(), getResources().getString(R.string.chat_has_been_tick_out), Toast.LENGTH_LONG).show();
-                        setBtnRest();
+//                        isVisiting = false;
+//                        setBtnRest();
+//                        dataChatList.clear();
+//                        pageNo = 1;
+//                        if (null != patAdapter) {
+//                            patAdapter.notifyDataSetChanged();
+//                        }
+//                        checkedPosition = -1;
+//                        tvNoContact.setVisibility(View.VISIBLE);
+//                        recyclerView.setVisibility(View.GONE);
+//                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+//                        helperFragment.setRest();
+                        chatLogout();
                     } else {
                         if (NetUtils.hasNetwork(getActivity())) {
                             //连接不到聊天服务器

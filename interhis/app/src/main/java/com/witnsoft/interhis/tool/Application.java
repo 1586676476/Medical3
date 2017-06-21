@@ -14,6 +14,7 @@ import com.witnsoft.interhis.mainpage.MainActivity;
 
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,9 +67,15 @@ public class Application extends MultiDexApplication {
                     // 推送
                     EaseUI.getInstance().getNotifier().onNewMesg(list);
                 }
+                ArrayList<String> from = new ArrayList<>();
+                for (EMMessage message : list) {
+                    from.add(message.getFrom());
+                }
                 // 收到新消息，发通知给doctorFragment
                 // 接收到新消息，将username发送广播通知DoctorFragment刷新列表
+                // 检查推送返回list数据，发通知给doctorFragment，检查是否更新会话列表请求接口，否则全部都是notify未读消息数，减少请求服务器次数
                 Intent intent = new Intent();
+                intent.putStringArrayListExtra("user_from", from);
                 intent.setAction(BROADCAST_REFRESH_LIST);
                 sendBroadcast(intent);
 
