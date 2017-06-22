@@ -567,7 +567,7 @@ public class MyInfoFragment extends ChildBaseFragment {
     private void updateHeadImg(final String path) {
         final String url = "https://zy.renyibao.com/FileUploadServlet";
         File file = new File(path);
-        showWaitingDialog();
+        showWaitingDialogCannotCancel();
         okHttpClient = (new OkHttpClient.Builder()).retryOnConnectionFailure(true).connectTimeout(5L, TimeUnit.SECONDS)
                 .cache(new Cache(Environment.getExternalStorageDirectory(), 10485760L)).build();
         RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
