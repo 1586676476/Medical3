@@ -610,7 +610,7 @@ public class MyInfoFragment extends ChildBaseFragment {
                                 try {
                                     errCode = String.valueOf(map.get("errcode"));
                                     if (!TextUtils.isEmpty(errCode) && "200".equals(errCode)) {
-                                        callBackPathImg.SendPathImg(path);
+                                        callBackPathImg.setIsRefresh(1);
                                         // 上传成功
                                         getActivity().runOnUiThread(new Runnable() {
                                             @Override
@@ -648,8 +648,7 @@ public class MyInfoFragment extends ChildBaseFragment {
         });
     }
 
-
     public interface CallBackPathImg {
-        void SendPathImg(String path);
+        void setIsRefresh(int isRefresh);
     }
 }

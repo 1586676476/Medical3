@@ -221,12 +221,10 @@ public class MainActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (2 == resultCode) {
-            // 设置上传头像成功返回
-            String path = data.getStringExtra(SettingActivity.UPDATE_IMG);
-            if (!TextUtils.isEmpty(path)) {
-                Glide.with(MainActivity.this)
-                        .load(path)
-                        .into(ivHead);
+            // 设置上传头像成功返回请求接口刷新界面
+            int isRefresh = data.getIntExtra(SettingActivity.UPDATE_IMG, -1);
+            if (1 == isRefresh) {
+                callDocInfoApi(false);
             }
         }
     }
@@ -253,7 +251,7 @@ public class MainActivity extends BaseActivity {
             setBtnVisiting();
         }
         docId = ThriftPreUtils.getDocId(this);
-        callDocInfoApi();
+        callDocInfoApi(true);
         callCountApi(true);
     }
 
@@ -296,7 +294,7 @@ public class MainActivity extends BaseActivity {
     /**
      * F27.APP.01.01 查询医生详细信息
      */
-    private void callDocInfoApi() {
+    private void callDocInfoApi(boolean isProgress) {
         OTRequest otRequest = new OTRequest(this);
         // DATA
         DataModel data = new DataModel();
@@ -305,7 +303,7 @@ public class MainActivity extends BaseActivity {
         // TN 接口辨别
         otRequest.setTN(TN_DOC_INFO);
 
-        NetTool.getInstance().startRequest(false, true, this, null, otRequest, new CallBack<Map, String>() {
+        NetTool.getInstance().startRequest(false, isProgress, this, null, otRequest, new CallBack<Map, String>() {
             @Override
             public void onSuccess(Map response, String resultCode) {
                 if (ErrCode.ErrCode_200.equals(resultCode)) {

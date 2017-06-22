@@ -46,7 +46,7 @@ public class SettingActivity extends BaseActivity implements MyInfoFragment.Call
     private String docHospName = "";
     private String docDept = "";
     private String docHeadImg = "";
-    private String updateImg = "";
+    private int isRefresh = -1;
 
     @ViewInject(R.id.ll_back)
     private AutoScaleLinearLayout llBack;
@@ -81,11 +81,9 @@ public class SettingActivity extends BaseActivity implements MyInfoFragment.Call
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-                        if (!TextUtils.isEmpty(updateImg)) {
-                            Intent intent = new Intent();
-                            intent.putExtra(UPDATE_IMG, updateImg);
-                            setResult(2, intent);
-                        }
+                        Intent intent = new Intent();
+                        intent.putExtra(UPDATE_IMG, isRefresh);
+                        setResult(2, intent);
                         finish();
                     }
                 });
@@ -170,8 +168,8 @@ public class SettingActivity extends BaseActivity implements MyInfoFragment.Call
     }
 
     @Override
-    public void SendPathImg(String path) {
+    public void setIsRefresh(int isRefresh) {
         // 头像上传成功的回调
-        updateImg = path;
+        this.isRefresh = isRefresh;
     }
 }
