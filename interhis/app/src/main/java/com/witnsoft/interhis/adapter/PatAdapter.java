@@ -34,6 +34,7 @@ public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
 
     @Override
     public void convert(ComRecyclerViewHolder comRecyclerViewHolder, Map<String, String> item) {
+        comRecyclerViewHolder.setImageUrl(context, R.id.fragment_doctor_recycleView_item_image, item.get("PHOTOURL"), R.drawable.touxiang);
         if (!TextUtils.isEmpty(item.get("PATNAME"))) {
             comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, item.get("PATNAME"));
         } else {

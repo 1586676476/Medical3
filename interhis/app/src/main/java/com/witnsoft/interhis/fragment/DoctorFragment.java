@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +39,7 @@ import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.db.model.ChineseModel;
 import com.witnsoft.interhis.mainpage.LoginActivity;
 import com.witnsoft.interhis.mainpage.MainActivity;
+import com.witnsoft.interhis.setting.ChildBaseFragment;
 import com.witnsoft.interhis.setting.SettingActivity;
 import com.witnsoft.interhis.tool.Application;
 import com.witnsoft.interhis.utils.ComRecyclerAdapter;
@@ -491,7 +493,6 @@ public class DoctorFragment extends Fragment {
                                             e.printStackTrace();
                                         }
                                         Log.e(TAG, "onClick: " + dataChatList.get(position).get("AIID"));
-
                                         //启动会话列表
                                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                                         try {
@@ -747,7 +748,7 @@ public class DoctorFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.e(TAG, "chat logout success");
+//                        Log.e(TAG, "chat logout success");
                         HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
                         helperFragment.setRest();
                         isVisiting = false;
@@ -808,8 +809,8 @@ public class DoctorFragment extends Fragment {
 //                        checkedPosition = -1;
 //                        tvNoContact.setVisibility(View.VISIBLE);
 //                        recyclerView.setVisibility(View.GONE);
-//                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
-//                        helperFragment.setRest();
+                        HelperFragment helperFragment = (HelperFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.helper);
+                        helperFragment.setRest();
                         chatLogout();
                     } else {
                         if (NetUtils.hasNetwork(getActivity())) {

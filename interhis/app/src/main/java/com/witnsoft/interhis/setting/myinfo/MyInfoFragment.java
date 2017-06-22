@@ -2,6 +2,7 @@ package com.witnsoft.interhis.setting.myinfo;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -9,6 +10,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
@@ -21,15 +24,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.mainpage.LoginActivity;
+import com.witnsoft.interhis.mainpage.MainActivity;
 import com.witnsoft.interhis.setting.ChildBaseFragment;
 import com.witnsoft.interhis.setting.SettingActivity;
+import com.witnsoft.interhis.utils.AppUtils;
+import com.witnsoft.interhis.utils.ConnectionUtils;
 import com.witnsoft.interhis.utils.ui.ItemSettingRight;
+import com.witnsoft.libinterhis.utils.ThriftPreUtils;
 import com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout;
 import com.witnsoft.libnet.model.LoginRequest;
 import com.witnsoft.libnet.net.CallBack;
@@ -41,12 +49,24 @@ import org.xutils.x;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Cache;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import rx.functions.Action1;
 
 /**
@@ -127,13 +147,15 @@ public class MyInfoFragment extends ChildBaseFragment {
                 String path = Environment.getExternalStorageDirectory().toString()
                         + TMP_PATH + pathFileName;
                 Log.e(TAG, "path = " + path);
-                load(path, this.ivHead, R.drawable.touxiang);
+                showUpdateDialog(path);
+//                load(path, this.ivHead, R.drawable.touxiang);
             } else if (requestCode == ActivityRequestCode.START_ALBUM_REQUESTCODE) {
                 // 相册返回
                 if (data != null) {
                     Uri selectedImage = data.getData();
                     if (selectedImage != null) {
-                        load(getFilePath(selectedImage), this.ivHead, R.drawable.touxiang);
+                        showUpdateDialog(getFilePath(selectedImage));
+//                        load(getFilePath(selectedImage), this.ivHead, R.drawable.touxiang);
                     }
                 }
             }
@@ -213,6 +235,7 @@ public class MyInfoFragment extends ChildBaseFragment {
         viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction), false);
         viewMyExpert.setTvTitle(getResources().getString(R.string.personal_my_expert));
         viewEvaluate.setTvTitle(getResources().getString(R.string.evaluate));
+        docId = ThriftPreUtils.getDocId(getActivity());
         Bundle bundle = getArguments();
         if (null != bundle) {
             if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_NAME))) {
@@ -307,6 +330,43 @@ public class MyInfoFragment extends ChildBaseFragment {
                         Toast.makeText(getActivity(), getResources().getString(R.string.chat_logout_failed), Toast.LENGTH_LONG).show();
                     }
                 });
+            }
+        });
+    }
+
+    /**
+     * 上传头像
+     */
+    private AlertDialog updateDialog;
+    private TextView tvTrue;
+    private TextView tvFalse;
+
+    private void showUpdateDialog(final String path) {
+        final LayoutInflater linearLayout = getActivity().getLayoutInflater();
+        View view = linearLayout.inflate(R.layout.dialog_is_update, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(view);
+        builder.create();
+        updateDialog = builder.show();
+        android.view.Window window = updateDialog.getWindow();
+        window.setBackgroundDrawableResource(R.drawable.round);
+        updateDialog.setCanceledOnTouchOutside(true);
+        tvTrue = (TextView) view.findViewById(R.id.tv_true);
+        tvFalse = (TextView) view.findViewById(R.id.tv_false);
+        // 保存
+        tvTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                callUpdateImg(path, file);
+                updateHeadImg(path);
+                updateDialog.dismiss();
+            }
+        });
+        // 取消
+        tvFalse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDialog.dismiss();
             }
         });
     }
@@ -464,7 +524,9 @@ public class MyInfoFragment extends ChildBaseFragment {
         }
     }
 
-    // 获取文件路径通过url
+    /**
+     * 获取文件路径通过url
+     */
     private String getFilePathByUri(Uri mUri) throws FileNotFoundException {
         String[] proj = {MediaStore.Images.Media.DATA};
         Cursor cursor = null;
@@ -485,5 +547,63 @@ public class MyInfoFragment extends ChildBaseFragment {
             }
         }
         return url;
+    }
+
+    private OkHttpClient okHttpClient;
+    private Handler handler = new Handler(Looper.getMainLooper());
+    private String docId = "";
+
+    private void updateHeadImg(final String path) {
+        final String url = "https://zy.renyibao.com/FileUploadServlet";
+        File file = new File(path);
+        showWaitingDialog();
+        okHttpClient = (new OkHttpClient.Builder()).retryOnConnectionFailure(true).connectTimeout(5L, TimeUnit.SECONDS)
+                .cache(new Cache(Environment.getExternalStorageDirectory(), 10485760L)).build();
+        RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody body = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addPart(Headers.of("Content-Disposition", "form-data; name= \"file\"; filename=\"img.png\""), fileBody)
+//                .addFormDataPart("file", path, fileBody)
+                .addFormDataPart("keyid", docId)
+                .addFormDataPart("fjlb", "doc_photo")
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        this.okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                MyInfoFragment.this.handler.post(new Runnable() {
+                    public void run() {
+                        hideWaitingDialog();
+                        getActivity().runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(getActivity(), "网络连接超时", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    try {
+                        final String resp = response.body().string();
+                        if (!TextUtils.isEmpty(resp)) {
+                            MyInfoFragment.this.handler.post(new Runnable() {
+                                public void run() {
+                                    hideWaitingDialog();
+
+                                }
+                            });
+                        }
+                    } catch (IOException var4) {
+                        ;
+                    }
+                }
+            }
+        });
     }
 }

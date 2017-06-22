@@ -26,19 +26,18 @@ public class ChildBaseFragment extends BaseFragment {
         return null;
     }
 
-//    //创建右侧fragment
-//    public void pushChildFragment(ChildBaseFragment fragment, Bundle bundle, boolean isToBackStack) {
-//        mFragmentManager = getChildFragmentManager();
-//        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-//        if (bundle != null) {
-//            fragment.setArguments(bundle);
-//        }
-//        transaction.replace(R.id.fl_content, fragment, ChildBaseFragment.class.getSimpleName());
-//        if (isToBackStack) {
-//            transaction.addToBackStack(null);
-//        }
-//        transaction.commit();
-//    }
+    public void pushChildFragment(ChildBaseFragment fragment, Bundle bundle, boolean isToBackStack) {
+        mFragmentManager = getChildFragmentManager();
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        if (bundle != null) {
+            fragment.setArguments(bundle);
+        }
+        transaction.replace(R.id.fl_content, fragment, ChildBaseFragment.class.getSimpleName());
+        if (isToBackStack) {
+            transaction.addToBackStack(null);
+        }
+        transaction.commit();
+    }
 
     //右侧子fragment进栈
     public void pushFragment(ChildBaseFragment fragment, Bundle bundle, boolean isToBackStack) {

@@ -16,6 +16,7 @@ import com.witnsoft.libinterhis.base.BaseActivity;
 import com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout;
 import com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout;
 
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
