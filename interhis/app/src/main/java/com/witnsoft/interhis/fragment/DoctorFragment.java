@@ -55,6 +55,7 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -483,6 +484,9 @@ public class DoctorFragment extends Fragment {
 
                                         //将aiid存入数据库
                                         ChineseModel chinesemodel = new ChineseModel();
+                                        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                                        String date = sDateFormat.format(new java.util.Date());
+                                        chinesemodel.setTime(date);
                                         chinesemodel.setAiId(dataChatList.get(position).get("AIID"));
                                         chinesemodel.setAcId(dataChatList.get(position).get("ACCID"));
                                         try {

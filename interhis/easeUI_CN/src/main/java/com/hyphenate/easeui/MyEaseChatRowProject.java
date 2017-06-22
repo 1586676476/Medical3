@@ -1,6 +1,7 @@
 package com.hyphenate.easeui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -28,7 +29,7 @@ public class MyEaseChatRowProject extends EaseChatRow {
     }
 
     /**
-     * 注入布局
+     * 注入布局a
      */
     @Override
     protected void onInflateView() {
@@ -53,7 +54,8 @@ public class MyEaseChatRowProject extends EaseChatRow {
         searchContent.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "查看明细", Toast.LENGTH_SHORT).show();
+
+
             }
         });
     }
@@ -129,7 +131,8 @@ public class MyEaseChatRowProject extends EaseChatRow {
      */
     @Override
     protected void onBubbleClick() {
-        Toast.makeText(context, "点击了药方", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent("MingXi");
+        getContext().sendBroadcast(intent);
 
     }
 

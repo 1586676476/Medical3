@@ -25,6 +25,14 @@ public class ChineseModel {
     @Column(name = "ACID")
     private String acId;
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     // 问诊ID
     @Column(name = "AIID")
     private String aiId;

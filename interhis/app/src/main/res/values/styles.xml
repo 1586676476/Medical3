@@ -49,7 +49,9 @@
         <item name="android:windowAnimationStyle">@style/MyAnimationActivity</item>
     </style>
 
+
     <style name="MyAnimationActivity" mce_bogus="1" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/activity_in</item>
     </style>
+
 </resources>

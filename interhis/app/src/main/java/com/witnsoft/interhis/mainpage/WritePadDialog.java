@@ -45,6 +45,7 @@ public class WritePadDialog extends Dialog {
 	String str,acsm,zdsm,aiid;
 
 	private static final String TN_DOC_KAIYAO = "F27.APP.01.06";
+	private static final String TN_DOC_XIANSHI = "F27.APP.01.07";
 
 	public WritePadDialog(List<ChineseDetailModel> list,String str,String acsm,String zdsm,String aiid,Activity a,Context context, int themeResId, DialogListener dialogListener) {
 		super(context,themeResId);
@@ -120,6 +121,7 @@ public class WritePadDialog extends Dialog {
 						Intent intent=new Intent("CHUSHIHUA");
 						getContext().sendBroadcast(intent);
 						Log.e(TAG, "onSuccess: "+chufang.fromJSON(list,str,acsm,zdsm,aiid) );
+
 					}
 
 					@Override

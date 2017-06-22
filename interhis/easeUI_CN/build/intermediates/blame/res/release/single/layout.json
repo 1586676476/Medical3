@@ -1,11 +1,11 @@
 [
     {
-        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_activity_show_file.xml",
-        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_activity_show_file.xml"
-    },
-    {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_expression.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_expression.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_activity_show_file.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_activity_show_file.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_voice.xml",
@@ -182,6 +182,10 @@
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_bigexpression.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_sent_bigexpression.xml"
+    },
+    {
+        "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\gridview_item.xml",
+        "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\gridview_item.xml"
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_chat_input_menu.xml",

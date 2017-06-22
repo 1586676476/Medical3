@@ -136,11 +136,20 @@ public class HisDbManager {
 
     //查询是否上传服务器
     public ChineseModel findIsUpLoad(String acid,boolean isUplodaSever) throws DbException{
-        Object message=this.manager.selector(ChineseModel.class).where("ACCID","=",acid).and("isUploadSever","=",isUplodaSever).findFirst();
+        Object message=this.manager.selector(ChineseModel.class).where("ACID","=",acid).and("isUploadSever","=",isUplodaSever).findFirst();
         if (message==null){
             message=new ChineseModel();
         }
         return (ChineseModel) message;
+    }
+
+    //查询主表
+    public List<ChineseModel> findChineseMode(String acid) throws DbException{
+        Object message=this.manager.selector(ChineseModel.class).where("ACID","=",acid).findAll();
+        if (message==null){
+            message=new ArrayList<>();
+        }
+        return (List<ChineseModel>) message;
     }
 
 }

@@ -51,10 +51,13 @@ import com.witnsoft.interhis.inter.FilterListener;
 import com.witnsoft.interhis.inter.OnClick;
 import com.witnsoft.interhis.inter.OnFixClick;
 import com.witnsoft.interhis.mainpage.ACMXSDialog;
+import com.witnsoft.interhis.mainpage.MedicalDetailsActivity;
 import com.witnsoft.interhis.mainpage.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
 import com.witnsoft.interhis.tool.KeyboardUtil;
+import com.witnsoft.libnet.net.NetTool;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -122,7 +125,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private String type1;
     private int single1;
     private String helperId,aiid;
-    private String pinyin,price,amount,medical_id;
+    private String pinyin,price,amount,medical_id,date;
 
     private EaseChatFragment chatFragment;
     private Bundle bundle;
@@ -133,6 +136,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private Refresh refresh;
     private KeyboarrReceiver keyboarrReceiver;
     private ReStartReceiver reStartReceiver;
+    private MedicalDetails medicalDetails;
 
     private String chinese_number,advice,diagnosis,count;
     private ChuFangChinese chufang;
@@ -269,6 +273,10 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         reStartReceiver=new ReStartReceiver();
         IntentFilter intentReStart=new IntentFilter("CHUSHIHUA");
         getActivity().registerReceiver(reStartReceiver,intentReStart);
+
+        medicalDetails=new MedicalDetails();
+        IntentFilter intentFilterDetails=new IntentFilter("MingXi");
+        getActivity().registerReceiver(medicalDetails,intentFilterDetails);
 
     }
 
@@ -408,33 +416,32 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 playChineseView();
 
                 try {
-                    chineseModel=HisDbManager.getManager().findIsUpLoad(helperId,true);
-                    Log.e(TAG, "onClick: "+ chineseModel.isUploadSever());
+                    chineseModelList=HisDbManager.getManager().findChineseMode(helperId);
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
 
-                if (chineseModel.isUploadSever()==false||chineseModel==null){
-                    //查询数据库
-                    try {
-                        data = HisDbManager.getManager().findChineseDeatilModel(helperId);
-                    } catch (DbException e) {
-                        e.printStackTrace();
+                for (int i = 0; i < chineseModelList.size(); i++) {
+                    if (chineseModelList.get(i).isUploadSever()==false||chineseModelList==null){
+                        try {
+                            data = HisDbManager.getManager().findChineseDeatilModel(helperId);
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                        chinese_adapter.setList(data);
+                        chinese_adapter.notifyDataSetChanged();
+                        //往json串传值
+                        chufang=new ChuFangChinese();
+                        try {
+                            chufang.setList(data);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }else {
+                        chinese_adapter.ReSrart();
+                        chinese_adapter.notifyDataSetChanged();
                     }
-                    chinese_adapter.setList(data);
-                    chinese_adapter.notifyDataSetChanged();
-                    //往json串传值
-                    chufang=new ChuFangChinese();
-                    try {
-                        chufang.setList(data);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }else {
-                    chinese_adapter.ReSrart();
-                    chinese_adapter.notifyDataSetChanged();
                 }
-
 
                 break;
             //西药界面
@@ -479,6 +486,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 }else {
                     chinese_button.setOnClickListener(signListener);
                 }
+
+
+
                 break;
             //点击几付药
             case R.id.fragment_helper_chinese_medical_allNumber:
@@ -825,9 +835,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             chinese_adapter.notifyDataSetChanged();
             //将时间存入数据库中
             SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String date = sDateFormat.format(new java.util.Date());
-            chineseDetailModel.setTime(date);
-            chineseDetailModel.setAccid(helperId);
+            date = sDateFormat.format(new java.util.Date());
+            chineseModel.setTime(date);
+            chineseModel.setAcId(helperId);
 
 
             //更改数据库状态
@@ -843,9 +853,23 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             } catch (DbException e) {
                 e.printStackTrace();
             }
-            Log.e(TAG, "onReceive: "+chineseModel.isUploadSever());
+
+            createYaoFang(helperId,"中药",aiid,chinese_number,"1300");
         }
+    }
 
+    class MedicalDetails extends BroadcastReceiver{
 
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(context, "查看详情", Toast.LENGTH_SHORT).show();
+            Intent intent1=new Intent(getActivity(), MedicalDetailsActivity.class);
+            intent1.putExtra("acid",helperId);
+            intent1.putExtra("aiid",aiid);
+            intent1.putExtra("advice",advice);
+            intent1.putExtra("number",chinese_number);
+            intent1.putExtra("time",date);
+            startActivity(intent1);
+        }
     }
 }
