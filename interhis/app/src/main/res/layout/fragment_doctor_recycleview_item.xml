@@ -29,7 +29,7 @@
                 android:textSize="20px"
                 tools:text="2"/>
 
-            <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
+            <com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -51,6 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_normal_25"
+                    android:layout_toRightOf="@id/fragment_doctor_recycleView_item_image"
                     android:orientation="vertical">
 
                     <com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout
@@ -60,8 +61,8 @@
 
                         <TextView
                             android:id="@+id/fragment_doctor_recycleView_item_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="50px"
+                            android:layout_height="30px"
                             android:ellipsize="end"
                             android:singleLine="true"
                             android:textColor="@color/colorBlack"
@@ -105,7 +106,7 @@
 
                 </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
 
-            </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
+            </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
         </com.witnsoft.libinterhis.utils.ui.AutoScaleRelativeLayout>
 
