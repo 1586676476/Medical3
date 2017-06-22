@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
@@ -98,6 +99,8 @@ public class MyInfoFragment extends ChildBaseFragment {
 
     View rootView;
     private String strImgPath;
+    private Gson gson;
+    private CallBackPathImg callBackPathImg;
 
     @ViewInject(R.id.tv_name)
     private TextView tvName;
@@ -232,6 +235,7 @@ public class MyInfoFragment extends ChildBaseFragment {
     }
 
     private void init() {
+        gson = new Gson();
         viewIntroduction.setTvTitle(getResources().getString(R.string.personal_introduction), false);
         viewMyExpert.setTvTitle(getResources().getString(R.string.personal_my_expert));
         viewEvaluate.setTvTitle(getResources().getString(R.string.evaluate));
@@ -250,7 +254,14 @@ public class MyInfoFragment extends ChildBaseFragment {
             if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_DEPT))) {
                 tvDept.setText(bundle.getString(SettingActivity.DOC_DEPT));
             }
+            if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_HEAD))) {
+                Glide.with(getActivity())
+                        .load(bundle.getString(SettingActivity.DOC_HEAD))
+                        .error(R.drawable.touxiang)
+                        .into(ivHead);
+            }
         }
+        callBackPathImg = (CallBackPathImg) getActivity();
     }
 
     private void toIntroduction() {
@@ -592,6 +603,36 @@ public class MyInfoFragment extends ChildBaseFragment {
                     try {
                         final String resp = response.body().string();
                         if (!TextUtils.isEmpty(resp)) {
+                            HashMap mapObj = new HashMap();
+                            final Map map = (Map) gson.fromJson(resp, mapObj.getClass());
+                            String errCode = "";
+                            if (null != map.get("errcode")) {
+                                try {
+                                    errCode = String.valueOf(map.get("errcode"));
+                                    if (!TextUtils.isEmpty(errCode) && "200".equals(errCode)) {
+                                        callBackPathImg.SendPathImg(path);
+                                        // 上传成功
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                load(path, ivHead, R.drawable.touxiang);
+                                                Toast.makeText(getActivity(), getResources().getString(R.string.update_success), Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    } else if (!TextUtils.isEmpty(errCode)) {
+                                        if (!TextUtils.isEmpty(String.valueOf(map.get("errmsg")))) {
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(getActivity(), String.valueOf(map.get("errmsg")), Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                        }
+                                    }
+                                } catch (ClassCastException var11) {
+                                    ;
+                                }
+                            }
                             MyInfoFragment.this.handler.post(new Runnable() {
                                 public void run() {
                                     hideWaitingDialog();
@@ -605,5 +646,10 @@ public class MyInfoFragment extends ChildBaseFragment {
                 }
             }
         });
+    }
+
+
+    public interface CallBackPathImg {
+        void SendPathImg(String path);
     }
 }

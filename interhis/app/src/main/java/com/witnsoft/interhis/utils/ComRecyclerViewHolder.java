@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.witnsoft.interhis.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by zhengchengpeng on 2017/6/8.
  */
@@ -68,7 +70,7 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     public ComRecyclerViewHolder setImageUrl(Context cxt, int viewId, String url, int errorId) {
-        ImageView imageView = getView(viewId);
+        CircleImageView imageView = getView(viewId);
         if (!TextUtils.isEmpty(url)) {
             Glide.with(cxt)
                     .load(url)

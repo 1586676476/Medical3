@@ -34,27 +34,10 @@ public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
 
     @Override
     public void convert(ComRecyclerViewHolder comRecyclerViewHolder, Map<String, String> item) {
-        comRecyclerViewHolder.setImageUrl(context, R.id.fragment_doctor_recycleView_item_image, item.get("PHOTOURL"), R.drawable.touxiang);
-        if (!TextUtils.isEmpty(item.get("PATNAME"))) {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, item.get("PATNAME"));
-        } else {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, "");
-        }
-        if (!TextUtils.isEmpty(item.get("PATNL"))) {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_age, item.get("PATNL"));
-        } else {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_age, "");
-        }
-        if (!TextUtils.isEmpty(item.get("PATSEXNAME"))) {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_sex, item.get("PATSEXNAME"));
-        } else {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_sex, "");
-        }
-        if (!TextUtils.isEmpty(item.get("JBMC"))) {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_content, item.get("JBMC"));
-        } else {
-            comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_content, "");
-        }
+        comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_name, item.get("PATNAME"));
+        comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_age, item.get("PATNL"));
+        comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_sex, item.get("PATSEXNAME"));
+        comRecyclerViewHolder.setText(R.id.fragment_doctor_recycleView_item_content, item.get("JBMC"));
         if (!TextUtils.isEmpty(item.get("color"))) {
             if ("changed".equals(item.get("color"))) {
                 comRecyclerViewHolder.setBackgroundColor(R.id.ll_back, R.color.colorWhite);
@@ -80,6 +63,7 @@ public class PatAdapter extends ComRecyclerAdapter<Map<String, String>> {
         } else {
             comRecyclerViewHolder.setVisible(R.id.tv_read, false);
         }
+        comRecyclerViewHolder.setImageUrl(context, R.id.fragment_doctor_recycleView_item_image, item.get("PHOTOURL"), R.drawable.touxiang);
     }
 
     @Override

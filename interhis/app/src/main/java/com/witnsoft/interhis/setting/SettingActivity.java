@@ -3,7 +3,9 @@ package com.witnsoft.interhis.setting;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.RelativeLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -30,17 +32,21 @@ import rx.functions.Action1;
  */
 
 @ContentView(R.layout.activity_setting)
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity implements MyInfoFragment.CallBackPathImg {
 
     public static final String DOC_NAME = "docName";
     public static final String DOC_LEVEL = "docLevel";
     public static final String DOC_HOSP = "docHosp";
     public static final String DOC_DEPT = "docDept";
+    public static final String DOC_HEAD = "docHead";
+    public static final String UPDATE_IMG = "updateImg";
 
     private String docName = "";
     private String docLevel = "";
     private String docHospName = "";
     private String docDept = "";
+    private String docHeadImg = "";
+    private String updateImg = "";
 
     @ViewInject(R.id.ll_back)
     private AutoScaleLinearLayout llBack;
@@ -75,6 +81,11 @@ public class SettingActivity extends BaseActivity {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
+                        if (!TextUtils.isEmpty(updateImg)) {
+                            Intent intent = new Intent();
+                            intent.putExtra(UPDATE_IMG, updateImg);
+                            setResult(2, intent);
+                        }
                         finish();
                     }
                 });
@@ -135,6 +146,7 @@ public class SettingActivity extends BaseActivity {
         docLevel = getIntent().getStringExtra(DOC_LEVEL);
         docHospName = getIntent().getStringExtra(DOC_HOSP);
         docDept = getIntent().getStringExtra(DOC_DEPT);
+        docHeadImg = getIntent().getStringExtra(DOC_HEAD);
         fragmentManager = getFragmentManager();
         MyInfoFragment myInfoFragment = new MyInfoFragment();
         Bundle bundle = new Bundle();
@@ -142,6 +154,7 @@ public class SettingActivity extends BaseActivity {
         bundle.putString(DOC_LEVEL, docLevel);
         bundle.putString(DOC_HOSP, docHospName);
         bundle.putString(DOC_DEPT, docDept);
+        bundle.putString(DOC_HEAD, docHeadImg);
         myInfoFragment.setArguments(bundle);
         setChecked(myInfoFragment, rlMyInfo, rlAbout, rlMyHistory, rlMyIncome);
     }
@@ -154,5 +167,11 @@ public class SettingActivity extends BaseActivity {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.fl_content, fragment);
         ft.commit();
+    }
+
+    @Override
+    public void SendPathImg(String path) {
+        // 头像上传成功的回调
+        updateImg = path;
     }
 }

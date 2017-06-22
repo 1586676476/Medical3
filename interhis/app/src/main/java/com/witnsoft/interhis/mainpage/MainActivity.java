@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMConnectionListener;
@@ -70,6 +71,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -118,6 +120,7 @@ public class MainActivity extends BaseActivity {
         private static final String JZL = "jzl";
         private static final String SSYYMC = "ssyymc";
         private static final String SSKB1MC = "sskb1mc";
+        private static final String PHOTO_URL = "photourl";
     }
 
     private final class CountResponseKey {
@@ -136,6 +139,7 @@ public class MainActivity extends BaseActivity {
     private String docLevel = "";
     private String docHospName = "";
     private String docDept = "";
+    private String headImg = "";
 
     // 下拉刷新
     @ViewInject(R.id.sl_refresh_view)
@@ -143,6 +147,9 @@ public class MainActivity extends BaseActivity {
     // 联系人优化页
     @ViewInject(R.id.tv_no_content)
     private TextView tvNoContact;
+    // 医生头像
+    @ViewInject(R.id.fragment_doctor_image)
+    private CircleImageView ivHead;
     // 患者列表
     @ViewInject(R.id.rv_pat_view)
     private RecyclerView recyclerView;
@@ -210,6 +217,20 @@ public class MainActivity extends BaseActivity {
         unregisterReceiver(receiver);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (2 == resultCode) {
+            // 设置上传头像成功返回
+            String path = data.getStringExtra(SettingActivity.UPDATE_IMG);
+            if (!TextUtils.isEmpty(path)) {
+                Glide.with(MainActivity.this)
+                        .load(path)
+                        .into(ivHead);
+            }
+        }
+    }
+
     private void init() {
         gson = new Gson();
         slRefresh.setEnabled(false);
@@ -254,7 +275,8 @@ public class MainActivity extends BaseActivity {
                 intent.putExtra(SettingActivity.DOC_LEVEL, docLevel);
                 intent.putExtra(SettingActivity.DOC_HOSP, docHospName);
                 intent.putExtra(SettingActivity.DOC_DEPT, docDept);
-                startActivity(intent);
+                intent.putExtra(SettingActivity.DOC_HEAD, headImg);
+                startActivityForResult(intent, 12);
             }
         });
         btnTakeRest.setOnClickListener(new View.OnClickListener() {
@@ -320,6 +342,14 @@ public class MainActivity extends BaseActivity {
                             }
                             if (!TextUtils.isEmpty(hosp)) {
                                 tvHosp.setText(hosp);
+                            }
+                            // 医生头像
+                            if (!TextUtils.isEmpty(data.get(DocInfoResponseKey.PHOTO_URL))) {
+                                Glide.with(MainActivity.this)
+                                        .load(data.get(DocInfoResponseKey.PHOTO_URL))
+                                        .error(R.drawable.touxiang)
+                                        .into(ivHead);
+                                headImg = data.get(DocInfoResponseKey.PHOTO_URL);
                             }
                         }
                     }

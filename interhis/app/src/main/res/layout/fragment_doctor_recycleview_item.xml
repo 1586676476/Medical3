@@ -99,7 +99,7 @@
                         android:layout_marginTop="15px"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:textColor="@color/text_medium_color"
+                        android:textColor="@color/colorBlack"
                         android:textSize="@dimen/text_small"
                         tools:text="咳嗽头痛"/>
 
