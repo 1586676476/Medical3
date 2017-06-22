@@ -123,7 +123,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private int single1;
     private String helperId,aiid;
     private String pinyin,price,amount,medical_id;
-    private boolean isUpLoad=chineseDetailModel.isUploadSever();
 
     private EaseChatFragment chatFragment;
     private Bundle bundle;
@@ -406,9 +405,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 break;
             //中药界面
             case R.id.fragment_helper_radioButton_chinese:
-                Log.e(TAG, "onClick: "+chineseDetailModel.isUploadSever() );
                 playChineseView();
-                if (chineseDetailModel.isUploadSever()==false){
+
+                try {
+                    chineseModel=HisDbManager.getManager().findIsUpLoad(helperId,true);
+                    Log.e(TAG, "onClick: "+ chineseModel.isUploadSever());
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
+                if (chineseModel.isUploadSever()==false||chineseModel==null){
                     //查询数据库
                     try {
                         data = HisDbManager.getManager().findChineseDeatilModel(helperId);
@@ -814,7 +820,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             chinese_advice.setText(null);
             diagnosis_edittext.setText(null);
             ask.setChecked(true);
-            isUpLoad=true;
             chinese_medical_number.setText("0");
             chinese_adapter.ReSrart();
             chinese_adapter.notifyDataSetChanged();
@@ -823,19 +828,24 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             String date = sDateFormat.format(new java.util.Date());
             chineseDetailModel.setTime(date);
             chineseDetailModel.setAccid(helperId);
-            //更改服务器状态
+
+
+            //更改数据库状态
             try {
-                chineseDetailModel=HisDbManager.getManager().findIsUpLoad(helperId,false);
-                chineseDetailModel.setUploadSever(true);
+                chineseModel=HisDbManager.getManager().findIsUpLoad(helperId,false);
+                chineseModel.setUploadSever(true);
             } catch (DbException e) {
                 e.printStackTrace();
             }
 
             try {
-                HisDbManager.getManager().upDateIsUpLoad(chineseDetailModel);
+                HisDbManager.getManager().upDateIsUpLoad(chineseModel);
             } catch (DbException e) {
                 e.printStackTrace();
             }
+            Log.e(TAG, "onReceive: "+chineseModel.isUploadSever());
         }
+
+
     }
 }

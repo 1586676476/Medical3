@@ -113,8 +113,8 @@ public class HisDbManager {
        this.manager.update(chineseDetailModel,"SL");
     }
     //更新是否上传服务器状态
-    public void upDateIsUpLoad(ChineseDetailModel chineseDetailModel) throws DbException{
-        this.manager.update(chineseDetailModel,"isUploadSever");
+    public void upDateIsUpLoad(ChineseModel chineseModel) throws DbException{
+        this.manager.update(chineseModel,"isUploadSever");
     }
 
     //查询字表中所有的数据
@@ -135,11 +135,12 @@ public class HisDbManager {
     }
 
     //查询是否上传服务器
-    public ChineseDetailModel findIsUpLoad(String acid,boolean isUplodaSever) throws DbException{
-        Object message=this.manager.selector(ChineseDetailModel.class).where("ACCID","=",acid).and("isUploadSever","=",isUplodaSever).findFirst();
+    public ChineseModel findIsUpLoad(String acid,boolean isUplodaSever) throws DbException{
+        Object message=this.manager.selector(ChineseModel.class).where("ACCID","=",acid).and("isUploadSever","=",isUplodaSever).findFirst();
         if (message==null){
-            message=new ChineseDetailModel();
+            message=new ChineseModel();
         }
-        return (ChineseDetailModel) message;
+        return (ChineseModel) message;
     }
+
 }
