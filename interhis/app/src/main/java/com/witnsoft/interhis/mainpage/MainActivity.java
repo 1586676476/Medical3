@@ -757,7 +757,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void run() {
                         slRefresh.setEnabled(false);
-                        slRefresh.setRefreshing(true);
+                        slRefresh.setRefreshing(false);
 //                        getChatList();
                         pageNo = 1;
                         dataChatList.clear();
@@ -819,9 +819,6 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void run() {
 //                        Log.e(TAG, "chat logout success");
-                        // TODO: 2017/6/22
-//                        HelperFragment helperFragment = (HelperFragment) getSupportFragmentManager().findFragmentById(R.id.helper);
-//                        helperFragment.setRest();
                         isVisiting = false;
                         setBtnRest();
                         dataChatList.clear();
@@ -832,6 +829,8 @@ public class MainActivity extends BaseActivity {
                         checkedPosition = -1;
                         tvNoContact.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
+                        slRefresh.setEnabled(false);
+                        slRefresh.setRefreshing(true);
                         fragmentManager = getFragmentManager();
                         fragmentManager.popBackStack();
                     }
@@ -882,9 +881,6 @@ public class MainActivity extends BaseActivity {
 //                        checkedPosition = -1;
 //                        tvNoContact.setVisibility(View.VISIBLE);
 //                        recyclerView.setVisibility(View.GONE);
-                        // TODO: 2017/6/22
-//                        HelperFragment helperFragment = (HelperFragment) getSupportFragmentManager().findFragmentById(R.id.helper);
-//                        helperFragment.setRest();
                         chatLogout();
                     } else {
                         if (NetUtils.hasNetwork(MainActivity.this)) {
