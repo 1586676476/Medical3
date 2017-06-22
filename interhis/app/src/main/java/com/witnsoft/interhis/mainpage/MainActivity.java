@@ -420,6 +420,7 @@ public class MainActivity extends BaseActivity {
     private List<Map<String, String>> respList;
     // 记录点击位置
     private int checkedPosition = -1;
+    private FragmentManager fragmentManager;
 
     /**
      * F27.APP.01.02 查询问诊人员列表
@@ -553,9 +554,10 @@ public class MainActivity extends BaseActivity {
                                             bundle.putString("type", EaseConstant.EXTRA_CHAT_TYPE);
                                             bundle.putInt("single", EaseConstant.CHATTYPE_SINGLE);
                                             helperFragment.setArguments(bundle);
-                                            FragmentManager fragmentManager = getFragmentManager();
+                                            fragmentManager = getFragmentManager();
                                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                            fragmentTransaction.replace(R.id.fl_helper, helperFragment);
+                                            fragmentTransaction.replace(R.id.fl_helper, helperFragment, MainActivity.class.getSimpleName());
+                                            fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
                                         } catch (ArrayIndexOutOfBoundsException e) {
                                             e.printStackTrace();
@@ -830,6 +832,8 @@ public class MainActivity extends BaseActivity {
                         checkedPosition = -1;
                         tvNoContact.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
+                        fragmentManager = getFragmentManager();
+                        fragmentManager.popBackStack();
                     }
                 });
             }

@@ -298,16 +298,17 @@
     <com.witnsoft.libinterhis.utils.ui.AutoScaleFrameLayout
         android:id="@+id/fl_helper"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10px"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10px">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_contact_list"
+            android:textColor="@color/text_gray_color"
+            android:textSize="@dimen/text_big"/>
 
     </com.witnsoft.libinterhis.utils.ui.AutoScaleFrameLayout>
-
-    <!--<fragment-->
-        <!--android:id="@+id/helper"-->
-        <!--android:name="com.witnsoft.interhis.fragment.HelperFragment"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="10dp"/>-->
 
 </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>
