@@ -97,6 +97,9 @@
         <activity
             android:name=".setting.SettingActivity"
             android:screenOrientation="landscape"/>
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="landscape"/>
 
     </application>
 
