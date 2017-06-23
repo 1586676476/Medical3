@@ -24,34 +24,34 @@ import com.hyphenate.util.TextFormater;
 
 import java.io.File;
 
-public class EaseChatRowVideo extends EaseChatRowFile{
+public class EaseChatRowVideo extends EaseChatRowFile {
 
-	private ImageView imageView;
+    private ImageView imageView;
     private TextView sizeView;
     private TextView timeLengthView;
 
-    public EaseChatRowVideo(Context context, EMMessage message, int position, BaseAdapter adapter) {
-		super(context, message, position, adapter);
-	}
+    public EaseChatRowVideo(Context context, EMMessage message, int position, BaseAdapter adapter, String imgDoc, String imgPat) {
+        super(context, message, position, adapter, imgDoc, imgPat);
+    }
 
-	@Override
-	protected void onInflateView() {
-		inflater.inflate(message.direct() == EMMessage.Direct.RECEIVE ?
-				R.layout.ease_row_received_video : R.layout.ease_row_sent_video, this);
-	}
+    @Override
+    protected void onInflateView() {
+        inflater.inflate(message.direct() == EMMessage.Direct.RECEIVE ?
+                R.layout.ease_row_received_video : R.layout.ease_row_sent_video, this);
+    }
 
-	@Override
-	protected void onFindViewById() {
-	    imageView = ((ImageView) findViewById(R.id.chatting_content_iv));
+    @Override
+    protected void onFindViewById() {
+        imageView = ((ImageView) findViewById(R.id.chatting_content_iv));
         sizeView = (TextView) findViewById(R.id.chatting_size_iv);
         timeLengthView = (TextView) findViewById(R.id.chatting_length_iv);
         ImageView playView = (ImageView) findViewById(R.id.chatting_status_btn);
         percentageView = (TextView) findViewById(R.id.percentage);
-	}
+    }
 
-	@Override
-	protected void onSetUpView() {
-	    EMVideoMessageBody videoBody = (EMVideoMessageBody) message.getBody();
+    @Override
+    protected void onSetUpView() {
+        EMVideoMessageBody videoBody = (EMVideoMessageBody) message.getBody();
         String localThumb = videoBody.getLocalThumb();
 
         if (localThumb != null) {
@@ -75,7 +75,7 @@ public class EaseChatRowVideo extends EaseChatRowFile{
             }
         }
 
-        EMLog.d(TAG,  "video thumbnailStatus:" + videoBody.thumbnailDownloadStatus());
+        EMLog.d(TAG, "video thumbnailStatus:" + videoBody.thumbnailDownloadStatus());
         if (message.direct() == EMMessage.Direct.RECEIVE) {
             if (videoBody.thumbnailDownloadStatus() == EMFileMessageBody.EMDownloadStatus.DOWNLOADING ||
                     videoBody.thumbnailDownloadStatus() == EMFileMessageBody.EMDownloadStatus.PENDING) {
@@ -94,11 +94,11 @@ public class EaseChatRowVideo extends EaseChatRowFile{
         }
         //handle sending message
         handleSendMessage();
-	}
-	
-	@Override
-	protected void onBubbleClick() {
-	    EMVideoMessageBody videoBody = (EMVideoMessageBody) message.getBody();
+    }
+
+    @Override
+    protected void onBubbleClick() {
+        EMVideoMessageBody videoBody = (EMVideoMessageBody) message.getBody();
         EMLog.d(TAG, "video view is on click");
         Intent intent = new Intent(context, EaseShowVideoActivity.class);
         intent.putExtra("msg", message);
@@ -111,16 +111,14 @@ public class EaseChatRowVideo extends EaseChatRowFile{
             }
         }
         activity.startActivity(intent);
-	}
-	
-	/**
+    }
+
+    /**
      * show video thumbnails
-     * 
-     * @param localThumb
-     *            local path for thumbnail
+     *
+     * @param localThumb   local path for thumbnail
      * @param iv
-     * @param thumbnailUrl
-     *            Url on server for thumbnails
+     * @param thumbnailUrl Url on server for thumbnails
      * @param message
      */
     private void showVideoThumbView(final String localThumb, final ImageView iv, String thumbnailUrl, final EMMessage message) {
@@ -141,7 +139,7 @@ public class EaseChatRowVideo extends EaseChatRowFile{
                         return null;
                     }
                 }
-                
+
                 @Override
                 protected void onPostExecute(Bitmap result) {
                     super.onPostExecute(result);
@@ -160,7 +158,7 @@ public class EaseChatRowVideo extends EaseChatRowFile{
                 }
             }.execute();
         }
-        
+
     }
 
 }

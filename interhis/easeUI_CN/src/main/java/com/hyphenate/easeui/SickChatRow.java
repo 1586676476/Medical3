@@ -26,13 +26,12 @@ import java.util.Map;
 
 public class SickChatRow extends EaseChatRow {
 
-    private TextView sickNameTv,sickSexTv,sickAgeTv,sickNumber,sickHeight
-            ,sickWeight,sickConditionTv,sickHope,sickPay,jzTv;
+    private TextView sickNameTv, sickSexTv, sickAgeTv, sickNumber, sickHeight, sickWeight, sickConditionTv, sickHope, sickPay, jzTv;
     private ImageView sickImg;
 
 
-    public SickChatRow(Context context, EMMessage message, int position, BaseAdapter adapter) {
-        super(context, message, position, adapter);
+    public SickChatRow(Context context, EMMessage message, int position, BaseAdapter adapter, String imgDoc, String imgPat) {
+        super(context, message, position, adapter, imgDoc, imgPat);
     }
 
     @Override
@@ -82,9 +81,9 @@ public class SickChatRow extends EaseChatRow {
         Gson gson = new Gson();
         Map<String, Object> objectMap = new HashMap<String, Object>();
         String content = (String) extMap.get("content");
-        Map<String, Object> contentMap = gson.fromJson(content,objectMap.getClass());
+        Map<String, Object> contentMap = gson.fromJson(content, objectMap.getClass());
 
-       Map<String,Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
+        Map<String, Object> patinfoMap = (Map<String, Object>) contentMap.get("patinfo");
         String patname = (String) patinfoMap.get("patname");
         String patsexname = (String) patinfoMap.get("patsexname");
         String patsgmc = (String) patinfoMap.get("patsgmc");
@@ -106,26 +105,12 @@ public class SickChatRow extends EaseChatRow {
 
         List<String> piclist = (List<String>) contentMap.get("piclist");
         for (int i = 0; i < piclist.size(); i++) {
-        Glide.with(context).load(piclist.get(i)).into(sickImg);
+            Glide.with(context).load(piclist.get(i)).into(sickImg);
         }
         Log.e("piclist.size()", "piclist.size():" + piclist.size());
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // Log.e("patinfo!!!!!!!!!!", content);
+        // Log.e("patinfo!!!!!!!!!!", content);
 
     }
 

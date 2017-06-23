@@ -553,12 +553,14 @@ public class MainActivity extends BaseActivity {
                                             bundle.putString("userId", dataChatList.get(position).get("ACCID"));
                                             bundle.putString("type", EaseConstant.EXTRA_CHAT_TYPE);
                                             bundle.putInt("single", EaseConstant.CHATTYPE_SINGLE);
+                                            bundle.putString("img_doc", headImg);
+                                            bundle.putString("img_pat", dataChatList.get(position).get("PHOTOURL"));
                                             helperFragment.setArguments(bundle);
                                             fragmentManager = getFragmentManager();
                                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                             fragmentTransaction.replace(R.id.fl_helper, helperFragment, MainActivity.class.getSimpleName());
                                             fragmentTransaction.addToBackStack(null);
-                                            fragmentTransaction.commit();
+                                            fragmentTransaction.commitAllowingStateLoss();
                                         } catch (ArrayIndexOutOfBoundsException e) {
                                             e.printStackTrace();
                                             Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");

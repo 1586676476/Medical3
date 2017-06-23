@@ -372,6 +372,7 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
 
     }
 
+
     @Override
     public void onClick(View v) {
         chineseModel = new ChineseModel();
@@ -387,6 +388,8 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
                 bundle.putString("userId", helperId);
                 bundle.putString("type", type1);
                 bundle.putInt("single", single1);
+                bundle.putString("img_doc", this.imgDoc);
+                bundle.putString("img_pat", this.imgPat);
                 chatFragment.setArguments(bundle);
                 getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
                 break;
@@ -644,6 +647,8 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
 //
 //    }
 
+    private String imgDoc = "";
+    private String imgPat = "";
     private void initChat() {
         playAskVeiw();
         this.chatFragment = new EaseChatFragment();
@@ -653,12 +658,16 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
         this.userName = getArguments().getString("userName");
         this.type1 = getArguments().getString("type");
         this.single1 = getArguments().getInt("single");
+        this.imgDoc = getArguments().getString("img_doc");
+        this.imgPat = getArguments().getString("img_pat");
 
         bundle.putString("aiid", this.aiid);
         bundle.putString("userName", this.userName);
         bundle.putString("userId", this.helperId);
         bundle.putString("type", this.type1);
         bundle.putInt("single", this.single1);
+        bundle.putString("img_doc", this.imgDoc);
+        bundle.putString("img_pat", this.imgPat);
         chatFragment.setArguments(bundle);
         getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
     }

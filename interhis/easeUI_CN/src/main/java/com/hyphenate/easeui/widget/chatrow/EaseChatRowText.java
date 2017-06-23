@@ -19,8 +19,8 @@ public class EaseChatRowText extends EaseChatRow{
 
 	private TextView contentView;
 
-    public EaseChatRowText(Context context, EMMessage message, int position, BaseAdapter adapter) {
-		super(context, message, position, adapter);
+    public EaseChatRowText(Context context, EMMessage message, int position, BaseAdapter adapter, String imgDoc, String imgPat) {
+		super(context, message, position, adapter, imgDoc, imgPat);
 	}
 
 	@Override

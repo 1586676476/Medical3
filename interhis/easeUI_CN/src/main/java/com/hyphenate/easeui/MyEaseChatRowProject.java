@@ -19,11 +19,11 @@ import com.hyphenate.exceptions.HyphenateException;
 
 public class MyEaseChatRowProject extends EaseChatRow {
 
-    private TextView userName,yaofangType,yaofangNum,yaoNum,yaofangPrice,searchContent;
+    private TextView userName, yaofangType, yaofangNum, yaoNum, yaofangPrice, searchContent;
     private ImageView yaofangIv;
 
-    public MyEaseChatRowProject(Context context, EMMessage message, int position, BaseAdapter adapter) {
-        super(context, message, position, adapter);
+    public MyEaseChatRowProject(Context context, EMMessage message, int position, BaseAdapter adapter, String imgDoc, String imgPat) {
+        super(context, message, position, adapter, imgDoc, imgPat);
         // TODO Auto-generated constructor stub
     }
 
@@ -73,11 +73,11 @@ public class MyEaseChatRowProject extends EaseChatRow {
     @Override
     protected void onSetUpView() {
 
-        if (message.getBooleanAttribute("yaofang",true)) {
-            String userName = message.getStringAttribute("userName",null);
-            String yaofangType = message.getStringAttribute("yaofangType",null);
+        if (message.getBooleanAttribute("yaofang", true)) {
+            String userName = message.getStringAttribute("userName", null);
+            String yaofangType = message.getStringAttribute("yaofangType", null);
             String yaofangNum = message.getStringAttribute("yaofangNum", null);
-            String yaoNum = message.getStringAttribute("yaoNum",null);
+            String yaoNum = message.getStringAttribute("yaoNum", null);
             String yaofangPrice = message.getStringAttribute("yaofangPrice", null);
 
             this.userName.setText("您给" + userName + "开了一个");
