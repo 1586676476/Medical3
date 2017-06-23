@@ -255,7 +255,8 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
         setData();//给listview设置adapter
         setListener();//给listview设置监听
 
-        EventBus.getDefault().register(this);
+        // TODO: 2017/6/23 崩溃！！！ 
+//        EventBus.getDefault().register(this);
         //动态广播
         receiver = new Receiver();
         IntentFilter intentFilter = new IntentFilter("shanchu");
@@ -649,12 +650,17 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
 
     private String imgDoc = "";
     private String imgPat = "";
+
     private void initChat() {
         playAskVeiw();
         this.chatFragment = new EaseChatFragment();
         this.bundle = new Bundle();
         this.aiid = getArguments().getString("aiid");
-        this.helperId = getArguments().getString("userId");
+        try {
+            this.helperId = getArguments().getString("userId").toLowerCase();
+        } catch (Exception e) {
+            this.helperId = getArguments().getString("userId");
+        }
         this.userName = getArguments().getString("userName");
         this.type1 = getArguments().getString("type");
         this.single1 = getArguments().getInt("single");
