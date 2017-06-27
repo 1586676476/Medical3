@@ -82,11 +82,11 @@ public class EaseChatRowLocation extends EaseChatRow {
 
     @Override
     protected void onBubbleClick() {
-        Intent intent = new Intent(context, EaseBaiduMapActivity.class);
-        intent.putExtra("latitude", locBody.getLatitude());
-        intent.putExtra("longitude", locBody.getLongitude());
-        intent.putExtra("address", locBody.getAddress());
-        activity.startActivity(intent);
+//        Intent intent = new Intent(context, EaseBaiduMapActivity.class);
+//        intent.putExtra("latitude", locBody.getLatitude());
+//        intent.putExtra("longitude", locBody.getLongitude());
+//        intent.putExtra("address", locBody.getAddress());
+//        activity.startActivity(intent);
     }
 
     /*

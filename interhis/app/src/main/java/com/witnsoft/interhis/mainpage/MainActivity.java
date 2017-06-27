@@ -834,7 +834,8 @@ public class MainActivity extends BaseActivity {
                         slRefresh.setEnabled(false);
                         slRefresh.setRefreshing(true);
                         fragmentManager = getFragmentManager();
-                        fragmentManager.popBackStack();
+                        // 出栈所有fragment
+                        fragmentManager.popBackStack(null, 1);
                     }
                 });
             }
