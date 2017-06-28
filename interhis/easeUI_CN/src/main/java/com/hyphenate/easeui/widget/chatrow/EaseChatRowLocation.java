@@ -15,13 +15,13 @@ import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class EaseChatRowLocation extends EaseChatRow{
+public class EaseChatRowLocation extends EaseChatRow {
 
     private TextView locationView;
     private EMLocationMessageBody locBody;
 
-	public EaseChatRowLocation(Context context, EMMessage message, int position, BaseAdapter adapter) {
-        super(context, message, position, adapter);
+    public EaseChatRowLocation(Context context, EMMessage message, int position, BaseAdapter adapter, String imgDoc, String imgPat) {
+        super(context, message, position, adapter, imgDoc, imgPat);
     }
 
     @Override
@@ -32,40 +32,40 @@ public class EaseChatRowLocation extends EaseChatRow{
 
     @Override
     protected void onFindViewById() {
-    	locationView = (TextView) findViewById(R.id.tv_location);
+        locationView = (TextView) findViewById(R.id.tv_location);
     }
 
 
     @Override
     protected void onSetUpView() {
-		locBody = (EMLocationMessageBody) message.getBody();
-		locationView.setText(locBody.getAddress());
+        locBody = (EMLocationMessageBody) message.getBody();
+        locationView.setText(locBody.getAddress());
 
-		// handle sending message
-		if (message.direct() == EMMessage.Direct.SEND) {
-		    setMessageSendCallback();
+        // handle sending message
+        if (message.direct() == EMMessage.Direct.SEND) {
+            setMessageSendCallback();
             switch (message.status()) {
-            case CREATE: 
-                progressBar.setVisibility(View.GONE);
-                statusView.setVisibility(View.VISIBLE);
-                break;
-            case SUCCESS:
-                progressBar.setVisibility(View.GONE);
-                statusView.setVisibility(View.GONE);
-                break;
-            case FAIL:
-                progressBar.setVisibility(View.GONE);
-                statusView.setVisibility(View.VISIBLE);
-                break;
-            case INPROGRESS:
-                progressBar.setVisibility(View.VISIBLE);
-                statusView.setVisibility(View.GONE);
-                break;
-            default:
-               break;
+                case CREATE:
+                    progressBar.setVisibility(View.GONE);
+                    statusView.setVisibility(View.VISIBLE);
+                    break;
+                case SUCCESS:
+                    progressBar.setVisibility(View.GONE);
+                    statusView.setVisibility(View.GONE);
+                    break;
+                case FAIL:
+                    progressBar.setVisibility(View.GONE);
+                    statusView.setVisibility(View.VISIBLE);
+                    break;
+                case INPROGRESS:
+                    progressBar.setVisibility(View.VISIBLE);
+                    statusView.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
             }
-        }else{
-            if(!message.isAcked() && message.getChatType() == ChatType.Chat){
+        } else {
+            if (!message.isAcked() && message.getChatType() == ChatType.Chat) {
                 try {
                     EMClient.getInstance().chatManager().ackMessageRead(message.getFrom(), message.getMsgId());
                 } catch (HyphenateException e) {
@@ -74,39 +74,39 @@ public class EaseChatRowLocation extends EaseChatRow{
             }
         }
     }
-    
+
     @Override
     protected void onUpdateView() {
         adapter.notifyDataSetChanged();
     }
-    
+
     @Override
     protected void onBubbleClick() {
-        Intent intent = new Intent(context, EaseBaiduMapActivity.class);
-        intent.putExtra("latitude", locBody.getLatitude());
-        intent.putExtra("longitude", locBody.getLongitude());
-        intent.putExtra("address", locBody.getAddress());
-        activity.startActivity(intent);
+//        Intent intent = new Intent(context, EaseBaiduMapActivity.class);
+//        intent.putExtra("latitude", locBody.getLatitude());
+//        intent.putExtra("longitude", locBody.getLongitude());
+//        intent.putExtra("address", locBody.getAddress());
+//        activity.startActivity(intent);
     }
-    
+
     /*
-	 * listener for map clicked
+     * listener for map clicked
 	 */
-	protected class MapClickListener implements View.OnClickListener {
+    protected class MapClickListener implements View.OnClickListener {
 
-		LatLng location;
-		String address;
+        LatLng location;
+        String address;
 
-		public MapClickListener(LatLng loc, String address) {
-			location = loc;
-			this.address = address;
+        public MapClickListener(LatLng loc, String address) {
+            location = loc;
+            this.address = address;
 
-		}
+        }
 
-		@Override
-		public void onClick(View v) {
-		   
-		}
-	}
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
 
 }

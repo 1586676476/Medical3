@@ -23,13 +23,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class EaseChatRowImage extends EaseChatRowFile{
+public class EaseChatRowImage extends EaseChatRowFile {
 
     protected ImageView imageView;
     private EMImageMessageBody imgBody;
 
-    public EaseChatRowImage(Context context, EMMessage message, int position, BaseAdapter adapter) {
-        super(context, message, position, adapter);
+    public EaseChatRowImage(Context context, EMMessage message, int position, BaseAdapter adapter, String imgDoc, String imgPat) {
+        super(context, message, position, adapter, imgDoc, imgPat);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class EaseChatRowImage extends EaseChatRowFile{
         imageView = (ImageView) findViewById(R.id.image);
     }
 
-    
+
     @Override
     protected void onSetUpView() {
         imgBody = (EMImageMessageBody) message.getBody();
@@ -59,25 +59,25 @@ public class EaseChatRowImage extends EaseChatRowFile{
                 imageView.setImageResource(R.drawable.ease_default_image);
                 String thumbPath = imgBody.thumbnailLocalPath();
                 if (!new File(thumbPath).exists()) {
-                	// to make it compatible with thumbnail received in previous version
+                    // to make it compatible with thumbnail received in previous version
                     thumbPath = EaseImageUtils.getThumbnailImagePath(imgBody.getLocalUrl());
                 }
                 showImageView(thumbPath, imageView, imgBody.getLocalUrl(), message);
             }
             return;
         }
-        
+
         String filePath = imgBody.getLocalUrl();
         String thumbPath = EaseImageUtils.getThumbnailImagePath(imgBody.getLocalUrl());
         showImageView(thumbPath, imageView, filePath, message);
         handleSendMessage();
     }
-    
+
     @Override
     protected void onUpdateView() {
         super.onUpdateView();
     }
-    
+
     @Override
     protected void onBubbleClick() {
         Intent intent = new Intent(context, EaseShowBigImageActivity.class);
@@ -103,16 +103,16 @@ public class EaseChatRowImage extends EaseChatRowFile{
         }
         context.startActivity(intent);
     }
-    
+
     /**
      * load image into image view
-     * 
+     *
      * @param thumbernailPath
      * @param iv
      * @param position
      * @return the image exists or not
      */
-    private boolean showImageView(final String thumbernailPath, final ImageView iv, final String localFullSizePath,final EMMessage message) {
+    private boolean showImageView(final String thumbernailPath, final ImageView iv, final String localFullSizePath, final EMMessage message) {
         // first check if the thumbnail image already loaded into cache
         Bitmap bitmap = EaseImageCache.getInstance().get(thumbernailPath);
         if (bitmap != null) {
@@ -129,8 +129,7 @@ public class EaseChatRowImage extends EaseChatRowFile{
                         return EaseImageUtils.decodeScaleImage(thumbernailPath, 160, 160);
                     } else if (new File(imgBody.thumbnailLocalPath()).exists()) {
                         return EaseImageUtils.decodeScaleImage(imgBody.thumbnailLocalPath(), 160, 160);
-                    }
-                    else {
+                    } else {
                         if (message.direct() == EMMessage.Direct.SEND) {
                             if (localFullSizePath != null && new File(localFullSizePath).exists()) {
                                 return EaseImageUtils.decodeScaleImage(localFullSizePath, 160, 160);

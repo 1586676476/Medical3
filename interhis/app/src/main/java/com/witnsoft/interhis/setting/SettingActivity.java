@@ -73,6 +73,15 @@ public class SettingActivity extends BaseActivity implements MyInfoFragment.Call
         init();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent();
+        intent.putExtra(UPDATE_IMG, isRefresh);
+        setResult(2, intent);
+        finish();
+    }
+
     private void initCLick() {
         // 返回
         RxView.clicks(llBack)

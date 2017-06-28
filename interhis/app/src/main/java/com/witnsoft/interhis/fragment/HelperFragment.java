@@ -291,7 +291,8 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
         setData();//给listview设置adapter
         setListener();//给listview设置监听
 
-        EventBus.getDefault().register(this);
+        // TODO: 2017/6/23 崩溃！！！ 
+//        EventBus.getDefault().register(this);
         //动态广播
         receiver = new Receiver();
         IntentFilter intentFilter = new IntentFilter("shanchu");
@@ -415,7 +416,11 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
 
     }
 
+<<<<<<< HEAD
     //radiobutton点击事件
+=======
+
+>>>>>>> 7f3982b2354f24583e4ffceed5385f7abd84f727
     @Override
     public void onClick(View v) {
         chineseModel = new ChineseModel();
@@ -431,6 +436,8 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
                 bundle.putString("userId", helperId);
                 bundle.putString("type", type1);
                 bundle.putInt("single", single1);
+                bundle.putString("img_doc", this.imgDoc);
+                bundle.putString("img_pat", this.imgPat);
                 chatFragment.setArguments(bundle);
                 getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
 
@@ -738,21 +745,57 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
         chinese_linearLayout.setVisibility(View.GONE);
     }
 
+<<<<<<< HEAD
+=======
+//    public void setContent(String Aiid,String userName, String userId, String type, int single) {
+//        llContent.setVisibility(View.VISIBLE);
+//
+//        tvNoData.setVisibility(View.GONE);
+//        aiid=Aiid;
+//        helperId = userId;
+//        this.userName = userName;
+//        type1 = type;
+//        single1 = single;
+//
+//        chatFragment = new EaseChatFragment();
+//        bundle = new Bundle();
+//        bundle.putString("aiid",Aiid);
+//        bundle.putString("userName", userName);
+//        bundle.putString("userId", userId);
+//        bundle.putString("type", type);
+//        bundle.putInt("single", single);
+//        chatFragment.setArguments(bundle);
+//        getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
+//
+//    }
+
+    private String imgDoc = "";
+    private String imgPat = "";
+
+>>>>>>> 7f3982b2354f24583e4ffceed5385f7abd84f727
     private void initChat() {
         playAskVeiw();
         this.chatFragment = new EaseChatFragment();
         this.bundle = new Bundle();
         this.aiid = getArguments().getString("aiid");
-        this.helperId = getArguments().getString("userId");
+        try {
+            this.helperId = getArguments().getString("userId").toLowerCase();
+        } catch (Exception e) {
+            this.helperId = getArguments().getString("userId");
+        }
         this.userName = getArguments().getString("userName");
         this.type1 = getArguments().getString("type");
         this.single1 = getArguments().getInt("single");
+        this.imgDoc = getArguments().getString("img_doc");
+        this.imgPat = getArguments().getString("img_pat");
 
         bundle.putString("aiid", this.aiid);
         bundle.putString("userName", this.userName);
         bundle.putString("userId", this.helperId);
         bundle.putString("type", this.type1);
         bundle.putInt("single", this.single1);
+        bundle.putString("img_doc", this.imgDoc);
+        bundle.putString("img_pat", this.imgPat);
         chatFragment.setArguments(bundle);
         getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
     }

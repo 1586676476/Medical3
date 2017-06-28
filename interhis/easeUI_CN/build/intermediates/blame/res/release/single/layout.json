@@ -12,6 +12,7 @@
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_row_sent_voice.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_chat_menu_item.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_chat_menu_item.xml"
     },
@@ -22,6 +23,18 @@
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_switch_button.xml",
         "source": "E:\\kaifaMedical\\interhis\\easeUI_CN\\src\\main\\res\\layout\\ease_widget_switch_button.xml"
+=======
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/layout/ease_layout_emojicon_menu.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/layout/ease_layout_emojicon_menu.xml"
+    },
+    {
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/layout/ease_row_expression.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/layout/ease_row_expression.xml"
+    },
+    {
+        "merged": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/build/intermediates/res/merged/release/layout/ease_row_contact.xml",
+        "source": "/Users/zhengchengpeng/Medical3/interhis/easeUI_CN/src/main/res/layout/ease_row_contact.xml"
+>>>>>>> 7f3982b2354f24583e4ffceed5385f7abd84f727
     },
     {
         "merged": "E:\\kaifaMedical\\interhis\\easeUI_CN\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_bigexpression.xml",

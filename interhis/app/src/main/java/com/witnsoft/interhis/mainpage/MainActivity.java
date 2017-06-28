@@ -421,6 +421,7 @@ public class MainActivity extends BaseActivity {
     private List<Map<String, String>> respList;
     // 记录点击位置
     private int checkedPosition = -1;
+    private FragmentManager fragmentManager;
 
     /**
      * F27.APP.01.02 查询问诊人员列表
@@ -563,11 +564,14 @@ public class MainActivity extends BaseActivity {
                                             bundle.putString("userId", dataChatList.get(position).get("ACCID"));
                                             bundle.putString("type", EaseConstant.EXTRA_CHAT_TYPE);
                                             bundle.putInt("single", EaseConstant.CHATTYPE_SINGLE);
+                                            bundle.putString("img_doc", headImg);
+                                            bundle.putString("img_pat", dataChatList.get(position).get("PHOTOURL"));
                                             helperFragment.setArguments(bundle);
-                                            FragmentManager fragmentManager = getFragmentManager();
+                                            fragmentManager = getFragmentManager();
                                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                            fragmentTransaction.replace(R.id.fl_helper, helperFragment);
-                                            fragmentTransaction.commit();
+                                            fragmentTransaction.replace(R.id.fl_helper, helperFragment, MainActivity.class.getSimpleName());
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commitAllowingStateLoss();
                                         } catch (ArrayIndexOutOfBoundsException e) {
                                             e.printStackTrace();
                                             Log.e(TAG, "!!!!!!!!!!!!!ArrayIndexOutOfBoundsException in freshUi()");
@@ -766,7 +770,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void run() {
                         slRefresh.setEnabled(false);
-                        slRefresh.setRefreshing(true);
+                        slRefresh.setRefreshing(false);
 //                        getChatList();
                         pageNo = 1;
                         dataChatList.clear();
@@ -828,9 +832,6 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void run() {
 //                        Log.e(TAG, "chat logout success");
-                        // TODO: 2017/6/22
-//                        HelperFragment helperFragment = (HelperFragment) getSupportFragmentManager().findFragmentById(R.id.helper);
-//                        helperFragment.setRest();
                         isVisiting = false;
                         setBtnRest();
                         dataChatList.clear();
@@ -841,6 +842,11 @@ public class MainActivity extends BaseActivity {
                         checkedPosition = -1;
                         tvNoContact.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
+                        slRefresh.setEnabled(false);
+                        slRefresh.setRefreshing(true);
+                        fragmentManager = getFragmentManager();
+                        // 出栈所有fragment
+                        fragmentManager.popBackStack(null, 1);
                     }
                 });
             }
@@ -889,9 +895,6 @@ public class MainActivity extends BaseActivity {
 //                        checkedPosition = -1;
 //                        tvNoContact.setVisibility(View.VISIBLE);
 //                        recyclerView.setVisibility(View.GONE);
-                        // TODO: 2017/6/22
-//                        HelperFragment helperFragment = (HelperFragment) getSupportFragmentManager().findFragmentById(R.id.helper);
-//                        helperFragment.setRest();
                         chatLogout();
                     } else {
                         if (NetUtils.hasNetwork(MainActivity.this)) {

@@ -1,10 +1,12 @@
 package com.hyphenate.easeui.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -104,12 +106,18 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     static final int ITEM_PICTURE = 2;
     static final int ITEM_LOCATION = 3;
 
-    protected int[] itemStrings = {R.string.attach_take_pic, R.string.attach_picture, R.string.attach_location};
-    protected int[] itemdrawables = {R.drawable.ease_chat_takepic_selector, R.drawable.ease_chat_image_selector,
-            R.drawable.ease_chat_location_selector};
+    // TODO: 2017/6/23 注释掉发送位置
+//    protected int[] itemStrings = {R.string.attach_take_pic, R.string.attach_picture, R.string.attach_location};
+//    protected int[] itemdrawables = {R.drawable.ease_chat_takepic_selector, R.drawable.ease_chat_image_selector,
+//            R.drawable.ease_chat_location_selector};
+    protected int[] itemStrings = {R.string.attach_take_pic, R.string.attach_picture};
+    protected int[] itemdrawables = {R.drawable.ease_chat_takepic_selector, R.drawable.ease_chat_image_selector};
     protected int[] itemIds = {ITEM_TAKE_PICTURE, ITEM_PICTURE, ITEM_LOCATION};
     private boolean isMessageListInited;
     protected MyItemClickListener extendMenuItemClickListener;
+
+    private String imgDoc = "";
+    private String imgPat = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -124,6 +132,8 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         chatType = fragmentArgs.getInt(EaseConstant.EXTRA_CHAT_TYPE, EaseConstant.CHATTYPE_SINGLE);
         // userId you are chat with or group id
         toChatUsername = fragmentArgs.getString(EaseConstant.EXTRA_USER_ID);
+        this.imgDoc = fragmentArgs.getString("img_doc");
+        this.imgPat = fragmentArgs.getString("img_pat");
 
         super.onActivityCreated(savedInstanceState);
     }
@@ -271,7 +281,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
     }
 
     protected void onMessageListInit() {
-        messageList.init(toChatUsername, chatType, chatFragmentHelper != null ?
+        messageList.init(imgDoc, imgPat, toChatUsername, chatType, chatFragmentHelper != null ?
                 chatFragmentHelper.onSetCustomChatRowProvider() : null);
         setListItemClickListener();
 
@@ -628,10 +638,36 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PermissionRequestCode.REQUEST_CAMERA_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            try {
+                selectPicFromCamera();
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "请允许开启权限", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        if (requestCode == PermissionRequestCode.REQUEST_ALBUM_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            selectPicFromLocal();
+        }
+    }
+
 
     /**
      * handle the click event for extend menu
      */
+    public final class PermissionRequestCode {
+        // 相机权限返回
+        public static final int REQUEST_CAMERA_PERMISSION = 100;
+        // 相册权限返回
+        public static final int REQUEST_ALBUM_PERMISSION = 200;
+    }
+
+    private static final String PKG = "com.witnsoft.interhis";
+    private PackageManager pm;
+
     class MyItemClickListener implements EaseChatExtendMenu.EaseChatExtendMenuItemClickListener {
 
         @Override
@@ -643,13 +679,47 @@ public class EaseChatFragment extends EaseBaseFragment implements EMMessageListe
             }
             switch (itemId) {
                 case ITEM_TAKE_PICTURE:
-                    selectPicFromCamera();
+                    pm = getActivity().getPackageManager();
+                    boolean cameraPermission = (PackageManager.PERMISSION_GRANTED ==
+                            pm.checkPermission(Manifest.permission.CAMERA, PKG));
+                    boolean readPermission = (PackageManager.PERMISSION_GRANTED ==
+                            pm.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, PKG));
+                    boolean writePermission = (PackageManager.PERMISSION_GRANTED ==
+                            pm.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, PKG));
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (cameraPermission && readPermission && writePermission) {
+                            selectPicFromCamera();
+                        } else {
+                            String[] PERMISSIONS_CAMERA = {
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                                    Manifest.permission.CAMERA
+                            };
+                            requestPermissions(PERMISSIONS_CAMERA, PermissionRequestCode.REQUEST_CAMERA_PERMISSION);
+                        }
+                    } else {
+                        selectPicFromCamera();
+                    }
                     break;
                 case ITEM_PICTURE:
-                    selectPicFromLocal();
+                    pm = getActivity().getPackageManager();
+                    boolean readPer = (PackageManager.PERMISSION_GRANTED ==
+                            pm.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, PKG));
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (readPer) {
+                            selectPicFromLocal();
+                        } else {
+                            String[] PERMISSIONS_STORAGE = {
+                                    Manifest.permission.READ_EXTERNAL_STORAGE
+                            };
+                            requestPermissions(PERMISSIONS_STORAGE, PermissionRequestCode.REQUEST_ALBUM_PERMISSION);
+                        }
+                    } else {
+                        selectPicFromLocal();
+                    }
                     break;
                 case ITEM_LOCATION:
-                    startActivityForResult(new Intent(getActivity(), EaseBaiduMapActivity.class), REQUEST_CODE_MAP);
+//                    startActivityForResult(new Intent(getActivity(), EaseBaiduMapActivity.class), REQUEST_CODE_MAP);
                     break;
 
                 default:
