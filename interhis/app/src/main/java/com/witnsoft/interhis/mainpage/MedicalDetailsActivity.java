@@ -72,6 +72,7 @@ public class MedicalDetailsActivity extends BaseActivity {
         number=getIntent().getStringExtra("number");
         advice=getIntent().getStringExtra("advice");
 
+
         tv_acid.setText(acid);
         tv_aiid.setText(aiid);
         tv_time.setText(time);

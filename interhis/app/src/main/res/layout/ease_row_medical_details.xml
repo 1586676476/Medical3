@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/number_dialog_shape"
     android:id="@+id/chinese_ll_root">
 
     <LinearLayout
     android:id="@+id/ease_linearLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:textColor="@color/colorBlack">
 
     <TextView
     style="@style/bigSize"
@@ -39,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ease_linearLayout"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="15dp">
 
         <TextView
@@ -71,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ease_second_linearLayout"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="15dp">
 
         <TextView
@@ -124,7 +128,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ease_view"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorBlack">
 
         <TextView
             style="@style/bigSize"

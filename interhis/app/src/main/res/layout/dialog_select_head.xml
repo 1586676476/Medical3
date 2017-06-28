@@ -54,12 +54,4 @@
         android:textColor="@color/text_dark_color"
         android:textSize="@dimen/text_big"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:background="@color/divider_color"/>
-
 </com.witnsoft.libinterhis.utils.ui.AutoScaleLinearLayout>

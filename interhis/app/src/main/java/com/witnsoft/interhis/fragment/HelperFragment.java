@@ -1,6 +1,7 @@
 package com.witnsoft.interhis.fragment;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +12,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.InputType;
 import android.support.v7.widget.GridLayoutManager;
@@ -55,41 +55,102 @@ import com.witnsoft.interhis.mainpage.MedicalDetailsActivity;
 import com.witnsoft.interhis.mainpage.WritePadDialog;
 import com.witnsoft.interhis.mainpage.DialogActivity;
 import com.witnsoft.interhis.mainpage.SecondDialogActivity;
+import com.witnsoft.interhis.setting.ChildBaseFragment;
 import com.witnsoft.interhis.tool.KeyboardUtil;
+import com.witnsoft.libnet.model.DataModel;
+import com.witnsoft.libnet.model.OTRequest;
+import com.witnsoft.libnet.net.CallBack;
 import com.witnsoft.libnet.net.NetTool;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.ex.DbException;
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 
 /**
  * Created by ${liyan} on 2017/5/8.
  */
-
-public class HelperFragment extends Fragment implements View.OnClickListener, OnClick, OnFixClick {
+@ContentView(R.layout.fragment_helper)
+public class HelperFragment extends ChildBaseFragment implements View.OnClickListener, OnClick, OnFixClick {
+    View rootView;
     private static final String TAG = "HelperFragment";
-    private LinearLayout llContent;
-    private TextView tvNoData;
     //手写签名
     private Bitmap mSignBitmap;
     private String signPath;
+    private ChuFangChinese chufang;
+    private WritePadDialog writePadDialog;
+    private OTRequest otRequest;
+    public static final String TMP_PATH = "/DCIM/Camera/";
+    private static final String TN_DOC_KAIYAO = "F27.APP.01.06";
+
     //RadioButton
-    private RadioButton ask, chat, chinese, western;
+    @ViewInject(R.id.fragment_helper_radioButton_ask)
+    private RadioButton ask;
+
+    @ViewInject(R.id.fragment_helper_radioButton_chat)
+    private RadioButton chat;
+
+    @ViewInject(R.id.fragment_helper_radioButton_chinese)
+    private RadioButton chinese;
+
+    @ViewInject(R.id.fragment_helper_radioButton_western)
+    private RadioButton western;
+
+    @ViewInject(R.id.fragment_helper_ask_linearLayout)
     private FrameLayout ask_linearLayout;
     //所对应布局
-    private LinearLayout chinese_linearLayout, western_linearLayout, chat_linearLayout;
-    private LinearLayout chinese_linearLayout_linearLayout, western_linearLayout_linearLayout,chinese_medical_allNumber_linearLayout;
-    private ImageView chinese_img, western_img, chahao, western_chahao;
+    @ViewInject(R.id.fragment_helper_chinese_linearLayout)
+    private LinearLayout chinese_linearLayout;
+
+    @ViewInject(R.id.fragment_helper_western_medical_linearLayout)
+    private LinearLayout western_linearLayout;
+
+    @ViewInject(R.id.fragment_helper_diagnosis_linearLayout)
+    private LinearLayout chat_linearLayout;
+
+    @ViewInject(R.id.fragment_helper_chinese_linearLayout_linearLayout)
+    private LinearLayout chinese_linearLayout_linearLayout;
+
+    @ViewInject(R.id.fragment_helper_western_linearLayout_linearLayout)
+    private LinearLayout western_linearLayout_linearLayout;
+
+    @ViewInject(R.id.fragment_helper_chinese_medical_allNumber)
+    private LinearLayout chinese_medical_allNumber_linearLayout;
+
+    @ViewInject(R.id.fragment_helper_chinese_linearLayout_linearLayout_image)
+    private ImageView chinese_img;
+
+    @ViewInject(R.id.fragment_helper_western_linearLayout_linearLayout_image)
+    private ImageView western_img;
+
+    @ViewInject(R.id.fragment_helper_chinese_chahao)
+    private ImageView chahao;
+
+    private ImageView western_chahao;
+
     //中西药显示部分
-    private RecyclerView chinese_recyclerView, western_recycleView;
+    @ViewInject(R.id.fragment_helper_chinese_linearLayout_recycleView)
+    private RecyclerView chinese_recyclerView;
+
+    @ViewInject(R.id.fragment_helper_western_linearLayout_recycleView)
+    private RecyclerView western_recycleView;
     private Chinese_RecycleView_Adapter chinese_adapter;
     private Western_RecycleView_Adapter western_adapter;
     private List<ChineseDetailModel> data;
@@ -97,36 +158,58 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private List<WesternDetailModel> western_data;
 
     //中西药按钮
-    private Button chinese_button, western_button;
+    @ViewInject(R.id.fragment_helper_chinese_button)
+    private Button chinese_button;
+    @ViewInject(R.id.fragment_helper_western_button)
+    private Button western_button;
 
     //中西药搜索框
-    private EditText chinese_edittext, western_edittext;
+    @ViewInject(R.id.fragment_helper_chinese_edittext)
+    private EditText chinese_edittext;
+
+    @ViewInject(R.id.fragment_helper_western_edittext)
+    private EditText  western_edittext;
+
     //中药嘱咐edittext
+    @ViewInject(R.id.fragment_helper_chinese_advice)
     private EditText chinese_advice;
     private Chinese_ListView_Adapter adapter = null;
     private Western_ListView_Adapter western_listView_adapter = null;
-    private ListView chinese_listView, western_listView;
+    @ViewInject(R.id.fragment_helper_chinese_listview)
+    private ListView chinese_listView;
+
+    @ViewInject(R.id.fragment_helper_western_listview)
+    private ListView  western_listView;
+
     private List<ChineseDetailModel> list = new ArrayList<>();
     private List<WesternDetailModel> western_list = new ArrayList<>();
+
     //中药数量
-    private TextView chinese_medical_number,allPrice;
+    @ViewInject(R.id.fragment_helper_chinese_medical_number)
+    private TextView chinese_medical_number;
+
     private ChineseModel chineseModel;
     private ChineseDetailModel chineseDetailModel;
     //固定药方显示部分
-    private RecyclerView chinese_fixed, western_fixed;
+    @ViewInject(R.id.fragment_helper_chinese_fixed_recycleview)
+    private RecyclerView chinese_fixed;
+
+    @ViewInject(R.id.fragment_helper_western_fixed_recycleview)
+    private RecyclerView western_fixed;
     private Chinese_Fixed_Adapter fixed_adapter;
     private List<ChineseDetailModel> fix_data;
 
     //医生诊断
+    @ViewInject(R.id.fragment_helper_diagnosis_editText)
     private EditText diagnosis_edittext;
-    private Button diagnosis_button;
 
     private String userName;
     private String type1;
     private int single1;
-    private String helperId,aiid;
-    private String pinyin,price,amount,medical_id,date;
 
+    private String helperId, aiid;
+    private String pinyin, price, amount, medical_id,date;
+    // TODO: 2017/6/22
     private EaseChatFragment chatFragment;
     private Bundle bundle;
     private Context ctx;
@@ -138,73 +221,22 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     private ReStartReceiver reStartReceiver;
     private MedicalDetails medicalDetails;
 
-    private String chinese_number,advice,diagnosis,count;
-    private ChuFangChinese chufang;
+    private String chinese_number, advice, diagnosis, count,acid;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_helper, container, false);
 
-        llContent = (LinearLayout) view.findViewById(R.id.ll_content);
-        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
+        if (rootView == null) {
+            rootView = x.view().inject(this, inflater, container);
+        }
 
-        ask = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_ask);
-        chat = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_chat);
-        chinese = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_chinese);
-        western = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_western);
-
-        chat_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_diagnosis_linearLayout);
-        ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
-        chinese_fixed = (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_fixed_recycleview);
-        western_fixed = (RecyclerView) view.findViewById(R.id.fragment_helper_western_fixed_recycleview);
-        chinese_img = (ImageView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout_image);
-        western_img = (ImageView) view.findViewById(R.id.fragment_helper_western_linearLayout_linearLayout_image);
-        chahao = (ImageView) view.findViewById(R.id.fragment_helper_chinese_chahao);
-        western_chahao = (ImageView) view.findViewById(R.id.fragment_helper_western_chahao);
-
-
-        chinese_linearLayout_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout_linearLayout);
-        western_linearLayout_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_western_linearLayout_linearLayout);
-        chinese_medical_allNumber_linearLayout= (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_medical_allNumber);
-        chinese_recyclerView = (RecyclerView) view.findViewById(R.id.fragment_helper_chinese_linearLayout_recycleView);
-        western_recycleView = (RecyclerView) view.findViewById(R.id.fragment_helper_western_linearLayout_recycleView);
-        chinese_button = (Button) view.findViewById(R.id.fragment_helper_chinese_button);
-        western_button = (Button) view.findViewById(R.id.fragment_helper_western_button);
-//        diagnosis_button= (Button) view.findViewById(R.id.fragment_helper_diagnosis_button);
-        chinese_advice = (EditText) view.findViewById(R.id.fragment_helper_chinese_advice);
-        chinese_edittext= (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
-        western_edittext = (EditText) view.findViewById(R.id.fragment_helper_chinese_edittext);
-        diagnosis_edittext= (EditText) view.findViewById(R.id.fragment_helper_diagnosis_editText);
-
-
-        ask = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_ask);
-        chat = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_chat);
-        chinese = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_chinese);
-        western = (RadioButton) view.findViewById(R.id.fragment_helper_radioButton_western);
-
-        western_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_western_medical_linearLayout);
-        chinese_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_chinese_linearLayout);
-        chat_linearLayout = (LinearLayout) view.findViewById(R.id.fragment_helper_diagnosis_linearLayout);
-        ask_linearLayout = (FrameLayout) view.findViewById(R.id.fragment_helper_ask_linearLayout);
-        //中药数量
-        chinese_medical_number= (TextView) view.findViewById(R.id.fragment_helper_chinese_medical_number);
-
-//        all mPrice= (TextView) view.findViewById(R.idb.fragment_helper_chinese_medical_price);
-
-//        allPrice= (TextView) view.findViewById(R.id.fragment_helper_chinese_medical_price);
-
-
-        //搜索列表
-        chinese_listView = (ListView) view.findViewById(R.id.fragment_helper_chinese_listview);
-        western_listView = (ListView) view.findViewById(R.id.fragment_helper_western_listview);
-
-        ctx = getContext();
+        ctx = getActivity().getBaseContext();
         act = getActivity();
 
-        chineseDetailModel=new ChineseDetailModel();
+        chineseDetailModel = new ChineseDetailModel();
 
-        return view;
+        return rootView;
 
     }
 
@@ -215,7 +247,6 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chat.setOnClickListener(this);
         chinese.setOnClickListener(this);
         western.setOnClickListener(this);
-//        diagnosis_button.setOnClickListener(this);
         chinese_button.setOnClickListener(this);
         chinese_advice.setOnClickListener(this);
         chahao.setOnClickListener(this);
@@ -223,26 +254,27 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_medical_allNumber_linearLayout.setOnClickListener(this);
 
         //显示药方的地方
-        chinese_adapter = new Chinese_RecycleView_Adapter(getContext());
+        chinese_adapter = new Chinese_RecycleView_Adapter(getActivity().getBaseContext());
         data = new ArrayList<>();
         chinese_adapter.setList(data);
         chinese_adapter.setOnClick(this);
-        chinese_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        chinese_recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getBaseContext(), 4));
         chinese_recyclerView.setAdapter(chinese_adapter);
 
-        western_adapter = new Western_RecycleView_Adapter(getContext());
+        western_adapter = new Western_RecycleView_Adapter(getActivity().getBaseContext());
         western_data = new ArrayList<>();
         western_adapter.setList(western_data);
         western_adapter.setOnClick(this);
-        western_recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        western_recycleView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         western_recycleView.setAdapter(western_adapter);
+
 
         //固定药方
         fix_data = new ArrayList<>();
         initData();
 
-        fixed_adapter = new Chinese_Fixed_Adapter(getContext());
-        chinese_fixed.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        fixed_adapter = new Chinese_Fixed_Adapter(getActivity().getBaseContext());
+        chinese_fixed.setLayoutManager(new GridLayoutManager(getActivity().getBaseContext(), 3));
         fixed_adapter.setList(fix_data);
         fixed_adapter.setOnFixClick(this);
         chinese_fixed.setAdapter(fixed_adapter);
@@ -250,6 +282,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         //点击edittext实现自定义软键盘
         chinese_edittext.setInputType(InputType.TYPE_NULL);
         new KeyboardUtil(act, ctx, chinese_edittext).showKeyboard();
+
+        western_edittext.setInputType(InputType.TYPE_NULL);
+        new KeyboardUtil(act, ctx, western_edittext).showKeyboard();
 
 
         //实现搜索功能
@@ -270,13 +305,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         IntentFilter intentKey = new IntentFilter("RUANJIANPAN");
         getActivity().registerReceiver(keyboarrReceiver, intentKey);
 
-        reStartReceiver=new ReStartReceiver();
-        IntentFilter intentReStart=new IntentFilter("CHUSHIHUA");
-        getActivity().registerReceiver(reStartReceiver,intentReStart);
+        reStartReceiver = new ReStartReceiver();
+        IntentFilter intentReStart = new IntentFilter("CHUSHIHUA");
+        getActivity().registerReceiver(reStartReceiver, intentReStart);
+        initChat();
 
-        medicalDetails=new MedicalDetails();
-        IntentFilter intentFilterDetails=new IntentFilter("MingXi");
-        getActivity().registerReceiver(medicalDetails,intentFilterDetails);
+        medicalDetails = new MedicalDetails();
+        IntentFilter intentFilterDetails = new IntentFilter("MingXi");
+        getActivity().registerReceiver(medicalDetails, intentFilterDetails);
+
+
 
     }
 
@@ -290,7 +328,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         initData();//初始化搜索数据
 
         //这里面创建adapter的时候，构造方法参数传了一个接口对象，回调借口中的方法来实现对过滤的数据的获取
-        adapter = new Chinese_ListView_Adapter(list, getContext(), new FilterListener() {
+        adapter = new Chinese_ListView_Adapter(list, getActivity().getBaseContext(), new FilterListener() {
             @Override
             public void getFilterData(List<String> datas) {
                 setItemClick(list);
@@ -299,6 +337,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_listView.setAdapter(adapter);
     }
 
+    //搜索行点击时间
     private void setItemClick(final List<ChineseDetailModel> datas) {
         chinese_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -306,16 +345,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 //                Toast.makeText(MainActivity.this, filter_lists.get(position), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), DialogActivity.class);
                 intent.putExtra("medical_name", list.get(position).getCmc());
-                intent.putExtra("accid",helperId);
-                intent.putExtra("dj",price);
-                intent.putExtra("cdm",medical_id);
-                Log.e(TAG, "onItemClick: "+medical_id+list.get(position).getCmc() );
+                intent.putExtra("accid", helperId);
+                intent.putExtra("dj", price);
+                intent.putExtra("cdm", medical_id);
+                Log.e(TAG, "onItemClick: " + medical_id + list.get(position).getCmc());
                 startActivity(intent);
 
             }
         });
     }
-
+    //固定位置显示药材名字
     private void initData() {
         ChineseDetailModel a = new ChineseDetailModel();
         ChineseDetailModel b = new ChineseDetailModel();
@@ -376,11 +415,12 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     }
 
+    //radiobutton点击事件
     @Override
     public void onClick(View v) {
-        chineseModel=new ChineseModel();
+        chineseModel = new ChineseModel();
         chinese_medical_number.setText("0");
-        String number=chinese_medical_number.getText().toString();
+        String number = chinese_medical_number.getText().toString();
         switch (v.getId()) {
             //聊天界面
             case R.id.fragment_helper_radioButton_ask:
@@ -393,6 +433,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 bundle.putInt("single", single1);
                 chatFragment.setArguments(bundle);
                 getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
+
                 break;
             //诊断界面
             case R.id.fragment_helper_radioButton_chat:
@@ -400,7 +441,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 break;
 
             case R.id.fragment_helper_diagnosis_button:
-                diagnosis=diagnosis_edittext.getText().toString();
+                diagnosis = diagnosis_edittext.getText().toString();
                 chineseModel.setAcId(helperId);
                 chineseModel.setZdsm(diagnosis);
                 try {
@@ -413,97 +454,145 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 break;
             //中药界面
             case R.id.fragment_helper_radioButton_chinese:
+
                 playChineseView();
 
                 try {
-                    chineseModelList=HisDbManager.getManager().findChineseMode(helperId);
+                    chineseModelList = HisDbManager.getManager().findChineseMode(helperId);
                 } catch (DbException e) {
                     e.printStackTrace();
                 }
 
-                for (int i = 0; i < chineseModelList.size(); i++) {
-                    if (chineseModelList.get(i).isUploadSever()==false||chineseModelList==null){
+                    Log.e(TAG, "onClick: " + chineseDetailModel.isUploadSever());
+                    playChineseView();
+                    if (chineseDetailModel.isUploadSever() == false) {
+                        //查询数据库
                         try {
                             data = HisDbManager.getManager().findChineseDeatilModel(helperId);
-                        } catch (DbException e) {
-                            e.printStackTrace();
+                        } catch (DbException e1) {
+                            e1.printStackTrace();
                         }
                         chinese_adapter.setList(data);
                         chinese_adapter.notifyDataSetChanged();
                         //往json串传值
-                        chufang=new ChuFangChinese();
+                        chufang = new ChuFangChinese();
                         try {
                             chufang.setList(data);
-                        }catch (Exception e){
-                            e.printStackTrace();
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
                         }
-                    }else {
+                    } else {
                         chinese_adapter.ReSrart();
                         chinese_adapter.notifyDataSetChanged();
+
                     }
-                }
 
-                break;
-            //西药界面
-            case R.id.fragment_helper_radioButton_western:
-                playWesternView();
-                break;
-            //中药医嘱
-            case R.id.fragment_helper_chinese_advice:
+                    for (int i = 0; i < chineseModelList.size(); i++) {
+                        if (chineseModelList.get(i).isUploadSever() == false || chineseModelList == null) {
+                            try {
+                                data = HisDbManager.getManager().findChineseDeatilModel(helperId);
+                            } catch (DbException e1) {
+                                e1.printStackTrace();
+                            }
+                            chinese_adapter.setList(data);
+                            chinese_adapter.notifyDataSetChanged();
+                            //往json串传值
+                            chufang = new ChuFangChinese();
+                            try {
+                                chufang.setList(data);
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                        } else {
+                            chinese_adapter.ReSrart();
+                            chinese_adapter.notifyDataSetChanged();
+                        }
+                    }
 
-                break;
-                //中药edittext当中叉号
-            case R.id.fragment_helper_chinese_chahao:
-                chinese_edittext.setText(null);
-                chinese_listView.setVisibility(View.GONE);
-                chinese_fixed.setVisibility(View.VISIBLE);
-                break;
+                    break;
+                    //西药界面
 
-            //中药保存按钮
-            case R.id.fragment_helper_chinese_button:
-//               createYaoFang(id, "中药","1029405","7","1000");
-                //将中药界面的医嘱存入数据库当中
-                advice=chinese_advice.getText().toString();
-                chineseModel.setAcId(helperId);
-                chineseModel.setAcSm(advice);
-                chineseModel.setAcMxs(chinese_number);
-                chineseModel.setChineseDetailModel(data);
-                try {
-                    HisDbManager.getManager().saveAskChinese(chineseModel);
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
+                    case R.id.fragment_helper_radioButton_western:
+                        playWesternView();
+                        break;
+                    //中药医嘱
+                    case R.id.fragment_helper_chinese_advice:
 
-                chufang=new ChuFangChinese();
-                try {
-                    chufang.setAcsm(advice);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                        break;
+                    //中药edittext当中叉号
+                    case R.id.fragment_helper_chinese_chahao:
+                        chinese_edittext.setText(null);
+                        chinese_listView.setVisibility(View.GONE);
+                        chinese_fixed.setVisibility(View.VISIBLE);
+                        break;
 
-                if (advice.equals("")){
-                    Toast.makeText(ctx, "请输入用法用量", Toast.LENGTH_SHORT).show();
-                }else {
-                    chinese_button.setOnClickListener(signListener);
-                }
+                    //中药保存按钮
+                    case R.id.fragment_helper_chinese_button:
+                        //将中药界面的医嘱存入数据库当中
+                        advice = chinese_advice.getText().toString();
+                        chineseModel.setAcId(helperId);
+                        chineseModel.setAcSm(advice);
+                        chineseModel.setAcMxs(chinese_number);
+                        chineseModel.setChineseDetailModel(data);
+                        try {
+                            HisDbManager.getManager().saveAskChinese(chineseModel);
+                        } catch (DbException el) {
+                            el.printStackTrace();
+                        }
+
+                        chufang = new ChuFangChinese();
+                        try {
+                            chufang.setAcsm(advice);
+                        } catch (Exception el) {
+                            el.printStackTrace();
+                        }
+
+                        if (advice.equals("")) {
+                            Toast.makeText(ctx, "请输入用法用量", Toast.LENGTH_SHORT).show();
+                        } else {
+                            chinese_button.setOnClickListener(signListener);
+                        }
+
+                        upLoadMessage();
+
+                        break;
+                    //点击几付药
+                    case R.id.fragment_helper_chinese_medical_allNumber:
+                        Intent intent = new Intent(getActivity(), ACMXSDialog.class);
+                        intent.putExtra("accid", helperId);
+                        startActivity(intent);
 
 
-
-                break;
-            //点击几付药
-            case R.id.fragment_helper_chinese_medical_allNumber:
-                Intent intent=new Intent(getActivity(), ACMXSDialog.class);
-                intent.putExtra("accid",helperId);
-                startActivity(intent);
         }
     }
-
-
-    private View.OnClickListener signListenerWestern = new View.OnClickListener() {
+    //西药弹出dialog
+//    private View.OnClickListener signListenerWestern = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            writePadDialog = new WritePadDialog(signPath,helperId,data, chinese_number, advice, diagnosis, aiid, getActivity(),
+//                    getActivity().getBaseContext(), R.style.SignBoardDialog, new DialogListener() {
+//                public void refreshActivity(Object object) {
+//                    mSignBitmap = (Bitmap) object;
+//                    signPath = createFile();
+//                    //对图片进行压缩
+//                            /*BitmapFactory.Options options = new BitmapFactory.Options();
+//                            options.inSampleSize = 15;
+//							options.inTempStorage = new byte[5 * 1024];
+//							Bitmap zoombm = BitmapFactory.decodeFile(signPath, options);
+//*/
+//                    Bitmap zoombm = getCompressBitmap(signPath);
+//                    western_img.setImageBitmap(zoombm);
+//                }
+//            });
+//            writePadDialog.show();
+//        }
+//    };
+    //中药弹出dialog
+    private View.OnClickListener signListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            WritePadDialog writeTabletDialog = new WritePadDialog(data,chinese_number,advice,diagnosis,aiid,getActivity(),
-                    getContext(), R.style.SignBoardDialog, new DialogListener() {
+            writePadDialog = new WritePadDialog(acid,data, chinese_number, advice, diagnosis, aiid,
+                    getActivity(),getActivity(), R.style.SignBoardDialog, new DialogListener() {
                 public void refreshActivity(Object object) {
                     mSignBitmap = (Bitmap) object;
                     signPath = createFile();
@@ -513,39 +602,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 							options.inTempStorage = new byte[5 * 1024];
 							Bitmap zoombm = BitmapFactory.decodeFile(signPath, options);
 */
-                    Bitmap zoombm = getCompressBitmap(signPath);
-                    western_img.setImageBitmap(zoombm);
-
-
-                }
-            });
-            writeTabletDialog.show();
-        }
-    };
-
-    private View.OnClickListener signListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            WritePadDialog writeTabletDialog = new WritePadDialog(data,chinese_number,advice,diagnosis,aiid,
-                    getActivity(),getContext(), R.style.SignBoardDialog, new DialogListener() {
-                public void refreshActivity(Object object) {
-                    mSignBitmap = (Bitmap) object;
-                    signPath = createFile();
-
-                    //对图片进行压缩
-                            /*BitmapFactory.Options options = new BitmapFactory.Options();
-							options.inSampleSize = 15;
-							options.inTempStorage = new byte[5 * 1024];
-							Bitmap zoombm = BitmapFactory.decodeFile(signPath, options);
-*/
+                    writePadDialog.setPath(signPath);
                     Bitmap zoombm = getCompressBitmap(signPath);
                     chinese_img.setImageBitmap(zoombm);
 
                 }
             });
-            writeTabletDialog.show();
+            writePadDialog.show();
         }
-
     };
 
     /**
@@ -553,20 +617,58 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
      *
      * @return
      */
-
     private String createFile() {
         ByteArrayOutputStream baos = null;
         String _path = null;
         try {
-            String sign_dir = Environment.getExternalStorageDirectory()
+            //创建目录
+            String sign_dir = Environment.getExternalStorageDirectory().toString()+TMP_PATH
                     + File.separator;
-            _path = sign_dir + System.currentTimeMillis() + ".png";
+            File localFile=new File(sign_dir);
+            if (!localFile.exists()){
+                localFile.mkdir();
+            }
+            //拼接好文件路径和名称
+            File finalImageFile=new File(localFile,System.currentTimeMillis()+"img.png");
+            if (finalImageFile.exists()){
+                finalImageFile.delete();
+            }
+            try {
+                finalImageFile.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            
+            //文件的读取
+            FileOutputStream fileOutputStream=null;
+            try {
+                fileOutputStream=new FileOutputStream(finalImageFile);
+            }catch (FileNotFoundException e){
+                e.printStackTrace();
+            }
+            if (mSignBitmap==null){
+                Toast.makeText(ctx, "图片不存在", Toast.LENGTH_SHORT).show();
+            }
+
+            _path = sign_dir + System.currentTimeMillis() + "img.png";
             baos = new ByteArrayOutputStream();
             mSignBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            try {
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                Log.e(TAG, "createFile: "+finalImageFile.getAbsolutePath() );
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
             byte[] photoBytes = baos.toByteArray();
             if (photoBytes != null) {
                 new FileOutputStream(new File(_path)).write(photoBytes);
             }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -607,13 +709,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         return bitmap;
     }
 
+    //显示聊天界面
     public void playAskVeiw() {
         ask_linearLayout.setVisibility(View.VISIBLE);
         chat_linearLayout.setVisibility(View.GONE);
         chinese_linearLayout.setVisibility(View.GONE);
         western_linearLayout.setVisibility(View.GONE);
     }
-
+    //显示
     public void playChatView() {
         chat_linearLayout.setVisibility(View.VISIBLE);
         ask_linearLayout.setVisibility(View.GONE);
@@ -635,33 +738,23 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         chinese_linearLayout.setVisibility(View.GONE);
     }
 
-    public void setRest() {
-        llContent.setVisibility(View.GONE);
-        tvNoData.setVisibility(View.VISIBLE);
-    }
+    private void initChat() {
+        playAskVeiw();
+        this.chatFragment = new EaseChatFragment();
+        this.bundle = new Bundle();
+        this.aiid = getArguments().getString("aiid");
+        this.helperId = getArguments().getString("userId");
+        this.userName = getArguments().getString("userName");
+        this.type1 = getArguments().getString("type");
+        this.single1 = getArguments().getInt("single");
 
-    public void setContent(String Aiid,String userName, String userId, String type, int single) {
-        llContent.setVisibility(View.VISIBLE);
-
-        tvNoData.setVisibility(View.GONE);
-        aiid=Aiid;
-        helperId = userId;
-        this.userName = userName;
-        type1 = type;
-        single1 = single;
-
-        chatFragment = new EaseChatFragment();
-        bundle = new Bundle();
-        bundle.putString("aiid",Aiid);
-        bundle.putString("userName", userName);
-        bundle.putString("userId", userId);
-        bundle.putString("type", type);
-        bundle.putInt("single", single);
+        bundle.putString("aiid", this.aiid);
+        bundle.putString("userName", this.userName);
+        bundle.putString("userId", this.helperId);
+        bundle.putString("type", this.type1);
+        bundle.putInt("single", this.single1);
         chatFragment.setArguments(bundle);
-
-
         getChildFragmentManager().beginTransaction().add(R.id.fragment_helper_ask_linearLayout, chatFragment).commit();
-
     }
 
 
@@ -679,14 +772,16 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
     }
 
+
+    //显示药名地方点击事件
     @Override
     public void onIteClick(int position) {
         Intent intent = new Intent(getActivity(), SecondDialogActivity.class);
         intent.putExtra("position", position);
         intent.putExtra("chinese_name", data.get(position).getCmc());
-        intent.putExtra("accid",helperId);
-        intent.putExtra("sl",count);
-        Log.e(TAG, "onIteClick:############ "+data.get(position).getCmc()+helperId+count );
+        intent.putExtra("accid", helperId);
+        intent.putExtra("sl", count);
+        Log.e(TAG, "onIteClick:############ " + data.get(position).getCmc() + helperId + count);
         startActivity(intent);
         chinese_adapter.deleteTextView(position);
 //        western_adapter.deleteTextView(position);
@@ -697,27 +792,27 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     public void getData(ChineseDetailModel numberBean) {
         String chinese_name = numberBean.getCmc();
         count = numberBean.getSl();
-            ChineseDetailModel a = new ChineseDetailModel();
-            a.setSl(count);
-            a.setCmc(chinese_name);
-            chinese_adapter.addTextView(a);
-            chinese_adapter.notifyDataSetChanged();
+        ChineseDetailModel a = new ChineseDetailModel();
+        a.setSl(count);
+        a.setCmc(chinese_name);
+        chinese_adapter.addTextView(a);
+        chinese_adapter.notifyDataSetChanged();
 
-            chinese_edittext.setText(null);
-            chinese_listView.setVisibility(View.GONE);
-            chinese_fixed.setVisibility(View.VISIBLE);
+        chinese_edittext.setText(null);
+        chinese_listView.setVisibility(View.GONE);
+        chinese_fixed.setVisibility(View.VISIBLE);
 
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getNumber(ChineseModel chineseModel){
-        chinese_number=chineseModel.getAcMxs();
+    public void getNumber(ChineseModel chineseModel) {
+        chinese_number = chineseModel.getAcMxs();
         chinese_medical_number.setText(chinese_number);
         //将付数传回
-        ChuFangChinese chuFangBase=new ChuFangChinese();
+        ChuFangChinese chuFangBase = new ChuFangChinese();
         try {
             chuFangBase.setAcmxs(chinese_number);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -734,35 +829,68 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
     @Override
     public void OnFixItemClick(int position) {
 
-        if (data.size()==0){
+        if (data.size() == 0) {
             Intent intent = new Intent(getActivity(), DialogActivity.class);
             intent.putExtra("medical_name", fix_data.get(position).getCmc());
-            intent.putExtra("accid",helperId);
-            intent.putExtra("dj",price);
-            intent.putExtra("cdm",medical_id);
+            intent.putExtra("accid", helperId);
+            intent.putExtra("dj", price);
+            intent.putExtra("cdm", medical_id);
             startActivity(intent);
         }
 
         boolean isSame = false;
         for (int i = 0; i < data.size(); i++) {
-            if (fix_data.get(position).getCmc().equals(data.get(i).getCmc())){
+            if (fix_data.get(position).getCmc().equals(data.get(i).getCmc())) {
                 Toast.makeText(ctx, "该药已开过", Toast.LENGTH_SHORT).show();
                 isSame = true;
                 break;
             }
         }
 
-        if(isSame){
+        if (isSame) {
             Toast.makeText(ctx, "该药已开过", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             Intent intent = new Intent(getActivity(), DialogActivity.class);
             intent.putExtra("medical_name", fix_data.get(position).getCmc());
-            intent.putExtra("accid",helperId);
-            intent.putExtra("dj",price);
-            intent.putExtra("cdm",medical_id);
+            intent.putExtra("accid", helperId);
+            intent.putExtra("dj", price);
+            intent.putExtra("cdm", medical_id);
             startActivity(intent);
         }
     }
+
+    public void upLoadMessage(){
+        //生成json串 并上传服务器
+        final ChuFangChinese chufang=new ChuFangChinese();
+        chufang.fromJSON(list,chinese_number,advice,diagnosis,aiid);
+        otRequest=new OTRequest(getActivity().getBaseContext());
+        otRequest.setTN(TN_DOC_KAIYAO);
+        final DataModel data = new DataModel();
+        data.setDataJSONStr(String.valueOf(chufang.fromJSON(list,chinese_number,advice,diagnosis,aiid)));
+        otRequest.setDATA(data);
+        NetTool.getInstance().startRequest(false, true , act , null, otRequest, new CallBack<Map, String>() {
+            @Override
+            public void onSuccess(Map map, String s) {
+
+                JSONObject json=new JSONObject(map);
+
+                try {
+                    acid=json.getJSONObject("DATA").getString("acid");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Log.e(TAG, "onSuccess: "+chufang.fromJSON(list,chinese_number,advice,diagnosis,aiid));
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Log.e(TAG, "onError!!!!!!!!!!!!!: "+"请求失败" );
+            }
+        });
+    }
+
 
     class Receiver extends BroadcastReceiver {
         @Override
@@ -800,14 +928,14 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 if (cursor != null && cursor.moveToFirst()) {
                     do {
                         xmmc = cursor.getString(cursor.getColumnIndex("xmmc"));
-                        price=cursor.getString(cursor.getColumnIndex("bzjg"));
-                        medical_id=cursor.getString(cursor.getColumnIndex("sfxmbm"));
+                        price = cursor.getString(cursor.getColumnIndex("bzjg"));
+                        medical_id = cursor.getString(cursor.getColumnIndex("sfxmbm"));
                         asd.add(xmmc);
                     } while (cursor.moveToNext());
                 }
                 cursor.close();
                 //显示搜索列表药名
-                if (adapter!=null){
+                if (adapter != null) {
                     adapter.delete();
                 }
                 for (String s : asd) {
@@ -822,7 +950,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
         }
     }
 
-    class ReStartReceiver extends BroadcastReceiver{
+    class ReStartReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -830,6 +958,7 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
             chinese_advice.setText(null);
             diagnosis_edittext.setText(null);
             ask.setChecked(true);
+
             chinese_medical_number.setText("0");
             chinese_adapter.ReSrart();
             chinese_adapter.notifyDataSetChanged();
@@ -842,8 +971,9 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
 
             //更改数据库状态
             try {
-                chineseModel=HisDbManager.getManager().findIsUpLoad(helperId,false);
+                chineseModel = HisDbManager.getManager().findIsUpLoad(helperId, false);
                 chineseModel.setUploadSever(true);
+
             } catch (DbException e) {
                 e.printStackTrace();
             }
@@ -854,22 +984,35 @@ public class HelperFragment extends Fragment implements View.OnClickListener, On
                 e.printStackTrace();
             }
 
-            createYaoFang(helperId,"中药",aiid,chinese_number,"1300");
+            try {
+                HisDbManager.getManager().deleteAskNumbwe(helperId);
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+
+            createYaoFang(helperId, "中药", aiid, chinese_number, "1300");
+            initChat();
+
         }
     }
 
-    class MedicalDetails extends BroadcastReceiver{
+    class MedicalDetails extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(context, "查看详情", Toast.LENGTH_SHORT).show();
-            Intent intent1=new Intent(getActivity(), MedicalDetailsActivity.class);
-            intent1.putExtra("acid",helperId);
-            intent1.putExtra("aiid",aiid);
-            intent1.putExtra("advice",advice);
-            intent1.putExtra("number",chinese_number);
-            intent1.putExtra("time",date);
-            startActivity(intent1);
+//            Toast.makeText(context, "查看详情", Toast.LENGTH_SHORT).show();
+//            Log.e(TAG, "onReceive: "+1111111111 );
+            Intent intentDetails=new Intent(getActivity(),MedicalDetailsActivity.class);
+            intentDetails.putExtra("acid", helperId);
+            intentDetails.putExtra("aiid", aiid);
+            intentDetails.putExtra("advice", advice);
+            intentDetails.putExtra("number", chinese_number);
+            intentDetails.putExtra("time", date);
+            Bundle bundle=new Bundle();
+            bundle.putSerializable("list", (Serializable) data);
+            intentDetails.putExtras(bundle);
+            Log.e(TAG, "onReceive: "+helperId+aiid+chinese_number+date+advice+data);
+            startActivity(intentDetails);
         }
     }
 }

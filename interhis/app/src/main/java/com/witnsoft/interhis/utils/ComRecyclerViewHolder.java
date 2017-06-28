@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.witnsoft.interhis.R;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by zhengchengpeng on 2017/6/8.
@@ -63,6 +66,19 @@ public class ComRecyclerViewHolder extends RecyclerView.ViewHolder {
     public ComRecyclerViewHolder setBackgroundResource(int viewId, int picId) {
         ImageView imageView = getView(viewId);
         imageView.setBackgroundResource(picId);
+        return this;
+    }
+
+    public ComRecyclerViewHolder setImageUrl(Context cxt, int viewId, String url, int errorId) {
+        CircleImageView imageView = getView(viewId);
+        if (!TextUtils.isEmpty(url)) {
+            Glide.with(cxt)
+                    .load(url)
+                    .error(errorId)
+                    .into(imageView);
+        } else {
+            imageView.setImageResource(errorId);
+        }
         return this;
     }
 

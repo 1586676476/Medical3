@@ -11,6 +11,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Bundle;
+import android.os.Environment;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.service.carrier.CarrierMessagingService;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,36 +25,59 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
-import com.witnsoft.interhis.Chufang.ChuFangChinese;
+import com.google.gson.Gson;
 import com.witnsoft.interhis.R;
 import com.witnsoft.interhis.db.model.ChineseDetailModel;
 import com.witnsoft.interhis.inter.DialogListener;
-import com.witnsoft.libnet.model.DataModel;
 import com.witnsoft.libnet.model.OTRequest;
-import com.witnsoft.libnet.net.CallBack;
-import com.witnsoft.libnet.net.NetTool;
 
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Cache;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import static java.lang.String.valueOf;
+import static rx.plugins.RxJavaHooks.onError;
 
 
 public class WritePadDialog extends Dialog {
 	private static final String TAG = "WritePadDialog";
 	private Activity act;
 	Context context;
-	LayoutParams p;
-	DialogListener dialogListener;
+    static LayoutParams p;
 	private OTRequest otRequest;
+	private DialogListener dialogListener;
 	List<ChineseDetailModel> list=new ArrayList<>();
-	String str,acsm,zdsm,aiid;
+	String str,acsm,zdsm,aiid,acid,signPath;
 
-	private static final String TN_DOC_KAIYAO = "F27.APP.01.06";
-	private static final String TN_DOC_XIANSHI = "F27.APP.01.07";
+    private Handler handler = new Handler(Looper.getMainLooper());
+    private OkHttpClient okHttpClient;
+    private Gson gson=new Gson();
 
-	public WritePadDialog(List<ChineseDetailModel> list,String str,String acsm,String zdsm,String aiid,Activity a,Context context, int themeResId, DialogListener dialogListener) {
+	public void setPath(String path) {
+		this.signPath = path;
+	}
+
+	public WritePadDialog(String acid,List<ChineseDetailModel> list, String str, String acsm, String zdsm, String aiid, Activity a, Context context, int themeResId, DialogListener dialogListener) {
 		super(context,themeResId);
+		this.acid=acid;
 		this.aiid=aiid;
 		this.zdsm=zdsm;
         this.acsm=acsm;
@@ -57,7 +86,8 @@ public class WritePadDialog extends Dialog {
 		this.act=a;
 		this.context = context;
 		this.dialogListener = dialogListener;
-	}
+        Log.e(TAG, "WritePadDialog: "+acid );
+    }
 
 	static final int BACKGROUND_COLOR = Color.WHITE;
 	static final int BRUSH_COLOR = Color.BLACK;
@@ -81,11 +111,11 @@ public class WritePadDialog extends Dialog {
 		p.height = 500; //高度设置为屏幕的0.4
 		p.width = 880; //宽度设置为屏幕的0.6
 		p.alpha=0.8f;
-		int statusBarHeight = getStatusBarHeight(context);
+		int statusBarHeight = getStatusBarHeight(getContext());
 //		p.height = (int)(height - statusBarHeight + 0.5);   //减去系统的宽高
 //		p.width = (int)(width + 0.5);
 		getWindow().setAttributes(p); // 设置生效,全屏填充
-		mView = new PaintView(context);
+		mView = new PaintView(getContext());
 		FrameLayout frameLayout = (FrameLayout) findViewById(R.id.tablet_view);
 		frameLayout.addView(mView);
 		mView.requestFocus();
@@ -103,36 +133,21 @@ public class WritePadDialog extends Dialog {
 				try {
 					dialogListener.refreshActivity(mView.getCachebBitmap());
 					WritePadDialog.this.dismiss();
-				} catch (Exception e) {
+				}catch (Exception e){
 					e.printStackTrace();
 				}
 
-				//生成json串 并上传服务器
-				final ChuFangChinese chufang=new ChuFangChinese();
-				chufang.fromJSON(list,str,acsm,zdsm,aiid);
-                otRequest=new OTRequest(getContext());
-				otRequest.setTN(TN_DOC_KAIYAO);
-				DataModel data = new DataModel();
-				data.setDataJSONStr(String.valueOf(chufang.fromJSON(list,str,acsm,zdsm,aiid)));
-				otRequest.setDATA(data);
-				NetTool.getInstance().startRequest(false, true , act , null, otRequest, new CallBack<Map, String>() {
-					@Override
-					public void onSuccess(Map map, String s) {
-						Intent intent=new Intent("CHUSHIHUA");
-						getContext().sendBroadcast(intent);
-						Log.e(TAG, "onSuccess: "+chufang.fromJSON(list,str,acsm,zdsm,aiid) );
+				Intent intent=new Intent("CHUSHIHUA");
+				getContext().sendBroadcast(intent);
 
-					}
-
-					@Override
-					public void onError(Throwable throwable) {
-						Log.e(TAG, "onError!!!!!!!!!!!!!: "+"请求失败" );
-					}
-				});
+				Log.e(TAG, "onClick##############: "+acid );
+				updateHeadImg(signPath);
 
 			}
 		});
 
+		okHttpClient = (new OkHttpClient.Builder()).retryOnConnectionFailure(true).connectTimeout(5L, TimeUnit.SECONDS)
+				.cache(new Cache(Environment.getExternalStorageDirectory(), 10485760L)).build();
 	}
 
 	/**
@@ -149,12 +164,14 @@ public class WritePadDialog extends Dialog {
 		return result;
 	}
 
+
+
 	/**
 	 * This view implements the drawing canvas.
 	 *
 	 * It handles all of the input events and drawing functions.
 	 */
-	class PaintView extends View {
+    public static class PaintView extends View {
 		private Paint paint;
 		private Canvas cacheCanvas;
 		private Bitmap cachebBitmap;
@@ -251,6 +268,68 @@ public class WritePadDialog extends Dialog {
 			return true;
 		}
 	}
+
+	public void updateHeadImg(final String path) {
+		final String url = "http://zy.renyibao.com/FileUploadServlet";
+		File file = new File(path);
+		RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"), file);
+		MultipartBody body = new MultipartBody.Builder()
+				.setType(MultipartBody.FORM)
+				.addPart(Headers.of("Content-Disposition", "multipart/form-data; name=\"file\"; filename=\"img.png\""), fileBody)
+//                .addFormDataPart("file", path, fileBody)
+				.addFormDataPart("keyid",acid)
+				.addFormDataPart("fjlb", "ask_chinese")
+				.build();
+
+		Request request = new Request.Builder()
+				.url(url)
+				.post(body)
+				.build();
+
+		WritePadDialog.this.okHttpClient.newCall(request).enqueue(new Callback() {
+			@Override
+			public void onFailure(Call call, IOException e) {
+				WritePadDialog.this.handler.post(new Runnable() {
+					public void run() {
+						Toast.makeText(act, "图片上传失败", Toast.LENGTH_SHORT).show();
+				}
+				});
+				Log.e(TAG, "onFailure: "+e.getMessage());
+						}
+
+			@Override
+			public void onResponse(Call call, Response response) throws IOException {
+				if (response.isSuccessful()) {
+					final String resp = response.body().string();
+					if (!TextUtils.isEmpty(resp)) {
+                        HashMap mapObj = new HashMap();
+                        final Map map = (Map) gson.fromJson(resp, mapObj.getClass());
+                        String errCode = "";
+                        if (null != map.get("errcode")) {
+                            try {
+                                errCode = valueOf(map.get("errcode"));
+                                if (!TextUtils.isEmpty(errCode) && "200".equals(errCode)) {
+                                    Toast.makeText(act,WritePadDialog.this.getContext().getString(R.string.update_success), Toast.LENGTH_LONG).show();
+                                    Log.e(TAG, "onResponse: "+"上传成功" );
+
+                                } else if (!TextUtils.isEmpty(errCode)) {
+                                    if (!TextUtils.isEmpty(valueOf(map.get("errcode")))) {
+                                        Toast.makeText(act, valueOf(map.get("errmsg")), Toast.LENGTH_LONG).show();
+
+                                    }
+                                }
+                            } catch (ClassCastException var11) {
+                                ;
+                            }
+                        }
+                    }
+				}
+			}
+		});
+	}
+
+
+
 }
 
 

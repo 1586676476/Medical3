@@ -105,9 +105,10 @@ public class HisDbManager {
         this.manager.delete(ChineseDetailModel.class, WhereBuilder.b("CMC","=",str));
     }
 
-    public void deleteAskNumbwe(int count) throws DbException{
-        this.manager.delete(ChineseDetailModel.class,WhereBuilder.b("sl","=",count));
+    public void deleteAskNumbwe(String accid) throws DbException{
+        this.manager.delete(ChineseDetailModel.class,WhereBuilder.b("accid","=",accid));
     }
+
     //更新数据的方法
     public void upDate(ChineseDetailModel chineseDetailModel) throws DbException{
        this.manager.update(chineseDetailModel,"SL");

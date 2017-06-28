@@ -4,23 +4,12 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_no_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/no_contact_list"
-        android:textColor="@color/text_gray_color"
-        android:textSize="20dp"
-        android:visibility="visible"/>
-
-
         <LinearLayout
            android:id="@+id/ll_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <RadioGroup
                 android:id="@+id/fragment_helper_button"
@@ -80,7 +69,6 @@
                 android:id="@+id/fragment_helper_ask_linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:background="@color/colorWhite"
                 android:visibility="gone">
 
@@ -96,7 +84,6 @@
                 android:id="@+id/fragment_helper_diagnosis_linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:background="@color/colorWhite"
                 android:orientation="vertical"
                 android:visibility="gone">
@@ -130,20 +117,6 @@
                 android:background="@color/colorWhite"
                 android:orientation="vertical"
                 android:visibility="gone">
-
-                <!--<LinearLayout-->
-                <!--android:layout_width="690dp"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:background="@color/colorYellow">-->
-
-                <!--<TextView-->
-                <!--style="@style/smallSize"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:paddingLeft="10dp"-->
-                <!--android:text="天津市瑞城大药房王顶缇店  022-38475896\n南开区王顶缇应随路92号"-->
-                <!--android:textColor="@color/colorBlack" />-->
-
-                <!--</LinearLayout>-->
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/fragment_helper_chinese_linearLayout_recycleView"
@@ -268,7 +241,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:background="@color/colorWhite"
                 android:id="@+id/fragment_helper_western_medical_linearLayout"
                 android:layout_width="match_parent"
