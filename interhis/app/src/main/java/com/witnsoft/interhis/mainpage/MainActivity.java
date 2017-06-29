@@ -222,10 +222,19 @@ public class MainActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (2 == resultCode) {
-            // 设置上传头像成功返回请求接口刷新界面
+            // 设置上传头像成功返回刷新头像
             int isRefresh = data.getIntExtra(SettingActivity.UPDATE_IMG, -1);
             if (1 == isRefresh) {
-                callDocInfoApi(false);
+                String img;
+                if (!TextUtils.isEmpty(ThriftPreUtils.getHeadImg(MainActivity.this))) {
+                    img = ThriftPreUtils.getHeadImg(MainActivity.this);
+                    Glide.with(MainActivity.this)
+                            .load(img)
+                            .error(R.drawable.touxiang)
+                            .into(ivHead);
+                    headImg = img;
+                }
+//                callDocInfoApi(false);
             }
         }
     }
@@ -349,6 +358,7 @@ public class MainActivity extends BaseActivity {
                                         .error(R.drawable.touxiang)
                                         .into(ivHead);
                                 headImg = data.get(DocInfoResponseKey.PHOTO_URL);
+                                ThriftPreUtils.putHeadImg(MainActivity.this, headImg);
                             }
                         }
                     }
@@ -535,14 +545,13 @@ public class MainActivity extends BaseActivity {
                                         sendBroadcast(intent);
 
                                         //将患者id传回
-                                        ChuFangChinese chuFangChinese=new ChuFangChinese();
+                                        ChuFangChinese chuFangChinese = new ChuFangChinese();
                                         try {
                                             chuFangChinese.setHelperId(dataChatList.get(position).get("ACCID"));
-                                            Log.e(TAG, "onClick: "+ dataChatList.get(position).get("ACCID"));
-                                        }catch (Exception e){
+                                            Log.e(TAG, "onClick: " + dataChatList.get(position).get("ACCID"));
+                                        } catch (Exception e) {
                                             e.printStackTrace();
                                         }
-
 
 
                                         //将aiid存入数据库

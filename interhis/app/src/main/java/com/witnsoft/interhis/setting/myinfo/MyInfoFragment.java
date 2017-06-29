@@ -254,9 +254,15 @@ public class MyInfoFragment extends ChildBaseFragment {
             if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_DEPT))) {
                 tvDept.setText(bundle.getString(SettingActivity.DOC_DEPT));
             }
+            String headImg = "";
             if (!TextUtils.isEmpty(bundle.getString(SettingActivity.DOC_HEAD))) {
+                headImg = bundle.getString(SettingActivity.DOC_HEAD);
+            } else if (!TextUtils.isEmpty(ThriftPreUtils.getHeadImg(getActivity()))) {
+                headImg = ThriftPreUtils.getHeadImg(getActivity());
+            }
+            if (!TextUtils.isEmpty(headImg)) {
                 Glide.with(getActivity())
-                        .load(bundle.getString(SettingActivity.DOC_HEAD))
+                        .load(headImg)
                         .error(R.drawable.touxiang)
                         .into(ivHead);
             }
@@ -610,6 +616,13 @@ public class MyInfoFragment extends ChildBaseFragment {
                                 try {
                                     errCode = String.valueOf(map.get("errcode"));
                                     if (!TextUtils.isEmpty(errCode) && "200".equals(errCode)) {
+                                        if (null != map.get("fjlj")) {
+                                            try {
+                                                ThriftPreUtils.putHeadImg(getActivity(), String.valueOf(map.get("fjlj")));
+                                            } catch (Exception e) {
+
+                                            }
+                                        }
                                         callBackPathImg.setIsRefresh(1);
                                         // 上传成功
                                         getActivity().runOnUiThread(new Runnable() {
@@ -647,7 +660,6 @@ public class MyInfoFragment extends ChildBaseFragment {
             }
         });
     }
-
 
 
     public interface CallBackPathImg {

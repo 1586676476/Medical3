@@ -416,11 +416,7 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
 
     }
 
-<<<<<<< HEAD
     //radiobutton点击事件
-=======
-
->>>>>>> 7f3982b2354f24583e4ffceed5385f7abd84f727
     @Override
     public void onClick(View v) {
         chineseModel = new ChineseModel();
@@ -745,8 +741,6 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
         chinese_linearLayout.setVisibility(View.GONE);
     }
 
-<<<<<<< HEAD
-=======
 //    public void setContent(String Aiid,String userName, String userId, String type, int single) {
 //        llContent.setVisibility(View.VISIBLE);
 //
@@ -772,7 +766,6 @@ public class HelperFragment extends ChildBaseFragment implements View.OnClickLis
     private String imgDoc = "";
     private String imgPat = "";
 
->>>>>>> 7f3982b2354f24583e4ffceed5385f7abd84f727
     private void initChat() {
         playAskVeiw();
         this.chatFragment = new EaseChatFragment();
